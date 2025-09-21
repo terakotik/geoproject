@@ -37,7 +37,7 @@ export default function Header() {
           </Link>
           <nav className="hidden lg:flex items-center gap-1">
              <Popover>
-              <PopoverTrigger className="flex items-center text-foreground transition-colors font-medium p-2 hover:border-foreground hover:border-dashed hover:border rounded-md">
+              <PopoverTrigger className="flex items-center text-foreground transition-colors font-medium p-2 rounded-md hover:text-accent">
                 Услуги <ChevronDown className="h-4 w-4 ml-1" />
               </PopoverTrigger>
               <PopoverContent className="w-[600px]">
@@ -58,7 +58,7 @@ export default function Header() {
               </PopoverContent>
             </Popover>
             {navLinks.map((link) => (
-              <Link key={link.href} href={link.href} className="text-foreground transition-colors font-medium p-2 hover:border-foreground hover:border-dashed hover:border rounded-md">
+              <Link key={link.href} href={link.href} className="text-foreground transition-colors font-medium p-2 rounded-md hover:text-accent">
                 {link.label}
               </Link>
             ))}
