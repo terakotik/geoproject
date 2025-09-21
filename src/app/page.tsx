@@ -159,13 +159,13 @@ export default function Home() {
       {/* Hero Section */}
       <section className="relative bg-white min-h-screen flex items-center">
         <Image
-          src="https://img.freepik.com/premium-vector/drawing-woman-sitting-table-with-words-word-top_399963-3732.jpg?semt=ais_hybrid&w=740&q=80"
+          src="https://videos.openai.com/vg-assets/assets%2Ftask_01k5p47k6jfn0sx4zdqj1dtke6%2F1758458131_img_0.webp?st=2025-09-21T11%3A31%3A23Z&se=2025-09-27T12%3A31%3A23Z&sks=b&skt=2025-09-21T11%3A31%3A23Z&ske=2025-09-27T12%3A31%3A23Z&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skoid=cfbc986b-d2bc-4088-8b71-4f962129715b&skv=2019-02-02&sv=2018-11-09&sr=b&sp=r&spr=https%2Chttp&sig=%2BvLVkEGDbgchPMBo4tpdNhineN%2Bel7Y9h8LoWnUrwOs%3D&az=oaivgprodscus"
           alt="Abstract drawing"
           fill
           className="object-cover"
           data-ai-hint="abstract drawing"
         />
-        <div className="absolute inset-0 bg-white/60"></div>
+        <div className="absolute inset-0 "></div>
         <div className="container mx-auto px-4 relative z-10">
           <div className="py-20 max-w-3xl">
               <div className="flex items-center gap-4 mb-4">

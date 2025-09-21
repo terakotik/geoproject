@@ -51,7 +51,13 @@ const nextConfig: NextConfig = {
         hostname: 'pouch.jumpshare.com',
         port: '',
         pathname: '/**',
-      }
+      },
+      {
+        protocol: 'https',
+        hostname: 'videos.openai.com',
+        port: '',
+        pathname: '/**',
+      },
     ],
   },
 };
