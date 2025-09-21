@@ -97,10 +97,10 @@ export default function Header() {
                     </nav>
                     <div className="mt-auto space-y-4">
                        <Button className="w-full" asChild>
-                         <Link href="/contact">Заказать звонок</Link>
+                         <Link href="/contact" onClick={() => setIsMobileMenuOpen(false)}>Заказать звонок</Link>
                        </Button>
                        <Button variant="outline" className="w-full" asChild>
-                          <a href="tel:+79522764940" className="flex items-center gap-2">
+                          <a href="tel:+79522764940" onClick={() => setIsMobileMenuOpen(false)} className="flex items-center gap-2">
                            <Phone className="h-4 w-4" />
                            +7 (952) 276-49-40
                           </a>
