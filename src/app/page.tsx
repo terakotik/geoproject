@@ -178,9 +178,12 @@ export default function Home() {
                         <Star className="h-5 w-5 fill-current text-yellow-400" />
                         <span>Нам доверяют с 2003 года</span>
                     </div>
-                    <Card className="flex items-center gap-2 text-white font-semibold bg-black/50 backdrop-blur-sm px-4 py-2 rounded-full text-lg w-fit">
+                    <Card className="flex items-center gap-3 text-white font-semibold bg-black/50 backdrop-blur-sm px-4 py-2 rounded-full text-lg w-fit border-none">
+                       <div className="w-6 h-6 rounded-full bg-white flex items-center justify-center">
+                           <span className="font-bold text-red-500">Я</span>
+                       </div>
                         <span>Яндекс Отзывы</span>
-                        <span>5.0</span>
+                        <span className="font-bold">5.0</span>
                         <div className="flex">
                         {[...Array(5)].map((_, i) => <Star key={i} className="h-4 w-4 fill-current text-yellow-400" />)}
                         </div>
