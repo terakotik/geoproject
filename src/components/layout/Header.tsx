@@ -46,7 +46,7 @@ export default function Header() {
                     <Link
                       key={service.slug}
                       href={`/services/${service.slug}`}
-                      className="group flex flex-col items-center text-center p-2 rounded-lg hover:bg-muted/50 transition-colors"
+                      className="group flex flex-col items-center text-center p-2 rounded-lg transition-colors hover:border hover:border-dashed hover:border-foreground"
                     >
                       <div className="mb-2 p-2 bg-muted rounded-md">
                         <service.icon className="h-6 w-6 text-muted-foreground" />
