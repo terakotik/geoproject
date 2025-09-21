@@ -4,52 +4,62 @@ export type Service = {
   title: string;
   description: string;
   icon: LucideIcon;
+  slug: string;
 };
 
 export const services: Service[] = [
   {
-    title: "ZOUIT Identification",
-    description: "Determine if a property falls within a zone with special conditions of use (ZOUIT) and understand applicable regulations.",
+    title: "Идентификация ЗОУИТ",
+    description: "Определение, попадает ли объект в зону с особыми условиями использования территорий (ЗОУИТ), и разъяснение действующих ограничений.",
     icon: ScanSearch,
+    slug: "zouit-identification",
   },
   {
-    title: "Engineering & Geodetic Surveys",
-    description: "Comprehensive surveys for construction, infrastructure projects, and land development, ensuring precision from start to finish.",
+    title: "Инженерно-геодезические изыскания",
+    description: "Комплексные изыскания для строительства, инфраструктурных проектов и освоения территорий, гарантирующие точность на всех этапах.",
     icon: DraftingCompass,
+    slug: "engineering-geodetic-surveys",
   },
   {
-    title: "Topographic Survey",
-    description: "Detailed mapping of terrain and features, providing essential data for design and planning.",
+    title: "Топографическая съемка",
+    description: "Детальное картографирование рельефа и объектов местности для проектно-изыскательских работ.",
     icon: Mountain,
+    slug: "topographic-survey",
   },
   {
-    title: "Cadastral Plans & Works",
-    description: "Creation and registration of cadastral plans for property boundary definition and legal registration.",
+    title: "Кадастровые планы и работы",
+    description: "Формирование и регистрация кадастровых планов для установления границ собственности и юридического оформления.",
     icon: LandPlot,
+    slug: "cadastral-plans-works",
   },
   {
-    title: "As-Built Surveys",
-    description: "Verifying that construction work has been completed according to the design plans.",
+    title: "Исполнительная съемка",
+    description: "Контрольная съемка завершенных строительных объектов для проверки соответствия проектной документации.",
     icon: Building,
+    slug: "as-built-surveys",
   },
   {
-    title: "Stake-Out Services",
-    description: "Precise marking of proposed structures or features on the ground before construction.",
+    title: "Вынос в натуру",
+    description: "Точная разбивка и закрепление на местности проектных точек и осей зданий и сооружений перед началом строительства.",
     icon: Map,
+    slug: "stake-out-services",
   },
   {
-    title: "Earthwork Volume Calculation",
-    description: "Accurate calculation of cut and fill volumes for earthmoving projects, optimizing resource management.",
+    title: "Расчет объемов земляных работ",
+    description: "Точный подсчет объемов выемки и насыпи грунта для оптимизации земляных работ и ресурсов.",
     icon: Calculator,
+    slug: "earthwork-volume-calculation",
   },
   {
-    title: "Technical Plans & Inspection Acts",
-    description: "Preparation of technical documentation and inspection acts for real estate objects and capital construction.",
+    title: "Технические планы и акты обследования",
+    description: "Подготовка технической документации и актов обследования для объектов недвижимости и капитального строительства.",
     icon: FileText,
+    slug: "technical-plans-inspection-acts",
   },
   {
-    title: "Source Data Analysis",
-    description: "Expert analysis of existing geodetic and cartographic data to inform project strategy and execution.",
+    title: "Анализ исходных данных",
+    description: "Экспертный анализ существующих геодезических и картографических материалов для разработки стратегии проекта.",
     icon: Scale,
+    slug: "source-data-analysis",
   },
 ];
