@@ -7,7 +7,7 @@ import { services, getServiceDetails } from '@/lib/services';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 import HorizontalScrollCarousel from '@/components/HorizontalScrollCarousel';
 import { HelpCircle } from 'lucide-react';
-import DrawingCanvas from '@/components/DrawingCanvas';
+import TerritoryGame from '@/components/TerritoryGame';
 
 const packages = [
   {
@@ -26,7 +26,7 @@ const packages = [
     price: "11 500 ₽",
     oldPrice: "14 000 ₽",
     saving: "Экономия 18%",
-    audience: "4-7 заявок",
+    audience: "4-7 заявки",
     features: ["Все услуги пакета Стандарт", "Приоритетное обслуживание", "Персональный менеджер", "Скидка на дополнительные услуги"],
     popular: true,
   },
@@ -221,7 +221,7 @@ export default function Home() {
               </div>
             </div>
             <div className="relative hidden lg:block h-[600px] rounded-2xl overflow-hidden bg-card/50 backdrop-blur-sm border-border/50">
-              <DrawingCanvas />
+              <TerritoryGame />
             </div>
           </div>
         </div>
