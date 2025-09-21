@@ -238,22 +238,22 @@ export default function Home() {
         </div>
         <HorizontalScrollCarousel>
             {services.slice(0, 6).map((service, index) => (
-              <div key={service.slug} className="min-w-[320px] md:min-w-[480px] px-4">
+              <div key={service.slug} className="min-w-[380px] md:min-w-[520px] px-4">
                 <Link href={`/services/${service.slug}`} className="block group h-full">
                   <Card className="flex flex-col h-full p-8 hover:shadow-lg transition-all duration-300 hover:scale-[1.02] border-border/50 bg-card/50 backdrop-blur-sm relative">
-                    <div className="absolute top-4 left-4 text-8xl font-bold text-foreground/5 pointer-events-none">0{index + 1}</div>
-                    <div className="flex items-start justify-between mb-4 mt-12">
-                      <div className="p-3 bg-muted rounded-lg">
-                        <service.icon className="h-8 w-8 text-muted-foreground" />
+                    <div className="absolute top-6 left-6 text-9xl font-bold text-foreground/5 pointer-events-none">0{index + 1}</div>
+                    <div className="flex items-start justify-between mb-6 mt-20">
+                      <div className="p-3 rounded-lg">
+                        <service.icon className="h-10 w-10 text-muted-foreground" />
                       </div>
                     </div>
                     <div>
-                      <h3 className="text-2xl font-heading font-semibold text-foreground mb-3">{service.title}</h3>
-                      <p className="text-muted-foreground text-base leading-relaxed">{service.description}</p>
+                      <h3 className="text-3xl font-heading font-semibold text-foreground mb-4">{service.title}</h3>
+                      <p className="text-muted-foreground text-lg leading-relaxed">{service.description}</p>
                     </div>
-                    <div className="mt-auto pt-6">
-                      <Button variant="outline" size="lg" className="w-full group-hover:bg-accent group-hover:text-accent-foreground transition-colors">
-                        Подробнее <ArrowRight className="ml-2 h-4 w-4" />
+                    <div className="mt-auto pt-8">
+                      <Button variant="outline" size="lg" className="w-full group-hover:bg-accent group-hover:text-accent-foreground transition-colors text-lg py-6">
+                        Подробнее <ArrowRight className="ml-2 h-5 w-5" />
                       </Button>
                     </div>
                   </Card>
@@ -284,7 +284,7 @@ export default function Home() {
             <h2 className="text-3xl font-heading font-semibold text-center mb-8 text-foreground">Пакетные предложения</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch">
               {packages.map((pkg, index) => (
-                <Card key={index} className={`group flex flex-col p-6 relative overflow-hidden bg-card/80 backdrop-blur-sm border-2 transition-all duration-300 ${pkg.popular ? 'border-transparent group-hover:border-accent' : 'border-border/50 group-hover:border-accent'}`}>
+                <Card key={index} className={`group flex flex-col p-6 relative overflow-hidden bg-card/80 backdrop-blur-sm border-2 transition-all duration-300 ${pkg.popular ? 'border-transparent hover:border-accent' : 'border-border/50 hover:border-accent'}`}>
                   {pkg.popular && (
                     <div className="absolute top-4 right-4 bg-accent text-accent-foreground text-xs font-bold py-1 px-3 rounded-full">{pkg.badge || 'Выгодно'}</div>
                   )}

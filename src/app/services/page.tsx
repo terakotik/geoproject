@@ -17,19 +17,19 @@ export default function ServicesPage() {
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
           {services.map((service) => (
              <Link href={`/services/${service.slug}`} key={service.slug} className="block group">
-             <Card className="flex flex-col h-full p-6 hover:shadow-brand transition-all duration-300 hover:scale-[1.02] border-border/50 bg-card/50 backdrop-blur-sm">
-               <div className="flex items-start justify-between mb-4">
-                 <div className="p-3 bg-muted rounded-lg">
-                   <service.icon className="h-6 w-6 text-muted-foreground" />
+             <Card className="flex flex-col h-full p-8 hover:shadow-brand transition-all duration-300 hover:scale-[1.02] border-border/50 bg-card/50 backdrop-blur-sm">
+               <div className="flex items-start justify-between mb-6">
+                 <div className="p-3 rounded-lg">
+                   <service.icon className="h-10 w-10 text-muted-foreground" />
                  </div>
                </div>
                <div>
-                 <h3 className="text-xl font-heading font-semibold text-foreground mb-2">{service.title}</h3>
-                 <p className="text-muted-foreground text-sm leading-relaxed">{service.description}</p>
+                 <h3 className="text-3xl font-heading font-semibold text-foreground mb-4">{service.title}</h3>
+                 <p className="text-muted-foreground text-lg leading-relaxed">{service.description}</p>
                </div>
-               <div className="mt-auto pt-4">
-                 <Button variant="outline" className="w-full group-hover:bg-accent group-hover:text-accent-foreground transition-colors">
-                   Подробнее <ArrowRight className="ml-2 h-4 w-4" />
+               <div className="mt-auto pt-8">
+                 <Button variant="outline" className="w-full group-hover:bg-accent group-hover:text-accent-foreground transition-colors text-lg py-6">
+                   Подробнее <ArrowRight className="ml-2 h-5 w-5" />
                  </Button>
                </div>
              </Card>
