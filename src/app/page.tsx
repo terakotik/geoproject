@@ -60,7 +60,9 @@ export default function Home() {
               </div>
 
               <div className="flex flex-col sm:flex-row gap-4">
-                <Button size="lg" className="flex-1 sm:flex-none">Бесплатная консультация</Button>
+                <Button size="lg" asChild>
+                  <Link href="/contact">Бесплатная консультация</Link>
+                </Button>
                 <Button variant="outline" size="lg" className="flex-1 sm:flex-none">
                   <Phone className="h-5 w-5 mr-2" />
                   +7 (952) 276-49-40
@@ -94,8 +96,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-      
-      {/* Sections from user will go here */}
     </div>
   );
 }

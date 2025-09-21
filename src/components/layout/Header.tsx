@@ -10,10 +10,10 @@ export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const navLinks = [
-    { href: '#services', label: 'Услуги' },
+    { href: '/services', label: 'Услуги' },
     { href: '#prices', label: 'Цены' },
     { href: '#about', label: 'О нас' },
-    { href: '#contact', label: 'Контакты' },
+    { href: '/contact', label: 'Контакты' },
   ];
 
   return (
