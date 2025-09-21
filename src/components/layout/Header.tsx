@@ -85,11 +85,11 @@ export default function Header() {
                       </Link>
                     </div>
                     <nav className="flex flex-col gap-4 py-6">
-                       <Link href="/services" onClick={() => setIsMobileMenuOpen(false)} className="text-lg text-foreground hover:text-accent transition-colors font-medium">
+                       <Link href="/services" onClick={() => setIsMobileMenuOpen(false)} className="text-lg text-foreground transition-colors font-medium">
                           Услуги
                         </Link>
                       {navLinks.map((link) => (
-                        <Link key={link.href} href={link.href} onClick={() => setIsMobileMenuOpen(false)} className="text-lg text-foreground hover:text-accent transition-colors font-medium">
+                        <Link key={link.href} href={link.href} onClick={() => setIsMobileMenuOpen(false)} className="text-lg text-foreground transition-colors font-medium">
                           {link.label}
                         </Link>
                       ))}
