@@ -8,8 +8,19 @@ import { Card } from '@/components/ui/card';
 
 export default function Footer() {
   return (
-    <footer className="bg-black text-white">
-      <div className="container mx-auto px-4 py-16">
+    <footer className="bg-black text-white relative overflow-hidden">
+      <div className="absolute inset-0 z-0">
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="w-full h-full object-cover"
+          src="https://yandex-maps-reviews-proxy.vercel.app/video/background.mp4"
+        />
+        <div className="absolute inset-0 bg-black/80"></div>
+      </div>
+      <div className="container mx-auto px-4 py-16 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           
           <div className="space-y-6">
