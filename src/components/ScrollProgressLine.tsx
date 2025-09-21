@@ -6,6 +6,7 @@ const ScrollProgressLine = () => {
   const pathRef = useRef<SVGPathElement>(null);
   const maskRef = useRef<SVGPathElement>(null);
   const arrowRef = useRef<SVGGElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const path = pathRef.current;
@@ -49,29 +50,23 @@ const ScrollProgressLine = () => {
       if (!pathLength) return;
 
       const scrollY = window.scrollY || document.documentElement.scrollTop;
-      const fullDocHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
       
-      // Calculate the effective scrollable height (90% of the total)
-      const docHeightForAnimation = fullDocHeight * 0.9;
+      let scrollPercent = docHeight > 0 ? scrollY / docHeight : 0;
       
-      let scrollPercent = docHeightForAnimation > 0 ? scrollY / docHeightForAnimation : 0;
+      const draw = pathLength * scrollPercent * 0.9;
       
-      // Clamp the scroll percentage between 0 and 1
-      scrollPercent = Math.max(0, Math.min(1, scrollPercent));
-
-      const draw = pathLength * scrollPercent;
       mask.style.strokeDashoffset = (pathLength - draw).toString();
 
-      if (scrollPercent >= 1 && pathLength > 0) {
+      if (scrollPercent >= 0.95 && pathLength > 0) { // Keep arrow logic based on scroll percentage for appearance
         try {
-          const endPoint = path.getPointAtLength(pathLength);
-          const lastPoint = path.getPointAtLength(pathLength * 0.99);
+          const endPoint = path.getPointAtLength(draw);
+          const lastPoint = path.getPointAtLength(draw - 1);
           const angle = Math.atan2(endPoint.y - lastPoint.y, endPoint.x - lastPoint.x) * 180 / Math.PI;
 
           arrow.setAttribute('transform', `translate(${endPoint.x}, ${endPoint.y}) rotate(${angle})`);
           arrow.style.display = 'block';
         } catch(e) {
-          // In case getPointAtLength fails, which can happen in some edge cases.
           arrow.style.display = 'none';
         }
       } else {
@@ -95,7 +90,7 @@ const ScrollProgressLine = () => {
   }, []);
 
   return (
-    <div className="path-container hidden md:block">
+    <div ref={containerRef} className="path-container hidden md:block">
       <svg width="198px" height="1458px" viewBox="0 0 198 1458">
           <defs>
               <linearGradient x1="50%" y1="7.06935325%" x2="50%" y2="100%" id="linearGradient-1">
