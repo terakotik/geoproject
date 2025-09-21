@@ -4,14 +4,14 @@
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Logo } from '@/components/Logo';
-import { Clock, MapPin, Phone, ChevronDown } from 'lucide-react';
+import { ChevronDown } from 'lucide-react';
 import { useState } from 'react';
 import {
   Sheet,
   SheetContent,
   SheetTrigger,
 } from "@/components/ui/sheet"
-import { Menu } from 'lucide-react';
+import { Menu, Phone } from 'lucide-react';
 import {
   Popover,
   PopoverContent,
@@ -31,25 +31,7 @@ export default function Header() {
   return (
     <header className="sticky top-0 z-50 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b border-border">
       <div className="container mx-auto px-4">
-        <div className="hidden md:flex items-center justify-between py-2 text-sm border-b border-border/50">
-          <div className="flex items-center gap-6">
-            <div className="flex items-center gap-2 text-muted-foreground">
-              <Clock className="h-4 w-4" />
-              <span>Ежедневно с 10:00 до 20:00</span>
-            </div>
-            <div className="flex items-center gap-2 text-muted-foreground">
-              <MapPin className="h-4 w-4" />
-              <span>Санкт-Петербург и ЛО</span>
-            </div>
-          </div>
-          <div className="flex items-center gap-4">
-            <a href="tel:+79522764940" className="flex items-center gap-2 text-foreground hover:text-accent transition-colors">
-              <Phone className="h-4 w-4" />
-              +7 (952) 276-49-40
-            </a>
-          </div>
-        </div>
-        <div className="flex items-center justify-between py-4">
+        <div className="flex items-center justify-between py-3">
           <Logo />
           <nav className="hidden lg:flex items-center gap-8">
              <Popover>
