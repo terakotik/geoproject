@@ -20,6 +20,7 @@ const ScrollProgressLine = () => {
     let rafId: number;
 
     const setupAnimation = () => {
+      // A short delay is sometimes needed for the browser to correctly calculate the total length of the path.
       setTimeout(() => {
         try {
           pathLength = path.getTotalLength();
@@ -27,12 +28,14 @@ const ScrollProgressLine = () => {
             mask.setAttribute('stroke-dasharray', pathLength.toString());
             mask.style.strokeDashoffset = pathLength.toString();
           } else {
+            // Fallback value if getTotalLength fails
             pathLength = 1637; 
             mask.setAttribute('stroke-dasharray', pathLength.toString());
             mask.style.strokeDashoffset = pathLength.toString();
           }
         } catch (e) {
           console.error("Failed to get SVG path length:", e);
+          // A hardcoded fallback in case of any error
           pathLength = 1637;
           mask.setAttribute("stroke-dasharray", pathLength.toString());
           mask.style.strokeDashoffset = pathLength.toString();
@@ -65,6 +68,7 @@ const ScrollProgressLine = () => {
           arrow.setAttribute('transform', `translate(${endPoint.x}, ${endPoint.y}) rotate(${angle})`);
           arrow.style.display = 'block';
         } catch(e) {
+          // In case getPointAtLength fails, which can happen in some edge cases.
           arrow.style.display = 'none';
         }
       } else {
