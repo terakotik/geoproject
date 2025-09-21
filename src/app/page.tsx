@@ -1,11 +1,12 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { CheckCircle, Star, CircleCheckBig, FilePenLine, Users, SquareCheckBig, Download, MessageCircle, Zap, Send, Phone, MessageSquare, ExternalLink, ArrowRight, Shield, MapPin as MapPinIcon, Building, Ruler, FileText as FileTextIcon, TreePine, Factory, Calculator, Clock, ListChecks } from 'lucide-react';
-import { services } from '@/lib/services';
+import { services, getServiceDetails } from '@/lib/services';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 import HorizontalScrollCarousel from '@/components/HorizontalScrollCarousel';
+import { HelpCircle } from 'lucide-react';
 
 const packages = [
   {
@@ -309,29 +310,56 @@ export default function Home() {
           </div>
         </div>
         <HorizontalScrollCarousel>
-            {services.slice(0, 6).map((service, index) => (
-              <div key={service.slug} className="min-w-[420px] md:min-w-[580px] px-4">
-                <Link href={`/services/${service.slug}`} className="block group h-full">
-                  <Card className="flex flex-col h-full p-8 hover:shadow-lg transition-all duration-300 hover:scale-[1.02] border-border/50 bg-card/50 backdrop-blur-sm relative">
-                    <div className="absolute top-6 left-6 text-9xl font-bold text-foreground/5 pointer-events-none">0{index + 1}</div>
-                    <div className="flex items-start justify-between mb-6 mt-20">
-                       <div className="p-3 rounded-lg">
-                        <service.icon className="h-12 w-12 text-muted-foreground" />
+            {services.map((service) => {
+              const details = getServiceDetails(service.slug);
+              if (!details) return null;
+              return (
+                <div key={service.slug} className="min-w-[420px] md:min-w-[480px] px-4">
+                  <Card className="flex flex-col h-full hover:border-accent transition-all duration-300 border-border/50 bg-card/50 backdrop-blur-sm relative group">
+                    <CardHeader>
+                      <div className="flex items-start justify-between">
+                         <div className="p-3 rounded-lg bg-muted/50 mb-4">
+                          <service.icon className="h-10 w-10 text-muted-foreground" />
+                        </div>
                       </div>
-                    </div>
-                    <div>
-                      <h3 className="text-4xl font-heading font-semibold text-foreground mb-4">{service.title}</h3>
-                      <p className="text-muted-foreground text-xl leading-relaxed">{service.description}</p>
-                    </div>
-                    <div className="mt-auto pt-8">
-                      <Button variant="outline" size="lg" className="w-full group-hover:bg-accent group-hover:text-accent-foreground transition-colors text-lg py-6">
-                        Подробнее <ArrowRight className="ml-2 h-5 w-5" />
-                      </Button>
+                      <CardTitle className="text-2xl font-heading">{service.title}</CardTitle>
+                      <CardDescription className="text-base">{service.description}</CardDescription>
+                    </CardHeader>
+                    <CardContent className="flex-grow">
+                       <ul className="space-y-3 mb-6">
+                        {details.includes.map((item, i) => (
+                          <li key={i} className="flex items-center gap-3">
+                            <CheckCircle className="h-4 w-4 text-accent flex-shrink-0" />
+                            <span className="text-muted-foreground">{item}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </CardContent>
+                    <div className="p-6 pt-0 mt-auto">
+                        <div className="flex justify-between items-center mb-4 text-lg">
+                           <div className="font-bold text-accent">{details.price}</div>
+                           <div className="text-muted-foreground">{details.timeline}</div>
+                        </div>
+                        <Button variant="outline" size="lg" className="w-full group-hover:bg-accent group-hover:text-accent-foreground transition-colors text-lg py-6">
+                          Заказать услугу
+                        </Button>
                     </div>
                   </Card>
-                </Link>
-              </div>
-            ))}
+                </div>
+              )
+            })}
+             <div className="min-w-[420px] md:min-w-[480px] px-4">
+              <Card className="flex flex-col h-full justify-center items-center text-center p-8 bg-card/50 backdrop-blur-sm border-border/50">
+                  <div className="p-3 rounded-lg bg-muted/50 mb-4">
+                    <HelpCircle className="h-10 w-10 text-muted-foreground" />
+                  </div>
+                  <h3 className="text-2xl font-heading font-semibold text-foreground mb-2">Не нашли нужную услугу?</h3>
+                  <p className="text-muted-foreground mb-6">Мы выполняем любые виды геодезических работ под заказ</p>
+                  <Button size="lg" asChild>
+                    <Link href="/contact">Получить консультацию</Link>
+                  </Button>
+              </Card>
+            </div>
         </HorizontalScrollCarousel>
         <div className="container mx-auto px-4">
           <div className="text-center mt-12">
