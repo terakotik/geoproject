@@ -49,9 +49,12 @@ const ScrollProgressLine = () => {
       if (!pathLength) return;
 
       const scrollY = window.scrollY || document.documentElement.scrollTop;
-      // Subtract 100px from the scrollable height to make the line end earlier
-      const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight - 100;
-      let scrollPercent = docHeight > 0 ? scrollY / docHeight : 0;
+      const fullDocHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      
+      // Calculate the effective scrollable height (90% of the total)
+      const docHeightForAnimation = fullDocHeight * 0.9;
+      
+      let scrollPercent = docHeightForAnimation > 0 ? scrollY / docHeightForAnimation : 0;
       
       // Clamp the scroll percentage between 0 and 1
       scrollPercent = Math.max(0, Math.min(1, scrollPercent));
