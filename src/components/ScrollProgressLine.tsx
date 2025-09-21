@@ -1,12 +1,13 @@
 'use client';
 
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 const ScrollProgressLine = () => {
   const pathRef = useRef<SVGPathElement>(null);
   const maskRef = useRef<SVGPathElement>(null);
   const arrowRef = useRef<SVGGElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
+  const [debugScroll, setDebugScroll] = useState(0);
 
   useEffect(() => {
     const path = pathRef.current;
@@ -21,7 +22,6 @@ const ScrollProgressLine = () => {
     let rafId: number;
 
     const setupAnimation = () => {
-      // A short delay is sometimes needed for the browser to correctly calculate the total length of the path.
       setTimeout(() => {
         try {
           pathLength = path.getTotalLength();
@@ -29,14 +29,12 @@ const ScrollProgressLine = () => {
             mask.setAttribute('stroke-dasharray', pathLength.toString());
             mask.style.strokeDashoffset = pathLength.toString();
           } else {
-            // Fallback value if getTotalLength fails
             pathLength = 1637; 
             mask.setAttribute('stroke-dasharray', pathLength.toString());
             mask.style.strokeDashoffset = pathLength.toString();
           }
         } catch (e) {
           console.error("Failed to get SVG path length:", e);
-          // A hardcoded fallback in case of any error
           pathLength = 1637;
           mask.setAttribute("stroke-dasharray", pathLength.toString());
           mask.style.strokeDashoffset = pathLength.toString();
@@ -52,13 +50,18 @@ const ScrollProgressLine = () => {
       const scrollY = window.scrollY || document.documentElement.scrollTop;
       const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
       
-      let scrollPercent = docHeight > 0 ? scrollY / docHeight : 0;
-      
-      const draw = pathLength * scrollPercent * 0.9;
+      // Логика для остановки на 90%
+      const animationEndScroll = docHeight * 0.9;
+      let scrollPercent = animationEndScroll > 0 ? scrollY / animationEndScroll : 0;
+      scrollPercent = Math.min(scrollPercent, 1); // Ограничиваем 100%
+
+      setDebugScroll(scrollPercent); // Для теста
+
+      const draw = pathLength * scrollPercent;
       
       mask.style.strokeDashoffset = (pathLength - draw).toString();
 
-      if (scrollPercent >= 0.95 && pathLength > 0) { // Keep arrow logic based on scroll percentage for appearance
+      if (scrollPercent >= 1 && pathLength > 0) {
         try {
           const endPoint = path.getPointAtLength(draw);
           const lastPoint = path.getPointAtLength(draw - 1);
@@ -91,6 +94,11 @@ const ScrollProgressLine = () => {
 
   return (
     <div ref={containerRef} className="path-container hidden md:block">
+      {/* Тестовый блок для проверки */}
+      <div style={{ position: 'fixed', top: '10px', left: '10px', zIndex: 100, backgroundColor: 'white', padding: '5px', border: '1px solid black', color: 'black' }}>
+        Scroll Percent: {(debugScroll * 100).toFixed(2)}%
+      </div>
+
       <svg width="198px" height="1458px" viewBox="0 0 198 1458">
           <defs>
               <linearGradient x1="50%" y1="7.06935325%" x2="50%" y2="100%" id="linearGradient-1">
