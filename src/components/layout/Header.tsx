@@ -1,9 +1,10 @@
+
 "use client";
 
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Logo } from '@/components/Logo';
-import { Clock, MapPin, Phone } from 'lucide-react';
+import { Clock, MapPin, Phone, ChevronDown } from 'lucide-react';
 import { useState } from 'react';
 import {
   Sheet,
@@ -11,12 +12,17 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet"
 import { Menu } from 'lucide-react';
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover"
+import { services } from '@/lib/services';
 
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const navLinks = [
-    { href: '/services', label: 'Услуги' },
     { href: '/prices', label: 'Цены' },
     { href: '/#about', label: 'О нас' },
     { href: '/contact', label: 'Контакты' },
@@ -46,6 +52,27 @@ export default function Header() {
         <div className="flex items-center justify-between py-4">
           <Logo />
           <nav className="hidden lg:flex items-center gap-8">
+             <Popover>
+              <PopoverTrigger className="flex items-center text-foreground hover:text-accent transition-colors font-medium">
+                Услуги <ChevronDown className="h-4 w-4 ml-1" />
+              </PopoverTrigger>
+              <PopoverContent className="w-[600px]">
+                <div className="grid grid-cols-3 gap-4 p-4">
+                  {services.map((service) => (
+                    <Link
+                      key={service.slug}
+                      href={`/services/${service.slug}`}
+                      className="group flex flex-col items-center text-center p-2 rounded-lg hover:bg-accent/10 transition-colors"
+                    >
+                      <div className="mb-2 p-2 bg-muted rounded-md">
+                        <service.icon className="h-6 w-6 text-muted-foreground group-hover:text-accent" />
+                      </div>
+                      <span className="text-sm font-medium text-foreground">{service.title}</span>
+                    </Link>
+                  ))}
+                </div>
+              </PopoverContent>
+            </Popover>
             {navLinks.map((link) => (
               <Link key={link.href} href={link.href} className="text-foreground hover:text-accent transition-colors font-medium">
                 {link.label}
@@ -72,6 +99,9 @@ export default function Header() {
                       <Logo />
                     </div>
                     <nav className="flex flex-col gap-4 py-6">
+                       <Link href="/services" onClick={() => setIsMobileMenuOpen(false)} className="text-lg text-foreground hover:text-accent transition-colors font-medium">
+                          Услуги
+                        </Link>
                       {navLinks.map((link) => (
                         <Link key={link.href} href={link.href} onClick={() => setIsMobileMenuOpen(false)} className="text-lg text-foreground hover:text-accent transition-colors font-medium">
                           {link.label}

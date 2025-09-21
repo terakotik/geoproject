@@ -1,3 +1,4 @@
+
 import { Logo } from '@/components/Logo';
 import { Facebook, Twitter, Linkedin, Send, MessageSquare, ExternalLink, Clock, Mail, MapPin, Phone } from 'lucide-react';
 import Link from 'next/link';
@@ -12,7 +13,9 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           
           <div className="space-y-6">
-            <Logo isFooter={true} />
+            <Link href="/">
+                <Logo isFooter={true} />
+            </Link>
             <p className="text-sm text-white/80 leading-relaxed">
               Профессиональные геодезические услуги в Санкт-Петербурге и Ленинградской области.
               Полный спектр кадастровых работ и инженерных изысканий.
@@ -98,7 +101,7 @@ export default function Footer() {
         <div className="border-t border-white/20 mt-12 pt-8">
           <div className="flex flex-col lg:flex-row justify-between items-center gap-4">
             <div className="text-sm text-white/80">
-              © 2024 ООО "ГЕОСТРОЙПРОЕКТ". Все права защищены.
+              © 2025 ООО "ГЕОСТРОЙПРОЕКТ". Все права защищены.
             </div>
             <div className="text-xs text-white/80 text-center lg:text-right">
               Лицензированные кадастровые инженеры | Работаем с 2003 года<br/>
