@@ -157,16 +157,8 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-background">
       {/* Hero Section */}
-      <section className="relative bg-white min-h-screen flex items-center p-16">
-        <Image
-          src="https://videos.openai.com/vg-assets/assets%2Ftask_01k5p47k6jfn0sx4zdqj1dtke6%2F1758458131_img_0.webp?st=2025-09-21T11%3A31%3A23Z&se=2025-09-27T12%3A31%3A23Z&sks=b&skt=2025-09-21T11%3A31%3A23Z&ske=2025-09-27T12%3A31%3A23Z&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skoid=cfbc986b-d2bc-4088-8b71-4f962129715b&skv=2019-02-02&sv=2018-11-09&sr=b&sp=r&spr=https%2Chttp&sig=%2BvLVkEGDbgchPMBo4tpdNhineN%2Bel7Y9h8LoWnUrwOs%3D&az=oaivgprodscus"
-          alt="Abstract drawing"
-          fill
-          className="object-cover rounded-3xl"
-          data-ai-hint="abstract drawing"
-        />
-        <div className="absolute inset-0 "></div>
-        <div className="container mx-auto px-4 relative z-10">
+      <section className="relative bg-white min-h-screen flex items-center">
+        <div className="container mx-auto px-4 relative z-10 grid lg:grid-cols-2 gap-8 items-center">
           <div className="py-20 max-w-3xl">
               <div className="flex items-center gap-4 mb-4">
                   <div className="flex items-center gap-2 text-accent font-semibold bg-accent/10 px-4 py-2 rounded-full text-lg self-start w-fit">
@@ -222,6 +214,16 @@ export default function Home() {
                     </a>
                   </Button>
               </div>
+          </div>
+           <div className="relative w-full h-[50vh] lg:h-full">
+            <video
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="w-full h-full object-cover rounded-3xl"
+              src="https://videos.openai.com/vg-assets/assets%2Ftask_01k5p47k6jfn0sx4zdqj1dtke6%2F1758458131_img_0.webp?st=2025-09-21T11%3A31%3A23Z&se=2025-09-27T12%3A31%3A23Z&sks=b&skt=2025-09-21T11%3A31%3A23Z&ske=2025-09-27T12%3A31%3A23Z&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skoid=cfbc986b-d2bc-4088-8b71-4f962129715b&skv=2019-02-02&sv=2018-11-09&sr=b&sp=r&spr=https%2Chttp&sig=%2BvLVkEGDbgchPMBo4tpdNhineN%2Bel7Y9h8LoWnUrwOs%3D&az=oaivgprodscus"
+            />
           </div>
         </div>
       </section>
