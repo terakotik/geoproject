@@ -163,6 +163,44 @@ export default function Home() {
     }
   ];
 
+  const ServiceCard = ({ service, index }: { service: Service; index: number }) => {
+    const details = getServiceDetails(service.slug);
+    if (!details) return null;
+    return (
+      <Card className="flex flex-col h-full hover:border-accent transition-all duration-300 border-border/50 bg-card/50 backdrop-blur-sm relative group">
+        <div className="absolute -top-8 -left-8 text-8xl font-bold text-foreground/5 opacity-80 transition-all duration-300 group-hover:scale-110 group-hover:text-accent/10">
+          0{index + 1}
+        </div>
+        <CardHeader>
+          <div className="p-3 rounded-lg mb-4 self-start">
+            <service.icon className="h-10 w-10 text-muted-foreground" />
+          </div>
+          <CardTitle className="text-2xl font-heading">{service.title}</CardTitle>
+          <CardDescription className="text-base">{service.description}</CardDescription>
+        </CardHeader>
+        <CardContent className="flex-grow">
+          <ul className="space-y-3 mb-6">
+            {details.includes.map((item, i) => (
+              <li key={i} className="flex items-center gap-3">
+                <CheckCircle className="h-4 w-4 text-accent flex-shrink-0" />
+                <span className="text-muted-foreground">{item}</span>
+              </li>
+            ))}
+          </ul>
+        </CardContent>
+        <div className="p-6 pt-0 mt-auto">
+          <div className="flex justify-between items-center mb-4 text-lg">
+            <div className="font-bold text-accent">{details.price}</div>
+            <div className="text-muted-foreground">{details.timeline}</div>
+          </div>
+          <Button variant="outline" size="lg" className="w-full group-hover:bg-accent group-hover:text-accent-foreground transition-colors text-lg py-6">
+            Заказать услугу
+          </Button>
+        </div>
+      </Card>
+    );
+  };
+
   return (
     <div className="min-h-screen bg-background">
       {/* Hero Section */}
@@ -292,63 +330,63 @@ export default function Home() {
             </p>
           </div>
         </div>
-        <HorizontalScrollCarousel>
-            {services.map((service, index) => {
-              const details = getServiceDetails(service.slug);
-              if (!details) return null;
-              return (
-                <div key={service.slug} className="min-w-[420px] md:min-w-[480px] px-4">
-                  <Card className="flex flex-col h-full hover:border-accent transition-all duration-300 border-border/50 bg-card/50 backdrop-blur-sm relative group">
-                     <div className="absolute -top-8 -left-8 text-8xl font-bold text-foreground/5 opacity-80 transition-all duration-300 group-hover:scale-110 group-hover:text-accent/10">
-                      0{index + 1}
+
+        {/* Desktop: Horizontal Scroll */}
+        <div className="hidden md:block">
+            <HorizontalScrollCarousel>
+                {services.map((service, index) => (
+                    <div key={service.slug} className="min-w-[420px] md:min-w-[480px] px-4">
+                        <ServiceCard service={service} index={index} />
                     </div>
-                    <CardHeader>
-                       <div className="p-3 rounded-lg mb-4 self-start">
-                          <service.icon className="h-10 w-10 text-muted-foreground" />
-                        </div>
-                      <CardTitle className="text-2xl font-heading">{service.title}</CardTitle>
-                      <CardDescription className="text-base">{service.description}</CardDescription>
-                    </CardHeader>
-                    <CardContent className="flex-grow">
-                       <ul className="space-y-3 mb-6">
-                        {details.includes.map((item, i) => (
-                          <li key={i} className="flex items-center gap-3">
-                            <CheckCircle className="h-4 w-4 text-accent flex-shrink-0" />
-                            <span className="text-muted-foreground">{item}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </CardContent>
-                    <div className="p-6 pt-0 mt-auto">
-                        <div className="flex justify-between items-center mb-4 text-lg">
-                           <div className="font-bold text-accent">{details.price}</div>
-                           <div className="text-muted-foreground">{details.timeline}</div>
-                        </div>
-                        <Button variant="outline" size="lg" className="w-full group-hover:bg-accent group-hover:text-accent-foreground transition-colors text-lg py-6">
-                          Заказать услугу
-                        </Button>
-                    </div>
+                ))}
+                <div className="min-w-[420px] md:min-w-[480px] px-4">
+                  <Card className="flex flex-col h-full justify-center items-center text-center p-8 bg-card/50 backdrop-blur-sm border-border/50">
+                      <div className="p-3 rounded-lg mb-4">
+                        <HelpCircle className="h-10 w-10 text-muted-foreground" />
+                      </div>
+                      <h3 className="text-2xl font-heading font-semibold text-foreground mb-2">Не нашли нужную услугу?</h3>
+                      <p className="text-muted-foreground mb-6">Мы выполняем любые виды геодезических работ под заказ</p>
+                      <Button size="lg" asChild>
+                        <Link href="/contact">Получить консультацию</Link>
+                      </Button>
                   </Card>
                 </div>
-              )
-            })}
-             <div className="min-w-[420px] md:min-w-[480px] px-4">
-              <Card className="flex flex-col h-full justify-center items-center text-center p-8 bg-card/50 backdrop-blur-sm border-border/50">
-                  <div className="p-3 rounded-lg mb-4">
-                    <HelpCircle className="h-10 w-10 text-muted-foreground" />
-                  </div>
-                  <h3 className="text-2xl font-heading font-semibold text-foreground mb-2">Не нашли нужную услугу?</h3>
-                  <p className="text-muted-foreground mb-6">Мы выполняем любые виды геодезических работ под заказ</p>
-                  <Button size="lg" asChild>
-                    <Link href="/contact">Получить консультацию</Link>
-                  </Button>
-              </Card>
-            </div>
-            <div className="min-w-[420px] md:min-w-[480px] px-4 flex justify-center items-center">
+                <div className="min-w-[420px] md:min-w-[480px] px-4 flex justify-center items-center">
+                  <TooltipProvider>
+                    <Tooltip>
+                      <TooltipTrigger>
+                        <Image src="https://st5.depositphotos.com/46655356/66209/v/450/depositphotos_662097198-stock-illustration-close-caucasian-worker-helmet-head.jpg" alt="Инженер-геодезист" width={400} height={400} className="object-contain" />
+                      </TooltipTrigger>
+                      <TooltipContent>
+                        <p>Здравствуйте, жду именно ваш проект</p>
+                      </TooltipContent>
+                    </Tooltip>
+                  </TooltipProvider>
+                </div>
+            </HorizontalScrollCarousel>
+        </div>
+
+        {/* Mobile: Vertical Grid */}
+        <div className="md:hidden container mx-auto px-4 pb-20">
+          <div className="grid grid-cols-1 gap-8">
+            {services.map((service, index) => (
+              <ServiceCard key={service.slug} service={service} index={index} />
+            ))}
+             <Card className="flex flex-col h-full justify-center items-center text-center p-8 bg-card/50 backdrop-blur-sm border-border/50">
+                <div className="p-3 rounded-lg mb-4">
+                  <HelpCircle className="h-10 w-10 text-muted-foreground" />
+                </div>
+                <h3 className="text-2xl font-heading font-semibold text-foreground mb-2">Не нашли нужную услугу?</h3>
+                <p className="text-muted-foreground mb-6">Мы выполняем любые виды геодезических работ под заказ</p>
+                <Button size="lg" asChild>
+                  <Link href="/contact">Получить консультацию</Link>
+                </Button>
+            </Card>
+            <div className="flex justify-center items-center">
               <TooltipProvider>
                 <Tooltip>
                   <TooltipTrigger>
-                    <Image src="https://st5.depositphotos.com/46655356/66209/v/450/depositphotos_662097198-stock-illustration-close-caucasian-worker-helmet-head.jpg" alt="Инженер-геодезист" width={400} height={400} className="object-contain" />
+                    <Image src="https://st5.depositphotos.com/46655356/66209/v/450/depositphotos_662097198-stock-illustration-close-caucasian-worker-helmet-head.jpg" alt="Инженер-геодезист" width={300} height={300} className="object-contain" />
                   </TooltipTrigger>
                   <TooltipContent>
                     <p>Здравствуйте, жду именно ваш проект</p>
@@ -356,7 +394,8 @@ export default function Home() {
                 </Tooltip>
               </TooltipProvider>
             </div>
-        </HorizontalScrollCarousel>
+          </div>
+        </div>
       </section>
 
       {/* Prices Section */}
@@ -528,3 +567,6 @@ export default function Home() {
 
 
 
+
+
+    
