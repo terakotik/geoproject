@@ -14,8 +14,8 @@ export default function Home() {
     <div className="flex flex-col">
       <main className="flex-1">
         {/* Hero Section */}
-        <section className="relative h-[60vh] md:h-[80vh] w-full flex items-center justify-center text-center">
-          <div className="absolute inset-0 bg-foreground/50 z-10" />
+        <section className="relative h-[60vh] md:h-[80vh] w-full flex items-center justify-center text-center bg-background/10">
+          <div className="absolute inset-0 bg-white/30 dark:bg-foreground/50 z-10" />
           {heroImage &&
             <Image
               src={heroImage.imageUrl}
@@ -27,17 +27,17 @@ export default function Home() {
             />
           }
           <div className="relative z-20 container mx-auto px-4 md:px-6">
-            <h1 className="text-4xl md:text-6xl font-bold font-headline tracking-tight text-primary">
+            <h1 className="text-4xl md:text-6xl font-bold font-headline tracking-tight text-foreground">
               Точность в каждом измерении
             </h1>
-            <p className="mt-4 max-w-2xl mx-auto text-lg md:text-xl text-background">
+            <p className="mt-4 max-w-2xl mx-auto text-lg md:text-xl text-foreground/80">
               GeoExpert предоставляет передовые услуги в области геодезии и землеустройства, сочетая многолетний опыт с инновационными технологиями.
             </p>
             <div className="mt-8 flex flex-col sm:flex-row justify-center gap-4">
-              <Button asChild size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90">
+              <Button asChild size="lg">
                 <Link href="/services">Наши услуги</Link>
               </Button>
-              <Button asChild size="lg" variant="outline" className="border-primary text-primary bg-transparent hover:bg-primary/10 text-white hover:text-primary">
+              <Button asChild size="lg" variant="outline">
                 <Link href="/contact">Получить консультацию</Link>
               </Button>
             </div>
@@ -55,10 +55,10 @@ export default function Home() {
             </div>
             <div className="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
               {featuredServices.map((service) => (
-                <Card key={service.title} className="text-center shadow-lg hover:shadow-xl transition-shadow duration-300 bg-card">
+                <Card key={service.title} className="text-center shadow-lg hover:shadow-xl transition-shadow duration-300">
                    <Link href={`/services/${service.slug}`} className="flex flex-col h-full">
                     <CardHeader>
-                      <div className="mx-auto bg-primary/20 text-primary rounded-full p-4 w-fit">
+                      <div className="mx-auto bg-primary/10 text-primary rounded-full p-4 w-fit">
                         <service.icon className="h-8 w-8" />
                       </div>
                       <CardTitle className="mt-4 font-headline">{service.title}</CardTitle>
@@ -79,7 +79,7 @@ export default function Home() {
         </section>
 
         {/* AI Tools Section */}
-        <section className="py-16 md:py-24">
+        <section className="py-16 md:py-24 bg-background">
           <div className="container mx-auto px-4 md:px-6">
             <div className="grid md:grid-cols-2 gap-12 items-center">
               <div>
@@ -90,7 +90,7 @@ export default function Home() {
                 </p>
                 <div className="mt-8 space-y-6">
                   <div className="flex gap-4">
-                    <div className="bg-accent/20 text-accent rounded-lg p-3 h-fit">
+                    <div className="bg-accent/10 text-accent rounded-lg p-3 h-fit">
                       <Bot className="w-6 h-6" />
                     </div>
                     <div>
@@ -99,7 +99,7 @@ export default function Home() {
                     </div>
                   </div>
                   <div className="flex gap-4">
-                    <div className="bg-accent/20 text-accent rounded-lg p-3 h-fit">
+                    <div className="bg-accent/10 text-accent rounded-lg p-3 h-fit">
                       <SlidersHorizontal className="w-6 h-6" />
                     </div>
                     <div>
@@ -108,7 +108,7 @@ export default function Home() {
                     </div>
                   </div>
                 </div>
-                <Button asChild className="mt-8 bg-accent text-accent-foreground hover:bg-accent/90">
+                <Button asChild className="mt-8">
                   <Link href="/ai/zouit">Попробовать наши ИИ-инструменты</Link>
                 </Button>
               </div>

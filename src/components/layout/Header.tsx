@@ -15,15 +15,15 @@ import {
 } from "@/components/ui/dropdown-menu"
 
 const navigationLinks = [
-  { href: '/services', label: 'Services' },
-  { href: '/map', label: 'Interactive Map' },
-  { href: '/updates', label: 'Updates' },
-  { href: '/contact', label: 'Contact' },
+  { href: '/services', label: 'Услуги' },
+  { href: '/map', label: 'Интерактивная карта' },
+  { href: '/updates', label: 'Обновления' },
+  { href: '/contact', label: 'Контакты' },
 ];
 
 const aiToolsLinks = [
-  { href: '/ai/zouit', label: 'ZOUIT Identification' },
-  { href: '/ai/cost-estimator', label: 'Cost Estimator' },
+  { href: '/ai/zouit', label: 'Идентификация ЗОУИТ' },
+  { href: '/ai/cost-estimator', label: 'Оценщик стоимости' },
 ];
 
 export default function Header() {
@@ -40,7 +40,7 @@ export default function Header() {
             <Link
               key={link.href}
               href={link.href}
-              className={cn("transition-colors hover:text-primary", pathname === link.href ? "text-primary" : "text-foreground/80")}
+              className={cn("transition-colors hover:text-primary", pathname === link.href ? "text-primary font-semibold" : "text-foreground/80")}
             >
               {link.label}
             </Link>
@@ -48,7 +48,7 @@ export default function Header() {
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button variant="ghost" className="flex items-center gap-1 text-sm font-medium text-foreground/80 hover:text-primary p-0 h-auto focus-visible:ring-inset">
-                AI Tools
+                ИИ Инструменты
                 <ChevronDown className="h-4 w-4" />
               </Button>
             </DropdownMenuTrigger>
@@ -64,14 +64,14 @@ export default function Header() {
 
         <div className="hidden md:flex items-center gap-4">
            <Button asChild>
-            <Link href="/portal">Client Portal</Link>
+            <Link href="/portal">Портал для клиентов</Link>
           </Button>
         </div>
 
         <div className="md:hidden">
           <Button variant="ghost" size="icon" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
             {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-            <span className="sr-only">Toggle menu</span>
+            <span className="sr-only">Открыть меню</span>
           </Button>
         </div>
       </div>
@@ -84,7 +84,7 @@ export default function Header() {
               </Link>
             )}
             <Button asChild className="w-full mt-4">
-              <Link href="/portal" onClick={() => setIsMobileMenuOpen(false)}>Client Portal</Link>
+              <Link href="/portal" onClick={() => setIsMobileMenuOpen(false)}>Портал для клиентов</Link>
             </Button>
           </nav>
         </div>
