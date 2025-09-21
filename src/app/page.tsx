@@ -146,21 +146,30 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-background">
       {/* Hero Section */}
-      <section className="relative min-h-screen bg-gradient-hero flex items-center overflow-hidden">
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div className="space-y-8">
-              <div className="space-y-4">
-                <div className="flex items-center gap-4 text-accent font-medium">
-                  <div className="flex items-center gap-2">
-                    <Star className="h-5 w-5 fill-current" />
+      <section className="relative h-screen flex items-center justify-center overflow-hidden text-white">
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="absolute z-0 w-auto min-w-full min-h-full max-w-none object-cover"
+        >
+          <source src="https://firebasestorage.googleapis.com/v0/b/geomax-3868.appspot.com/o/6513470-uhd_4096_2160_25fps.mp4?alt=media&token=8d2274a1-0268-45a7-94d3-0d5fafd617e4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+        <div className="absolute inset-0 bg-black/50"></div>
+        <div className="container mx-auto px-4 relative z-10 text-center">
+            <div className="max-w-4xl mx-auto">
+                 <div className="flex items-center justify-center gap-4 text-accent font-medium mb-4">
+                  <div className="flex items-center gap-2 text-white">
+                    <Star className="h-5 w-5 fill-current text-yellow-400" />
                     <span>Нам доверяют с 2003 года</span>
                   </div>
-                  <Link href="https://yandex.com/maps/org/geostroyproyekt/144539023058/?ll=30.231738%2C59.920487&mode=search&sll=37.586554%2C55.796284&sspn=0.174408%2C0.060633&text=%D0%B3%D0%B5%D0%BE%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BF%D1%80%D0%BE%D0%B5%D0%B0%D1%82%20%D1%81%D0%B0%D0%BD%D0%BA%D1%82%20%D0%BF%D0%B5%D1%82%D0%B5%D1%80%D0%B1%D1%83%D1%80%D0%B3&z=10.5" target="_blank" rel="noopener noreferrer" className="bg-card/80 backdrop-blur-sm border border-border/50 rounded-lg px-3 py-1.5 hover:border-accent transition-colors">
+                  <Link href="https://yandex.com/maps/org/geostroyproyekt/144539023058/?ll=30.231738%2C59.920487&mode=search&sll=37.586554%2C55.796284&sspn=0.174408%2C0.060633&text=%D0%B3%D0%B5%D0%BE%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BF%D1%80%D0%BE%D0%B5%D0%B0%D1%82%20%D1%81%D0%B0%D0%BD%D0%BA%D1%82%20%D0%BF%D0%B5%D1%82%D0%B5%D1%80%D0%B1%D1%83%D1%80%D0%B3&z=10.5" target="_blank" rel="noopener noreferrer" className="bg-white/20 backdrop-blur-sm border border-white/30 rounded-lg px-3 py-1.5 hover:border-accent transition-colors">
                     <div className="flex items-center gap-2">
-                      <span className="font-bold text-foreground">Яндекс Карты</span>
+                      <span className="font-bold text-white">Яндекс Карты</span>
                       <div className="flex items-center gap-1">
-                        <span className="font-bold text-foreground">5.0</span>
+                        <span className="font-bold text-white">5.0</span>
                         <Star className="h-4 w-4 fill-yellow-400 text-yellow-400" />
                         <Star className="h-4 w-4 fill-yellow-400 text-yellow-400" />
                         <Star className="h-4 w-4 fill-yellow-400 text-yellow-400" />
@@ -170,60 +179,25 @@ export default function Home() {
                     </div>
                   </Link>
                 </div>
-                <h1 className="text-4xl lg:text-6xl font-heading font-bold text-foreground leading-tight">
-                  Профессиональные
-                  <span className="text-accent block">геодезические</span>
-                  услуги
+                <h1 className="text-4xl lg:text-7xl font-heading font-bold leading-tight">
+                  Профессиональные <span className="text-accent">геодезические</span> услуги
                 </h1>
-                <p className="text-xl text-muted-foreground max-w-lg">
+                <p className="text-xl text-white/90 max-w-2xl mx-auto mt-6">
                   Полный спектр кадастровых работ, инженерных изысканий и ЗОУИТ в Санкт-Петербурге и ЛО
                 </p>
-              </div>
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-center">
-                <Card className="p-4 bg-card/80 backdrop-blur-sm border-accent/20">
-                  <div className="text-2xl font-heading font-bold text-accent">2000+</div>
-                  <div className="text-sm text-muted-foreground">выполненных проектов</div>
-                </Card>
-                <Card className="p-4 bg-card/80 backdrop-blur-sm border-accent/20">
-                  <div className="text-2xl font-heading font-bold text-accent">21</div>
-                  <div className="text-sm text-muted-foreground">год на рынке</div>
-                </Card>
-                <Card className="p-4 bg-card/80 backdrop-blur-sm border-accent/20">
-                  <div className="text-2xl font-heading font-bold text-accent">14</div>
-                  <div className="text-sm text-muted-foreground">дней средний срок</div>
-                </Card>
-              </div>
-              <div className="space-y-4">
-                <div className="flex items-center gap-3">
-                  <CircleCheckBig className="h-5 w-5 text-accent" />
-                  <span className="text-foreground">Лицензированные кадастровые инженеры</span>
-                </div>
-                <div className="flex items-center gap-3">
-                  <CircleCheckBig className="h-5 w-5 text-accent" />
-                  <span className="text-foreground">Работы любой сложности под ключ</span>
-                </div>
-                <div className="flex items-center gap-3">
-                  <CircleCheckBig className="h-5 w-5 text-accent" />
-                  <span className="text-foreground">Электронная подача документов</span>
-                </div>
-              </div>
 
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Button size="lg" asChild>
-                  <Link href="/contact">Бесплатная консультация</Link>
-                </Button>
-                <Button variant="outline" size="lg" asChild>
-                  <a href="tel:+79522764940">
-                    <Phone className="h-5 w-5 mr-2" />
-                    +7 (952) 276-49-40
-                  </a>
-                </Button>
-              </div>
+                 <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
+                    <Button size="lg" asChild>
+                      <Link href="/contact">Бесплатная консультация</Link>
+                    </Button>
+                    <Button variant="outline" size="lg" asChild className="bg-transparent text-white border-white hover:bg-white hover:text-black">
+                      <a href="tel:+79522764940">
+                        <Phone className="h-5 w-5 mr-2" />
+                        +7 (952) 276-49-40
+                      </a>
+                    </Button>
+                </div>
             </div>
-            <div className="relative hidden lg:block h-[600px] rounded-2xl overflow-hidden bg-card/50 backdrop-blur-sm border-border/50">
-              <TerritoryGame />
-            </div>
-          </div>
         </div>
       </section>
 
