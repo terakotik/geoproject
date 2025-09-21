@@ -204,7 +204,7 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-background">
       {/* Hero Section */}
-       <section className="relative min-h-[80vh] md:min-h-screen flex items-center justify-center md:justify-start text-center md:text-left overflow-hidden bg-white">
+       <section className="relative min-h-[80vh] md:min-h-screen flex items-center justify-center text-center md:text-left overflow-hidden bg-white">
         <div className="absolute top-0 right-0 h-full w-full md:w-1/2 z-0 mt-[60px] hidden md:block">
           <Image
             src="https://videos.openai.com/vg-assets/assets%2Ftask_01k5p47k6jfn0sx4zdqj1dtke6%2F1758458131_img_0.webp?st=2025-09-21T11%3A31%3A23Z&se=2025-09-27T12%3A31%3A23Z&sks=b&skt=2025-09-21T11%3A31%3A23Z&ske=2025-09-27T12%3A31%3A23Z&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skoid=cfbc986b-d2bc-4088-8b71-4f962129715b&skv=2019-02-02&sv=2018-11-09&sr=b&sp=r&spr=https%2Chttp&sig=%2BvLVkEGDbgchPMBo4tpdNhineN%2Bel7Y9h8LoWnUrwOs%3D&az=oaivgprodscus"
@@ -324,7 +324,7 @@ export default function Home() {
       <section id="services" className="bg-white">
         <div className="container mx-auto px-4 py-20">
           <div className="text-left mb-16">
-            <AnimatedSectionTitle className="text-[100px] text-left">Наши услуги</AnimatedSectionTitle>
+            <AnimatedSectionTitle className="text-left">Наши услуги</AnimatedSectionTitle>
             <p className="text-xl text-muted-foreground max-w-3xl text-left">
               Предоставляем полный спектр геодезических и кадастровых услуг с гарантией качества и соблюдением сроков
             </p>
@@ -402,7 +402,7 @@ export default function Home() {
       <section id="prices" className="py-20 bg-gradient-hero">
         <div className="container mx-auto px-4">
           <div className="text-left mb-16">
-            <AnimatedSectionTitle className="text-[100px] text-left">Прайс-лист</AnimatedSectionTitle>
+            <AnimatedSectionTitle className="text-left">Прайс-лист</AnimatedSectionTitle>
             <p className="text-xl text-muted-foreground max-w-3xl text-left">
               Прозрачные цены без скрытых доплат. Групповые скидки до 43%
             </p>
@@ -504,7 +504,7 @@ export default function Home() {
       <section id="about" className="py-20 bg-background">
         <div className="container mx-auto px-4">
           <div className="text-left mb-16">
-            <AnimatedSectionTitle className="text-[100px] text-left">Как мы работаем</AnimatedSectionTitle>
+            <AnimatedSectionTitle className="text-left">Как мы работаем</AnimatedSectionTitle>
             <p className="text-xl text-muted-foreground max-w-3xl text-left">
               Прозрачный процесс работы без лишних этапов и дополнительных затрат
             </p>

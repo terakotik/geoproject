@@ -19,7 +19,7 @@ export function AnimatedSectionTitle({ children, className }: AnimatedSectionTit
         initial={{ x: '100%' }}
         animate={{ x: isInView ? 0 : '100%' }}
         transition={{ duration: 0.8, ease: 'easeOut' }}
-        className="text-[100px] font-heading font-bold text-foreground mb-6"
+        className="text-5xl md:text-[100px] font-heading font-bold text-foreground mb-6"
       >
         {children}
       </motion.h2>
