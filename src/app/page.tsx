@@ -1,4 +1,5 @@
 
+
 import Image from 'next/image';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
@@ -9,6 +10,12 @@ import { PlaceHolderImages } from '@/lib/placeholder-images';
 import HorizontalScrollCarousel from '@/components/HorizontalScrollCarousel';
 import { HelpCircle } from 'lucide-react';
 import { AnimatedSectionTitle } from '@/components/AnimatedSectionTitle';
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 const packages = [
   {
@@ -227,7 +234,22 @@ export default function Home() {
       <section className="py-20 bg-background">
         <div className="container mx-auto px-4">
             <div className="grid lg:grid-cols-2 gap-12 items-start">
-              <div className="lg:order-last flex flex-col gap-8">
+              <div className="space-y-4">
+                 <Card className="p-8 bg-card/50 backdrop-blur-sm border-border/50">
+                    <CardHeader>
+                        <CardTitle className="text-3xl font-heading font-bold text-center lg:text-left">Геодезическая компания ООО "ГЕОСТРОЙПРОЕКТ"</CardTitle>
+                    </CardHeader>
+                    <CardContent className="text-muted-foreground space-y-4 text-lg">
+                        <p>Мы рады приветствовать вас на официальном сайте геодезической компании ООО «ГЕОСТРОЙПРОЕКТ» и готовы предложить бесплатную консультацию по вашему вопросу прямо сейчас!</p>
+                        <p>У нас работают только опытные кадастровые инженеры, готовые помочь в решении земельных вопросов качественно и в поставленные сроки. Не нужно устанавливать забор и делить землю самостоятельно — это может привести к ненужным разногласиям с соседями, следовательно, к потере денег и времени.</p>
+                        <p>Наши специалисты постоянно находятся в курсе последних изменений в законодательстве и всегда готовы оказать вам квалифицированную помощь в оформлении перепланировки квартиры, сопровождении сделок с недвижимостью, заказе межевого плана участка и проектировании домов.</p>
+                        <p>Инженерные изыскания – это неотъемлемая часть проектной деятельности, обеспечивающая всестороннее изучение природных и техногенных условий местности планируемого строительства.</p>
+                        <p>Проведение инженерных работ позволяет получить объем необходимых данных для аргументирования технической возможности и экономической целесообразности проектирования и застройки на конкретной территории. Информировать о возможных рисках и изменениях геологической ситуации и окружающе.</p>
+                        <p className="font-semibold text-foreground">Геодезическая фирма ООО «ГЕОСТРОЙПРОЕКТ» гарантирует качество и законность выполненных работ в г. Санкт-Петербург и Ленинградской области.</p>
+                    </CardContent>
+                </Card>
+              </div>
+               <div className="lg:order-last flex flex-col gap-8">
                   <Card className="p-6 bg-card/50 backdrop-blur-sm border-border/50">
                       <CardHeader>
                           <CardTitle className="flex items-center gap-3 text-2xl font-heading"><ListChecks className="h-6 w-6 text-accent" />Кадастровые услуги</CardTitle>
@@ -259,19 +281,6 @@ export default function Home() {
                       </CardContent>
                   </Card>
               </div>
-              <Card className="p-8 bg-card/50 backdrop-blur-sm border-border/50">
-                  <CardHeader>
-                      <CardTitle className="text-3xl font-heading font-bold text-center lg:text-left">Геодезическая компания ООО "ГЕОСТРОЙПРОЕКТ"</CardTitle>
-                  </CardHeader>
-                  <CardContent className="text-muted-foreground space-y-4 text-lg">
-                      <p>Мы рады приветствовать вас на официальном сайте геодезической компании ООО «ГЕОСТРОЙПРОЕКТ» и готовы предложить бесплатную консультацию по вашему вопросу прямо сейчас!</p>
-                      <p>У нас работают только опытные кадастровые инженеры, готовые помочь в решении земельных вопросов качественно и в поставленные сроки. Не нужно устанавливать забор и делить землю самостоятельно — это может привести к ненужным разногласиям с соседями, следовательно, к потере денег и времени.</p>
-                      <p>Наши специалисты постоянно находятся в курсе последних изменений в законодательстве и всегда готовы оказать вам квалифицированную помощь в оформлении перепланировки квартиры, сопровождении сделок с недвижимостью, заказе межевого плана участка и проектировании домов.</p>
-                      <p>Инженерные изыскания – это неотъемлемая часть проектной деятельности, обеспечивающая всестороннее изучение природных и техногенных условий местности планируемого строительства.</p>
-                      <p>Проведение инженерных работ позволяет получить объем необходимых данных для аргументирования технической возможности и экономической целесообразности проектирования и застройки на конкретной территории. Информировать о возможных рисках и изменениях геологической ситуации и окружающе.</p>
-                      <p className="font-semibold text-foreground">Геодезическая фирма ООО «ГЕОСТРОЙПРОЕКТ» гарантирует качество и законность выполненных работ в г. Санкт-Петербург и Ленинградской области.</p>
-                  </CardContent>
-              </Card>
             </div>
         </div>
       </section>
@@ -280,8 +289,8 @@ export default function Home() {
       <section id="services" className="bg-white">
         <div className="container mx-auto px-4 py-20">
           <div className="text-left mb-16">
-            <AnimatedSectionTitle>Наши услуги</AnimatedSectionTitle>
-            <p className="text-xl text-muted-foreground max-w-3xl">
+            <AnimatedSectionTitle className="text-[100px] text-left">Наши услуги</AnimatedSectionTitle>
+            <p className="text-xl text-muted-foreground max-w-3xl text-left">
               Предоставляем полный спектр геодезических и кадастровых услуг с гарантией качества и соблюдением сроков
             </p>
           </div>
@@ -339,7 +348,16 @@ export default function Home() {
               </Card>
             </div>
             <div className="min-w-[420px] md:min-w-[480px] px-4 flex justify-center items-center">
-                <Image src="https://st5.depositphotos.com/46655356/66209/v/450/depositphotos_662097198-stock-illustration-close-caucasian-worker-helmet-head.jpg" alt="Инженер-геодезист" width={400} height={400} className="object-contain" />
+              <TooltipProvider>
+                <Tooltip>
+                  <TooltipTrigger>
+                    <Image src="https://st5.depositphotos.com/46655356/66209/v/450/depositphotos_662097198-stock-illustration-close-caucasian-worker-helmet-head.jpg" alt="Инженер-геодезист" width={400} height={400} className="object-contain" />
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    <p>Здравствуйте, жду именно ваш проект</p>
+                  </TooltipContent>
+                </Tooltip>
+              </TooltipProvider>
             </div>
         </HorizontalScrollCarousel>
       </section>
@@ -348,8 +366,8 @@ export default function Home() {
       <section id="prices" className="py-20 bg-gradient-hero">
         <div className="container mx-auto px-4">
           <div className="text-left mb-16">
-            <AnimatedSectionTitle>Прайс-лист</AnimatedSectionTitle>
-            <p className="text-xl text-muted-foreground max-w-3xl">
+            <AnimatedSectionTitle className="text-[100px] text-left">Прайс-лист</AnimatedSectionTitle>
+            <p className="text-xl text-muted-foreground max-w-3xl text-left">
               Прозрачные цены без скрытых доплат. Групповые скидки до 43%
             </p>
           </div>
@@ -450,8 +468,8 @@ export default function Home() {
       <section id="about" className="py-20 bg-background">
         <div className="container mx-auto px-4">
           <div className="text-left mb-16">
-            <AnimatedSectionTitle>Как мы работаем</AnimatedSectionTitle>
-            <p className="text-xl text-muted-foreground max-w-3xl">
+            <AnimatedSectionTitle className="text-[100px] text-left">Как мы работаем</AnimatedSectionTitle>
+            <p className="text-xl text-muted-foreground max-w-3xl text-left">
               Прозрачный процесс работы без лишних этапов и дополнительных затрат
             </p>
           </div>
@@ -500,6 +518,7 @@ export default function Home() {
     
 
     
+
 
 
 
