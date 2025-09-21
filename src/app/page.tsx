@@ -225,9 +225,10 @@ export default function Home() {
       {/* SEO Text Section */}
       <section className="py-20 bg-background">
         <div className="container mx-auto px-4">
-            <Card className="max-w-4xl mx-auto p-8 bg-card/50 backdrop-blur-sm border-border/50">
+          <div className="grid lg:grid-cols-2 gap-8 items-start">
+            <Card className="p-8 bg-card/50 backdrop-blur-sm border-border/50">
                 <CardHeader>
-                    <CardTitle className="text-3xl font-heading font-bold text-center">Геодезическая компания ООО "ГЕОСТРОЙПРОЕКТ"</CardTitle>
+                    <CardTitle className="text-3xl font-heading font-bold text-center lg:text-left">Геодезическая компания ООО "ГЕОСТРОЙПРОЕКТ"</CardTitle>
                 </CardHeader>
                 <CardContent className="text-muted-foreground space-y-4 text-lg">
                     <p>Мы рады приветствовать вас на официальном сайте геодезической компании ООО «ГЕОСТРОЙПРОЕКТ» и готовы предложить бесплатную консультацию по вашему вопросу прямо сейчас!</p>
@@ -239,7 +240,7 @@ export default function Home() {
                 </CardContent>
             </Card>
 
-            <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto mt-16">
+            <div className="flex flex-col gap-8">
                 <Card className="p-6 bg-card/50 backdrop-blur-sm border-border/50">
                     <CardHeader>
                         <CardTitle className="flex items-center gap-3 text-2xl font-heading"><ListChecks className="h-6 w-6 text-accent" />Кадастровые услуги</CardTitle>
@@ -271,6 +272,7 @@ export default function Home() {
                     </CardContent>
                 </Card>
             </div>
+          </div>
         </div>
       </section>
 
@@ -500,6 +502,7 @@ export default function Home() {
     
 
     
+
 
 
 
