@@ -7,6 +7,7 @@ import { services, getServiceDetails } from '@/lib/services';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 import HorizontalScrollCarousel from '@/components/HorizontalScrollCarousel';
 import { HelpCircle } from 'lucide-react';
+import DrawingCanvas from '@/components/DrawingCanvas';
 
 const packages = [
   {
@@ -219,29 +220,8 @@ export default function Home() {
                 </Button>
               </div>
             </div>
-            <div className="relative hidden lg:block">
-              <div className="relative rounded-2xl overflow-hidden">
-                <Image
-                  src="https://picsum.photos/seed/geodesist/800/1000"
-                  alt="Профессиональный геодезист с геодезическим оборудованием"
-                  width={800}
-                  height={1000}
-                  className="w-full h-[600px] object-cover"
-                  data-ai-hint="surveyor equipment"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-primary/20 to-transparent"></div>
-              </div>
-              <Card className="absolute -bottom-6 -left-6 p-6 bg-card max-w-xs">
-                <div className="space-y-2">
-                  <div className="flex items-center gap-2 text-accent font-medium">
-                    <MapPinIcon className="h-4 w-4" />
-                    <span>Выезд в день обращения</span>
-                  </div>
-                  <p className="text-sm text-muted-foreground">
-                    Работаем по всему Санкт-Петербургу и Ленинградской области
-                  </p>
-                </div>
-              </Card>
+            <div className="relative hidden lg:block h-[600px] rounded-2xl overflow-hidden bg-card/50 backdrop-blur-sm border-border/50">
+              <DrawingCanvas />
             </div>
           </div>
         </div>
@@ -320,7 +300,7 @@ export default function Home() {
                       0{index + 1}
                     </div>
                     <CardHeader>
-                       <div className="p-3 rounded-lg bg-muted/50 mb-4 self-start">
+                       <div className="p-3 rounded-lg mb-4 self-start">
                           <service.icon className="h-10 w-10 text-muted-foreground" />
                         </div>
                       <CardTitle className="text-2xl font-heading">{service.title}</CardTitle>
@@ -351,7 +331,7 @@ export default function Home() {
             })}
              <div className="min-w-[420px] md:min-w-[480px] px-4">
               <Card className="flex flex-col h-full justify-center items-center text-center p-8 bg-card/50 backdrop-blur-sm border-border/50">
-                  <div className="p-3 rounded-lg bg-muted/50 mb-4">
+                  <div className="p-3 rounded-lg mb-4">
                     <HelpCircle className="h-10 w-10 text-muted-foreground" />
                   </div>
                   <h3 className="text-2xl font-heading font-semibold text-foreground mb-2">Не нашли нужную услугу?</h3>
