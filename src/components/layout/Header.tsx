@@ -5,7 +5,6 @@ import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Logo } from '@/components/Logo';
 import { ChevronDown } from 'lucide-react';
-import { useState } from 'react';
 import {
   Sheet,
   SheetContent,
@@ -18,6 +17,7 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover"
 import { services } from '@/lib/services';
+import { useState }from 'react';
 
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -27,6 +27,8 @@ export default function Header() {
     { href: '/#about', label: 'О нас' },
     { href: '/contact', label: 'Контакты' },
   ];
+
+  const closeMobileMenu = () => setIsMobileMenuOpen(false);
 
   return (
     <header className="sticky top-0 z-50 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b border-border">
@@ -81,26 +83,26 @@ export default function Header() {
                 <SheetContent side="right">
                   <div className="flex flex-col h-full">
                     <div className="py-4 border-b">
-                      <Link href="/" onClick={() => setIsMobileMenuOpen(false)}>
+                      <Link href="/" onClick={closeMobileMenu}>
                         <Logo />
                       </Link>
                     </div>
                     <nav className="flex flex-col gap-4 py-6">
-                       <Link href="/services" onClick={() => setIsMobileMenuOpen(false)} className="text-lg text-foreground transition-colors font-medium">
+                       <Link href="/services" onClick={closeMobileMenu} className="text-lg text-foreground transition-colors font-medium">
                           Услуги
                         </Link>
                       {navLinks.map((link) => (
-                        <Link key={link.href} href={link.href} onClick={() => setIsMobileMenuOpen(false)} className="text-lg text-foreground transition-colors font-medium">
+                        <Link key={link.href} href={link.href} onClick={closeMobileMenu} className="text-lg text-foreground transition-colors font-medium">
                           {link.label}
                         </Link>
                       ))}
                     </nav>
                     <div className="mt-auto space-y-4">
                        <Button className="w-full" asChild>
-                         <Link href="/contact" onClick={() => setIsMobileMenuOpen(false)}>Заказать звонок</Link>
+                         <Link href="/contact" onClick={closeMobileMenu}>Заказать звонок</Link>
                        </Button>
                        <Button variant="outline" className="w-full" asChild>
-                          <a href="tel:+79522764940" onClick={() => setIsMobileMenuOpen(false)} className="flex items-center gap-2">
+                          <a href="tel:+79522764940" onClick={closeMobileMenu} className="flex items-center gap-2">
                            <Phone className="h-4 w-4" />
                            +7 (952) 276-49-40
                           </a>
