@@ -1,3 +1,4 @@
+
 import Image from 'next/image';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
@@ -157,16 +158,25 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-background">
       {/* Hero Section */}
-      <section className="relative bg-white min-h-screen flex items-center">
-        <div className="container mx-auto px-4 relative z-10 grid lg:grid-cols-2 gap-8 items-center">
+      <section className="relative min-h-screen flex items-center justify-center text-white overflow-hidden">
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="absolute top-0 left-0 w-full h-full object-cover z-0"
+          src="https://videos.openai.com/vg-assets/assets%2Ftask_01k5p47k6jfn0sx4zdqj1dtke6%2F1758458131_img_0.webp?st=2025-09-21T11%3A31%3A23Z&se=2025-09-27T12%3A31%3A23Z&sks=b&skt=2025-09-21T11%3A31%3A23Z&ske=2025-09-27T12%3A31%3A23Z&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skoid=cfbc986b-d2bc-4088-8b71-4f962129715b&skv=2019-02-02&sv=2018-11-09&sr=b&sp=r&spr=https%2Chttp&sig=%2BvLVkEGDbgchPMBo4tpdNhineN%2Bel7Y9h8LoWnUrwOs%3D&az=oaivgprodscus"
+        />
+        <div className="absolute top-0 left-0 w-full h-full bg-black/50 z-10"></div>
+        <div className="container mx-auto px-4 relative z-20">
           <div className="py-20 max-w-3xl">
               <div className="flex items-center gap-4 mb-4">
-                  <div className="flex items-center gap-2 text-accent font-semibold bg-accent/10 px-4 py-2 rounded-full text-lg self-start w-fit">
+                  <div className="flex items-center gap-2 text-accent font-semibold bg-accent/20 px-4 py-2 rounded-full text-lg self-start w-fit">
                       <Star className="h-5 w-5 fill-current text-yellow-400" />
-                      <span>Нам доверяют с 2003 года</span>
+                      <span className="text-white">Нам доверяют с 2003 года</span>
                   </div>
                    <a href="https://yandex.com/maps/org/geostroyproyekt/144539023058/?ll=30.231738%2C59.920487&mode=search&sll=37.586554%2C55.796284&sspn=0.174408%2C0.060633&text=%D0%B3%D0%B5%D0%BE%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BF%D1%80%D0%BE%D0%B5%D0%B0%D1%82%20%D1%81%D0%B0%D0%BD%D0%BA%D1%82%20%D0%BF%D0%B5%D1%82%D0%B5%D1%80%D0%B1%D1%83%D1%80%D0%B3&z=10" target="_blank" rel="noopener noreferrer">
-                   <Card className="flex items-center gap-3 text-foreground font-semibold bg-card px-4 py-2 rounded-full text-lg w-fit border">
+                   <Card className="flex items-center gap-3 text-foreground font-semibold bg-white/90 px-4 py-2 rounded-full text-lg w-fit border">
                       <div className="w-6 h-6 rounded-full bg-white flex items-center justify-center">
                           <span className="font-bold text-red-500">Я</span>
                       </div>
@@ -178,18 +188,18 @@ export default function Home() {
                   </Card>
                   </a>
               </div>
-              <h1 className="text-5xl lg:text-7xl font-heading font-bold leading-tight text-foreground">
+              <h1 className="text-5xl lg:text-7xl font-heading font-bold leading-tight text-white">
                 Профессиональные <span className="text-accent">геодезические</span> услуги
               </h1>
-              <p className="text-xl text-muted-foreground max-w-2xl mt-6">
+              <p className="text-xl text-white/80 max-w-2xl mt-6">
                 Полный спектр кадастровых работ, инженерных изысканий и ЗОУИТ в Санкт-Петербурге и ЛО
               </p>
 
               <div className="grid sm:grid-cols-3 gap-4 my-8">
                   {heroStats.map(stat => (
-                      <Card key={stat.label} className="text-center p-4 bg-card/80 backdrop-blur-sm border-border/50">
+                      <Card key={stat.label} className="text-center p-4 bg-white/10 backdrop-blur-sm border-white/20 text-white">
                           <div className="text-4xl font-bold text-accent">{stat.value}</div>
-                          <div className="text-sm text-muted-foreground">{stat.label}</div>
+                          <div className="text-sm opacity-80">{stat.label}</div>
                       </Card>
                   ))}
               </div>
@@ -207,23 +217,13 @@ export default function Home() {
                   <Button size="lg" asChild>
                     <Link href="/contact">Бесплатная консультация</Link>
                   </Button>
-                  <Button variant="outline" size="lg" asChild>
+                  <Button variant="outline" size="lg" asChild className="bg-transparent border-white text-white hover:bg-white hover:text-foreground">
                     <a href="tel:+79522764940">
                       <Phone className="h-5 w-5 mr-2" />
                       +7 (952) 276-49-40
                     </a>
                   </Button>
               </div>
-          </div>
-           <div className="relative w-full h-[50vh] lg:h-full">
-            <video
-              autoPlay
-              loop
-              muted
-              playsInline
-              className="w-full h-full object-cover rounded-3xl"
-              src="https://videos.openai.com/vg-assets/assets%2Ftask_01k5p47k6jfn0sx4zdqj1dtke6%2F1758458131_img_0.webp?st=2025-09-21T11%3A31%3A23Z&se=2025-09-27T12%3A31%3A23Z&sks=b&skt=2025-09-21T11%3A31%3A23Z&ske=2025-09-27T12%3A31%3A23Z&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skoid=cfbc986b-d2bc-4088-8b71-4f962129715b&skv=2019-02-02&sv=2018-11-09&sr=b&sp=r&spr=https%2Chttp&sig=%2BvLVkEGDbgchPMBo4tpdNhineN%2Bel7Y9h8LoWnUrwOs%3D&az=oaivgprodscus"
-            />
           </div>
         </div>
       </section>
@@ -497,3 +497,5 @@ export default function Home() {
     </div>
   );
 }
+
+    
