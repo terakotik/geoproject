@@ -238,24 +238,26 @@ export default function Home() {
         </div>
         <HorizontalScrollCarousel>
             {services.slice(0, 6).map((service) => (
-              <Link href={`/services/${service.slug}`} key={service.slug} className="block group">
-                <Card className="flex flex-col h-full p-6 hover:shadow-lg transition-all duration-300 hover:scale-[1.02] border-border/50 bg-card/50 backdrop-blur-sm">
-                  <div className="flex items-start justify-between mb-4">
-                    <div className="p-3 bg-muted rounded-lg">
-                      <service.icon className="h-6 w-6 text-muted-foreground" />
+              <div key={service.slug} className="min-w-[300px] md:min-w-[400px] px-4">
+                <Link href={`/services/${service.slug}`} className="block group h-full">
+                  <Card className="flex flex-col h-full p-6 hover:shadow-lg transition-all duration-300 hover:scale-[1.02] border-border/50 bg-card/50 backdrop-blur-sm">
+                    <div className="flex items-start justify-between mb-4">
+                      <div className="p-3 bg-muted rounded-lg">
+                        <service.icon className="h-6 w-6 text-muted-foreground" />
+                      </div>
                     </div>
-                  </div>
-                  <div>
-                    <h3 className="text-xl font-heading font-semibold text-foreground mb-2">{service.title}</h3>
-                    <p className="text-muted-foreground text-sm leading-relaxed">{service.description}</p>
-                  </div>
-                  <div className="mt-auto pt-4">
-                    <Button variant="outline" className="w-full group-hover:bg-accent group-hover:text-accent-foreground transition-colors">
-                      Подробнее <ArrowRight className="ml-2 h-4 w-4" />
-                    </Button>
-                  </div>
-                </Card>
-              </Link>
+                    <div>
+                      <h3 className="text-xl font-heading font-semibold text-foreground mb-2">{service.title}</h3>
+                      <p className="text-muted-foreground text-sm leading-relaxed">{service.description}</p>
+                    </div>
+                    <div className="mt-auto pt-4">
+                      <Button variant="outline" className="w-full group-hover:bg-accent group-hover:text-accent-foreground transition-colors">
+                        Подробнее <ArrowRight className="ml-2 h-4 w-4" />
+                      </Button>
+                    </div>
+                  </Card>
+                </Link>
+              </div>
             ))}
         </HorizontalScrollCarousel>
         <div className="container mx-auto px-4">
