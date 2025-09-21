@@ -2,171 +2,100 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { CheckCircle, Bot, SlidersHorizontal } from 'lucide-react';
+import { CheckCircle, Star, CircleCheckBig, FilePenLine, Users, SquareCheckBig, Download, MessageCircle, Zap, Send, Phone, MessageSquare, ExternalLink, ArrowRight, Shield, MapPin as MapPinIcon, Building, Ruler, FileText as FileTextIcon, TreePine, Factory, Calculator, Clock } from 'lucide-react';
 import { services } from '@/lib/services';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 
 export default function Home() {
   const heroImage = PlaceHolderImages.find(p => p.id === 'hero-background');
-  const featuredServices = services.slice(0, 3);
-
+  
   return (
-    <div className="flex flex-col">
-      <main className="flex-1">
-        {/* Hero Section */}
-        <section className="relative h-[60vh] md:h-[80vh] w-full flex items-center justify-center text-center bg-background/10">
-          <div className="absolute inset-0 bg-white/30 dark:bg-foreground/50 z-10" />
-          {heroImage &&
-            <Image
-              src={heroImage.imageUrl}
-              alt={heroImage.description}
-              fill
-              className="object-cover"
-              priority
-              data-ai-hint={heroImage.imageHint}
-            />
-          }
-          <div className="relative z-20 container mx-auto px-4 md:px-6">
-            <h1 className="text-4xl md:text-6xl font-bold font-headline tracking-tight text-foreground">
-              Точность в каждом измерении
-            </h1>
-            <p className="mt-4 max-w-2xl mx-auto text-lg md:text-xl text-foreground/80">
-              GeoExpert предоставляет передовые услуги в области геодезии и землеустройства, сочетая многолетний опыт с инновационными технологиями.
-            </p>
-            <div className="mt-8 flex flex-col sm:flex-row justify-center gap-4">
-              <Button asChild size="lg">
-                <Link href="/services">Наши услуги</Link>
-              </Button>
-              <Button asChild size="lg" variant="outline">
-                <Link href="/contact">Получить консультацию</Link>
-              </Button>
-            </div>
-          </div>
-        </section>
-
-        {/* Featured Services */}
-        <section className="py-16 md:py-24 bg-secondary/50">
-          <div className="container mx-auto px-4 md:px-6">
-            <div className="text-center">
-              <h2 className="text-3xl md:text-4xl font-bold font-headline">Комплексные геодезические решения</h2>
-              <p className="mt-4 max-w-3xl mx-auto text-muted-foreground">
-                От первоначальных изысканий до сложных кадастровых работ, мы предоставляем полный спектр услуг для нужд вашего проекта.
-              </p>
-            </div>
-            <div className="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-              {featuredServices.map((service) => (
-                <Card key={service.title} className="text-center shadow-lg hover:shadow-xl transition-shadow duration-300">
-                   <Link href={`/services/${service.slug}`} className="flex flex-col h-full">
-                    <CardHeader>
-                      <div className="mx-auto bg-primary/10 text-primary rounded-full p-4 w-fit">
-                        <service.icon className="h-8 w-8" />
-                      </div>
-                      <CardTitle className="mt-4 font-headline">{service.title}</CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      <p className="text-muted-foreground">{service.description}</p>
-                    </CardContent>
-                  </Link>
-                </Card>
-              ))}
-            </div>
-            <div className="text-center mt-12">
-              <Button asChild variant="link" className="text-primary text-lg">
-                <Link href="/services">Все услуги &rarr;</Link>
-              </Button>
-            </div>
-          </div>
-        </section>
-
-        {/* AI Tools Section */}
-        <section className="py-16 md:py-24 bg-background">
-          <div className="container mx-auto px-4 md:px-6">
-            <div className="grid md:grid-cols-2 gap-12 items-center">
-              <div>
-                <span className="text-primary font-semibold">ИННОВАЦИИ</span>
-                <h2 className="mt-2 text-3xl md:text-4xl font-bold font-headline">Используйте мощь ИИ</h2>
-                <p className="mt-4 text-muted-foreground">
-                  Наши передовые инструменты на базе ИИ предоставляют мгновенные данные и оценки, экономя ваше время и деньги. Получайте важную информацию за минуты, а не дни.
-                </p>
-                <div className="mt-8 space-y-6">
-                  <div className="flex gap-4">
-                    <div className="bg-accent/10 text-accent rounded-lg p-3 h-fit">
-                      <Bot className="w-6 h-6" />
-                    </div>
-                    <div>
-                      <h3 className="font-semibold text-lg">Идентификация ЗОУИТ</h3>
-                      <p className="text-muted-foreground">Мгновенно проверяйте, подпадает ли ваша собственность под действие особых правил землепользования.</p>
-                    </div>
-                  </div>
-                  <div className="flex gap-4">
-                    <div className="bg-accent/10 text-accent rounded-lg p-3 h-fit">
-                      <SlidersHorizontal className="w-6 h-6" />
-                    </div>
-                    <div>
-                      <h3 className="font-semibold text-lg">AI-оценщик стоимости</h3>
-                      <p className="text-muted-foreground">Получите предварительную оценку стоимости вашего проекта на основе его уникальных параметров.</p>
-                    </div>
-                  </div>
+    <div className="min-h-screen bg-background">
+      {/* Hero Section */}
+      <section className="relative min-h-screen bg-gradient-hero flex items-center overflow-hidden">
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div className="space-y-8">
+              <div className="space-y-4">
+                <div className="flex items-center gap-2 text-accent font-medium">
+                  <Star className="h-5 w-5 fill-current" />
+                  <span>Нам доверяют с 2003 года</span>
                 </div>
-                <Button asChild className="mt-8">
-                  <Link href="/ai/zouit">Попробовать наши ИИ-инструменты</Link>
+                <h1 className="text-4xl lg:text-6xl font-heading font-bold text-foreground leading-tight">
+                  Профессиональные
+                  <span className="text-accent block">геодезические</span>
+                  услуги
+                </h1>
+                <p className="text-xl text-muted-foreground max-w-lg">
+                  Полный спектр кадастровых работ, инженерных изысканий и ЗОУИТ в Санкт-Петербурге и ЛО
+                </p>
+              </div>
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-center">
+                <Card className="p-4 bg-card/80 backdrop-blur-sm border-accent/20">
+                  <div className="text-2xl font-heading font-bold text-accent">2000+</div>
+                  <div className="text-sm text-muted-foreground">выполненных проектов</div>
+                </Card>
+                <Card className="p-4 bg-card/80 backdrop-blur-sm border-accent/20">
+                  <div className="text-2xl font-heading font-bold text-accent">21</div>
+                  <div className="text-sm text-muted-foreground">год на рынке</div>
+                </Card>
+                <Card className="p-4 bg-card/80 backdrop-blur-sm border-accent/20">
+                  <div className="text-2xl font-heading font-bold text-accent">14</div>
+                  <div className="text-sm text-muted-foreground">дней средний срок</div>
+                </Card>
+              </div>
+              <div className="space-y-4">
+                <div className="flex items-center gap-3">
+                  <CircleCheckBig className="h-5 w-5 text-accent" />
+                  <span className="text-foreground">Лицензированные кадастровые инженеры</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <CircleCheckBig className="h-5 w-5 text-accent" />
+                  <span className="text-foreground">Работы любой сложности под ключ</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <CircleCheckBig className="h-5 w-5 text-accent" />
+                  <span className="text-foreground">Электронная подача документов</span>
+                </div>
+              </div>
+
+              <div className="flex flex-col sm:flex-row gap-4">
+                <Button size="lg" className="flex-1 sm:flex-none">Бесплатная консультация</Button>
+                <Button variant="outline" size="lg" className="flex-1 sm:flex-none">
+                  <Phone className="h-5 w-5 mr-2" />
+                  +7 (952) 276-49-40
                 </Button>
               </div>
-              <div className="relative h-80 rounded-lg overflow-hidden shadow-2xl">
-                 <Image
-                    src="https://picsum.photos/seed/ai-tools/800/600"
-                    alt="Абстрактная визуализация ИИ"
-                    fill
-                    className="object-cover"
-                    data-ai-hint="abstract technology"
-                  />
+            </div>
+            <div className="relative hidden lg:block">
+              <div className="relative rounded-2xl overflow-hidden shadow-hero">
+                <Image
+                  src="https://picsum.photos/seed/geodesist/800/1000"
+                  alt="Профессиональный геодезист с геодезическим оборудованием"
+                  width={800}
+                  height={1000}
+                  className="w-full h-[600px] object-cover"
+                  data-ai-hint="surveyor equipment"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-primary/20 to-transparent"></div>
               </div>
+              <Card className="absolute -bottom-6 -left-6 p-6 bg-card shadow-brand max-w-xs">
+                <div className="space-y-2">
+                  <div className="flex items-center gap-2 text-accent font-medium">
+                    <MapPinIcon className="h-4 w-4" />
+                    <span>Выезд в день обращения</span>
+                  </div>
+                  <p className="text-sm text-muted-foreground">
+                    Работаем по всему Санкт-Петербургу и Ленинградской области
+                  </p>
+                </div>
+              </Card>
             </div>
           </div>
-        </section>
-
-        {/* Why Choose Us */}
-        <section className="py-16 md:py-24 bg-secondary/50">
-          <div className="container mx-auto px-4 md:px-6">
-            <div className="text-center">
-              <h2 className="text-3xl md:text-4xl font-bold font-headline">Ваш партнер в точности</h2>
-              <p className="mt-4 max-w-3xl mx-auto text-muted-foreground">
-                Мы стремимся предоставлять точные данные, надежный сервис и инновационные решения.
-              </p>
-            </div>
-            <div className="mt-12 grid gap-8 md:grid-cols-3">
-              <div className="text-center p-4">
-                <CheckCircle className="h-10 w-10 text-primary mx-auto" />
-                <h3 className="mt-4 text-xl font-semibold font-headline">Гарантия точности</h3>
-                <p className="mt-2 text-muted-foreground">Использование современного оборудования для получения результатов, которым можно доверять.</p>
-              </div>
-              <div className="text-center p-4">
-                <CheckCircle className="h-10 w-10 text-primary mx-auto" />
-                <h3 className="mt-4 text-xl font-semibold font-headline">Опытная команда</h3>
-                <p className="mt-2 text-muted-foreground">Наши сертифицированные специалисты привносят многолетний опыт в каждый проект.</p>
-              </div>
-              <div className="text-center p-4">
-                <CheckCircle className="h-10 w-10 text-primary mx-auto" />
-                <h3 className="mt-4 text-xl font-semibold font-headline">Ориентация на клиента</h3>
-                <p className="mt-2 text-muted-foreground">Специализированная поддержка и прозрачная коммуникация через наш клиентский портал.</p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* CTA Section */}
-        <section className="py-16 md:py-24 bg-primary">
-          <div className="container mx-auto px-4 md:px-6 text-center">
-            <h2 className="text-3xl font-bold font-headline text-primary-foreground">Готовы начать ваш следующий проект?</h2>
-            <p className="mt-4 max-w-2xl mx-auto text-primary-foreground/80">
-              Давайте обсудим ваши требования и то, как GeoExpert может помочь вам в достижении ваших целей.
-            </p>
-            <Button asChild size="lg" className="mt-8 bg-background text-foreground hover:bg-background/90">
-              <Link href="/contact">Свяжитесь с нами сегодня</Link>
-            </Button>
-          </div>
-        </section>
-      </main>
+        </div>
+      </section>
+      
+      {/* Sections from user will go here */}
     </div>
   );
 }

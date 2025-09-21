@@ -6,8 +6,8 @@ import Footer from '@/components/layout/Footer';
 import { Toaster } from "@/components/ui/toaster";
 
 export const metadata: Metadata = {
-  title: 'GeoExpert - Точность в каждом измерении',
-  description: 'Профессиональные геодезические и кадастровые услуги для ваших проектов.',
+  title: 'ГЕОСТРОЙПРОЕКТ - Кадастровые работы и геодезические услуги в Санкт-Петербурге',
+  description: 'Профессиональные геодезические услуги с 2003 года: межевание, топосъемка, ЗОУИТ, технические планы в СПб и ЛО',
 };
 
 export default function RootLayout({
