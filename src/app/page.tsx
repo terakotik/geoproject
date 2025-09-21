@@ -5,6 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { CheckCircle, Star, CircleCheckBig, FilePenLine, Users, SquareCheckBig, Download, MessageCircle, Zap, Send, Phone, MessageSquare, ExternalLink, ArrowRight, Shield, MapPin as MapPinIcon, Building, Ruler, FileText as FileTextIcon, TreePine, Factory, Calculator, Clock } from 'lucide-react';
 import { services } from '@/lib/services';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
+import HorizontalScrollCarousel from '@/components/HorizontalScrollCarousel';
 
 const packages = [
   {
@@ -226,15 +227,16 @@ export default function Home() {
       </section>
 
       {/* Services Section */}
-      <section id="services" className="py-20 bg-background">
-        <div className="container mx-auto px-4">
+      <section id="services" className="bg-background">
+        <div className="container mx-auto px-4 py-20">
           <div className="text-center mb-16">
             <h2 className="text-4xl lg:text-5xl font-heading font-bold text-foreground mb-6">Наши услуги</h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
               Предоставляем полный спектр геодезических и кадастровых услуг с гарантией качества и соблюдением сроков
             </p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        </div>
+        <HorizontalScrollCarousel>
             {services.slice(0, 6).map((service) => (
               <Link href={`/services/${service.slug}`} key={service.slug} className="block group">
                 <Card className="flex flex-col h-full p-6 hover:shadow-lg transition-all duration-300 hover:scale-[1.02] border-border/50 bg-card/50 backdrop-blur-sm">
@@ -255,7 +257,8 @@ export default function Home() {
                 </Card>
               </Link>
             ))}
-          </div>
+        </HorizontalScrollCarousel>
+        <div className="container mx-auto px-4">
           <div className="text-center mt-12">
             <Button size="lg" asChild>
               <Link href="/services">Все услуги</Link>
@@ -278,7 +281,7 @@ export default function Home() {
             <h2 className="text-3xl font-heading font-semibold text-center mb-8 text-foreground">Пакетные предложения</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch">
               {packages.map((pkg, index) => (
-                <Card key={index} className={`flex flex-col p-6 relative overflow-hidden bg-card/80 backdrop-blur-sm border-2 transition-all duration-300 ${pkg.popular ? 'border-transparent hover:border-accent' : 'border-border/50 hover:border-accent'}`}>
+                <Card key={index} className={`group flex flex-col p-6 relative overflow-hidden bg-card/80 backdrop-blur-sm border-2 transition-all duration-300 ${pkg.popular ? 'border-transparent group-hover:border-accent' : 'border-border/50 group-hover:border-accent'}`}>
                   {pkg.popular && (
                     <div className="absolute top-4 right-4 bg-accent text-accent-foreground text-xs font-bold py-1 px-3 rounded-full">{pkg.badge || 'Выгодно'}</div>
                   )}
