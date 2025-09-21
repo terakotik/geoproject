@@ -106,7 +106,7 @@ export default function PricesPage() {
           <h2 className="text-3xl font-heading font-semibold text-center mb-8 text-foreground">Пакетные предложения</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch">
             {packages.map((pkg, index) => (
-              <Card key={index} className={`flex flex-col p-6 relative overflow-hidden bg-card/80 backdrop-blur-sm border-2 transition-all duration-300 ${pkg.popular ? 'border-transparent hover:border-accent' : 'border-border/50'}`}>
+              <Card key={index} className={`group flex flex-col p-6 relative overflow-hidden bg-card/80 backdrop-blur-sm border-2 transition-all duration-300 ${pkg.popular ? 'border-transparent group-hover:border-accent' : 'border-border/50 group-hover:border-accent'}`}>
                 {pkg.popular && (
                   <div className="absolute top-4 right-4 bg-accent text-accent-foreground text-xs font-bold py-1 px-3 rounded-full">{pkg.badge || 'Выгодно'}</div>
                 )}
@@ -138,7 +138,7 @@ export default function PricesPage() {
         
         <div className="space-y-12">
           {priceSections.map((section, index) => (
-            <Card key={index} className="p-6 bg-card/80 backdrop-blur-sm border-border/50">
+            <Card key={index} className="p-6 bg-card/80 backdrop-blur-sm border-border/50 overflow-hidden">
               <CardHeader className="p-0 mb-6">
                 <CardTitle className="text-2xl font-heading font-semibold text-foreground flex items-center gap-2">
                   {section.title}
@@ -157,9 +157,13 @@ export default function PricesPage() {
                     </thead>
                     <tbody>
                       {section.items.map((item, i) => (
-                        <tr key={i} className="border-b border-border/50 hover:bg-muted/20 transition-colors">
-                          <td className="py-4 pr-4 text-foreground">{item.name}</td>
-                          <td className="py-4 text-right font-semibold text-accent">{item.price}</td>
+                        <tr key={i} className="border-b border-border/50 hover:bg-accent/10 transition-colors duration-300 group">
+                           <td className="py-4 pr-4 text-foreground relative">
+                              <span className="block transition-transform duration-500 group-hover:translate-x-2">{item.name}</span>
+                            </td>
+                            <td className="py-4 text-right font-semibold text-accent relative">
+                               <span className="block transition-transform duration-500 group-hover:-translate-x-2">{item.price}</span>
+                            </td>
                           <td className="py-4 text-right text-muted-foreground">{item.term}</td>
                           <td className="py-4 pl-4 text-right">
                             <Button variant="outline" size="sm">Заказать</Button>

@@ -11,9 +11,9 @@ const packages = [
   {
     title: "Стандарт",
     description: "Межевание + Технический план",
-    price: "13 500 ₽",
+    price: "12 500 ₽",
     oldPrice: "14 000 ₽",
-    saving: "Экономия 4%",
+    saving: "Экономия 11%",
     audience: "2-3 заявки",
     features: ["Межевание участка", "Технический план дома", "Подача документов", "Сопровождение до регистрации"],
     popular: false,
@@ -21,9 +21,9 @@ const packages = [
   {
     title: "Популярный",
     description: "Групповой пакет",
-    price: "12 500 ₽",
+    price: "10 500 ₽",
     oldPrice: "14 000 ₽",
-    saving: "Экономия 11%",
+    saving: "Экономия 25%",
     audience: "4-7 заявок",
     features: ["Все услуги пакета Стандарт", "Приоритетное обслуживание", "Персональный менеджер", "Скидка на дополнительные услуги"],
     popular: true,
@@ -241,7 +241,7 @@ export default function Home() {
               <div key={service.slug} className="min-w-[320px] md:min-w-[480px] px-4">
                 <Link href={`/services/${service.slug}`} className="block group h-full">
                   <Card className="flex flex-col h-full p-8 hover:shadow-lg transition-all duration-300 hover:scale-[1.02] border-border/50 bg-card/50 backdrop-blur-sm relative">
-                    <div className="absolute top-4 left-4 text-4xl font-bold text-foreground/10">0{index + 1}</div>
+                    <div className="absolute top-4 left-4 text-8xl font-bold text-foreground/5 pointer-events-none">0{index + 1}</div>
                     <div className="flex items-start justify-between mb-4 mt-12">
                       <div className="p-3 bg-muted rounded-lg">
                         <service.icon className="h-8 w-8 text-muted-foreground" />
@@ -316,7 +316,7 @@ export default function Home() {
           
           <div className="space-y-12">
             {priceSections.map((section, index) => (
-              <Card key={index} className="p-6 bg-card/80 backdrop-blur-sm border-border/50">
+              <Card key={index} className="p-6 bg-card/80 backdrop-blur-sm border-border/50 overflow-hidden">
                 <CardHeader className="p-0 mb-6">
                   <CardTitle className="text-2xl font-heading font-semibold text-foreground flex items-center gap-2">
                     {section.title}
@@ -335,9 +335,13 @@ export default function Home() {
                       </thead>
                       <tbody>
                         {section.items.map((item, i) => (
-                          <tr key={i} className="border-b border-border/50 hover:bg-muted/20 transition-colors">
-                            <td className="py-4 pr-4 text-foreground">{item.name}</td>
-                            <td className="py-4 text-right font-semibold text-accent">{item.price}</td>
+                          <tr key={i} className="border-b border-border/50 hover:bg-accent/10 transition-colors duration-300 group">
+                            <td className="py-4 pr-4 text-foreground relative">
+                              <span className="block transition-transform duration-500 group-hover:translate-x-2">{item.name}</span>
+                            </td>
+                            <td className="py-4 text-right font-semibold text-accent relative">
+                               <span className="block transition-transform duration-500 group-hover:-translate-x-2">{item.price}</span>
+                            </td>
                             <td className="py-4 text-right text-muted-foreground">{item.term}</td>
                             <td className="py-4 pl-4 text-right">
                               <Button variant="outline" size="sm">Заказать</Button>
@@ -379,8 +383,8 @@ export default function Home() {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
               {processSteps.map((step, index) => (
                 <div key={index} className="flex flex-col items-center text-center">
-                  <div className="w-16 h-16 bg-gradient-primary rounded-full flex items-center justify-center mb-4 z-10">
-                    <step.icon className="h-7 w-7 text-primary" />
+                  <div className="w-16 h-16 rounded-full flex items-center justify-center mb-4 z-10 bg-muted">
+                    <step.icon className="h-7 w-7 text-muted-foreground" />
                   </div>
                   <h3 className="text-lg font-heading font-semibold text-foreground mb-2">0{index + 1}. {step.title}</h3>
                   <p className="text-sm text-muted-foreground">{step.description}</p>
