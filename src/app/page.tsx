@@ -310,18 +310,19 @@ export default function Home() {
           </div>
         </div>
         <HorizontalScrollCarousel>
-            {services.map((service) => {
+            {services.map((service, index) => {
               const details = getServiceDetails(service.slug);
               if (!details) return null;
               return (
                 <div key={service.slug} className="min-w-[420px] md:min-w-[480px] px-4">
                   <Card className="flex flex-col h-full hover:border-accent transition-all duration-300 border-border/50 bg-card/50 backdrop-blur-sm relative group">
+                     <div className="absolute -top-8 -left-8 text-8xl font-bold text-foreground/5 opacity-80 transition-all duration-300 group-hover:scale-110 group-hover:text-accent/10">
+                      0{index + 1}
+                    </div>
                     <CardHeader>
-                      <div className="flex items-start justify-between">
-                         <div className="p-3 rounded-lg bg-muted/50 mb-4">
+                       <div className="p-3 rounded-lg bg-muted/50 mb-4 self-start">
                           <service.icon className="h-10 w-10 text-muted-foreground" />
                         </div>
-                      </div>
                       <CardTitle className="text-2xl font-heading">{service.title}</CardTitle>
                       <CardDescription className="text-base">{service.description}</CardDescription>
                     </CardHeader>
@@ -385,8 +386,11 @@ export default function Home() {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch">
               {packages.map((pkg, index) => (
                 <Card key={index} className={`group flex flex-col p-6 relative overflow-hidden bg-card/80 backdrop-blur-sm border-2 transition-all duration-300 ${pkg.popular ? 'border-transparent hover:border-accent' : 'border-border/50 hover:border-accent'}`}>
-                  {pkg.popular && (
-                    <div className="absolute top-4 right-4 bg-accent text-accent-foreground text-xs font-bold py-1 px-3 rounded-full">{pkg.badge || 'Выгодно'}</div>
+                  {pkg.popular && !pkg.badge && (
+                    <div className="absolute top-4 right-4 bg-accent text-accent-foreground text-xs font-bold py-1 px-3 rounded-full">Выгодно</div>
+                  )}
+                  {pkg.badge && (
+                    <div className="absolute top-4 right-4 bg-accent text-accent-foreground text-xs font-bold py-1 px-3 rounded-full">{pkg.badge}</div>
                   )}
                   <div className="flex-grow">
                     <h3 className="text-xl font-heading font-semibold text-foreground">{pkg.title}</h3>
