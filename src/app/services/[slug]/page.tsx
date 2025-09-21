@@ -24,7 +24,7 @@ export default function ServicePage({ params }: { params: { slug: string } }) {
       <div className="container mx-auto px-4 md:px-6">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-12">
-            <div className="mx-auto bg-primary/10 text-primary rounded-full p-4 w-fit mb-4">
+            <div className="mx-auto bg-muted text-muted-foreground rounded-full p-4 w-fit mb-4">
               <service.icon className="h-10 w-10" />
             </div>
             <h1 className="text-4xl md:text-5xl font-bold font-headline">{service.title}</h1>

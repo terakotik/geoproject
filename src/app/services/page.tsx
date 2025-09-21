@@ -19,8 +19,8 @@ export default function ServicesPage() {
              <Link href={`/services/${service.slug}`} key={service.slug} className="block group">
              <Card className="flex flex-col h-full p-6 hover:shadow-brand transition-all duration-300 hover:scale-[1.02] border-border/50 bg-card/50 backdrop-blur-sm">
                <div className="flex items-start justify-between mb-4">
-                 <div className="p-3 bg-gradient-primary rounded-lg">
-                   <service.icon className="h-6 w-6 text-primary" />
+                 <div className="p-3 bg-muted rounded-lg">
+                   <service.icon className="h-6 w-6 text-muted-foreground" />
                  </div>
                </div>
                <div>
