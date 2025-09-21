@@ -18,36 +18,44 @@ const ScrollProgressLine = () => {
 
     let pathLength = 0;
 
-    // The logic needs to be in a function to be callable
     const setupAnimation = () => {
       try {
-        pathLength = path.getTotalLength();
-        mask.setAttribute('stroke-dasharray', pathLength.toString());
-        mask.style.strokeDashoffset = pathLength.toString();
+        // We need to make sure the path is visible to measure it.
+        // A simple trick is to do it in a requestAnimationFrame.
+        requestAnimationFrame(() => {
+            pathLength = path.getTotalLength();
+            if(pathLength > 0){
+                mask.setAttribute('stroke-dasharray', pathLength.toString());
+                mask.style.strokeDashoffset = pathLength.toString();
+            } else {
+                // Fallback if measurement fails
+                pathLength = 1637;
+                mask.setAttribute('stroke-dasharray', pathLength.toString());
+                mask.style.strokeDashoffset = pathLength.toString();
+            }
+        });
       } catch (e) {
         console.error("Failed to get SVG path length:", e);
-        // Fallback to a fixed length if getTotalLength fails
         pathLength = 1637;
         mask.setAttribute("stroke-dasharray", pathLength.toString());
         mask.style.strokeDashoffset = pathLength.toString();
       }
     };
 
-    // Use a small timeout to ensure the SVG is rendered and measurable
-    const timeoutId = setTimeout(setupAnimation, 100);
+    // Run setup after the component has mounted
+    setupAnimation();
 
     const handleScroll = () => {
       if (!pathLength) return;
 
       const scrollPercent = (window.scrollY) / (document.documentElement.scrollHeight - window.innerHeight);
       
-      // Clamp the scroll percentage between 0 and 1
       const clampedScrollPercent = Math.max(0, Math.min(1, scrollPercent));
       
       const draw = pathLength * clampedScrollPercent;
       mask.style.strokeDashoffset = (pathLength - draw).toString();
 
-      if (clampedScrollPercent > 0.99) {
+      if (clampedScrollPercent > 0.99 && pathLength > 0) {
           const endPoint = path.getPointAtLength(pathLength);
           const lastPoint = path.getPointAtLength(pathLength * 0.99);
           const angle = Math.atan2(endPoint.y - lastPoint.y, endPoint.x - lastPoint.x) * 180 / Math.PI;
@@ -64,7 +72,6 @@ const ScrollProgressLine = () => {
 
     // Cleanup function
     return () => {
-      clearTimeout(timeoutId);
       window.removeEventListener('scroll', handleScroll);
       window.removeEventListener('resize', setupAnimation);
     };
