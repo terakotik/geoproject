@@ -226,63 +226,62 @@ export default function Home() {
       {/* SEO Text Section */}
       <section className="py-20 bg-background">
         <div className="container mx-auto px-4">
-          <div className="grid lg:grid-cols-2 gap-8 items-start">
-            <Card className="p-8 bg-card/50 backdrop-blur-sm border-border/50">
-                <CardHeader>
-                    <CardTitle className="text-3xl font-heading font-bold text-center lg:text-left">Геодезическая компания ООО "ГЕОСТРОЙПРОЕКТ"</CardTitle>
-                </CardHeader>
-                <CardContent className="text-muted-foreground space-y-4 text-lg">
-                    <p>Мы рады приветствовать вас на официальном сайте геодезической компании ООО «ГЕОСТРОЙПРОЕКТ» и готовы предложить бесплатную консультацию по вашему вопросу прямо сейчас!</p>
-                    <p>У нас работают только опытные кадастровые инженеры, готовые помочь в решении земельных вопросов качественно и в поставленные сроки. Не нужно устанавливать забор и делить землю самостоятельно — это может привести к ненужным разногласиям с соседями, следовательно, к потере денег и времени.</p>
-                    <p>Наши специалисты постоянно находятся в курсе последних изменений в законодательстве и всегда готовы оказать вам квалифицированную помощь в оформлении перепланировки квартиры, сопровождении сделок с недвижимостью, заказе межевого плана участка и проектировании домов.</p>
-                    <p>Инженерные изыскания – это неотъемлемая часть проектной деятельности, обеспечивающая всестороннее изучение природных и техногенных условий местности планируемого строительства.</p>
-                    <p>Проведение инженерных работ позволяет получить объем необходимых данных для аргументирования технической возможности и экономической целесообразности проектирования и застройки на конкретной территории. Информировать о возможных рисках и изменениях геологической ситуации и окружающе.</p>
-                    <p className="font-semibold text-foreground">Геодезическая фирма ООО «ГЕОСТРОЙПРОЕКТ» гарантирует качество и законность выполненных работ в г. Санкт-Петербург и Ленинградской области.</p>
-                </CardContent>
-            </Card>
-
-            <div className="flex flex-col gap-8">
-                <Card className="p-6 bg-card/50 backdrop-blur-sm border-border/50">
-                    <CardHeader>
-                        <CardTitle className="flex items-center gap-3 text-2xl font-heading"><ListChecks className="h-6 w-6 text-accent" />Кадастровые услуги</CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                        <ul className="space-y-3">
-                            {kadastrServices.map((service, i) => (
-                                <li key={i} className="flex items-center gap-3">
-                                    <CheckCircle className="h-4 w-4 text-accent flex-shrink-0" />
-                                    <span className="text-muted-foreground">{service}</span>
-                                </li>
-                            ))}
-                        </ul>
-                    </CardContent>
-                </Card>
-                 <Card className="p-6 bg-card/50 backdrop-blur-sm border-border/50">
-                    <CardHeader>
-                        <CardTitle className="flex items-center gap-3 text-2xl font-heading"><ListChecks className="h-6 w-6 text-accent" />Геодезические услуги</CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                        <ul className="space-y-3">
-                            {geoServices.map((service, i) => (
-                                <li key={i} className="flex items-center gap-3">
-                                    <CheckCircle className="h-4 w-4 text-accent flex-shrink-0" />
-                                    <span className="text-muted-foreground">{service}</span>
-                                </li>
-                            ))}
-                        </ul>
-                    </CardContent>
-                </Card>
+            <div className="grid lg:grid-cols-2 gap-12 items-start">
+              <div className="lg:order-last flex flex-col gap-8">
+                  <Card className="p-6 bg-card/50 backdrop-blur-sm border-border/50">
+                      <CardHeader>
+                          <CardTitle className="flex items-center gap-3 text-2xl font-heading"><ListChecks className="h-6 w-6 text-accent" />Кадастровые услуги</CardTitle>
+                      </CardHeader>
+                      <CardContent>
+                          <ul className="space-y-3">
+                              {kadastrServices.map((service, i) => (
+                                  <li key={i} className="flex items-center gap-3">
+                                      <CheckCircle className="h-4 w-4 text-accent flex-shrink-0" />
+                                      <span className="text-muted-foreground">{service}</span>
+                                  </li>
+                              ))}
+                          </ul>
+                      </CardContent>
+                  </Card>
+                   <Card className="p-6 bg-card/50 backdrop-blur-sm border-border/50">
+                      <CardHeader>
+                          <CardTitle className="flex items-center gap-3 text-2xl font-heading"><ListChecks className="h-6 w-6 text-accent" />Геодезические услуги</CardTitle>
+                      </CardHeader>
+                      <CardContent>
+                          <ul className="space-y-3">
+                              {geoServices.map((service, i) => (
+                                  <li key={i} className="flex items-center gap-3">
+                                      <CheckCircle className="h-4 w-4 text-accent flex-shrink-0" />
+                                      <span className="text-muted-foreground">{service}</span>
+                                  </li>
+                              ))}
+                          </ul>
+                      </CardContent>
+                  </Card>
+              </div>
+              <Card className="p-8 bg-card/50 backdrop-blur-sm border-border/50">
+                  <CardHeader>
+                      <CardTitle className="text-3xl font-heading font-bold text-center lg:text-left">Геодезическая компания ООО "ГЕОСТРОЙПРОЕКТ"</CardTitle>
+                  </CardHeader>
+                  <CardContent className="text-muted-foreground space-y-4 text-lg">
+                      <p>Мы рады приветствовать вас на официальном сайте геодезической компании ООО «ГЕОСТРОЙПРОЕКТ» и готовы предложить бесплатную консультацию по вашему вопросу прямо сейчас!</p>
+                      <p>У нас работают только опытные кадастровые инженеры, готовые помочь в решении земельных вопросов качественно и в поставленные сроки. Не нужно устанавливать забор и делить землю самостоятельно — это может привести к ненужным разногласиям с соседями, следовательно, к потере денег и времени.</p>
+                      <p>Наши специалисты постоянно находятся в курсе последних изменений в законодательстве и всегда готовы оказать вам квалифицированную помощь в оформлении перепланировки квартиры, сопровождении сделок с недвижимостью, заказе межевого плана участка и проектировании домов.</p>
+                      <p>Инженерные изыскания – это неотъемлемая часть проектной деятельности, обеспечивающая всестороннее изучение природных и техногенных условий местности планируемого строительства.</p>
+                      <p>Проведение инженерных работ позволяет получить объем необходимых данных для аргументирования технической возможности и экономической целесообразности проектирования и застройки на конкретной территории. Информировать о возможных рисках и изменениях геологической ситуации и окружающе.</p>
+                      <p className="font-semibold text-foreground">Геодезическая фирма ООО «ГЕОСТРОЙПРОЕКТ» гарантирует качество и законность выполненных работ в г. Санкт-Петербург и Ленинградской области.</p>
+                  </CardContent>
+              </Card>
             </div>
-          </div>
         </div>
       </section>
 
       {/* Services Section */}
-      <section id="services" className="bg-background">
+      <section id="services" className="bg-white">
         <div className="container mx-auto px-4 py-20">
-          <div className="text-center mb-16">
+          <div className="text-left mb-16">
             <AnimatedSectionTitle>Наши услуги</AnimatedSectionTitle>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+            <p className="text-xl text-muted-foreground max-w-3xl">
               Предоставляем полный спектр геодезических и кадастровых услуг с гарантией качества и соблюдением сроков
             </p>
           </div>
@@ -348,9 +347,9 @@ export default function Home() {
       {/* Prices Section */}
       <section id="prices" className="py-20 bg-gradient-hero">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
+          <div className="text-left mb-16">
             <AnimatedSectionTitle>Прайс-лист</AnimatedSectionTitle>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+            <p className="text-xl text-muted-foreground max-w-3xl">
               Прозрачные цены без скрытых доплат. Групповые скидки до 43%
             </p>
           </div>
@@ -450,9 +449,9 @@ export default function Home() {
       {/* Process Section */}
       <section id="about" className="py-20 bg-background">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
+          <div className="text-left mb-16">
             <AnimatedSectionTitle>Как мы работаем</AnimatedSectionTitle>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+            <p className="text-xl text-muted-foreground max-w-3xl">
               Прозрачный процесс работы без лишних этапов и дополнительных затрат
             </p>
           </div>
@@ -501,6 +500,7 @@ export default function Home() {
     
 
     
+
 
 
 
