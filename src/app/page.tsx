@@ -157,16 +157,25 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-background">
       {/* Hero Section */}
-      <section className="bg-white">
-        <div className="container mx-auto px-4 grid lg:grid-cols-2 gap-12 items-center min-h-screen">
-          <div className="py-20">
+      <section className="relative bg-white min-h-screen flex items-center">
+        <Image
+          src="https://img.freepik.com/premium-vector/drawing-woman-sitting-table-with-words-word-top_399963-3732.jpg?semt=ais_hybrid&w=740&q=80"
+          alt="Abstract drawing"
+          fill
+          className="object-cover"
+          data-ai-hint="abstract drawing"
+        />
+        <div className="absolute inset-0 bg-white/80 backdrop-blur-sm"></div>
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="py-20 max-w-3xl">
               <div className="flex items-center gap-4 mb-4">
                   <div className="flex items-center gap-2 text-accent font-semibold bg-accent/10 px-4 py-2 rounded-full text-lg self-start w-fit">
                       <Star className="h-5 w-5 fill-current text-yellow-400" />
                       <span>Нам доверяют с 2003 года</span>
                   </div>
-                  <Card className="flex items-center gap-3 text-foreground font-semibold bg-card px-4 py-2 rounded-full text-lg w-fit border">
-                      <div className="w-6 h-6 rounded-full bg-white flex items-center justify-center border">
+                   <a href="https://yandex.com/maps/org/geostroyproyekt/144539023058/?ll=30.231738%2C59.920487&mode=search&sll=37.586554%2C55.796284&sspn=0.174408%2C0.060633&text=%D0%B3%D0%B5%D0%BE%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BF%D1%80%D0%BE%D0%B5%D0%B0%D1%82%20%D1%81%D0%B0%D0%BD%D0%BA%D1%82%20%D0%BF%D0%B5%D1%82%D0%B5%D1%80%D0%B1%D1%83%D1%80%D0%B3&z=10" target="_blank" rel="noopener noreferrer">
+                   <Card className="flex items-center gap-3 text-foreground font-semibold bg-card px-4 py-2 rounded-full text-lg w-fit border">
+                      <div className="w-6 h-6 rounded-full bg-white flex items-center justify-center">
                           <span className="font-bold text-red-500">Я</span>
                       </div>
                       <span>Яндекс Отзывы</span>
@@ -175,6 +184,7 @@ export default function Home() {
                       {[...Array(5)].map((_, i) => <Star key={i} className="h-4 w-4 fill-current text-yellow-400" />)}
                       </div>
                   </Card>
+                  </a>
               </div>
               <h1 className="text-5xl lg:text-7xl font-heading font-bold leading-tight text-foreground">
                 Профессиональные <span className="text-accent">геодезические</span> услуги
@@ -185,7 +195,7 @@ export default function Home() {
 
               <div className="grid sm:grid-cols-3 gap-4 my-8">
                   {heroStats.map(stat => (
-                      <Card key={stat.label} className="text-center p-4 bg-card border">
+                      <Card key={stat.label} className="text-center p-4 bg-card/80 backdrop-blur-sm border-border/50">
                           <div className="text-4xl font-bold text-accent">{stat.value}</div>
                           <div className="text-sm text-muted-foreground">{stat.label}</div>
                       </Card>
@@ -212,16 +222,6 @@ export default function Home() {
                     </a>
                   </Button>
               </div>
-          </div>
-           <div className="hidden lg:block">
-              <Image
-                src="https://kartinki.pibig.info/uploads/posts/2023-03/1680155255_kartinki-pibig-info-p-prikolnie-kartinki-geodezist-arti-40.jpg"
-                alt="Геодезист за работой"
-                width={600}
-                height={800}
-                className="rounded-lg shadow-2xl mx-auto"
-                data-ai-hint="surveyor"
-              />
           </div>
         </div>
       </section>

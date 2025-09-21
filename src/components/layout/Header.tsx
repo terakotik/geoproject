@@ -37,7 +37,7 @@ export default function Header() {
           </Link>
           <nav className="hidden lg:flex items-center gap-1">
              <Popover>
-              <PopoverTrigger className="flex items-center text-foreground transition-colors font-medium p-2 rounded-md hover:text-accent">
+              <PopoverTrigger className="flex items-center text-foreground transition-colors font-medium p-2 rounded-md hover:border hover:border-dashed hover:border-foreground">
                 Услуги <ChevronDown className="h-4 w-4 ml-1" />
               </PopoverTrigger>
               <PopoverContent className="w-[600px]">
@@ -48,7 +48,7 @@ export default function Header() {
                       href={`/services/${service.slug}`}
                       className="group relative flex flex-col items-center text-center p-2 rounded-lg transition-colors"
                     >
-                      <div className="absolute inset-0 hidden group-hover:block border-box rounded-lg"></div>
+                      <div className="absolute inset-0 hidden group-hover:block border-box group-hover:animate-move-border-once rounded-lg"></div>
                       <div className="mb-2 p-2 bg-muted rounded-md">
                         <service.icon className="h-6 w-6 text-muted-foreground" />
                       </div>

@@ -148,3 +148,11 @@ footer .border-box {
 footer .border-box {
     animation-name: move-border-footer;
 }
+
+@keyframes move-border-once {
+    0% { border-color: hsl(var(--primary)); border-top-color: transparent; border-right-color: transparent; border-bottom-color: transparent; border-left-color: transparent;}
+    25% { border-top-color: hsl(var(--primary)); border-right-color: transparent; border-bottom-color: transparent; border-left-color: transparent;}
+    50% { border-top-color: hsl(var(--primary)); border-right-color: hsl(var(--primary)); border-bottom-color: transparent; border-left-color: transparent;}
+    75% { border-top-color: hsl(var(--primary)); border-right-color: hsl(var(--primary)); border-bottom-color: hsl(var(--primary)); border-left-color: transparent;}
+    100% { border-top-color: hsl(var(--primary)); border-right-color: hsl(var(--primary)); border-bottom-color: hsl(var(--primary)); border-left-color: hsl(var(--primary)); }
+}

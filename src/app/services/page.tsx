@@ -18,7 +18,7 @@ export default function ServicesPage() {
           {services.map((service) => (
              <Link href={`/services/${service.slug}`} key={service.slug} className="block group">
              <Card className="service-card flex flex-col h-full p-8 transition-all duration-300 bg-card/50 backdrop-blur-sm">
-               <div className="border-box"></div>
+               <div className="border-box group-hover:animate-move-border-once"></div>
                <div className="flex items-start justify-between mb-6">
                  <div className="p-3 rounded-lg bg-muted">
                    <service.icon className="h-10 w-10 text-muted-foreground" />
