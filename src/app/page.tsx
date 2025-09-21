@@ -165,7 +165,7 @@ export default function Home() {
           className="object-cover"
           data-ai-hint="abstract drawing"
         />
-        <div className="absolute inset-0 bg-white/80 backdrop-blur-sm"></div>
+        <div className="absolute inset-0 bg-white/60"></div>
         <div className="container mx-auto px-4 relative z-10">
           <div className="py-20 max-w-3xl">
               <div className="flex items-center gap-4 mb-4">
