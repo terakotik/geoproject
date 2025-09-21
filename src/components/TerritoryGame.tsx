@@ -44,12 +44,19 @@ const TerritoryGame = () => {
   }, [calculateScores]);
 
   const handlePlayerMove = (row: number, col: number) => {
-    if (grid[row][col] || winner) return;
+    if (grid[row][col] || winner || currentPlayer !== PLAYER) return;
 
     const newGrid = grid.map(r => [...r]);
     newGrid[row][col] = PLAYER;
     setGrid(newGrid);
     setScores(calculateScores(newGrid));
+    
+    const isBoardFull = !newGrid.flat().some(cell => cell === null);
+    if (isBoardFull) {
+        checkWinner(newGrid);
+        return;
+    }
+
     setCurrentPlayer(AI);
 
     // AI's turn
@@ -59,6 +66,7 @@ const TerritoryGame = () => {
   };
   
   const aiMove = (currentGrid: Player[][]) => {
+    if (winner) return;
     const availableCells: { row: number, col: number }[] = [];
     currentGrid.forEach((row, r) => {
       row.forEach((cell, c) => {
@@ -97,17 +105,17 @@ const TerritoryGame = () => {
 
 
   return (
-    <div className="relative w-full h-full bg-black/80 backdrop-blur-sm p-4 flex flex-col items-center justify-center text-white font-sans">
+    <div className="relative w-full h-full p-4 flex flex-col items-center justify-center text-foreground font-sans">
       <div className="text-center mb-4">
-        <h3 className="text-lg font-semibold text-white">Игра: Захват Территории</h3>
-        <p className="text-sm text-yellow-400">Захватите больше ячеек, чем ваш оппонент</p>
+        <h3 className="text-lg font-semibold text-foreground">Игра: Захват Территории</h3>
+        <p className="text-sm text-accent">Захватите больше ячеек, чем ваш оппонент</p>
       </div>
       <div className="flex items-center justify-between w-full max-w-xs mb-4 text-lg">
-        <div className="text-yellow-400 font-bold">Вы: {scores.player}</div>
-        <div className="text-gray-400 font-bold">AI: {scores.ai}</div>
+        <div className="text-accent font-bold">Вы: {scores.player}</div>
+        <div className="text-muted-foreground font-bold">AI: {scores.ai}</div>
       </div>
       <div 
-        className="grid gap-1 bg-gray-800/50 p-2 rounded-md"
+        className="grid gap-1 bg-card/10 backdrop-blur-sm p-2 rounded-md border border-border/20"
         style={{
           gridTemplateColumns: `repeat(${GRID_SIZE}, 1fr)`,
           gridTemplateRows: `repeat(${GRID_SIZE}, 1fr)`,
@@ -118,8 +126,8 @@ const TerritoryGame = () => {
             <motion.div
               key={`${r}-${c}`}
               onClick={() => handlePlayerMove(r, c)}
-              className="w-8 h-8 md:w-10 md:h-10 rounded-sm cursor-pointer border border-gray-700/50 transition-colors duration-200 hover:bg-gray-600"
-              style={{ backgroundColor: cell === PLAYER ? 'hsl(var(--primary))' : cell === AI ? 'hsl(var(--foreground))' : 'transparent' }}
+              className="w-8 h-8 md:w-10 md:h-10 rounded-sm cursor-pointer border border-border/30 transition-colors duration-200 hover:bg-accent/20"
+              style={{ backgroundColor: cell === PLAYER ? 'hsl(var(--accent))' : cell === AI ? 'hsl(var(--foreground))' : 'transparent' }}
               initial={{ scale: 0.5, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               transition={{ type: "spring", stiffness: 300, damping: 20 }}
@@ -133,10 +141,10 @@ const TerritoryGame = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            className="absolute inset-0 bg-black/70 flex flex-col items-center justify-center"
+            className="absolute inset-0 bg-background/80 backdrop-blur-sm flex flex-col items-center justify-center"
           >
-            <h2 className="text-3xl font-bold text-yellow-400 mb-4">{winner}</h2>
-            <Button onClick={resetGame} variant="secondary">Играть снова</Button>
+            <h2 className="text-3xl font-bold text-accent mb-4">{winner}</h2>
+            <Button onClick={resetGame}>Играть снова</Button>
           </motion.div>
         )}
       </AnimatePresence>
