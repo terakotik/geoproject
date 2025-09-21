@@ -19,49 +19,51 @@ const ScrollProgressLine = () => {
     let pathLength = 0;
 
     const setupAnimation = () => {
-      try {
-        // We need to make sure the path is visible to measure it.
-        // A simple trick is to do it in a requestAnimationFrame.
-        requestAnimationFrame(() => {
-            pathLength = path.getTotalLength();
-            if(pathLength > 0){
-                mask.setAttribute('stroke-dasharray', pathLength.toString());
-                mask.style.strokeDashoffset = pathLength.toString();
-            } else {
-                // Fallback if measurement fails
-                pathLength = 1637;
-                mask.setAttribute('stroke-dasharray', pathLength.toString());
-                mask.style.strokeDashoffset = pathLength.toString();
-            }
-        });
-      } catch (e) {
-        console.error("Failed to get SVG path length:", e);
-        pathLength = 1637;
-        mask.setAttribute("stroke-dasharray", pathLength.toString());
-        mask.style.strokeDashoffset = pathLength.toString();
-      }
+      // Use a timeout to ensure the path is rendered and measurable.
+      setTimeout(() => {
+        try {
+          pathLength = path.getTotalLength();
+          if (pathLength > 0) {
+            mask.setAttribute('stroke-dasharray', pathLength.toString());
+            mask.style.strokeDashoffset = pathLength.toString();
+          } else {
+             // Fallback if measurement fails in some edge cases
+            pathLength = 1637; 
+            mask.setAttribute('stroke-dasharray', pathLength.toString());
+            mask.style.strokeDashoffset = pathLength.toString();
+          }
+        } catch (e) {
+          console.error("Failed to get SVG path length:", e);
+          // Fallback if measurement fails
+          pathLength = 1637; 
+          mask.setAttribute("stroke-dasharray", pathLength.toString());
+          mask.style.strokeDashoffset = pathLength.toString();
+        }
+      }, 100); // A small delay can help ensure the DOM is ready.
     };
 
-    // Run setup after the component has mounted
     setupAnimation();
 
     const handleScroll = () => {
       if (!pathLength) return;
 
       const scrollPercent = (window.scrollY) / (document.documentElement.scrollHeight - window.innerHeight);
-      
       const clampedScrollPercent = Math.max(0, Math.min(1, scrollPercent));
       
       const draw = pathLength * clampedScrollPercent;
       mask.style.strokeDashoffset = (pathLength - draw).toString();
 
       if (clampedScrollPercent > 0.99 && pathLength > 0) {
-          const endPoint = path.getPointAtLength(pathLength);
-          const lastPoint = path.getPointAtLength(pathLength * 0.99);
-          const angle = Math.atan2(endPoint.y - lastPoint.y, endPoint.x - lastPoint.x) * 180 / Math.PI;
+          try {
+            const endPoint = path.getPointAtLength(pathLength);
+            const lastPoint = path.getPointAtLength(pathLength * 0.99);
+            const angle = Math.atan2(endPoint.y - lastPoint.y, endPoint.x - lastPoint.x) * 180 / Math.PI;
 
-          arrow.setAttribute('transform', `translate(${endPoint.x}, ${endPoint.y}) rotate(${angle})`);
-          arrow.style.display = 'block';
+            arrow.setAttribute('transform', `translate(${endPoint.x}, ${endPoint.y}) rotate(${angle})`);
+            arrow.style.display = 'block';
+          } catch(e) {
+            arrow.style.display = 'none';
+          }
       } else {
           arrow.style.display = 'none';
       }
