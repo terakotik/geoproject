@@ -11,9 +11,9 @@ const packages = [
   {
     title: "Стандарт",
     description: "Межевание + Технический план",
-    price: "12 500 ₽",
+    price: "13 500 ₽",
     oldPrice: "14 000 ₽",
-    saving: "Экономия 11%",
+    saving: "Экономия 4%",
     audience: "2-3 заявки",
     features: ["Межевание участка", "Технический план дома", "Подача документов", "Сопровождение до регистрации"],
     popular: false,
@@ -21,9 +21,9 @@ const packages = [
   {
     title: "Популярный",
     description: "Групповой пакет",
-    price: "10 500 ₽",
+    price: "12 500 ₽",
     oldPrice: "14 000 ₽",
-    saving: "Экономия 25%",
+    saving: "Экономия 11%",
     audience: "4-7 заявок",
     features: ["Все услуги пакета Стандарт", "Приоритетное обслуживание", "Персональный менеджер", "Скидка на дополнительные услуги"],
     popular: true,
@@ -237,21 +237,22 @@ export default function Home() {
           </div>
         </div>
         <HorizontalScrollCarousel>
-            {services.slice(0, 6).map((service) => (
-              <div key={service.slug} className="min-w-[300px] md:min-w-[400px] px-4">
+            {services.slice(0, 6).map((service, index) => (
+              <div key={service.slug} className="min-w-[320px] md:min-w-[480px] px-4">
                 <Link href={`/services/${service.slug}`} className="block group h-full">
-                  <Card className="flex flex-col h-full p-6 hover:shadow-lg transition-all duration-300 hover:scale-[1.02] border-border/50 bg-card/50 backdrop-blur-sm">
-                    <div className="flex items-start justify-between mb-4">
+                  <Card className="flex flex-col h-full p-8 hover:shadow-lg transition-all duration-300 hover:scale-[1.02] border-border/50 bg-card/50 backdrop-blur-sm relative">
+                    <div className="absolute top-4 left-4 text-4xl font-bold text-foreground/10">0{index + 1}</div>
+                    <div className="flex items-start justify-between mb-4 mt-12">
                       <div className="p-3 bg-muted rounded-lg">
-                        <service.icon className="h-6 w-6 text-muted-foreground" />
+                        <service.icon className="h-8 w-8 text-muted-foreground" />
                       </div>
                     </div>
                     <div>
-                      <h3 className="text-xl font-heading font-semibold text-foreground mb-2">{service.title}</h3>
-                      <p className="text-muted-foreground text-sm leading-relaxed">{service.description}</p>
+                      <h3 className="text-2xl font-heading font-semibold text-foreground mb-3">{service.title}</h3>
+                      <p className="text-muted-foreground text-base leading-relaxed">{service.description}</p>
                     </div>
-                    <div className="mt-auto pt-4">
-                      <Button variant="outline" className="w-full group-hover:bg-accent group-hover:text-accent-foreground transition-colors">
+                    <div className="mt-auto pt-6">
+                      <Button variant="outline" size="lg" className="w-full group-hover:bg-accent group-hover:text-accent-foreground transition-colors">
                         Подробнее <ArrowRight className="ml-2 h-4 w-4" />
                       </Button>
                     </div>
