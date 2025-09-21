@@ -22,11 +22,15 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link href="https://fonts.googleapis.com/css2?family=PT+Sans:wght@400;700&display=swap" rel="stylesheet" />
       </head>
-      <body className={cn("font-body antialiased min-h-screen flex flex-col")}>
-        <div vaul-drawer-wrapper="">
+      <body className={cn("font-body antialiased")}>
+        <div vaul-drawer-wrapper="" className="min-h-screen flex flex-col">
           <Header />
-          <main className="flex-grow bg-background">{children}</main>
-          <Footer />
+          <div className="relative flex-grow">
+            <main className="relative z-10 bg-background">{children}</main>
+            <div className="sticky bottom-0 z-0">
+              <Footer />
+            </div>
+          </div>
         </div>
         <Toaster />
       </body>
