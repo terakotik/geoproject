@@ -19,7 +19,7 @@ const packages = [
     price: "12 500 ₽",
     oldPrice: "14 000 ₽",
     saving: "Экономия 11%",
-    audience: "4-7 заявок",
+    audience: "4-7 заявки",
     features: ["Все услуги пакета Стандарт", "Приоритетное обслуживание", "Персональный менеджер", "Скидка на дополнительные услуги"],
     popular: true,
   },
@@ -166,13 +166,13 @@ export default function PricesPage() {
         </div>
 
         <div className="text-center mt-16">
-          <Card className="inline-block p-8 bg-gradient-accent text-accent-foreground max-w-2xl">
+          <Card className="inline-block p-8 bg-card/80 backdrop-blur-sm border-border/50 max-w-2xl">
             <div className="flex items-center justify-center gap-2 mb-3">
-              <Zap className="h-5 w-5" />
-              <h3 className="text-2xl font-heading font-bold">Срочные работы</h3>
+              <Zap className="h-5 w-5 text-accent" />
+              <h3 className="text-2xl font-heading font-bold text-foreground">Срочные работы</h3>
             </div>
-            <p className="text-lg mb-4">Выполним работы в кратчайшие сроки с доплатой 30%</p>
-            <Button variant="secondary">Срочный заказ</Button>
+            <p className="text-lg text-muted-foreground mb-4">Выполним работы в кратчайшие сроки с доплатой 30%</p>
+            <Button>Срочный заказ</Button>
           </Card>
         </div>
       </div>

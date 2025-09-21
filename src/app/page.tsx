@@ -7,7 +7,6 @@ import { services, getServiceDetails } from '@/lib/services';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 import HorizontalScrollCarousel from '@/components/HorizontalScrollCarousel';
 import { HelpCircle } from 'lucide-react';
-import TerritoryGame from '@/components/TerritoryGame';
 
 const packages = [
   {
@@ -161,9 +160,23 @@ export default function Home() {
       <section className="relative h-screen flex items-center bg-gradient-hero">
         <div className="container mx-auto px-4 relative z-10">
             <div className="max-w-2xl">
-                 <div className="flex items-center gap-2 text-accent font-medium mb-4">
-                  <Star className="h-5 w-5 fill-current text-yellow-400" />
-                  <span>Нам доверяют с 2003 года</span>
+                <div className="flex items-center gap-4 mb-4">
+                  <div className="flex items-center gap-2 text-accent font-medium">
+                    <Star className="h-5 w-5 fill-current text-yellow-400" />
+                    <span>Нам доверяют с 2003 года</span>
+                  </div>
+                   <a href="https://yandex.com/maps/org/geostroyproyekt/144539023058/?ll=30.231738%2C59.920487&mode=search&sll=37.586554%2C55.796284&sspn=0.174408%2C0.060633&text=%D0%B3%D0%B5%D0%BE%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BF%D1%80%D0%BE%D0%B5%D0%B0%D1%82%20%D1%81%D0%B0%D0%BD%D0%BA%D1%82%20%D0%BF%D0%B5%D1%82%D0%B5%D1%80%D0%B1%D1%83%D1%80%D0%B3&z=10.5" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-sm font-medium text-foreground hover:text-accent transition-colors">
+                    <div className="flex items-center">
+                        <Star className="h-4 w-4 fill-yellow-400 text-yellow-400 mr-1" />
+                        <Star className="h-4 w-4 fill-yellow-400 text-yellow-400 mr-1" />
+                        <Star className="h-4 w-4 fill-yellow-400 text-yellow-400 mr-1" />
+                        <Star className="h-4 w-4 fill-yellow-400 text-yellow-400 mr-1" />
+                        <Star className="h-4 w-4 fill-yellow-400 text-yellow-400" />
+                    </div>
+                    <span className="font-bold">5.0</span>
+                    <span className="text-muted-foreground">Яндекс Карты</span>
+                    <ExternalLink className="h-4 w-4 text-muted-foreground" />
+                  </a>
                 </div>
                 <h1 className="text-5xl lg:text-7xl font-heading font-bold leading-tight text-foreground">
                   Профессиональные <span className="text-accent">геодезические</span> услуги
@@ -440,19 +453,20 @@ export default function Home() {
               Прозрачный процесс работы без лишних этапов и дополнительных затрат
             </p>
           </div>
-          <div className="relative">
-            <div className="hidden lg:block absolute top-8 left-0 right-0 h-0.5 bg-border -z-10"></div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
-              {processSteps.map((step, index) => (
-                <div key={index} className="flex flex-col items-center text-center">
-                  <div className="w-16 h-16 rounded-full flex items-center justify-center mb-4 z-10 bg-muted">
-                    <step.icon className="h-7 w-7 text-muted-foreground" />
-                  </div>
-                  <h3 className="text-lg font-heading font-semibold text-foreground mb-2">0{index + 1}. {step.title}</h3>
-                  <p className="text-sm text-muted-foreground">{step.description}</p>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
+            {processSteps.map((step, index) => (
+              <Card key={index} className="flex flex-col text-center p-6 bg-card/80 backdrop-blur-sm border-2 border-dashed border-border/50 hover:border-accent transition-all duration-300">
+                <div className="w-16 h-16 rounded-full flex items-center justify-center mb-4 mx-auto bg-muted">
+                  <step.icon className="h-7 w-7 text-muted-foreground" />
                 </div>
-              ))}
-            </div>
+                <CardHeader className="p-0 mb-2">
+                  <CardTitle className="text-lg font-heading font-semibold text-foreground">0{index + 1}. {step.title}</CardTitle>
+                </CardHeader>
+                <CardContent className="p-0">
+                  <p className="text-sm text-muted-foreground">{step.description}</p>
+                </CardContent>
+              </Card>
+            ))}
           </div>
         </div>
       </section>
@@ -460,13 +474,13 @@ export default function Home() {
       {/* CTA Section */}
       <section className="py-20 bg-gradient-hero">
         <div className="container mx-auto px-4">
-          <Card className="p-8 bg-gradient-accent text-accent-foreground max-w-4xl mx-auto text-center">
-            <h3 className="text-3xl font-heading font-bold mb-4">Готовы начать работу?</h3>
-            <p className="text-lg mb-6">
+          <Card className="p-8 bg-card/80 backdrop-blur-sm border-border/50 max-w-4xl mx-auto text-center">
+            <h3 className="text-3xl font-heading font-bold text-foreground mb-4">Готовы начать работу?</h3>
+            <p className="text-lg text-muted-foreground mb-6">
               Оставьте заявку на бесплатную консультацию и мы ответим на все ваши вопросы.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button asChild size="lg" variant="secondary">
+              <Button asChild size="lg" variant="default">
                 <Link href="/contact">Бесплатная консультация</Link>
               </Button>
               <Button asChild size="lg" variant="outline">
