@@ -11,9 +11,9 @@ const packages = [
   {
     title: "Стандарт",
     description: "Межевание + Технический план",
-    price: "13 500 ₽",
+    price: "12 500 ₽",
     oldPrice: "14 000 ₽",
-    saving: "Экономия 4%",
+    saving: "Экономия 11%",
     audience: "2-3 заявки",
     features: ["Межевание участка", "Технический план дома", "Подача документов", "Сопровождение до регистрации"],
     popular: false,
@@ -21,9 +21,9 @@ const packages = [
   {
     title: "Популярный",
     description: "Групповой пакет",
-    price: "12 500 ₽",
+    price: "11 500 ₽",
     oldPrice: "14 000 ₽",
-    saving: "Экономия 11%",
+    saving: "Экономия 18%",
     audience: "4-7 заявок",
     features: ["Все услуги пакета Стандарт", "Приоритетное обслуживание", "Персональный менеджер", "Скидка на дополнительные услуги"],
     popular: true,
@@ -149,9 +149,24 @@ export default function Home() {
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="space-y-8">
               <div className="space-y-4">
-                <div className="flex items-center gap-2 text-accent font-medium">
-                  <Star className="h-5 w-5 fill-current" />
-                  <span>Нам доверяют с 2003 года</span>
+                <div className="flex items-center gap-4 text-accent font-medium">
+                  <div className="flex items-center gap-2">
+                    <Star className="h-5 w-5 fill-current" />
+                    <span>Нам доверяют с 2003 года</span>
+                  </div>
+                  <Link href="https://yandex.com/maps/org/geostroyproyekt/144539023058/?ll=30.231738%2C59.920487&mode=search&sll=37.586554%2C55.796284&sspn=0.174408%2C0.060633&text=%D0%B3%D0%B5%D0%BE%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BF%D1%80%D0%BE%D0%B5%D0%B0%D1%82%20%D1%81%D0%B0%D0%BD%D0%BA%D1%82%20%D0%BF%D0%B5%D1%82%D0%B5%D1%80%D0%B1%D1%83%D1%80%D0%B3&z=10.5" target="_blank" rel="noopener noreferrer" className="bg-card/80 backdrop-blur-sm border border-border/50 rounded-lg px-3 py-1.5 hover:border-accent transition-colors">
+                    <div className="flex items-center gap-2">
+                      <span className="font-bold text-foreground">Яндекс Карты</span>
+                      <div className="flex items-center gap-1">
+                        <span className="font-bold text-foreground">5.0</span>
+                        <Star className="h-4 w-4 fill-yellow-400 text-yellow-400" />
+                        <Star className="h-4 w-4 fill-yellow-400 text-yellow-400" />
+                        <Star className="h-4 w-4 fill-yellow-400 text-yellow-400" />
+                        <Star className="h-4 w-4 fill-yellow-400 text-yellow-400" />
+                        <Star className="h-4 w-4 fill-yellow-400 text-yellow-400" />
+                      </div>
+                    </div>
+                  </Link>
                 </div>
                 <h1 className="text-4xl lg:text-6xl font-heading font-bold text-foreground leading-tight">
                   Профессиональные
@@ -295,18 +310,18 @@ export default function Home() {
         </div>
         <HorizontalScrollCarousel>
             {services.slice(0, 6).map((service, index) => (
-              <div key={service.slug} className="min-w-[380px] md:min-w-[520px] px-4">
+              <div key={service.slug} className="min-w-[420px] md:min-w-[580px] px-4">
                 <Link href={`/services/${service.slug}`} className="block group h-full">
                   <Card className="flex flex-col h-full p-8 hover:shadow-lg transition-all duration-300 hover:scale-[1.02] border-border/50 bg-card/50 backdrop-blur-sm relative">
                     <div className="absolute top-6 left-6 text-9xl font-bold text-foreground/5 pointer-events-none">0{index + 1}</div>
                     <div className="flex items-start justify-between mb-6 mt-20">
-                      <div className="p-3 rounded-lg">
-                        <service.icon className="h-10 w-10 text-muted-foreground" />
+                       <div className="p-3 rounded-lg">
+                        <service.icon className="h-12 w-12 text-muted-foreground" />
                       </div>
                     </div>
                     <div>
-                      <h3 className="text-3xl font-heading font-semibold text-foreground mb-4">{service.title}</h3>
-                      <p className="text-muted-foreground text-lg leading-relaxed">{service.description}</p>
+                      <h3 className="text-4xl font-heading font-semibold text-foreground mb-4">{service.title}</h3>
+                      <p className="text-muted-foreground text-xl leading-relaxed">{service.description}</p>
                     </div>
                     <div className="mt-auto pt-8">
                       <Button variant="outline" size="lg" className="w-full group-hover:bg-accent group-hover:text-accent-foreground transition-colors text-lg py-6">
