@@ -197,9 +197,9 @@ export default function Home() {
 
               <div className="grid sm:grid-cols-3 gap-4 my-8">
                   {heroStats.map(stat => (
-                      <Card key={stat.label} className="text-center p-4 bg-white/10 backdrop-blur-sm border-white/20 text-foreground">
+                      <Card key={stat.label} className="text-center p-4 bg-muted border-dashed">
                           <div className="text-4xl font-bold text-accent">{stat.value}</div>
-                          <div className="text-sm opacity-80">{stat.label}</div>
+                          <div className="text-sm opacity-80 text-muted-foreground">{stat.label}</div>
                       </Card>
                   ))}
               </div>
@@ -216,12 +216,6 @@ export default function Home() {
                 <div className="mt-10 flex flex-col sm:flex-row gap-4">
                   <Button size="lg" asChild>
                     <Link href="/contact">Бесплатная консультация</Link>
-                  </Button>
-                  <Button variant="outline" size="lg" asChild className="bg-transparent border-primary text-primary hover:bg-primary hover:text-primary-foreground">
-                    <a href="tel:+79522764940">
-                      <Phone className="h-5 w-5 mr-2" />
-                      +7 (952) 276-49-40
-                    </a>
                   </Button>
               </div>
           </div>
@@ -501,6 +495,7 @@ export default function Home() {
     
 
     
+
 
 
 
