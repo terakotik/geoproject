@@ -275,7 +275,7 @@ export default function Home() {
       </section>
 
       {/* Services Section */}
-      <section id="services" className="bg-background">
+      <section id="services" className="bg-white">
         <div className="container mx-auto px-4 py-20">
           <div className="text-center mb-16">
             <h2 className="text-4xl lg:text-5xl font-heading font-bold text-foreground mb-6">Наши услуги</h2>
@@ -500,6 +500,7 @@ export default function Home() {
     
 
     
+
 
 
 
