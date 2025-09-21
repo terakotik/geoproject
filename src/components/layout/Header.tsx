@@ -37,7 +37,7 @@ export default function Header() {
           </Link>
           <nav className="hidden lg:flex items-center gap-8">
              <Popover>
-              <PopoverTrigger className="flex items-center text-foreground hover:text-accent transition-colors font-medium">
+              <PopoverTrigger className="flex items-center text-foreground transition-colors font-medium">
                 Услуги <ChevronDown className="h-4 w-4 ml-1" />
               </PopoverTrigger>
               <PopoverContent className="w-[600px]">
@@ -46,10 +46,10 @@ export default function Header() {
                     <Link
                       key={service.slug}
                       href={`/services/${service.slug}`}
-                      className="group flex flex-col items-center text-center p-2 rounded-lg hover:bg-accent/10 transition-colors"
+                      className="group flex flex-col items-center text-center p-2 rounded-lg hover:bg-muted/50 transition-colors"
                     >
                       <div className="mb-2 p-2 bg-muted rounded-md">
-                        <service.icon className="h-6 w-6 text-muted-foreground group-hover:text-accent" />
+                        <service.icon className="h-6 w-6 text-muted-foreground" />
                       </div>
                       <span className="text-sm font-medium text-foreground">{service.title}</span>
                     </Link>
@@ -58,7 +58,7 @@ export default function Header() {
               </PopoverContent>
             </Popover>
             {navLinks.map((link) => (
-              <Link key={link.href} href={link.href} className="text-foreground hover:text-accent transition-colors font-medium">
+              <Link key={link.href} href={link.href} className="text-foreground transition-colors font-medium">
                 {link.label}
               </Link>
             ))}
