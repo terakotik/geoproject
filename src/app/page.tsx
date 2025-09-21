@@ -8,6 +8,7 @@ import { services, getServiceDetails } from '@/lib/services';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 import HorizontalScrollCarousel from '@/components/HorizontalScrollCarousel';
 import { HelpCircle } from 'lucide-react';
+import { AnimatedSectionTitle } from '@/components/AnimatedSectionTitle';
 
 const packages = [
   {
@@ -277,10 +278,10 @@ export default function Home() {
       </section>
 
       {/* Services Section */}
-      <section id="services" className="bg-white">
+      <section id="services" className="bg-background">
         <div className="container mx-auto px-4 py-20">
           <div className="text-center mb-16">
-            <h2 className="text-4xl lg:text-5xl font-heading font-bold text-foreground mb-6">Наши услуги</h2>
+            <AnimatedSectionTitle>Наши услуги</AnimatedSectionTitle>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
               Предоставляем полный спектр геодезических и кадастровых услуг с гарантией качества и соблюдением сроков
             </p>
@@ -348,7 +349,7 @@ export default function Home() {
       <section id="prices" className="py-20 bg-gradient-hero">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
-            <h1 className="text-4xl lg:text-5xl font-heading font-bold text-foreground mb-6">Прайс-лист</h1>
+            <AnimatedSectionTitle>Прайс-лист</AnimatedSectionTitle>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
               Прозрачные цены без скрытых доплат. Групповые скидки до 43%
             </p>
@@ -450,7 +451,7 @@ export default function Home() {
       <section id="about" className="py-20 bg-background">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
-            <h2 className="text-4xl lg:text-5xl font-heading font-bold text-foreground mb-6">Как мы работаем</h2>
+            <AnimatedSectionTitle>Как мы работаем</AnimatedSectionTitle>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
               Прозрачный процесс работы без лишних этапов и дополнительных затрат
             </p>
@@ -500,6 +501,7 @@ export default function Home() {
     
 
     
+
 
 
 
