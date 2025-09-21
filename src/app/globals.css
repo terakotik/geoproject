@@ -156,3 +156,12 @@ footer .border-box {
     75% { border-top-color: hsl(var(--primary)); border-right-color: hsl(var(--primary)); border-bottom-color: hsl(var(--primary)); border-left-color: transparent;}
     100% { border-top-color: hsl(var(--primary)); border-right-color: hsl(var(--primary)); border-bottom-color: hsl(var(--primary)); border-left-color: hsl(var(--primary)); }
 }
+
+.path-container {
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 0;
+    pointer-events: none;
+}
