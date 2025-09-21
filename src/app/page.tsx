@@ -157,15 +157,28 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-background">
       {/* Hero Section */}
-      <section className="relative h-screen flex items-center bg-gradient-hero">
+      <section className="relative h-screen flex items-center">
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="absolute z-0 w-full h-full object-cover"
+        >
+          <source
+            src="https://pouch.jumpshare.com/preview/dUHg-gsRDslnFdT3XfFQYUj3M9PXnVuKIjURan0E7Tt9Heoa57PeFb-sbUHpmPWll8ZWyRtlbSgh2j3IOsSmh_aPcQXoRS15iWmHOM-M34oq3xv7xY6eKpTknO-BlLQ6ng-PQSvjJiBcStg63zF6um6yjbN-I2pg_cnoHs_AmgI.mp4"
+            type="video/mp4"
+          />
+        </video>
+        <div className="absolute inset-0 bg-black/50 z-0"></div>
         <div className="container mx-auto px-4 relative z-10">
-            <div className="max-w-2xl">
+            <div className="max-w-2xl text-white">
                 <div className="flex items-center gap-4 mb-4">
                   <div className="flex items-center gap-2 text-accent font-medium">
                     <Star className="h-5 w-5 fill-current text-yellow-400" />
                     <span>Нам доверяют с 2003 года</span>
                   </div>
-                   <a href="https://yandex.com/maps/org/geostroyproyekt/144539023058/?ll=30.231738%2C59.920487&mode=search&sll=37.586554%2C55.796284&sspn=0.174408%2C0.060633&text=%D0%B3%D0%B5%D0%BE%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BF%D1%80%D0%BE%D0%B5%D0%B0%D1%82%20%D1%81%D0%B0%D0%BD%D0%BA%D1%82%20%D0%BF%D0%B5%D1%82%D0%B5%D1%80%D0%B1%D1%83%D1%80%D0%B3&z=10.5" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-sm font-medium text-foreground hover:text-accent transition-colors">
+                   <a href="https://yandex.com/maps/org/geostroyproyekt/144539023058/?ll=30.231738%2C59.920487&mode=search&sll=37.586554%2C55.796284&sspn=0.174408%2C0.060633&text=%D0%B3%D0%B5%D0%BE%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BF%D1%80%D0%BE%D0%B5%D0%B0%D1%82%20%D1%81%D0%B0%D0%BD%D0%BA%D1%82%20%D0%BF%D0%B5%D1%82%D0%B5%D1%80%D0%B1%D1%83%D1%80%D0%B3&z=10.5" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-sm font-medium text-white hover:text-accent transition-colors">
                     <div className="flex items-center">
                         <Star className="h-4 w-4 fill-yellow-400 text-yellow-400 mr-1" />
                         <Star className="h-4 w-4 fill-yellow-400 text-yellow-400 mr-1" />
@@ -174,29 +187,29 @@ export default function Home() {
                         <Star className="h-4 w-4 fill-yellow-400 text-yellow-400" />
                     </div>
                     <span className="font-bold">5.0</span>
-                    <span className="text-muted-foreground">Яндекс Карты</span>
-                    <ExternalLink className="h-4 w-4 text-muted-foreground" />
+                    <span className="text-white/80">Яндекс Карты</span>
+                    <ExternalLink className="h-4 w-4 text-white/80" />
                   </a>
                 </div>
-                <h1 className="text-5xl lg:text-7xl font-heading font-bold leading-tight text-foreground">
+                <h1 className="text-5xl lg:text-7xl font-heading font-bold leading-tight">
                   Профессиональные <span className="text-accent">геодезические</span> услуги
                 </h1>
-                <p className="text-xl text-muted-foreground max-w-2xl mt-6">
+                <p className="text-xl text-white/80 max-w-2xl mt-6">
                   Полный спектр кадастровых работ, инженерных изысканий и ЗОУИТ в Санкт-Петербурге и ЛО
                 </p>
 
                 <div className="grid sm:grid-cols-3 gap-4 my-8">
                     {heroStats.map(stat => (
-                        <Card key={stat.label} className="text-center p-4 bg-card/50 backdrop-blur-sm border-border/50">
+                        <Card key={stat.label} className="text-center p-4 bg-white/10 backdrop-blur-sm border-white/20">
                             <div className="text-4xl font-bold text-accent">{stat.value}</div>
-                            <div className="text-sm text-muted-foreground">{stat.label}</div>
+                            <div className="text-sm text-white/80">{stat.label}</div>
                         </Card>
                     ))}
                 </div>
 
                 <ul className="space-y-3 my-8">
                     {heroBenefits.map(benefit => (
-                        <li key={benefit} className="flex items-center gap-3 text-lg text-foreground">
+                        <li key={benefit} className="flex items-center gap-3 text-lg">
                             <CheckCircle className="h-5 w-5 text-accent flex-shrink-0" />
                             <span>{benefit}</span>
                         </li>
@@ -207,7 +220,7 @@ export default function Home() {
                     <Button size="lg" asChild>
                       <Link href="/contact">Бесплатная консультация</Link>
                     </Button>
-                    <Button variant="outline" size="lg" asChild className="bg-transparent text-foreground border-border hover:bg-accent hover:text-accent-foreground hover:border-accent">
+                    <Button variant="outline" size="lg" asChild className="bg-transparent text-white border-white/50 hover:bg-accent hover:text-accent-foreground hover:border-accent">
                       <a href="tel:+79522764940">
                         <Phone className="h-5 w-5 mr-2" />
                         +7 (952) 276-49-40
