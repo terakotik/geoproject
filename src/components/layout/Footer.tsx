@@ -1,5 +1,5 @@
 import { Logo } from '@/components/Logo';
-import { Facebook, Twitter, Linkedin, Send, MessageSquare, ExternalLink, Clock, Mail, MapPin } from 'lucide-react';
+import { Facebook, Twitter, Linkedin, Send, MessageSquare, ExternalLink, Clock, Mail, MapPin, Phone } from 'lucide-react';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
