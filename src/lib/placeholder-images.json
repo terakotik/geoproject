@@ -1,3 +1,46 @@
 {
-  "placeholderImages": []
+  "placeholderImages": [
+    {
+      "id": "hero-background",
+      "description": "A wide landscape showing surveying equipment in a field at sunset.",
+      "imageUrl": "https://picsum.photos/seed/hero/1920/1080",
+      "imageHint": "landscape surveying"
+    },
+    {
+      "id": "service-1",
+      "description": "A close-up of a surveyor looking through a theodolite.",
+      "imageUrl": "https://picsum.photos/seed/service1/600/400",
+      "imageHint": "surveyor equipment"
+    },
+    {
+      "id": "service-2",
+      "description": "A drone flying over a construction site.",
+      "imageUrl": "https://picsum.photos/seed/service2/600/400",
+      "imageHint": "drone survey"
+    },
+    {
+      "id": "service-3",
+      "description": "A digital map with property lines highlighted.",
+      "imageUrl": "https://picsum.photos/seed/service3/600/400",
+      "imageHint": "cadastral map"
+    },
+    {
+      "id": "contact-map",
+      "description": "A map showing a pin for an office location.",
+      "imageUrl": "https://picsum.photos/seed/map/600/400",
+      "imageHint": "office map"
+    },
+    {
+      "id": "portal-login",
+      "description": "An abstract geometric pattern related to mapping or grids.",
+      "imageUrl": "https://picsum.photos/seed/portal/1200/800",
+      "imageHint": "geometric pattern"
+    },
+    {
+      "id": "map-placeholder",
+      "description": "A satellite view of a city with data overlays.",
+      "imageUrl": "https://picsum.photos/seed/interactive-map/1600/900",
+      "imageHint": "satellite map"
+    }
+  ]
 }
