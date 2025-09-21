@@ -87,6 +87,19 @@
   .card {
     @apply shadow-none;
   }
+
+  .service-card {
+    @apply relative overflow-hidden;
+  }
+  
+  .service-card .border-box {
+    @apply absolute inset-0 w-full h-full rounded-lg border-2 border-transparent;
+    content: '';
+  }
+
+  .service-card:hover .border-box {
+    animation: move-border 4s linear infinite;
+  }
 }
 
 @layer utilities {
@@ -113,11 +126,11 @@
 }
 
 @keyframes move-border {
-    0% { border-color: hsl(var(--primary)); border-top-color: transparent; }
-    25% { border-top-color: hsl(var(--primary)); border-right-color: transparent; }
-    50% { border-right-color: hsl(var(--primary)); border-bottom-color: transparent; }
-    75% { border-bottom-color: hsl(var(--primary)); border-left-color: transparent; }
-    100% { border-left-color: hsl(var(--primary)); border-color: hsl(var(--primary)); }
+    0% { border-color: hsl(var(--primary)); border-top-color: transparent; border-right-color: transparent; border-bottom-color: transparent; border-left-color: transparent;}
+    25% { border-top-color: hsl(var(--primary)); border-right-color: transparent; border-bottom-color: transparent; border-left-color: transparent;}
+    50% { border-top-color: hsl(var(--primary)); border-right-color: hsl(var(--primary)); border-bottom-color: transparent; border-left-color: transparent;}
+    75% { border-top-color: hsl(var(--primary)); border-right-color: hsl(var(--primary)); border-bottom-color: hsl(var(--primary)); border-left-color: transparent;}
+    100% { border-top-color: hsl(var(--primary)); border-right-color: hsl(var(--primary)); border-bottom-color: hsl(var(--primary)); border-left-color: hsl(var(--primary)); }
 }
 
 footer .border-box {
