@@ -2,7 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { CheckCircle, Star, CircleCheckBig, FilePenLine, Users, SquareCheckBig, Download, MessageCircle, Zap, Send, Phone, MessageSquare, ExternalLink, ArrowRight, Shield, MapPin as MapPinIcon, Building, Ruler, FileText as FileTextIcon, TreePine, Factory, Calculator, Clock } from 'lucide-react';
+import { CheckCircle, Star, CircleCheckBig, FilePenLine, Users, SquareCheckBig, Download, MessageCircle, Zap, Send, Phone, MessageSquare, ExternalLink, ArrowRight, Shield, MapPin as MapPinIcon, Building, Ruler, FileText as FileTextIcon, TreePine, Factory, Calculator, Clock, ListChecks } from 'lucide-react';
 import { services } from '@/lib/services';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 import HorizontalScrollCarousel from '@/components/HorizontalScrollCarousel';
@@ -11,9 +11,9 @@ const packages = [
   {
     title: "Стандарт",
     description: "Межевание + Технический план",
-    price: "12 500 ₽",
+    price: "13 500 ₽",
     oldPrice: "14 000 ₽",
-    saving: "Экономия 11%",
+    saving: "Экономия 4%",
     audience: "2-3 заявки",
     features: ["Межевание участка", "Технический план дома", "Подача документов", "Сопровождение до регистрации"],
     popular: false,
@@ -21,9 +21,9 @@ const packages = [
   {
     title: "Популярный",
     description: "Групповой пакет",
-    price: "10 500 ₽",
+    price: "12 500 ₽",
     oldPrice: "14 000 ₽",
-    saving: "Экономия 25%",
+    saving: "Экономия 11%",
     audience: "4-7 заявок",
     features: ["Все услуги пакета Стандарт", "Приоритетное обслуживание", "Персональный менеджер", "Скидка на дополнительные услуги"],
     popular: true,
@@ -45,54 +45,59 @@ const priceSections = [
   {
     title: "Земельные участки",
     items: [
-      { name: "Межевание земельного участка в СПб и ЛО", price: "от 12 500 ₽", term: "от 14 дней" },
-      { name: "Межевание земель общего пользования в СНТ, ДНП", price: "индивидуально", term: "от 14 дней" },
-      { name: "Раздел земельного участка", price: "от 10 000 ₽", term: "от 14 дней" },
-      { name: "Объединение земельных участков", price: "от 10 000 ₽", term: "от 14 дней" },
-      { name: "Перераспределение земельных участков", price: "от 8 000 ₽", term: "от 14 дней" },
-      { name: "Формирование схемы участка на КПТ", price: "от 3 000 ₽", term: "2 дня" },
-      { name: "Вынос границ в натуру (4 точки включены)", price: "от 7 000 ₽", term: "от 2 дней" },
+      { name: "Межевание земельного участка в Спб и ЛО", price: "от 12500 руб.", term: "от 14 дней" },
+      { name: "Межевание земель общего пользования в СНТ, ДНП", price: "индивидуально", term: "" },
+      { name: "Раздел земельного участка", price: "от 10000 руб.", term: "от 14 дней" },
+      { name: "Объединение земельных участков", price: "от 10000 руб.", term: "от 14 дней" },
+      { name: "Перераспределение земельных участков", price: "от 8000 руб.", term: "от 14 дней" },
+      { name: "Формирование схемы участка на КПТ", price: "от 3000 руб.", term: "2 дня" },
+      { name: "Вынос границ в натуру ( 4 точки включены)", price: "от 7000 руб.", term: "от 2 дней" },
     ],
   },
   {
     title: "Объекты капитального строительства",
     items: [
-        { name: "Оформление прав собственности на дом, баню, гараж, хозпостройку", price: "от 12 000 ₽", term: "от 5 дней" },
-        { name: "Изготовление технического плана на здание, сооружение, ОНС", price: "от 8 000 ₽", term: "от 5 дней" },
-        { name: "Учет изменений ОКС (перепланировка, реконструкция)", price: "от 12 000 ₽", term: "от 5 дней" },
-        { name: "Изготовление акта обследования", price: "от 5 000 ₽", term: "от 3 дней" },
-        { name: "Регистрация загородной недвижимости", price: "от 8 500 ₽", term: "от 5 дней" },
+        { name: "Оформление прав собственности на дом, баню, гараж, хозпостройку", price: "от 12000 руб.", term: "от 5 дней" },
+        { name: "Изготовление технического плана на здание, сооружение, объекта незавершенного строительства", price: "от 8000 руб.", term: "от 5 дней" },
+        { name: "Учет изменений ОКС (перепланировка, реконструкция)", price: "от 12000 руб.", term: "от 5 дней" },
+        { name: "Изготовление акта обследования", price: "от 5000 руб.", term: "от 3 дней" },
+        { name: "Регистрация загородной недвижимости", price: "от 8500 руб.", term: "от 5 дней" },
     ],
   },
   {
     title: "Топографическая съемка",
     items: [
-        { name: "Фасадная съемка и 3D", price: "от 10 000 ₽", term: "от 3 дней" },
-        { name: "Съёмка для водоканала и газа", price: "от 10 000 ₽", term: "от 5 дней" },
-        { name: "Съёмка для ландшафтного дизайна", price: "от 12 000 ₽", term: "от 5 дней" },
-        { name: "Исполнительная топосъемка", price: "от 15 000 ₽", term: "от 3 дней" },
-        { name: "Топосъемка М 1:500", price: "от 25 000 ₽", term: "от 7 дней" },
+        { name: "Фасадная съемка и 3D", price: "от 10000 руб.", term: "от 3 дней" },
+        { name: "Съёмка для водоканала и газа", price: "от 10000 руб.", term: "от 5 дней" },
+        { name: "Съёмка для ландшафтного дизайна", price: "от 12000 руб.", term: "от 5 дней" },
     ],
   },
-  {
-    title: "ЗОУИТ и специальные работы",
-    items: [
-        { name: "Определение зон с особыми условиями использования территорий", price: "от 15 000 ₽", term: "от 10 дней" },
-        { name: "Расчет санитарно-защитных зон", price: "от 20 000 ₽", term: "от 14 дней" },
-        { name: "Зоны охраны объектов культурного наследия", price: "от 25 000 ₽", term: "от 21 дня" },
-        { name: "Водоохранные зоны", price: "от 18 000 ₽", term: "от 14 дней" },
-    ],
-  },
-  {
+    {
     title: "Дополнительные услуги",
     items: [
-        { name: "Регистрация машиноместа", price: "от 18 000 ₽", term: "от 10 дней" },
-        { name: "Подготовка поэтажных планов", price: "от 3 000 ₽", term: "от 3 дней" },
-        { name: "Изготовление технического паспорта объекта", price: "от 5 000 ₽", term: "от 3 дней" },
-        { name: "Выписка из ЕГРН", price: "от 500 ₽", term: "1 день" },
-        { name: "Справки и консультации", price: "бесплатно", term: "в день обращения" },
+        { name: "Регистрация машиноместа", price: "от 18000 руб.", term: "от 10 дней" },
+        { name: "Подготовка поэтажных планов", price: "от 3000 руб.", term: "от 3 дней" },
+        { name: "Изготовление технического паспорта объекта", price: "от 5000 руб.", term: "от 3 дней" },
     ],
   },
+];
+
+const kadastrServices = [
+    "Межевание земельных участков + подача документов",
+    "Составление технических планов, получение уведомлений, регистрация в Росреестре.",
+    "Вынос границ в натуру по законной границе, с выездом на объект установка колышков",
+    "Акт обследования",
+    "Техническая инвентаризация",
+    "Схема расположения земельного участка",
+];
+
+const geoServices = [
+    "Топографическая (геодезическая) съемка земельных участков и местности",
+    "Топографическая (геодезическая) съемка для ландшафтного дизайна",
+    "Создание геодезической разбивочной основы (ГРО)",
+    "Съемка участка под газ, водопровод и другие инженерные сети",
+    "Создание топографических планов с подземными коммуникациями",
+    "Страхование всех видов",
 ];
 
 export default function Home() {
@@ -226,6 +231,58 @@ export default function Home() {
         </div>
       </section>
 
+      {/* SEO Text Section */}
+      <section className="py-20 bg-background">
+        <div className="container mx-auto px-4">
+            <Card className="max-w-4xl mx-auto p-8 bg-card/50 backdrop-blur-sm border-border/50">
+                <CardHeader>
+                    <CardTitle className="text-3xl font-heading font-bold text-center">Геодезическая компания ООО "ГЕОСТРОЙПРОЕКТ"</CardTitle>
+                </CardHeader>
+                <CardContent className="text-muted-foreground space-y-4 text-lg">
+                    <p>Мы рады приветствовать вас на официальном сайте геодезической компании ООО «ГЕОСТРОЙПРОЕКТ» и готовы предложить бесплатную консультацию по вашему вопросу прямо сейчас!</p>
+                    <p>У нас работают только опытные кадастровые инженеры, готовые помочь в решении земельных вопросов качественно и в поставленные сроки. Не нужно устанавливать забор и делить землю самостоятельно — это может привести к ненужным разногласиям с соседями, следовательно, к потере денег и времени.</p>
+                    <p>Наши специалисты постоянно находятся в курсе последних изменений в законодательстве и всегда готовы оказать вам квалифицированную помощь в оформлении перепланировки квартиры, сопровождении сделок с недвижимостью, заказе межевого плана участка и проектировании домов.</p>
+                    <p>Инженерные изыскания – это неотъемлемая часть проектной деятельности, обеспечивающая всестороннее изучение природных и техногенных условий местности планируемого строительства.</p>
+                    <p>Проведение инженерных работ позволяет получить объем необходимых данных для аргументирования технической возможности и экономической целесообразности проектирования и застройки на конкретной территории. Информировать о возможных рисках и изменениях геологической ситуации и окружающе.</p>
+                    <p className="font-semibold text-foreground">Геодезическая фирма ООО «ГЕОСТРОЙПРОЕКТ» гарантирует качество и законность выполненных работ в г. Санкт-Петербург и Ленинградской области.</p>
+                </CardContent>
+            </Card>
+
+            <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto mt-16">
+                <Card className="p-6 bg-card/50 backdrop-blur-sm border-border/50">
+                    <CardHeader>
+                        <CardTitle className="flex items-center gap-3 text-2xl font-heading"><ListChecks className="h-6 w-6 text-accent" />Кадастровые услуги</CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                        <ul className="space-y-3">
+                            {kadastrServices.map((service, i) => (
+                                <li key={i} className="flex items-center gap-3">
+                                    <CheckCircle className="h-4 w-4 text-accent flex-shrink-0" />
+                                    <span className="text-muted-foreground">{service}</span>
+                                </li>
+                            ))}
+                        </ul>
+                    </CardContent>
+                </Card>
+                 <Card className="p-6 bg-card/50 backdrop-blur-sm border-border/50">
+                    <CardHeader>
+                        <CardTitle className="flex items-center gap-3 text-2xl font-heading"><ListChecks className="h-6 w-6 text-accent" />Геодезические услуги</CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                        <ul className="space-y-3">
+                            {geoServices.map((service, i) => (
+                                <li key={i} className="flex items-center gap-3">
+                                    <CheckCircle className="h-4 w-4 text-accent flex-shrink-0" />
+                                    <span className="text-muted-foreground">{service}</span>
+                                </li>
+                            ))}
+                        </ul>
+                    </CardContent>
+                </Card>
+            </div>
+        </div>
+      </section>
+
       {/* Services Section */}
       <section id="services" className="bg-background">
         <div className="container mx-auto px-4 py-20">
@@ -274,7 +331,7 @@ export default function Home() {
       <section id="prices" className="py-20 bg-gradient-hero">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
-            <h1 className="text-4xl lg:text-5xl font-heading font-bold text-foreground mb-6">Прайс-лист услуг</h1>
+            <h1 className="text-4xl lg:text-5xl font-heading font-bold text-foreground mb-6">Прайс-лист</h1>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
               Прозрачные цены без скрытых доплат. Групповые скидки до 43%
             </p>
