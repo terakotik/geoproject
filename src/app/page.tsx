@@ -166,66 +166,63 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-background">
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-start overflow-hidden bg-white">
-        <div className="absolute top-0 right-0 h-full w-1/2 z-0 mt-[60px]">
-            <Image
-              src="https://videos.openai.com/vg-assets/assets%2Ftask_01k5p47k6jfn0sx4zdqj1dtke6%2F1758458131_img_0.webp?st=2025-09-21T11%3A31%3A23Z&se=2025-09-27T12%3A31%3A23Z&sks=b&skt=2025-09-21T11%3A31%3A23Z&ske=2025-09-27T12%3A31%3A23Z&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skoid=cfbc986b-d2bc-4088-8b71-4f962129715b&skv=2019-02-02&sv=2018-11-09&sr=b&sp=r&spr=https%2Chttp&sig=%2BvLVkEGDbgchPMBo4tpdNhineN%2Bel7Y9h8LoWnUrwOs%3D&az=oaivgprodscus"
-              alt="Геодезические работы"
-              layout="fill"
-              objectFit="contain"
-              className="md:absolute md:top-0 md:left-0 md:h-full md:w-full"
-            />
+       <section className="relative min-h-[80vh] md:min-h-screen flex items-center justify-center md:justify-start text-center md:text-left overflow-hidden bg-white">
+        <div className="absolute top-0 right-0 h-full w-full md:w-1/2 z-0 mt-[60px] hidden md:block">
+          <Image
+            src="https://videos.openai.com/vg-assets/assets%2Ftask_01k5p47k6jfn0sx4zdqj1dtke6%2F1758458131_img_0.webp?st=2025-09-21T11%3A31%3A23Z&se=2025-09-27T12%3A31%3A23Z&sks=b&skt=2025-09-21T11%3A31%3A23Z&ske=2025-09-27T12%3A31%3A23Z&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skoid=cfbc986b-d2bc-4088-8b71-4f962129715b&skv=2019-02-02&sv=2018-11-09&sr=b&sp=r&spr=https%2Chttp&sig=%2BvLVkEGDbgchPMBo4tpdNhineN%2Bel7Y9h8LoWnUrwOs%3D&az=oaivgprodscus"
+            alt="Геодезические работы"
+            layout="fill"
+            objectFit="contain"
+            className="md:absolute md:top-0 md:left-0 md:h-full md:w-full"
+          />
         </div>
-        <div className="container mx-auto px-4 relative z-20">
-          <div className="py-20 max-w-3xl">
-              <div className="flex items-center gap-4 mb-4">
-                  <div className="flex items-center gap-2 text-accent font-semibold bg-accent/20 px-4 py-2 rounded-full text-lg self-start w-fit">
-                      <Star className="h-5 w-5 fill-current text-yellow-400" />
-                      <span className="text-accent">Нам доверяют с 2003 года</span>
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="py-20 max-w-full md:max-w-3xl">
+            <div className="flex flex-col sm:flex-row items-center justify-center md:justify-start gap-4 mb-4">
+              <div className="flex items-center gap-2 text-accent font-semibold bg-accent/20 px-4 py-2 rounded-full text-lg">
+                <Star className="h-5 w-5 fill-current text-yellow-400" />
+                <span className="text-accent">Нам доверяют с 2003 года</span>
+              </div>
+              <a href="https://yandex.com/maps/org/geostroyproyekt/144539023058/?ll=30.231738%2C59.920487&mode=search&sll=37.586554%2C55.796284&sspn=0.174408%2C0.060633&text=%D0%B3%D0%B5%D0%BE%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BF%D1%80%D0%BE%D0%B5%D0%B0%D1%82%20%D1%81%D0%B0%D0%BD%D0%BA%D1%82%20%D0%BF%D0%B5%D1%82%D0%B5%D1%80%D0%B1%D1%83%D1%80%D0%B3&z=10" target="_blank" rel="noopener noreferrer">
+                <Card className="flex items-center gap-3 text-foreground font-semibold bg-white/90 px-4 py-2 rounded-full text-lg w-fit border">
+                  <div className="w-6 h-6 rounded-full bg-white flex items-center justify-center">
+                    <span className="font-bold text-red-500">Я</span>
                   </div>
-                   <a href="https://yandex.com/maps/org/geostroyproyekt/144539023058/?ll=30.231738%2C59.920487&mode=search&sll=37.586554%2C55.796284&sspn=0.174408%2C0.060633&text=%D0%B3%D0%B5%D0%BE%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BF%D1%80%D0%BE%D0%B5%D0%B0%D1%82%20%D1%81%D0%B0%D0%BD%D0%BA%D1%82%20%D0%BF%D0%B5%D1%82%D0%B5%D1%80%D0%B1%D1%83%D1%80%D0%B3&z=10" target="_blank" rel="noopener noreferrer">
-                   <Card className="flex items-center gap-3 text-foreground font-semibold bg-white/90 px-4 py-2 rounded-full text-lg w-fit border">
-                      <div className="w-6 h-6 rounded-full bg-white flex items-center justify-center">
-                          <span className="font-bold text-red-500">Я</span>
-                      </div>
-                      <span>Яндекс Отзывы</span>
-                      <span className="font-bold">5.0</span>
-                      <div className="flex">
-                      {[...Array(5)].map((_, i) => <Star key={i} className="h-4 w-4 fill-current text-yellow-400" />)}
-                      </div>
-                  </Card>
-                  </a>
-              </div>
-              <h1 className="text-5xl lg:text-7xl font-heading font-bold leading-tight text-foreground">
-                Профессиональные <span className="text-accent">геодезические</span> услуги
-              </h1>
-              <p className="text-xl text-muted-foreground max-w-2xl mt-6">
-                Полный спектр кадастровых работ, инженерных изысканий и ЗОУИТ в Санкт-Петербурге и ЛО
-              </p>
-
-              <div className="grid sm:grid-cols-3 gap-4 my-8">
-                  {heroStats.map(stat => (
-                      <Card key={stat.label} className="text-center p-4 bg-muted border-dashed">
-                          <div className="text-4xl font-bold text-accent">{stat.value}</div>
-                          <div className="text-sm opacity-80 text-muted-foreground">{stat.label}</div>
-                      </Card>
-                  ))}
-              </div>
-
-              <ul className="space-y-3 my-8 text-foreground">
-                  {heroBenefits.map(benefit => (
-                      <li key={benefit} className="flex items-center gap-3 text-lg">
-                          <CheckCircle className="h-5 w-5 text-accent flex-shrink-0" />
-                          <span>{benefit}</span>
-                      </li>
-                  ))}
-              </ul>
-
-                <div className="mt-10 flex flex-col sm:flex-row gap-4">
-                  <Button size="lg" asChild>
-                    <Link href="/contact">Бесплатная консультация</Link>
-                  </Button>
-              </div>
+                  <span>Яндекс Отзывы</span>
+                  <span className="font-bold">5.0</span>
+                  <div className="flex">
+                    {[...Array(5)].map((_, i) => <Star key={i} className="h-4 w-4 fill-current text-yellow-400" />)}
+                  </div>
+                </Card>
+              </a>
+            </div>
+            <h1 className="text-5xl lg:text-7xl font-heading font-bold leading-tight text-foreground">
+              Профессиональные <span className="text-accent">геодезические</span> услуги
+            </h1>
+            <p className="text-xl text-muted-foreground max-w-2xl mt-6 mx-auto md:mx-0">
+              Полный спектр кадастровых работ, инженерных изысканий и ЗОУИТ в Санкт-Петербурге и ЛО
+            </p>
+            <div className="grid sm:grid-cols-3 gap-4 my-8">
+              {heroStats.map(stat => (
+                <Card key={stat.label} className="text-center p-4 bg-muted border-dashed">
+                  <div className="text-4xl font-bold text-accent">{stat.value}</div>
+                  <div className="text-sm opacity-80 text-muted-foreground">{stat.label}</div>
+                </Card>
+              ))}
+            </div>
+            <ul className="space-y-3 my-8 text-foreground inline-block text-left">
+              {heroBenefits.map(benefit => (
+                <li key={benefit} className="flex items-center gap-3 text-lg">
+                  <CheckCircle className="h-5 w-5 text-accent flex-shrink-0" />
+                  <span>{benefit}</span>
+                </li>
+              ))}
+            </ul>
+            <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+              <Button size="lg" asChild>
+                <Link href="/contact">Бесплатная консультация</Link>
+              </Button>
+            </div>
           </div>
         </div>
       </section>
@@ -518,6 +515,7 @@ export default function Home() {
     
 
     
+
 
 
 
