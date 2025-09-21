@@ -32,7 +32,9 @@ export default function Header() {
     <header className="sticky top-0 z-50 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b border-border">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between py-3">
-          <Logo />
+          <Link href="/">
+            <Logo />
+          </Link>
           <nav className="hidden lg:flex items-center gap-8">
              <Popover>
               <PopoverTrigger className="flex items-center text-foreground hover:text-accent transition-colors font-medium">
@@ -78,7 +80,9 @@ export default function Header() {
                 <SheetContent side="right">
                   <div className="flex flex-col h-full">
                     <div className="py-4 border-b">
-                      <Logo />
+                      <Link href="/" onClick={() => setIsMobileMenuOpen(false)}>
+                        <Logo />
+                      </Link>
                     </div>
                     <nav className="flex flex-col gap-4 py-6">
                        <Link href="/services" onClick={() => setIsMobileMenuOpen(false)} className="text-lg text-foreground hover:text-accent transition-colors font-medium">

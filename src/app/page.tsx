@@ -170,12 +170,21 @@ export default function Home() {
             type="video/mp4"
           />
         </video>
-        <div className="absolute inset-0 bg-black/75 z-0"></div>
+        <div className="absolute inset-0 bg-black/80 z-0"></div>
         <div className="container mx-auto px-4 relative z-10">
             <div className="max-w-3xl text-white">
-                <div className="flex items-center gap-2 text-accent font-semibold bg-black/30 backdrop-blur-sm px-3 py-2 rounded-full text-lg mb-4 self-start w-fit">
-                    <Star className="h-5 w-5 fill-current text-yellow-400" />
-                    <span>Нам доверяют с 2003 года</span>
+                <div className="flex items-center gap-4 mb-4">
+                    <div className="flex items-center gap-2 text-accent font-semibold bg-black/50 backdrop-blur-sm px-4 py-2 rounded-full text-lg self-start w-fit">
+                        <Star className="h-5 w-5 fill-current text-yellow-400" />
+                        <span>Нам доверяют с 2003 года</span>
+                    </div>
+                    <Card className="flex items-center gap-2 text-white font-semibold bg-black/50 backdrop-blur-sm px-4 py-2 rounded-full text-lg w-fit">
+                        <Image src="https://yandex-maps-reviews-proxy.vercel.app/api/image/1013753385" alt="Яндекс" width={24} height={24} />
+                        <span>5.0</span>
+                        <div className="flex">
+                        {[...Array(5)].map((_, i) => <Star key={i} className="h-4 w-4 fill-current text-yellow-400" />)}
+                        </div>
+                    </Card>
                 </div>
                 <h1 className="text-5xl lg:text-7xl font-heading font-bold leading-tight">
                   Профессиональные <span className="text-accent">геодезические</span> услуги
@@ -332,13 +341,6 @@ export default function Home() {
               </Card>
             </div>
         </HorizontalScrollCarousel>
-        <div className="container mx-auto px-4">
-          <div className="text-center mt-12">
-            <Button size="lg" asChild>
-              <Link href="/services">Все услуги</Link>
-            </Button>
-          </div>
-        </div>
       </section>
 
       {/* Prices Section */}

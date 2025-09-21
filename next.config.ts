@@ -28,6 +28,12 @@ const nextConfig: NextConfig = {
         port: '',
         pathname: '/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'yandex-maps-reviews-proxy.vercel.app',
+        port: '',
+        pathname: '/**',
+      }
     ],
   },
 };
