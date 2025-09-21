@@ -179,7 +179,7 @@ export default function Home() {
                         <span>Нам доверяют с 2003 года</span>
                     </div>
                     <Card className="flex items-center gap-2 text-white font-semibold bg-black/50 backdrop-blur-sm px-4 py-2 rounded-full text-lg w-fit">
-                        <Image src="https://yandex-maps-reviews-proxy.vercel.app/api/image/1013753385" alt="Яндекс" width={24} height={24} />
+                        <span>Яндекс Отзывы</span>
                         <span>5.0</span>
                         <div className="flex">
                         {[...Array(5)].map((_, i) => <Star key={i} className="h-4 w-4 fill-current text-yellow-400" />)}
