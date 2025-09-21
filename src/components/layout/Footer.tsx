@@ -8,7 +8,7 @@ import { Card } from '@/components/ui/card';
 
 export default function Footer() {
   return (
-    <footer id="site-footer" className="bg-black text-white relative overflow-hidden">
+    <footer className="bg-black text-white relative overflow-hidden">
       <div className="absolute inset-0 z-0">
         <video
           autoPlay

@@ -6,17 +6,20 @@ const ScrollProgressLine = () => {
   const pathRef = useRef<SVGPathElement>(null);
   const maskRef = useRef<SVGPathElement>(null);
   const arrowRef = useRef<SVGGElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const path = pathRef.current;
     const mask = maskRef.current;
     const arrow = arrowRef.current;
+    const container = containerRef.current;
 
-    if (!path || !mask || !arrow) {
+    if (!path || !mask || !arrow || !container) {
       return;
     }
 
     let pathLength = 0;
+    let rafId: number;
 
     const setupAnimation = () => {
       // Use a timeout to ensure the path is rendered and measurable.
@@ -47,25 +50,24 @@ const ScrollProgressLine = () => {
     const handleScroll = () => {
       if (!pathLength) return;
 
-      const footer = document.getElementById('site-footer');
-      if (!footer) return;
-      
-      const scrollY = window.scrollY;
-      const startY = window.innerHeight;
-      const endY = footer.offsetTop - window.innerHeight;
-      const scrollableHeight = endY - startY;
-
-      let scrollPercent = 0;
-      if (scrollY > startY) {
-        scrollPercent = (scrollY - startY) / scrollableHeight;
+      const footer = document.querySelector('footer');
+      if (footer && container) {
+        const footerRect = footer.getBoundingClientRect();
+        if (footerRect.top < window.innerHeight) {
+          container.style.opacity = '0';
+        } else {
+          container.style.opacity = '1';
+        }
       }
+
+      const scrollY = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrollPercent = docHeight > 0 ? scrollY / docHeight : 0;
       
-      const clampedScrollPercent = Math.max(0, Math.min(1, scrollPercent));
-      
-      const draw = pathLength * clampedScrollPercent;
+      const draw = pathLength * scrollPercent;
       mask.style.strokeDashoffset = (pathLength - draw).toString();
 
-      if (clampedScrollPercent > 0.99 && pathLength > 0) {
+      if (scrollPercent > 0.99 && pathLength > 0) {
         try {
           const endPoint = path.getPointAtLength(pathLength);
           const lastPoint = path.getPointAtLength(pathLength * 0.99);
@@ -81,18 +83,24 @@ const ScrollProgressLine = () => {
       }
     };
 
-    window.addEventListener('scroll', handleScroll);
+    const onScroll = () => {
+      cancelAnimationFrame(rafId);
+      rafId = requestAnimationFrame(handleScroll);
+    };
+
+    window.addEventListener('scroll', onScroll);
     window.addEventListener('resize', setupAnimation); // Recalculate on resize
 
     // Cleanup function
     return () => {
-      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('scroll', onScroll);
       window.removeEventListener('resize', setupAnimation);
+      cancelAnimationFrame(rafId);
     };
   }, []);
 
   return (
-    <div className="path-container hidden md:block">
+    <div ref={containerRef} className="path-container hidden md:block" style={{ transition: 'opacity 0.3s ease-out' }}>
       <svg width="198px" height="1458px" viewBox="0 0 198 1458">
           <defs>
               <linearGradient x1="50%" y1="7.06935325%" x2="50%" y2="100%" id="linearGradient-1">
