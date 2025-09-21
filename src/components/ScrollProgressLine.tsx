@@ -27,15 +27,15 @@ const ScrollProgressLine = () => {
             mask.setAttribute('stroke-dasharray', pathLength.toString());
             mask.style.strokeDashoffset = pathLength.toString();
           } else {
-             // Fallback if measurement fails in some edge cases
-            pathLength = 1637; 
+            // Fallback if measurement fails in some edge cases
+            pathLength = 1637;
             mask.setAttribute('stroke-dasharray', pathLength.toString());
             mask.style.strokeDashoffset = pathLength.toString();
           }
         } catch (e) {
           console.error("Failed to get SVG path length:", e);
           // Fallback if measurement fails
-          pathLength = 1637; 
+          pathLength = 1637;
           mask.setAttribute("stroke-dasharray", pathLength.toString());
           mask.style.strokeDashoffset = pathLength.toString();
         }
@@ -47,23 +47,35 @@ const ScrollProgressLine = () => {
     const handleScroll = () => {
       if (!pathLength) return;
 
-      const scrollPercent = (window.scrollY) / (document.documentElement.scrollHeight - window.innerHeight);
+      const footer = document.getElementById('site-footer');
+      if (!footer) return;
+      
+      const scrollY = window.scrollY;
+      const startY = window.innerHeight;
+      const endY = footer.offsetTop - window.innerHeight;
+      const scrollableHeight = endY - startY;
+
+      let scrollPercent = 0;
+      if (scrollY > startY) {
+        scrollPercent = (scrollY - startY) / scrollableHeight;
+      }
+      
       const clampedScrollPercent = Math.max(0, Math.min(1, scrollPercent));
       
       const draw = pathLength * clampedScrollPercent;
       mask.style.strokeDashoffset = (pathLength - draw).toString();
 
       if (clampedScrollPercent > 0.99 && pathLength > 0) {
-          try {
-            const endPoint = path.getPointAtLength(pathLength);
-            const lastPoint = path.getPointAtLength(pathLength * 0.99);
-            const angle = Math.atan2(endPoint.y - lastPoint.y, endPoint.x - lastPoint.x) * 180 / Math.PI;
+        try {
+          const endPoint = path.getPointAtLength(pathLength);
+          const lastPoint = path.getPointAtLength(pathLength * 0.99);
+          const angle = Math.atan2(endPoint.y - lastPoint.y, endPoint.x - lastPoint.x) * 180 / Math.PI;
 
-            arrow.setAttribute('transform', `translate(${endPoint.x}, ${endPoint.y}) rotate(${angle})`);
-            arrow.style.display = 'block';
-          } catch(e) {
-            arrow.style.display = 'none';
-          }
+          arrow.setAttribute('transform', `translate(${endPoint.x}, ${endPoint.y}) rotate(${angle})`);
+          arrow.style.display = 'block';
+        } catch(e) {
+          arrow.style.display = 'none';
+        }
       } else {
           arrow.style.display = 'none';
       }
