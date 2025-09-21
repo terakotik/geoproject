@@ -33,6 +33,12 @@ const nextConfig: NextConfig = {
         hostname: 'yandex-maps-reviews-proxy.vercel.app',
         port: '',
         pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'kartinki.pibig.info',
+        port: '',
+        pathname: '/**',
       }
     ],
   },

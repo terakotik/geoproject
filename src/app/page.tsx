@@ -157,75 +157,72 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-background">
       {/* Hero Section */}
-      <section className="relative h-screen flex items-center">
-        <video
-          autoPlay
-          loop
-          muted
-          playsInline
-          className="absolute z-0 w-full h-full object-cover"
-        >
-          <source
-            src="https://pouch.jumpshare.com/preview/dUHg-gsRDslnFdT3XfFQYUj3M9PXnVuKIjURan0E7Tt9Heoa57PeFb-sbUHpmPWll8ZWyRtlbSgh2j3IOsSmh_aPcQXoRS15iWmHOM-M34oq3xv7xY6eKpTknO-BlLQ6ng-PQSvjJiBcStg63zF6um6yjbN-I2pg_cnoHs_AmgI.mp4"
-            type="video/mp4"
-          />
-        </video>
-        <div className="absolute inset-0 bg-black/80 z-0"></div>
-        <div className="container mx-auto px-4 relative z-10">
-            <div className="max-w-3xl text-white">
-                <div className="flex items-center gap-4 mb-4">
-                    <div className="flex items-center gap-2 text-accent font-semibold bg-black/50 backdrop-blur-sm px-4 py-2 rounded-full text-lg self-start w-fit">
-                        <Star className="h-5 w-5 fill-current text-yellow-400" />
-                        <span>Нам доверяют с 2003 года</span>
-                    </div>
-                    <Card className="flex items-center gap-3 text-white font-semibold bg-black/50 backdrop-blur-sm px-4 py-2 rounded-full text-lg w-fit border-none">
-                       <div className="w-6 h-6 rounded-full bg-white flex items-center justify-center">
-                           <span className="font-bold text-red-500">Я</span>
-                       </div>
-                        <span>Яндекс Отзывы</span>
-                        <span className="font-bold">5.0</span>
-                        <div className="flex">
-                        {[...Array(5)].map((_, i) => <Star key={i} className="h-4 w-4 fill-current text-yellow-400" />)}
-                        </div>
-                    </Card>
-                </div>
-                <h1 className="text-5xl lg:text-7xl font-heading font-bold leading-tight">
-                  Профессиональные <span className="text-accent">геодезические</span> услуги
-                </h1>
-                <p className="text-xl text-white/80 max-w-2xl mt-6">
-                  Полный спектр кадастровых работ, инженерных изысканий и ЗОУИТ в Санкт-Петербурге и ЛО
-                </p>
+      <section className="bg-white">
+        <div className="container mx-auto px-4 grid lg:grid-cols-2 gap-12 items-center min-h-screen">
+          <div className="py-20">
+              <div className="flex items-center gap-4 mb-4">
+                  <div className="flex items-center gap-2 text-accent font-semibold bg-accent/10 px-4 py-2 rounded-full text-lg self-start w-fit">
+                      <Star className="h-5 w-5 fill-current text-yellow-400" />
+                      <span>Нам доверяют с 2003 года</span>
+                  </div>
+                  <Card className="flex items-center gap-3 text-foreground font-semibold bg-card px-4 py-2 rounded-full text-lg w-fit border">
+                      <div className="w-6 h-6 rounded-full bg-white flex items-center justify-center border">
+                          <span className="font-bold text-red-500">Я</span>
+                      </div>
+                      <span>Яндекс Отзывы</span>
+                      <span className="font-bold">5.0</span>
+                      <div className="flex">
+                      {[...Array(5)].map((_, i) => <Star key={i} className="h-4 w-4 fill-current text-yellow-400" />)}
+                      </div>
+                  </Card>
+              </div>
+              <h1 className="text-5xl lg:text-7xl font-heading font-bold leading-tight text-foreground">
+                Профессиональные <span className="text-accent">геодезические</span> услуги
+              </h1>
+              <p className="text-xl text-muted-foreground max-w-2xl mt-6">
+                Полный спектр кадастровых работ, инженерных изысканий и ЗОУИТ в Санкт-Петербурге и ЛО
+              </p>
 
-                <div className="grid sm:grid-cols-3 gap-4 my-8">
-                    {heroStats.map(stat => (
-                        <Card key={stat.label} className="text-center p-4 bg-white/10 backdrop-blur-sm border-white/20">
-                            <div className="text-4xl font-bold text-accent">{stat.value}</div>
-                            <div className="text-sm text-white/80">{stat.label}</div>
-                        </Card>
-                    ))}
-                </div>
+              <div className="grid sm:grid-cols-3 gap-4 my-8">
+                  {heroStats.map(stat => (
+                      <Card key={stat.label} className="text-center p-4 bg-card border">
+                          <div className="text-4xl font-bold text-accent">{stat.value}</div>
+                          <div className="text-sm text-muted-foreground">{stat.label}</div>
+                      </Card>
+                  ))}
+              </div>
 
-                <ul className="space-y-3 my-8">
-                    {heroBenefits.map(benefit => (
-                        <li key={benefit} className="flex items-center gap-3 text-lg">
-                            <CheckCircle className="h-5 w-5 text-accent flex-shrink-0" />
-                            <span>{benefit}</span>
-                        </li>
-                    ))}
-                </ul>
+              <ul className="space-y-3 my-8">
+                  {heroBenefits.map(benefit => (
+                      <li key={benefit} className="flex items-center gap-3 text-lg">
+                          <CheckCircle className="h-5 w-5 text-accent flex-shrink-0" />
+                          <span>{benefit}</span>
+                      </li>
+                  ))}
+              </ul>
 
-                 <div className="mt-10 flex flex-col sm:flex-row gap-4">
-                    <Button size="lg" asChild>
-                      <Link href="/contact">Бесплатная консультация</Link>
-                    </Button>
-                    <Button variant="outline" size="lg" asChild className="bg-transparent text-white border-white/50 hover:bg-accent hover:text-accent-foreground hover:border-accent">
-                      <a href="tel:+79522764940">
-                        <Phone className="h-5 w-5 mr-2" />
-                        +7 (952) 276-49-40
-                      </a>
-                    </Button>
-                </div>
-            </div>
+                <div className="mt-10 flex flex-col sm:flex-row gap-4">
+                  <Button size="lg" asChild>
+                    <Link href="/contact">Бесплатная консультация</Link>
+                  </Button>
+                  <Button variant="outline" size="lg" asChild>
+                    <a href="tel:+79522764940">
+                      <Phone className="h-5 w-5 mr-2" />
+                      +7 (952) 276-49-40
+                    </a>
+                  </Button>
+              </div>
+          </div>
+           <div className="hidden lg:block">
+              <Image
+                src="https://kartinki.pibig.info/uploads/posts/2023-03/1680155255_kartinki-pibig-info-p-prikolnie-kartinki-geodezist-arti-40.jpg"
+                alt="Геодезист за работой"
+                width={600}
+                height={800}
+                className="rounded-lg shadow-2xl mx-auto"
+                data-ai-hint="surveyor"
+              />
+          </div>
         </div>
       </section>
 
