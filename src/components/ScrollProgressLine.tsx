@@ -20,7 +20,6 @@ const ScrollProgressLine = () => {
     let rafId: number;
 
     const setupAnimation = () => {
-      // Use a timeout to ensure the path is rendered and measurable in the browser.
       setTimeout(() => {
         try {
           pathLength = path.getTotalLength();
@@ -28,14 +27,12 @@ const ScrollProgressLine = () => {
             mask.setAttribute('stroke-dasharray', pathLength.toString());
             mask.style.strokeDashoffset = pathLength.toString();
           } else {
-             // Fallback for safety
             pathLength = 1637; 
             mask.setAttribute('stroke-dasharray', pathLength.toString());
             mask.style.strokeDashoffset = pathLength.toString();
           }
         } catch (e) {
           console.error("Failed to get SVG path length:", e);
-           // Fallback for safety
           pathLength = 1637;
           mask.setAttribute("stroke-dasharray", pathLength.toString());
           mask.style.strokeDashoffset = pathLength.toString();
@@ -49,13 +46,17 @@ const ScrollProgressLine = () => {
       if (!pathLength) return;
 
       const scrollY = window.scrollY || document.documentElement.scrollTop;
-      const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-      const scrollPercent = docHeight > 0 ? scrollY / docHeight : 0;
+      // Subtract 100px from the scrollable height to make the line end earlier
+      const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight - 100;
+      let scrollPercent = docHeight > 0 ? scrollY / docHeight : 0;
       
+      // Clamp the scroll percentage between 0 and 1
+      scrollPercent = Math.max(0, Math.min(1, scrollPercent));
+
       const draw = pathLength * scrollPercent;
       mask.style.strokeDashoffset = (pathLength - draw).toString();
 
-      if (scrollPercent > 0.99 && pathLength > 0) {
+      if (scrollPercent >= 1 && pathLength > 0) {
         try {
           const endPoint = path.getPointAtLength(pathLength);
           const lastPoint = path.getPointAtLength(pathLength * 0.99);
@@ -77,9 +78,8 @@ const ScrollProgressLine = () => {
     };
 
     window.addEventListener('scroll', onScroll);
-    window.addEventListener('resize', setupAnimation); // Recalculate on resize
+    window.addEventListener('resize', setupAnimation);
 
-    // Cleanup function
     return () => {
       window.removeEventListener('scroll', onScroll);
       window.removeEventListener('resize', setupAnimation);
