@@ -147,7 +147,7 @@ export default function Home() {
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {services.map((service) => (
+            {services.slice(0, 6).map((service) => (
               <Link href={`/services/${service.slug}`} key={service.slug} className="block group">
                 <Card className="flex flex-col h-full p-6 hover:shadow-brand transition-all duration-300 hover:scale-[1.02] border-border/50 bg-card/50 backdrop-blur-sm">
                   <div className="flex items-start justify-between mb-4">
