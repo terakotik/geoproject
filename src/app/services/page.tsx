@@ -1,6 +1,8 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { services } from '@/lib/services';
 import Link from 'next/link';
+import { Button } from '@/components/ui/button';
+import { ArrowRight } from 'lucide-react';
 
 export default function ServicesPage() {
   return (
@@ -14,19 +16,24 @@ export default function ServicesPage() {
         </div>
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
           {services.map((service) => (
-            <Link href={`/services/${service.slug}`} key={service.slug} className="block">
-              <Card className="flex flex-col h-full shadow-lg hover:shadow-xl transition-shadow duration-300">
-                <CardHeader className="flex-row items-center gap-4">
-                  <div className="bg-primary/10 text-primary rounded-md p-3">
-                    <service.icon className="h-8 w-8" />
-                  </div>
-                  <CardTitle className="font-headline text-xl">{service.title}</CardTitle>
-                </CardHeader>
-                <CardContent className="flex-grow">
-                  <p className="text-muted-foreground">{service.description}</p>
-                </CardContent>
-              </Card>
-            </Link>
+             <Link href={`/services/${service.slug}`} key={service.slug} className="block group">
+             <Card className="flex flex-col h-full p-6 hover:shadow-brand transition-all duration-300 hover:scale-[1.02] border-border/50 bg-card/50 backdrop-blur-sm">
+               <div className="flex items-start justify-between mb-4">
+                 <div className="p-3 bg-gradient-primary rounded-lg">
+                   <service.icon className="h-6 w-6 text-primary" />
+                 </div>
+               </div>
+               <div>
+                 <h3 className="text-xl font-heading font-semibold text-foreground mb-2">{service.title}</h3>
+                 <p className="text-muted-foreground text-sm leading-relaxed">{service.description}</p>
+               </div>
+               <div className="mt-auto pt-4">
+                 <Button variant="outline" className="w-full group-hover:bg-accent group-hover:text-accent-foreground transition-colors">
+                   Подробнее <ArrowRight className="ml-2 h-4 w-4" />
+                 </Button>
+               </div>
+             </Card>
+           </Link>
           ))}
         </div>
       </div>
