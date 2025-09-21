@@ -166,7 +166,6 @@ export default function Home() {
           objectFit="cover"
           className="absolute top-0 left-0 w-full h-full z-0"
         />
-        <div className="absolute top-0 left-0 w-full h-full bg-black/50 z-10"></div>
         <div className="container mx-auto px-4 relative z-20">
           <div className="py-20 max-w-3xl">
               <div className="flex items-center gap-4 mb-4">
