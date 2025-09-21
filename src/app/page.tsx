@@ -278,7 +278,7 @@ export default function Home() {
             <h2 className="text-3xl font-heading font-semibold text-center mb-8 text-foreground">Пакетные предложения</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch">
               {packages.map((pkg, index) => (
-                <Card key={index} className={`flex flex-col p-6 relative overflow-hidden bg-card/80 backdrop-blur-sm border-2 transition-all duration-300 ${pkg.popular ? 'border-transparent hover:border-accent' : 'border-border/50'}`}>
+                <Card key={index} className={`flex flex-col p-6 relative overflow-hidden bg-card/80 backdrop-blur-sm border-2 transition-all duration-300 ${pkg.popular ? 'border-transparent hover:border-accent' : 'border-border/50 hover:border-accent'}`}>
                   {pkg.popular && (
                     <div className="absolute top-4 right-4 bg-accent text-accent-foreground text-xs font-bold py-1 px-3 rounded-full">{pkg.badge || 'Выгодно'}</div>
                   )}

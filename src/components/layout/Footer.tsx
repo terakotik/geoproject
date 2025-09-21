@@ -12,7 +12,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           
           <div className="space-y-6">
-            <Logo />
+            <Logo isFooter={true} />
             <p className="text-sm text-white/80 leading-relaxed">
               Профессиональные геодезические услуги в Санкт-Петербурге и Ленинградской области.
               Полный спектр кадастровых работ и инженерных изысканий.
