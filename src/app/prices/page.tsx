@@ -6,9 +6,9 @@ const packages = [
   {
     title: "Стандарт",
     description: "Межевание + Технический план",
-    price: "13 500 ₽",
+    price: "12 500 ₽",
     oldPrice: "14 000 ₽",
-    saving: "Экономия 4%",
+    saving: "Экономия 11%",
     audience: "2-3 заявки",
     features: ["Межевание участка", "Технический план дома", "Подача документов", "Сопровождение до регистрации"],
     popular: false,
@@ -16,9 +16,9 @@ const packages = [
   {
     title: "Популярный",
     description: "Групповой пакет",
-    price: "12 500 ₽",
+    price: "10 500 ₽",
     oldPrice: "14 000 ₽",
-    saving: "Экономия 11%",
+    saving: "Экономия 25%",
     audience: "4-7 заявок",
     features: ["Все услуги пакета Стандарт", "Приоритетное обслуживание", "Персональный менеджер", "Скидка на дополнительные услуги"],
     popular: true,
@@ -106,7 +106,7 @@ export default function PricesPage() {
           <h2 className="text-3xl font-heading font-semibold text-center mb-8 text-foreground">Пакетные предложения</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch">
             {packages.map((pkg, index) => (
-              <Card key={index} className={`flex flex-col p-6 relative overflow-hidden bg-card/80 backdrop-blur-sm ${pkg.popular ? 'border-accent border-2 shadow-brand' : 'border-border/50'}`}>
+              <Card key={index} className={`flex flex-col p-6 relative overflow-hidden bg-card/80 backdrop-blur-sm border-2 transition-all duration-300 ${pkg.popular ? 'border-transparent hover:border-accent' : 'border-border/50'}`}>
                 {pkg.popular && (
                   <div className="absolute top-4 right-4 bg-accent text-accent-foreground text-xs font-bold py-1 px-3 rounded-full">{pkg.badge || 'Выгодно'}</div>
                 )}

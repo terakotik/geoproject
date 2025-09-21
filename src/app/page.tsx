@@ -10,9 +10,9 @@ const packages = [
   {
     title: "Стандарт",
     description: "Межевание + Технический план",
-    price: "13 500 ₽",
+    price: "12 500 ₽",
     oldPrice: "14 000 ₽",
-    saving: "Экономия 4%",
+    saving: "Экономия 11%",
     audience: "2-3 заявки",
     features: ["Межевание участка", "Технический план дома", "Подача документов", "Сопровождение до регистрации"],
     popular: false,
@@ -20,9 +20,9 @@ const packages = [
   {
     title: "Популярный",
     description: "Групповой пакет",
-    price: "12 500 ₽",
+    price: "10 500 ₽",
     oldPrice: "14 000 ₽",
-    saving: "Экономия 11%",
+    saving: "Экономия 25%",
     audience: "4-7 заявок",
     features: ["Все услуги пакета Стандарт", "Приоритетное обслуживание", "Персональный менеджер", "Скидка на дополнительные услуги"],
     popular: true,
@@ -198,7 +198,7 @@ export default function Home() {
               </div>
             </div>
             <div className="relative hidden lg:block">
-              <div className="relative rounded-2xl overflow-hidden shadow-hero">
+              <div className="relative rounded-2xl overflow-hidden">
                 <Image
                   src="https://picsum.photos/seed/geodesist/800/1000"
                   alt="Профессиональный геодезист с геодезическим оборудованием"
@@ -209,7 +209,7 @@ export default function Home() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-primary/20 to-transparent"></div>
               </div>
-              <Card className="absolute -bottom-6 -left-6 p-6 bg-card shadow-brand max-w-xs">
+              <Card className="absolute -bottom-6 -left-6 p-6 bg-card max-w-xs">
                 <div className="space-y-2">
                   <div className="flex items-center gap-2 text-accent font-medium">
                     <MapPinIcon className="h-4 w-4" />
@@ -237,7 +237,7 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {services.slice(0, 6).map((service) => (
               <Link href={`/services/${service.slug}`} key={service.slug} className="block group">
-                <Card className="flex flex-col h-full p-6 hover:shadow-brand transition-all duration-300 hover:scale-[1.02] border-border/50 bg-card/50 backdrop-blur-sm">
+                <Card className="flex flex-col h-full p-6 hover:shadow-lg transition-all duration-300 hover:scale-[1.02] border-border/50 bg-card/50 backdrop-blur-sm">
                   <div className="flex items-start justify-between mb-4">
                     <div className="p-3 bg-gradient-primary rounded-lg">
                       <service.icon className="h-6 w-6 text-primary" />
@@ -278,7 +278,7 @@ export default function Home() {
             <h2 className="text-3xl font-heading font-semibold text-center mb-8 text-foreground">Пакетные предложения</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch">
               {packages.map((pkg, index) => (
-                <Card key={index} className={`flex flex-col p-6 relative overflow-hidden bg-card/80 backdrop-blur-sm ${pkg.popular ? 'border-accent border-2 shadow-brand' : 'border-border/50'}`}>
+                <Card key={index} className={`flex flex-col p-6 relative overflow-hidden bg-card/80 backdrop-blur-sm border-2 transition-all duration-300 ${pkg.popular ? 'border-transparent hover:border-accent' : 'border-border/50'}`}>
                   {pkg.popular && (
                     <div className="absolute top-4 right-4 bg-accent text-accent-foreground text-xs font-bold py-1 px-3 rounded-full">{pkg.badge || 'Выгодно'}</div>
                   )}
@@ -373,7 +373,7 @@ export default function Home() {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
               {processSteps.map((step, index) => (
                 <div key={index} className="flex flex-col items-center text-center">
-                  <div className="w-16 h-16 bg-gradient-primary rounded-full flex items-center justify-center mb-4 shadow-brand z-10">
+                  <div className="w-16 h-16 bg-gradient-primary rounded-full flex items-center justify-center mb-4 z-10">
                     <step.icon className="h-7 w-7 text-primary" />
                   </div>
                   <h3 className="text-lg font-heading font-semibold text-foreground mb-2">0{index + 1}. {step.title}</h3>

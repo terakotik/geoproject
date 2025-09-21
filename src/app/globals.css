@@ -83,6 +83,12 @@
   }
 }
 
+@layer components {
+  .card {
+    @apply shadow-none;
+  }
+}
+
 @layer utilities {
   .bg-gradient-primary {
     @apply bg-gradient-to-br from-primary to-accent;
@@ -94,9 +100,9 @@
     @apply bg-gradient-to-b from-background to-secondary;
   }
   .shadow-brand {
-    @apply shadow-lg shadow-primary/20;
+    @apply shadow-none;
   }
   .shadow-hero {
-    @apply shadow-2xl shadow-primary/10;
+    @apply shadow-none;
   }
 }
