@@ -338,10 +338,8 @@ export default function Home() {
                   </Button>
               </Card>
             </div>
-            <div className="min-w-[420px] md:min-w-[480px] px-4">
-                <Card className="flex flex-col h-full justify-center items-center text-center p-8 bg-card/50 backdrop-blur-sm border-border/50">
-                    <Image src="https://st5.depositphotos.com/46655356/66209/v/450/depositphotos_662097198-stock-illustration-close-caucasian-worker-helmet-head.jpg" alt="Инженер-геодезист" width={400} height={400} className="object-contain" />
-                </Card>
+            <div className="min-w-[420px] md:min-w-[480px] px-4 flex justify-center items-center">
+                <Image src="https://st5.depositphotos.com/46655356/66209/v/450/depositphotos_662097198-stock-illustration-close-caucasian-worker-helmet-head.jpg" alt="Инженер-геодезист" width={400} height={400} className="object-contain" />
             </div>
         </HorizontalScrollCarousel>
       </section>
@@ -502,6 +500,7 @@ export default function Home() {
     
 
     
+
 
 
 
