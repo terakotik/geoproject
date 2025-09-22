@@ -439,7 +439,7 @@ export default function Home() {
                       ))}
                     </ul>
                   </div>
-                  <Button className={`w-full mt-auto ${pkg.popular ? '' : 'bg-secondary text-secondary-foreground'}`}>Выбрать пакет</Button>
+                  <Button className="w-full mt-auto">Выбрать пакет</Button>
                 </Card>
               ))}
             </div>
@@ -588,5 +588,6 @@ export default function Home() {
 
 
     
+
 
 
