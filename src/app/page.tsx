@@ -1,10 +1,10 @@
-
+'use client';
 
 import Image from 'next/image';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
-import { CheckCircle, Star, CircleCheckBig, FilePenLine, Users, SquareCheckBig, Download, MessageCircle, Zap, Send, Phone, MessageSquare, ExternalLink, ArrowRight, Shield, MapPin as MapPinIcon, Building, Ruler, FileText as FileTextIcon, TreePine, Factory, Calculator, Clock, ListChecks } from 'lucide-react';
+import { CheckCircle, Star, CircleCheckBig, FilePenLine, Users, SquareCheckBig, Download, MessageCircle, Zap, Send, Phone, MessageSquare, ExternalLink, ArrowRight, Shield, MapPin as MapPinIcon, Building, Ruler, FileText as FileTextIcon, TreePine, Factory, Calculator, Clock, ListChecks, Linkedin, Twitter } from 'lucide-react';
 import { services, getServiceDetails } from '@/lib/services';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 import HorizontalScrollCarousel from '@/components/HorizontalScrollCarousel';
@@ -16,6 +16,16 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog"
+import { useState } from 'react';
+
 
 const packages = [
   {
@@ -163,7 +173,34 @@ export default function Home() {
     }
   ];
 
-  const ServiceCard = ({ service, index }: { service: Service; index: number }) => {
+  const SurveyorDialog = ({ children }: { children: React.ReactNode }) => (
+    <Dialog>
+      <DialogTrigger asChild>
+        {children}
+      </DialogTrigger>
+      <DialogContent className="sm:max-w-[425px]">
+        <DialogHeader>
+          <DialogTitle>Заходите к нам еще!</DialogTitle>
+          <DialogDescription>
+            Подписывайтесь на наши социальные сети, чтобы быть в курсе новостей и акций.
+          </DialogDescription>
+        </DialogHeader>
+        <div className="flex justify-center gap-4 py-4">
+            <Button size="icon" variant="ghost" asChild className="text-foreground hover:bg-accent/10 hover:text-accent">
+                <a href="https://t.me/zemla_yslygi" target="_blank" rel="noopener noreferrer"><Send className="h-6 w-6" /></a>
+            </Button>
+             <Button size="icon" variant="ghost" asChild className="text-foreground hover:bg-accent/10 hover:text-accent">
+                <a href="#" target="_blank" rel="noopener noreferrer"><Twitter className="h-6 w-6" /></a>
+            </Button>
+             <Button size="icon" variant="ghost" asChild className="text-foreground hover:bg-accent/10 hover:text-accent">
+                <a href="#" target="_blank" rel="noopener noreferrer"><Linkedin className="h-6 w-6" /></a>
+            </Button>
+        </div>
+      </DialogContent>
+    </Dialog>
+  );
+
+  const ServiceCard = ({ service, index }: { service: any; index: number }) => {
     const details = getServiceDetails(service.slug);
     if (!details) return null;
     return (
@@ -352,16 +389,18 @@ export default function Home() {
                   </Card>
                 </div>
                 <div className="min-w-[420px] md:min-w-[480px] px-4 flex justify-center items-center">
-                  <TooltipProvider>
-                    <Tooltip>
-                      <TooltipTrigger>
-                        <Image src="https://st5.depositphotos.com/46655356/66209/v/450/depositphotos_662097198-stock-illustration-close-caucasian-worker-helmet-head.jpg" alt="Инженер-геодезист" width={400} height={400} className="object-contain" />
-                      </TooltipTrigger>
-                      <TooltipContent>
-                        <p>Здравствуйте, жду именно ваш проект</p>
-                      </TooltipContent>
-                    </Tooltip>
-                  </TooltipProvider>
+                  <SurveyorDialog>
+                    <TooltipProvider>
+                      <Tooltip>
+                        <TooltipTrigger>
+                          <Image src="https://st5.depositphotos.com/46655356/66209/v/450/depositphotos_662097198-stock-illustration-close-caucasian-worker-helmet-head.jpg" alt="Инженер-геодезист" width={400} height={400} className="object-contain cursor-pointer" />
+                        </TooltipTrigger>
+                        <TooltipContent>
+                          <p>Здравствуйте, жду именно ваш проект</p>
+                        </TooltipContent>
+                      </Tooltip>
+                    </TooltipProvider>
+                  </SurveyorDialog>
                 </div>
             </HorizontalScrollCarousel>
         </div>
@@ -383,16 +422,18 @@ export default function Home() {
                 </Button>
             </Card>
             <div className="flex justify-center items-center">
-              <TooltipProvider>
-                <Tooltip>
-                  <TooltipTrigger>
-                    <Image src="https://st5.depositphotos.com/46655356/66209/v/450/depositphotos_662097198-stock-illustration-close-caucasian-worker-helmet-head.jpg" alt="Инженер-геодезист" width={300} height={300} className="object-contain" />
-                  </TooltipTrigger>
-                  <TooltipContent>
-                    <p>Здравствуйте, жду именно ваш проект</p>
-                  </TooltipContent>
-                </Tooltip>
-              </TooltipProvider>
+              <SurveyorDialog>
+                <TooltipProvider>
+                  <Tooltip>
+                    <TooltipTrigger>
+                      <Image src="https://st5.depositphotos.com/46655356/66209/v/450/depositphotos_662097198-stock-illustration-close-caucasian-worker-helmet-head.jpg" alt="Инженер-геодезист" width={300} height={300} className="object-contain cursor-pointer" />
+                    </TooltipTrigger>
+                    <TooltipContent>
+                      <p>Здравствуйте, жду именно ваш проект</p>
+                    </TooltipContent>
+                  </Tooltip>
+                </TooltipProvider>
+              </SurveyorDialog>
             </div>
           </div>
         </div>
@@ -539,7 +580,7 @@ export default function Home() {
       {/* CTA Section */}
       <section className="py-20 bg-gradient-hero">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-12 mt-16">
+          <div className="text-center mt-16 mb-12">
             <Image
                 src="https://s1.hostingkartinok.com/uploads/images/2025/09/bd9ae8f1f2379ded19d127067b141970.png"
                 alt="Инженер-геодезист"
@@ -588,6 +629,7 @@ export default function Home() {
 
 
     
+
 
 
 
