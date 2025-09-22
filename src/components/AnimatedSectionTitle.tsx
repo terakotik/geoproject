@@ -5,16 +5,18 @@ import { cn } from '@/lib/utils';
 import { useRef, useEffect, useState } from 'react';
 import React from 'react';
 
-const CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+const CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+";
 
-const ScrambleText = ({ children, className }: { children: string, className?: string }) => {
+export const AnimatedSectionTitle = ({ children, className }: { children: React.ReactNode, className?: string }) => {
   const ref = useRef<HTMLHeadingElement>(null);
   const isInView = useInView(ref, { once: true, amount: 0.5 });
-  const [displayText, setDisplayText] = useState(children);
+  const text = typeof children === 'string' ? children : '';
 
   useEffect(() => {
-    if (!isInView) return;
+    const element = ref.current;
+    if (!isInView || !element) return;
 
+    const originalText = text;
     let start: number | null = null;
     const duration = 1500; // ms
 
@@ -23,17 +25,32 @@ const ScrambleText = ({ children, className }: { children: string, className?: s
       const elapsed = timestamp - start;
       const progress = Math.min(elapsed / duration, 1);
 
-      const newText = children
+      const newText = originalText
         .split('')
         .map((char, index) => {
-          if (progress * children.length > index) {
-            return children[index];
+          if (progress * originalText.length > index) {
+            return originalText[index];
           }
 
-          // Generate a random color with a bias towards yellow and dark tones
-          const r = Math.random() > 0.5 ? Math.floor(Math.random() * 50) : Math.floor(Math.random() * 55) + 200; // dark or yellow-ish red
-          const g = Math.random() > 0.5 ? Math.floor(Math.random() * 50) : Math.floor(Math.random() * 55) + 200; // dark or yellow-ish green
-          const b = Math.floor(Math.random() * 50); // mostly dark blue
+          // Generate a random color with a bias towards yellow, orange, and black
+          let r, g, b;
+          const rand = Math.random();
+
+          if (rand < 0.4) { // 40% chance for orange/yellow
+            r = Math.floor(Math.random() * 55) + 200; // 200-255
+            g = Math.floor(Math.random() * 150) + 50; // 50-200
+            b = 0;
+          } else if (rand < 0.8) { // 40% chance for black/dark grey
+            const darkValue = Math.floor(Math.random() * 50); // 0-49
+            r = darkValue;
+            g = darkValue;
+            b = darkValue;
+          } else { // 20% chance for other colors (mostly darkish)
+            r = Math.floor(Math.random() * 100);
+            g = Math.floor(Math.random() * 100);
+            b = Math.floor(Math.random() * 100);
+          }
+          
           const randomColor = `rgb(${r}, ${g}, ${b})`;
           const randomChar = CHARS[Math.floor(Math.random() * CHARS.length)];
 
@@ -41,37 +58,31 @@ const ScrambleText = ({ children, className }: { children: string, className?: s
         })
         .join('');
       
-      if (ref.current) {
-        ref.current.innerHTML = newText;
+      if (element) {
+        element.innerHTML = newText;
       }
 
       if (progress < 1) {
         requestAnimationFrame(step);
       } else {
-        if (ref.current) {
-          ref.current.textContent = children;
+        if (element) {
+          element.textContent = originalText;
         }
       }
     };
 
     requestAnimationFrame(step);
 
-  }, [isInView, children]);
+  }, [isInView, text]);
 
 
   return (
      <h2
       ref={ref}
       className={cn("text-4xl md:text-5xl font-heading font-bold text-foreground text-left", className)}
-      aria-label={children}
+      aria-label={text}
     >
-      {children}
+      {text}
     </h2>
   );
-};
-
-
-export const AnimatedSectionTitle = ({ children, className }: { children: React.ReactNode, className?: string }) => {
-    const text = typeof children === 'string' ? children : '';
-    return <ScrambleText className={className}>{text}</ScrambleText>;
 };
