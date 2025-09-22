@@ -539,7 +539,7 @@ export default function Home() {
       {/* CTA Section */}
       <section className="py-20 bg-gradient-hero">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
+          <div className="text-center mb-12 mt-16">
             <Image
                 src="https://s1.hostingkartinok.com/uploads/images/2025/09/bd9ae8f1f2379ded19d127067b141970.png"
                 alt="Инженер-геодезист"
@@ -588,4 +588,5 @@ export default function Home() {
 
 
     
+
 
