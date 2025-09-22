@@ -29,10 +29,9 @@ const ScrambleText = ({ children, className }: { children: string, className?: s
             initial="hidden"
             animate="visible"
             variants={{
-              hidden: { opacity: 0, y: 20 },
+              hidden: { opacity: 0 }, // Keep opacity for initial hidden state before animation starts
               visible: (i) => ({
                 opacity: 1,
-                y: 0,
                 transition: { delay: i * 0.05 },
               }),
             }}
