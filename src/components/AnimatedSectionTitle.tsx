@@ -10,7 +10,7 @@ import React, { useState, useEffect } from 'react';
 const CYCLES_PER_LETTER = 2;
 const SHUFFLE_TIME = 50;
 
-const CHARS = "🗺️📍🏗️📐📏🧭🏞️⛰️🏡🏢📸📹🌸🌻🌷🌿🌲🌳🌾🏠!@#$%^&*():{};|,.<>/?";
+const CHARS = "🗺️📍🏗️📐📏🧭🏞️⛰️🏡🏢📸📹🌸🌻🌷🌿🌲🌳🌾🏠";
 
 const ScrambleText = ({ children, className }: {children: string, className?: string}) => {
   const ref = useRef<HTMLSpanElement>(null);
@@ -59,7 +59,7 @@ const ScrambleText = ({ children, className }: {children: string, className?: st
   return (
     <motion.span
       ref={ref}
-      className={cn("text-5xl md:text-[100px] font-heading font-bold text-foreground", className)}
+      className={cn("text-4xl md:text-5xl font-heading font-bold text-foreground", className)}
       aria-label={children}
       aria-live="polite"
     >
