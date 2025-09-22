@@ -1,3 +1,4 @@
+
 'use client';
 
 import Image from 'next/image';
@@ -530,13 +531,24 @@ export default function Home() {
 
           <div className="text-center mt-16 flex flex-col items-center">
             <div className="relative w-full max-w-lg mb-4">
-                <Image 
-                    src="https://s1.hostingkartinok.com/uploads/images/2025/09/c884d8a66894d2a0daf1ce54d11355d2.png" 
-                    alt="Инженер-геодезист"
-                    width={500}
-                    height={300}
-                    className="object-contain"
-                />
+              <SurveyorDialog>
+                <TooltipProvider>
+                  <Tooltip>
+                    <TooltipTrigger>
+                        <Image 
+                            src="https://s1.hostingkartinok.com/uploads/images/2025/09/c884d8a66894d2a0daf1ce54d11355d2.png" 
+                            alt="Инженер-геодезист"
+                            width={500}
+                            height={300}
+                            className="object-contain cursor-pointer"
+                        />
+                    </TooltipTrigger>
+                    <TooltipContent>
+                      <p>Здравствуйте, жду именно ваш проект</p>
+                    </TooltipContent>
+                  </Tooltip>
+                </TooltipProvider>
+              </SurveyorDialog>
             </div>
             <Card className="inline-block p-8 bg-card/80 backdrop-blur-sm border-border/50 max-w-2xl">
               <div className="flex items-center justify-center gap-2 mb-3">
