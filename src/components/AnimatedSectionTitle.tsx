@@ -10,7 +10,7 @@ import React, { useState, useEffect } from 'react';
 const CYCLES_PER_LETTER = 2;
 const SHUFFLE_TIME = 50;
 
-const CHARS = "🛤️🌲🌳🌿☘️🌹🌺🌻🏡🌼🌷🍀🍃🍂🍁🌇🌆";
+const CHARS = "🌲🌳🌿☘️🌹🌺🌻🏡🌼🌷🍀🍃🍂🍁";
 
 const ScrambleText = ({ children, className }: {children: string, className?: string}) => {
   const ref = useRef<HTMLSpanElement>(null);
