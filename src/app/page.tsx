@@ -593,13 +593,24 @@ export default function Home() {
       <section className="py-20 bg-gradient-hero">
         <div className="container mx-auto px-4">
           <div className="text-center mt-16 mb-12">
-            <Image
-                src="https://s1.hostingkartinok.com/uploads/images/2025/09/bd9ae8f1f2379ded19d127067b141970.png"
-                alt="Инженер-геодезист"
-                width={500}
-                height={300}
-                className="object-contain mx-auto"
-            />
+            <SurveyorDialog>
+              <TooltipProvider>
+                <Tooltip>
+                  <TooltipTrigger>
+                    <Image
+                      src="https://s1.hostingkartinok.com/uploads/images/2025/09/bd9ae8f1f2379ded19d127067b141970.png"
+                      alt="Инженер-геодезист"
+                      width={500}
+                      height={300}
+                      className="object-contain mx-auto cursor-pointer"
+                    />
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    <p>Заходите к нам еще, подписывайтесь на соц сети</p>
+                  </TooltipContent>
+                </Tooltip>
+              </TooltipProvider>
+            </SurveyorDialog>
           </div>
           <Card className="p-8 bg-card/80 backdrop-blur-sm border-border/50 max-w-4xl mx-auto text-center">
             <h3 className="text-3xl font-heading font-bold text-foreground mb-4">Готовы начать работу?</h3>
