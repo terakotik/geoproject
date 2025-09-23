@@ -317,7 +317,15 @@ export default function Home() {
         <div className="container mx-auto px-4">
             <div className="grid lg:grid-cols-2 gap-12 items-start">
               <div className="space-y-6">
-                 <Card className="p-6 md:p-8 bg-card/50 backdrop-blur-sm border-border/50">
+                 <Card className="p-6 md:p-8 bg-card/50 backdrop-blur-sm border-border/50 relative overflow-hidden">
+                    <video
+                        autoPlay
+                        loop
+                        muted
+                        playsInline
+                        className="absolute top-4 right-4 w-32 h-32 object-cover rounded-full border-4 border-white shadow-lg"
+                        src="https://pouch.jumpshare.com/preview/o71M6R2-m-V8e-p3wG0fC0_2Gk_d_a5Jm3-p1-y_Xl8p5O7tK1-T14qLp5mQJ_x3QdYV5c4i1QkQ5t3jN_b6O9mK_j1S6O-M2k4A.mp4"
+                    />
                     <CardHeader className="p-0 mb-6">
                         <CardTitle className="text-3xl font-heading font-bold text-center lg:text-left">Геодезическая компания ООО "ГЕОСТРОЙПРОЕКТ"</CardTitle>
                     </CardHeader>
@@ -597,6 +605,16 @@ export default function Home() {
           </div>
         </div>
       </section>
+      
+      {/* Clients Section */}
+      <section className="py-16 md:py-24 bg-gradient-hero">
+        <div className="container mx-auto px-4">
+          <div className="mb-12 md:mb-16">
+            <AnimatedSectionTitle className="text-left">Работаем с крупными компаниями</AnimatedSectionTitle>
+          </div>
+          <ClientsMarquee />
+        </div>
+      </section>
 
       {/* CTA Section */}
       <section className="py-16 md:py-24 bg-background">
@@ -635,16 +653,6 @@ export default function Home() {
               </Button>
             </div>
           </Card>
-        </div>
-      </section>
-      
-      {/* Clients Section */}
-      <section className="py-16 md:py-24 bg-gradient-hero">
-        <div className="container mx-auto px-4">
-          <div className="mb-12 md:mb-16">
-            <AnimatedSectionTitle className="text-left">Работаем с крупными компаниями</AnimatedSectionTitle>
-          </div>
-          <ClientsMarquee />
         </div>
       </section>
     </div>
