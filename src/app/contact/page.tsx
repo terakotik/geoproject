@@ -1,104 +1,127 @@
-import Image from 'next/image';
+'use client';
+import { useState } from 'react';
+import { useForm, SubmitHandler } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import * as z from 'zod';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Mail, Phone, MapPin, Clock, MessageSquare, ExternalLink, CircleCheckBig, Zap, Send } from 'lucide-react';
-import { PlaceHolderImages } from '@/lib/placeholder-images';
+import { Mail, Phone, MapPin, Clock, MessageSquare, ExternalLink, CircleCheckBig, Zap, Send, AlertCircle, CheckCircle2 } from 'lucide-react';
+import Link from 'next/link';
+
+const formSchema = z.object({
+  name: z.string().min(2, { message: "Имя должно быть не короче 2 символов." }),
+  phone: z.string().min(10, { message: "Введите корректный номер телефона." }),
+  email: z.string().email({ message: "Введите корректный email." }).optional().or(z.literal('')),
+  service: z.string().optional(),
+  message: z.string().optional(),
+  privacy: z.boolean().refine(val => val === true, { message: "Необходимо согласие на обработку данных." }),
+});
+
+type FormData = z.infer<typeof formSchema>;
 
 export default function ContactPage() {
-  const mapImage = PlaceHolderImages.find(p => p.id === 'contact-map');
-  
+  const [formState, setFormState] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
+
+  const { register, handleSubmit, formState: { errors } } = useForm<FormData>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      privacy: false,
+    }
+  });
+
+  const onSubmit: SubmitHandler<FormData> = async (data) => {
+    setFormState('submitting');
+    // Simulate API call
+    await new Promise(resolve => setTimeout(resolve, 1000));
+    console.log(data);
+    // Simulate success
+    setFormState('success');
+  };
+
   return (
     <div className="py-16 md:py-24 bg-background" id="contact">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12 md:mb-16">
-          <h2 className="text-4xl lg:text-5xl font-heading font-bold text-foreground mb-4">Контакты</h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">Свяжитесь с нами удобным способом. Работаем ежедневно с 10:00 до 20:00</p>
+          <h1 className="text-4xl lg:text-5xl font-heading font-bold text-foreground mb-4">Контакты</h1>
+          <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto">Свяжитесь с нами удобным способом. Работаем ежедневно с 10:00 до 20:00</p>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-12 items-start">
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-start">
           <div className="space-y-8">
             <Card className="p-6 bg-gradient-accent text-accent-foreground">
-              <div className="flex items-center gap-3 mb-4">
+              <CardHeader className="p-0 mb-4 flex-row items-center gap-3">
                 <Clock className="h-6 w-6" />
-                <h3 className="text-xl font-heading font-semibold">Режим работы</h3>
-              </div>
-              <div className="space-y-2">
+                <CardTitle className="text-xl">Режим работы</CardTitle>
+              </CardHeader>
+              <CardContent className="p-0 space-y-2">
                 <div className="text-lg font-medium">Ежедневно: 10:00 - 20:00</div>
                 <div className="text-sm opacity-90">Выезд специалистов в любой день недели</div>
                 <div className="text-sm opacity-90">Срочные выезды - круглосуточно</div>
-              </div>
+              </CardContent>
             </Card>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                <Card className="p-6 bg-card/80 backdrop-blur-sm border-border/50 hover:shadow-brand transition-all duration-300">
-                    <div className="flex items-center gap-3 mb-4">
-                        <div className="p-2 bg-gradient-primary rounded-lg">
-                            <Phone className="h-5 w-5 text-primary" />
-                        </div>
-                        <h3 className="font-heading font-semibold text-foreground">Телефоны</h3>
-                    </div>
-                    <div className="space-y-3">
+                <Card className="p-6">
+                    <CardHeader className="p-0 flex-row items-center gap-3 mb-4">
+                       <Phone className="h-5 w-5 text-accent" />
+                       <CardTitle className="text-lg">Телефоны</CardTitle>
+                    </CardHeader>
+                    <CardContent className="p-0 space-y-3">
                         <div>
                             <div className="text-xs text-muted-foreground uppercase tracking-wide">Основной</div>
-                            <div className="text-sm font-medium text-foreground">+7 (952) 276-49-40</div>
+                            <a href="tel:+79522764940" className="text-sm font-medium text-foreground hover:text-accent">+7 (952) 276-49-40</a>
                         </div>
                         <div>
                             <div className="text-xs text-muted-foreground uppercase tracking-wide">Дополнительный</div>
-                            <div className="text-sm font-medium text-foreground">+7 (910) 824-78-48</div>
+                             <a href="tel:+79108247848" className="text-sm font-medium text-foreground hover:text-accent">+7 (910) 824-78-48</a>
                         </div>
                          <div>
                             <div className="text-xs text-muted-foreground uppercase tracking-wide">Резервный</div>
-                            <div className="text-sm font-medium text-foreground">+7 (991) 681-58-99</div>
+                             <a href="tel:+79916815899" className="text-sm font-medium text-foreground hover:text-accent">+7 (991) 681-58-99</a>
                         </div>
-                    </div>
+                    </CardContent>
                 </Card>
-                <Card className="p-6 bg-card/80 backdrop-blur-sm border-border/50 hover:shadow-brand transition-all duration-300">
-                    <div className="flex items-center gap-3 mb-4">
-                        <div className="p-2 bg-gradient-primary rounded-lg">
-                           <MessageSquare className="h-5 w-5 text-primary" />
-                        </div>
-                        <h3 className="font-heading font-semibold text-foreground">Мессенджеры</h3>
-                    </div>
-                     <div className="space-y-3">
+                <Card className="p-6">
+                     <CardHeader className="p-0 flex-row items-center gap-3 mb-4">
+                       <MessageSquare className="h-5 w-5 text-accent" />
+                       <CardTitle className="text-lg">Мессенджеры</CardTitle>
+                    </CardHeader>
+                     <CardContent className="p-0 space-y-3">
                         <div>
                             <div className="text-xs text-muted-foreground uppercase tracking-wide">Telegram</div>
-                            <div className="text-sm font-medium text-foreground">@zemla_yslygi</div>
+                            <a href="https://t.me/zemla_yslygi" target="_blank" rel="noopener noreferrer" className="text-sm font-medium text-foreground hover:text-accent">@zemla_yslygi</a>
                         </div>
                         <div>
                             <div className="text-xs text-muted-foreground uppercase tracking-wide">WhatsApp</div>
-                            <div className="text-sm font-medium text-foreground">+7 (952) 276-49-40</div>
+                            <a href="https://wa.me/79522764940" target="_blank" rel="noopener noreferrer" className="text-sm font-medium text-foreground hover:text-accent">+7 (952) 276-49-40</a>
                         </div>
                          <div>
                             <div className="text-xs text-muted-foreground uppercase tracking-wide">Viber</div>
-                            <div className="text-sm font-medium text-foreground">+7 (952) 276-49-40</div>
+                            <span className="text-sm font-medium text-foreground">+7 (952) 276-49-40</span>
                         </div>
-                    </div>
+                    </CardContent>
                 </Card>
-                 <Card className="p-6 bg-card/80 backdrop-blur-sm border-border/50 hover:shadow-brand transition-all duration-300">
-                    <div className="flex items-center gap-3 mb-4">
-                        <div className="p-2 bg-gradient-primary rounded-lg">
-                           <Mail className="h-5 w-5 text-primary" />
-                        </div>
-                        <h3 className="font-heading font-semibold text-foreground">Email</h3>
-                    </div>
-                     <div className="space-y-3">
+                 <Card className="p-6">
+                    <CardHeader className="p-0 flex-row items-center gap-3 mb-4">
+                        <Mail className="h-5 w-5 text-accent" />
+                        <CardTitle className="text-lg">Email</CardTitle>
+                    </CardHeader>
+                     <CardContent className="p-0 space-y-3">
                         <div>
                             <div className="text-xs text-muted-foreground uppercase tracking-wide">Общие вопросы</div>
-                            <div className="text-sm font-medium text-foreground">danayn11@mail.ru</div>
+                            <a href="mailto:danayn11@mail.ru" className="text-sm font-medium text-foreground hover:text-accent">danayn11@mail.ru</a>
                         </div>
-                    </div>
+                    </CardContent>
                 </Card>
-                 <Card className="p-6 bg-card/80 backdrop-blur-sm border-border/50 hover:shadow-brand transition-all duration-300">
-                    <div className="flex items-center gap-3 mb-4">
-                        <div className="p-2 bg-gradient-primary rounded-lg">
-                           <MapPin className="h-5 w-5 text-primary" />
-                        </div>
-                        <h3 className="font-heading font-semibold text-foreground">Офис</h3>
-                    </div>
-                     <div className="space-y-3">
+                 <Card className="p-6">
+                    <CardHeader className="p-0 flex-row items-center gap-3 mb-4">
+                       <MapPin className="h-5 w-5 text-accent" />
+                       <CardTitle className="text-lg">Офис</CardTitle>
+                    </CardHeader>
+                     <CardContent className="p-0 space-y-3">
                         <div>
                             <div className="text-xs text-muted-foreground uppercase tracking-wide">Адрес</div>
                             <div className="text-sm font-medium text-foreground">Санкт-Петербург, ул. Ефимова, д. 1/4, офис 301</div>
@@ -111,72 +134,80 @@ export default function ContactPage() {
                             <div className="text-xs text-muted-foreground uppercase tracking-wide">Парковка</div>
                             <div className="text-sm font-medium text-foreground">Имеется</div>
                         </div>
-                    </div>
+                    </CardContent>
                 </Card>
             </div>
-             <Card className="p-6 bg-card/80 backdrop-blur-sm border-border/50">
-                <h3 className="font-heading font-semibold text-foreground mb-4 flex items-center gap-2"><CircleCheckBig className="h-5 w-5 text-accent"/>Почему выбирают нас</h3>
-                <div className="space-y-3 text-sm text-muted-foreground">
-                    <div className="flex items-center gap-2"><CircleCheckBig className="h-4 w-4 text-accent" /><span>Опыт работы с 2003 года</span></div>
-                    <div className="flex items-center gap-2"><CircleCheckBig className="h-4 w-4 text-accent" /><span>Лицензированные кадастровые инженеры</span></div>
-                    <div className="flex items-center gap-2"><CircleCheckBig className="h-4 w-4 text-accent" /><span>Современное геодезическое оборудование</span></div>
-                    <div className="flex items-center gap-2"><CircleCheckBig className="h-4 w-4 text-accent" /><span>Гарантия на все виды работ</span></div>
-                    <div className="flex items-center gap-2"><CircleCheckBig className="h-4 w-4 text-accent" /><span>Электронная подача документов</span></div>
-                </div>
+             <Card className="p-6">
+                <CardHeader className="p-0 mb-4">
+                    <CardTitle className="flex items-center gap-2 text-lg"><CircleCheckBig className="h-5 w-5 text-accent"/>Почему выбирают нас</CardTitle>
+                </CardHeader>
+                <CardContent className="p-0 space-y-3 text-sm text-muted-foreground">
+                    <div className="flex items-start gap-3"><CircleCheckBig className="h-4 w-4 text-accent mt-0.5 flex-shrink-0" /><span>Опыт работы с 2003 года</span></div>
+                    <div className="flex items-start gap-3"><CircleCheckBig className="h-4 w-4 text-accent mt-0.5 flex-shrink-0" /><span>Лицензированные кадастровые инженеры</span></div>
+                    <div className="flex items-start gap-3"><CircleCheckBig className="h-4 w-4 text-accent mt-0.5 flex-shrink-0" /><span>Современное геодезическое оборудование</span></div>
+                    <div className="flex items-start gap-3"><CircleCheckBig className="h-4 w-4 text-accent mt-0.5 flex-shrink-0" /><span>Гарантия на все виды работ</span></div>
+                    <div className="flex items-start gap-3"><CircleCheckBig className="h-4 w-4 text-accent mt-0.5 flex-shrink-0" /><span>Электронная подача документов</span></div>
+                </CardContent>
             </Card>
           </div>
-          <Card className="p-8 bg-card/80 backdrop-blur-sm border-border/50 sticky top-8">
-              <h3 className="text-2xl font-heading font-bold text-foreground mb-4 text-center">Оставить заявку</h3>
-              <p className="text-muted-foreground text-center mb-8">Получите бесплатную консультацию и расчет стоимости работ</p>
-              <form className="space-y-6">
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                  <div className="space-y-2">
-                    <Label htmlFor="name" className="text-foreground">Имя</Label>
-                    <Input id="name" placeholder="Ваше имя" className="bg-background/50 border-border focus:border-accent" />
-                  </div>
-                  <div className="space-y-2">
-                    <Label htmlFor="phone" className="text-foreground">Телефон *</Label>
-                    <Input id="phone" placeholder="+7 (___) ___-__-__" required className="bg-background/50 border-border focus:border-accent" />
-                  </div>
+          
+          <Card className="p-8 sticky top-8">
+            <CardHeader className="p-0 text-center mb-6">
+              <CardTitle className="text-2xl">Оставить заявку</CardTitle>
+              <p className="text-muted-foreground">Получите бесплатную консультацию и расчет стоимости работ</p>
+            </CardHeader>
+            <CardContent className="p-0">
+              {formState === 'success' ? (
+                <div className="text-center py-10">
+                  <CheckCircle2 className="h-16 w-16 text-green-500 mx-auto mb-4" />
+                  <h3 className="text-xl font-semibold mb-2">Заявка успешно отправлена!</h3>
+                  <p className="text-muted-foreground">Спасибо! Мы свяжемся с вами в ближайшее время.</p>
                 </div>
-                <div className="space-y-2">
-                   <Label htmlFor="email" className="text-foreground">Email</Label>
-                   <Input id="email" type="email" placeholder="your@email.com" className="bg-background/50 border-border focus:border-accent" />
-                </div>
-                <div className="space-y-2">
-                  <Label htmlFor="service" className="text-foreground">Интересующая услуга</Label>
-                  <Input id="service" placeholder="Межевание, ЗОУИТ, топосъемка..." className="bg-background/50 border-border focus:border-accent" />
-                </div>
-                <div className="space-y-2">
-                  <Label htmlFor="message" className="text-foreground">Сообщение</Label>
-                  <Textarea id="message" placeholder="Опишите ваш объект и какие работы необходимы..." rows={4} className="bg-background/50 border-border focus:border-accent resize-none" />
-                </div>
-                <div className="space-y-4 pt-2">
-                    <div className="flex items-center space-x-2">
-                        <input type="checkbox" id="privacy" required className="rounded border-border" />
-                        <Label htmlFor="privacy" className="text-sm text-muted-foreground">
-                            Согласен с <a href="#" className="text-accent hover:underline">обработкой персональных данных</a>
-                        </Label>
+              ) : (
+                <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div className="space-y-2">
+                      <Label htmlFor="name" className="text-foreground">Имя *</Label>
+                      <Input id="name" {...register("name")} placeholder="Ваше имя" aria-invalid={errors.name ? "true" : "false"} />
+                      {errors.name && <p className="text-sm text-destructive flex items-center gap-1"><AlertCircle className="h-4 w-4" /> {errors.name.message}</p>}
                     </div>
-                    <Button type="submit" className="w-full h-11 rounded-md px-8 bg-gradient-primary text-primary font-heading font-semibold shadow-brand hover:shadow-hero transform hover:scale-105 transition-all duration-300">
-                        <Send className="h-5 w-5 mr-2" />
-                        Отправить заявку
-                    </Button>
-                </div>
-              </form>
-              <div className="mt-8 pt-8 border-t border-border text-center">
-                  <p className="text-sm text-muted-foreground mb-4">Или свяжитесь с нами напрямую:</p>
-                  <div className="flex flex-col sm:flex-row gap-4">
-                      <Button className="flex-1 h-11 rounded-md px-8 bg-accent text-accent-foreground font-heading font-semibold shadow-brand hover:bg-accent/90 hover:shadow-hero">
-                          <Phone className="h-4 w-4 mr-2" />
-                          Позвонить
-                      </Button>
-                      <Button variant="outline" className="flex-1 h-11 rounded-md px-8 bg-background border-2 border-primary text-primary font-heading font-medium hover:bg-primary hover:text-primary-foreground">
-                         <MessageSquare className="h-4 w-4 mr-2" />
-                         Telegram
+                    <div className="space-y-2">
+                      <Label htmlFor="phone" className="text-foreground">Телефон *</Label>
+                      <Input id="phone" {...register("phone")} placeholder="+7 (___) ___-__-__" aria-invalid={errors.phone ? "true".toString() : "false"}/>
+                      {errors.phone && <p className="text-sm text-destructive flex items-center gap-1"><AlertCircle className="h-4 w-4" /> {errors.phone.message}</p>}
+                    </div>
+                  </div>
+                  <div className="space-y-2">
+                     <Label htmlFor="email" className="text-foreground">Email</Label>
+                     <Input id="email" type="email" {...register("email")} placeholder="your@email.com" aria-invalid={errors.email ? "true" : "false"} />
+                     {errors.email && <p className="text-sm text-destructive flex items-center gap-1"><AlertCircle className="h-4 w-4" /> {errors.email.message}</p>}
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="service" className="text-foreground">Интересующая услуга</Label>
+                    <Input id="service" {...register("service")} placeholder="Межевание, ЗОУИТ, топосъемка..." />
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="message" className="text-foreground">Сообщение</Label>
+                    <Textarea id="message" {...register("message")} placeholder="Опишите ваш объект и какие работы необходимы..." rows={4} className="resize-none" />
+                  </div>
+                  <div className="space-y-4 pt-2">
+                      <div className="flex items-start space-x-3">
+                          <input type="checkbox" id="privacy" {...register("privacy")} className="mt-1 h-4 w-4 rounded border-border" aria-invalid={errors.privacy ? "true" : "false"} />
+                          <div className="grid gap-1.5 leading-none">
+                            <Label htmlFor="privacy" className="text-sm font-medium text-muted-foreground">
+                                Согласен с <Link href="#" className="text-accent hover:underline">обработкой персональных данных</Link>
+                            </Label>
+                            {errors.privacy && <p className="text-sm text-destructive flex items-center gap-1"><AlertCircle className="h-4 w-4" /> {errors.privacy.message}</p>}
+                          </div>
+                      </div>
+                      <Button type="submit" className="w-full" size="lg" disabled={formState === 'submitting'}>
+                          <Send className="h-5 w-5 mr-2" />
+                          {formState === 'submitting' ? 'Отправка...' : 'Отправить заявку'}
                       </Button>
                   </div>
-              </div>
+                </form>
+              )}
+            </CardContent>
           </Card>
         </div>
       </div>
