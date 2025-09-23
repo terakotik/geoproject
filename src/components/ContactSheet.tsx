@@ -61,12 +61,6 @@ export const ContactSheet = () => {
                  ) : (
                     <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col h-full">
                         <header className="flex justify-between items-start gap-8 mb-10">
-                            <div>
-                                <h2 className="text-5xl font-bold" dangerouslySetInnerHTML={{ __html: 'Расскажите о&nbsp;вашей задаче' }}></h2>
-                                <p className="text-muted-foreground pt-4 text-xl">
-                                    Или напишите нам на <a href="mailto:danayn11@mail.ru" className="text-accent hover:underline">danayn11@mail.ru</a>
-                                </p>
-                            </div>
                             <div className="hidden sm:block text-center flex-shrink-0">
                                  <Image
                                     src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcS1mKBDqAEo3ZgrUseu5xob-zcerfrLTmiy4f-nICu3k9yqN7tW8fI0DJ-36GzaExLCwP5lxuvRYqQNH0J5uQ7rkE8kOxityWueZpaSgeFx"
@@ -75,6 +69,12 @@ export const ContactSheet = () => {
                                     height={120}
                                 />
                                 <p className="text-sm text-muted-foreground mt-2">Связь в&nbsp;WhatsApp</p>
+                            </div>
+                            <div>
+                                <h2 className="text-5xl font-bold" dangerouslySetInnerHTML={{ __html: 'Расскажите о&nbsp;вашей задаче' }}></h2>
+                                <p className="text-muted-foreground pt-4 text-xl">
+                                    Или напишите нам на <a href="mailto:danayn11@mail.ru" className="text-accent hover:underline">danayn11@mail.ru</a>
+                                </p>
                             </div>
                         </header>
 
