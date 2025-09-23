@@ -28,8 +28,8 @@ export default function Footer() {
                 <Logo isFooter={true} />
             </Link>
             <p className="text-sm text-white/80 leading-relaxed">
-              Профессиональные геодезические услуги в Санкт-Петербурге и Ленинградской области.
-              Полный спектр кадастровых работ и инженерных изысканий.
+              Профессиональные геодезические услуги в&nbsp;Санкт-Петербурге и&nbsp;Ленинградской области.
+              Полный спектр кадастровых работ и&nbsp;инженерных изысканий.
             </p>
             <div className="flex gap-3">
               <Button size="icon" variant="ghost" asChild className="text-white hover:bg-white/10 hover:text-white">
@@ -73,7 +73,7 @@ export default function Footer() {
               <div className="flex items-start gap-3">
                 <MapPin className="h-4 w-4 mt-1 flex-shrink-0 text-white/80" />
                 <div className="text-sm">
-                  <div className="text-white">Санкт-Петербург и ЛО</div>
+                  <div className="text-white">Санкт-Петербург и&nbsp;ЛО</div>
                   <div className="text-white/80 text-xs">Зона работы</div>
                 </div>
               </div>
@@ -90,11 +90,11 @@ export default function Footer() {
           <div className="space-y-6">
             <h4 className="font-heading font-semibold text-lg">Бесплатная консультация</h4>
             <Card className="p-6 bg-white/10 border-white/20">
-              <p className="text-sm text-white/80 mb-4">Получите профессиональную консультацию по вашему вопросу</p>
+              <p className="text-sm text-white/80 mb-4">Получите профессиональную консультацию по&nbsp;вашему вопросу</p>
               <Button className="w-full mb-3" asChild>
                 <Link href="/contact">Заказать звонок</Link>
               </Button>
-              <div className="text-xs text-white/80 text-center">Ответим в течение 15 минут</div>
+              <div className="text-xs text-white/80 text-center">Ответим в&nbsp;течение 15&nbsp;минут</div>
             </Card>
             <div className="space-y-3 text-xs">
                <a href="#" className="flex items-center gap-2 text-white/80 hover:text-accent transition-opacity">
@@ -112,11 +112,11 @@ export default function Footer() {
         <div className="border-t border-white/20 mt-12 pt-8">
           <div className="flex flex-col lg:flex-row justify-between items-center gap-4">
             <div className="text-sm text-white/80">
-              © 2025 ООО "ГЕОСТРОЙПРОЕКТ". Все права защищены.
+              © 2025 ООО&nbsp;"ГЕОСТРОЙПРОЕКТ". Все права защищены.
             </div>
             <div className="text-xs text-white/80 text-center lg:text-right">
-              Лицензированные кадастровые инженеры | Работаем с 2003 года<br/>
-              Геодезические услуги в Санкт-Петербурге и Ленинградской области
+              Лицензированные кадастровые инженеры | Работаем с&nbsp;2003 года<br/>
+              Геодезические услуги в&nbsp;Санкт-Петербурге и&nbsp;Ленинградской области
             </div>
           </div>
         </div>
