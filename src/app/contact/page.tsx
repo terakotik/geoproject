@@ -89,10 +89,6 @@ export default function ContactPage() {
                             <div className="text-xs text-muted-foreground uppercase tracking-wide">Общие вопросы</div>
                             <div className="text-sm font-medium text-foreground">danayn11@mail.ru</div>
                         </div>
-                        <div>
-                            <div className="text-xs text-muted-foreground uppercase tracking-wide">Коммерческие</div>
-                            <div className="text-sm font-medium text-foreground">info@geostroyproject.ru</div>
-                        </div>
                     </div>
                 </Card>
                  <Card className="p-6 bg-card/80 backdrop-blur-sm border-border/50 hover:shadow-brand transition-all duration-300">
@@ -105,11 +101,11 @@ export default function ContactPage() {
                      <div className="space-y-3">
                         <div>
                             <div className="text-xs text-muted-foreground uppercase tracking-wide">Адрес</div>
-                            <div className="text-sm font-medium text-foreground">Санкт-Петербург, ул. Примерная, д. 123</div>
+                            <div className="text-sm font-medium text-foreground">Санкт-Петербург, ул. Ефимова, д. 1/4, офис 301</div>
                         </div>
                         <div>
                             <div className="text-xs text-muted-foreground uppercase tracking-wide">Метро</div>
-                            <div className="text-sm font-medium text-foreground">Технологический институт</div>
+                            <div className="text-sm font-medium text-foreground">Сенная площадь</div>
                         </div>
                          <div>
                             <div className="text-xs text-muted-foreground uppercase tracking-wide">Парковка</div>
