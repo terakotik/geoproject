@@ -1,4 +1,5 @@
 
+
 'use client';
 
 import Image from 'next/image';
@@ -26,6 +27,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog"
 import { useState } from 'react';
+import { ClientsMarquee } from '@/components/ClientsMarquee';
 
 
 const packages = [
@@ -589,8 +591,18 @@ export default function Home() {
         </div>
       </section>
 
-      {/* CTA Section */}
+      {/* Clients Section */}
       <section className="py-16 md:py-24 bg-gradient-hero">
+        <div className="container mx-auto px-4">
+          <div className="mb-12 md:mb-16">
+            <AnimatedSectionTitle className="text-left">Работаем с крупными компаниями</AnimatedSectionTitle>
+          </div>
+          <ClientsMarquee />
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-16 md:py-24 bg-background">
         <div className="container mx-auto px-4">
           <div className="text-center mt-16 mb-12">
             <SurveyorDialog>
@@ -632,5 +644,3 @@ export default function Home() {
     </div>
   );
 }
-
-    
