@@ -272,7 +272,7 @@ export default function Home() {
                 </Card>
               </a>
             </div>
-            <h1 className="text-5xl lg:text-7xl font-heading font-bold leading-tight text-foreground">
+            <h1 className="text-4xl sm:text-5xl lg:text-7xl font-heading font-bold leading-tight text-foreground">
               Профессиональные <span className="text-accent">геодезические</span> услуги
             </h1>
             <p className="text-xl text-muted-foreground max-w-2xl mt-6 mx-auto md:mx-0">
