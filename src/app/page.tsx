@@ -124,7 +124,7 @@ const geoServices = [
 
 const heroStats = [
     { value: "2000+", label: "выполненных проектов", icon: FolderKanban },
-    { value: "21", label: "год на&nbsp;рынке кадастра", icon: Award },
+    { value: "21", label: "на рынке кадастра", icon: Award },
     { value: "14", label: "дней средний срок", icon: Clock },
 ];
 
@@ -206,39 +206,40 @@ export default function Home() {
     const details = getServiceDetails(service.slug);
     if (!details) return null;
     return (
-      <Card className="flex flex-col h-full hover:border-accent transition-all duration-300 border-border/50 bg-card/50 backdrop-blur-sm relative group p-2 md:p-0">
-        <div className="absolute top-2 left-2 text-7xl font-bold text-foreground/5 opacity-80 transition-all duration-300 group-hover:scale-110 group-hover:text-accent/10">
+      <Card className="flex flex-col h-full hover:border-accent transition-all duration-300 border bg-card relative group p-6">
+        <div className="absolute top-4 left-4 text-8xl font-bold text-foreground/5 opacity-80 transition-all duration-300 group-hover:scale-110 group-hover:text-accent/10">
           0{index + 1}
         </div>
-        <CardHeader className="p-4 md:p-6">
-          <div className="p-3 rounded-lg mb-4 self-start">
-            <service.icon className="h-10 w-10 text-muted-foreground" />
-          </div>
-          <CardTitle className="text-xl md:text-2xl font-heading">{service.title}</CardTitle>
-          <CardDescription className="text-lg pt-2" dangerouslySetInnerHTML={{ __html: service.description }}></CardDescription>
+        <div className="mb-4">
+          <service.icon className="h-10 w-10 text-muted-foreground" />
+        </div>
+        <CardHeader className="p-0">
+          <CardTitle className="text-2xl font-heading mb-2">{service.title}</CardTitle>
+          <CardDescription className="text-base" dangerouslySetInnerHTML={{ __html: service.description }}></CardDescription>
         </CardHeader>
-        <CardContent className="flex-grow p-4 md:p-6 pt-0">
-          <ul className="space-y-4 my-6 text-base">
+        <CardContent className="flex-grow p-0 pt-6">
+          <ul className="space-y-3 my-4 text-base">
             {details.includes.map((item, i) => (
               <li key={i} className="flex items-center gap-3">
-                <CheckCircle className="h-4 w-4 text-accent flex-shrink-0" />
+                <CheckCircle className="h-5 w-5 text-accent flex-shrink-0" />
                 <span className="text-muted-foreground" dangerouslySetInnerHTML={{ __html: item }}></span>
               </li>
             ))}
           </ul>
         </CardContent>
-        <div className="p-4 md:p-6 pt-0 mt-auto">
-          <div className="flex justify-between items-center mb-4 text-lg">
+        <div className="mt-auto">
+          <div className="flex justify-between items-center my-6 text-lg">
             <div className="font-bold text-accent" dangerouslySetInnerHTML={{ __html: details.price }}></div>
             <div className="text-muted-foreground" dangerouslySetInnerHTML={{ __html: details.timeline }}></div>
           </div>
-          <Button variant="outline" size="lg" className="w-full group-hover:bg-accent group-hover:text-accent-foreground transition-colors text-lg py-6">
+          <Button variant="default" size="lg" className="w-full text-lg py-6 bg-accent text-accent-foreground hover:bg-accent/90">
             Заказать услугу
           </Button>
         </div>
       </Card>
     );
   };
+  
 
   return (
     <div className="min-h-screen bg-background">
@@ -258,7 +259,7 @@ export default function Home() {
             <div className="flex flex-col sm:flex-row items-center justify-center md:justify-start gap-4 mb-6">
               <div className="flex items-center gap-2 text-accent font-semibold bg-accent/20 px-4 py-2 rounded-full text-lg">
                 <Star className="h-5 w-5 fill-current text-yellow-400" />
-                <span className="text-accent">Нам доверяют с&nbsp;2003 года</span>
+                <span className="text-accent" dangerouslySetInnerHTML={{ __html: 'Нам доверяют с&nbsp;2003 года' }}></span>
               </div>
               <a href="https://yandex.com/maps/org/geostroyproyekt/144539023058/?ll=30.231738%2C59.920487&mode=search&sll=37.586554%2C55.796284&sspn=0.174408%2C0.060633&text=%D0%B3%D0%B5%D0%BE%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BF%D1%80%D0%BE%D0%B5%D0%B0%D1%82%20%D1%81%D0%B0%D0%BD%D0%BA%D1%82%20%D0%BF%D0%B5%D1%82%D0%B5%D1%80%D0%B1%D1%83%D1%80%D0%B3&z=10" target="_blank" rel="noopener noreferrer">
                 <Card className="flex items-center gap-3 text-foreground font-semibold bg-white/90 px-4 py-2 rounded-full text-lg w-fit border">
@@ -276,9 +277,7 @@ export default function Home() {
             <h1 className="text-5xl sm:text-6xl lg:text-7xl font-heading font-bold leading-tight text-foreground">
               Профессиональные <span className="text-accent">геодезические</span> услуги
             </h1>
-            <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mt-6 mx-auto md:mx-0">
-              Полный спектр кадастровых работ, инженерных изысканий и&nbsp;ЗОУИТ в&nbsp;Санкт-Петербурге и&nbsp;ЛО
-            </p>
+            <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mt-6 mx-auto md:mx-0" dangerouslySetInnerHTML={{ __html: 'Полный спектр кадастровых работ, инженерных изысканий и&nbsp;ЗОУИТ в&nbsp;Санкт-Петербурге и&nbsp;ЛО' }}></p>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 my-8">
               {heroStats.map((stat, index) => (
                 <Card key={index} className="bg-background/30 backdrop-blur-sm border-2 border-dashed border-border/50 hover:border-accent transition-all duration-300 p-6 text-left h-full">
@@ -317,30 +316,30 @@ export default function Home() {
             <div className="grid lg:grid-cols-2 gap-12 items-start">
               <div className="space-y-6">
                  <Card className="p-6 md:p-8 bg-card/50 backdrop-blur-sm border-border/50 relative">
-                   <div className="flex items-start gap-6">
-                      <video
-                          autoPlay
-                          loop
-                          muted
-                          playsInline
-                          className="absolute top-4 left-4 w-32 h-32 object-cover rounded-full border-4 border-white shadow-lg flex-shrink-0"
-                          src="https://pouch.jumpshare.com/preview/dUHg-gsRDslnFdT3XfFQYUj3M9PXnVuKIjURan0E7Tt9Heoa57PeFb-sbUHpmPWll8ZWyRtlbSgh2j3IOsSmh_aPcQXoRS15iWmHOM-M34oq3xv7xY6eKpTknO-BlLQ66lk3U0W71gNmmot0a0rduW6yjbN-I2pg_cnoHs_AmgI.mp4"
-                      />
-                      <div className="flex-grow">
-                        <CardHeader className="p-0 mb-6 flex-grow pl-[150px]">
-                            <CardTitle className="text-3xl font-heading font-bold">Геодезическая компания ООО&nbsp;"ГЕОСТРОЙПРОЕКТ"</CardTitle>
-                        </CardHeader>
-                        <CardContent className="p-0 text-muted-foreground space-y-4 text-lg pl-[150px]">
-                            <p>Мы&nbsp;рады приветствовать вас на&nbsp;официальном сайте геодезической компании ООО&nbsp;«ГЕОСТРОЙПРОЕКТ» и&nbsp;готовы предложить бесплатную консультацию по&nbsp;вашему вопросу прямо сейчас!</p>
-                        </CardContent>
-                      </div>
+                   <div className="flex flex-col lg:flex-row items-start gap-6">
+                        <video
+                            autoPlay
+                            loop
+                            muted
+                            playsInline
+                            className="w-32 h-32 object-cover rounded-full border-4 border-white shadow-lg flex-shrink-0 mb-4 lg:mb-0"
+                            src="https://pouch.jumpshare.com/preview/dUHg-gsRDslnFdT3XfFQYUj3M9PXnVuKIjURan0E7Tt9Heoa57PeFb-sbUHpmPWll8ZWyRtlbSgh2j3IOsSmh_aPcQXoRS15iWmHOM-M34oq3xv7xY6eKpTknO-BlLQ66lk3U0W71gNmmot0a0rduW6yjbN-I2pg_cnoHs_AmgI.mp4"
+                        />
+                        <div className="flex-grow">
+                          <CardHeader className="p-0 mb-6 flex-grow">
+                              <CardTitle className="text-3xl font-heading font-bold" dangerouslySetInnerHTML={{ __html: 'Геодезическая компания ООО&nbsp;"ГЕОСТРОЙПРОЕКТ"' }}></CardTitle>
+                          </CardHeader>
+                          <CardContent className="p-0 text-muted-foreground space-y-4 text-lg">
+                              <p dangerouslySetInnerHTML={{ __html: 'Мы&nbsp;рады приветствовать вас на&nbsp;официальном сайте геодезической компании ООО&nbsp;«ГЕОСТРОЙПРОЕКТ» и&nbsp;готовы предложить бесплатную консультацию по&nbsp;вашему вопросу прямо сейчас!' }}></p>
+                          </CardContent>
+                        </div>
                     </div>
                     <CardContent className="p-0 text-muted-foreground space-y-4 text-lg mt-6">
-                        <p>У&nbsp;нас работают только опытные кадастровые инженеры, готовые помочь в&nbsp;решении земельных вопросов качественно и&nbsp;в&nbsp;поставленные сроки. Не&nbsp;нужно устанавливать забор и&nbsp;делить землю самостоятельно&nbsp;- это может привести к&nbsp;ненужным разногласиям с&nbsp;соседями, следовательно, к&nbsp;потере денег и&nbsp;времени.</p>
-                        <p>Наши специалисты постоянно находятся в&nbsp;курсе последних изменений в&nbsp;законодательстве и&nbsp;всегда готовы оказать вам квалифицированную помощь в&nbsp;оформлении перепланировки квартиры, сопровождении сделок с&nbsp;недвижимостью, заказе межевого плана участка и&nbsp;проектировании домов.</p>
-                        <p>Инженерные изыскания&nbsp;- это неотъемлемая часть проектной деятельности, обеспечивающая всестороннее изучение природных и&nbsp;техногенных условий местности планируемого строительства.</p>
-                        <p>Проведение инженерных работ позволяет получить объем необходимых данных для аргументирования технической возможности и&nbsp;экономической целесообразности проектирования и&nbsp;застройки на&nbsp;конкретной территории. Информировать о&nbsp;возможных рисках и&nbsp;изменениях геологической ситуации и&nbsp;окружающей среды.</p>
-                        <p className="font-semibold text-foreground">Геодезическая фирма ООО&nbsp;«ГЕОСТРОЙПРОЕКТ» гарантирует качество и&nbsp;законность выполненных работ в&nbsp;г.&nbsp;Санкт-Петербург и&nbsp;Ленинградской области.</p>
+                        <p dangerouslySetInnerHTML={{ __html: 'У&nbsp;нас работают только опытные кадастровые инженеры, готовые помочь в&nbsp;решении земельных вопросов качественно и&nbsp;в&nbsp;поставленные сроки. Не&nbsp;нужно устанавливать забор и&nbsp;делить землю самостоятельно&nbsp;- это может привести к&nbsp;ненужным разногласиям с&nbsp;соседями, следовательно, к&nbsp;потере денег и&nbsp;времени.' }}></p>
+                        <p dangerouslySetInnerHTML={{ __html: 'Наши специалисты постоянно находятся в&nbsp;курсе последних изменений в&nbsp;законодательстве и&nbsp;всегда готовы оказать вам квалифицированную помощь в&nbsp;оформлении перепланировки квартиры, сопровождении сделок с&nbsp;недвижимостью, заказе межевого плана участка и&nbsp;проектировании домов.' }}></p>
+                        <p dangerouslySetInnerHTML={{ __html: 'Инженерные изыскания&nbsp;- это неотъемлемая часть проектной деятельности, обеспечивающая всестороннее изучение природных и&nbsp;техногенных условий местности планируемого строительства.' }}></p>
+                        <p dangerouslySetInnerHTML={{ __html: 'Проведение инженерных работ позволяет получить объем необходимых данных для аргументирования технической возможности и&nbsp;экономической целесообразности проектирования и&nbsp;застройки на&nbsp;конкретной территории. Информировать о&nbsp;возможных рисках и&nbsp;изменениях геологической ситуации и&nbsp;окружающей среды.' }}></p>
+                        <p className="font-semibold text-foreground" dangerouslySetInnerHTML={{ __html: 'Геодезическая фирма ООО&nbsp;«ГЕОСТРОЙПРОЕКТ» гарантирует качество и&nbsp;законность выполненных работ в&nbsp;г.&nbsp;Санкт-Петербург и&nbsp;Ленинградской области.' }}></p>
                     </CardContent>
                 </Card>
               </div>
@@ -385,8 +384,7 @@ export default function Home() {
         <div className="container mx-auto px-4 py-16 md:py-24">
           <div className="text-left mb-12 md:mb-16">
             <AnimatedSectionTitle className="text-left">Наши услуги</AnimatedSectionTitle>
-            <p className="text-xl text-muted-foreground max-w-3xl text-left mt-4">
-              Предоставляем полный спектр геодезических и&nbsp;кадастровых услуг с&nbsp;гарантией качества и&nbsp;соблюдением сроков
+            <p className="text-xl text-muted-foreground max-w-3xl text-left mt-4" dangerouslySetInnerHTML={{ __html: 'Предоставляем полный спектр геодезических и&nbsp;кадастровых услуг с&nbsp;гарантией качества и&nbsp;соблюдением сроков' }}>
             </p>
           </div>
         </div>
@@ -404,8 +402,8 @@ export default function Home() {
                       <div className="p-3 rounded-lg mb-4">
                         <HelpCircle className="h-10 w-10 text-muted-foreground" />
                       </div>
-                      <h3 className="text-2xl font-heading font-semibold text-foreground mb-2">Не&nbsp;нашли нужную услугу?</h3>
-                      <p className="text-muted-foreground mb-6">Мы&nbsp;выполняем любые виды геодезических работ под&nbsp;заказ</p>
+                      <h3 className="text-2xl font-heading font-semibold text-foreground mb-2" dangerouslySetInnerHTML={{ __html: 'Не&nbsp;нашли нужную услугу?' }}></h3>
+                      <p className="text-muted-foreground mb-6" dangerouslySetInnerHTML={{ __html: 'Мы&nbsp;выполняем любые виды геодезических работ под&nbsp;заказ' }}></p>
                       <Button size="lg" asChild>
                         <Link href="/contact">Получить консультацию</Link>
                       </Button>
@@ -438,8 +436,8 @@ export default function Home() {
                 <div className="p-3 rounded-lg mb-4">
                   <HelpCircle className="h-10 w-10 text-muted-foreground" />
                 </div>
-                <h3 className="text-2xl font-heading font-semibold text-foreground mb-2">Не&nbsp;нашли нужную услугу?</h3>
-                <p className="text-muted-foreground mb-6">Мы&nbsp;выполняем любые виды геодезических работ под&nbsp;заказ</p>
+                <h3 className="text-2xl font-heading font-semibold text-foreground mb-2" dangerouslySetInnerHTML={{ __html: 'Не&nbsp;нашли нужную услугу?' }}></h3>
+                <p className="text-muted-foreground mb-6" dangerouslySetInnerHTML={{ __html: 'Мы&nbsp;выполняем любые виды геодезических работ под&nbsp;заказ' }}></p>
                 <Button size="lg" asChild>
                   <Link href="/contact">Получить консультацию</Link>
                 </Button>
@@ -467,8 +465,7 @@ export default function Home() {
         <div className="container mx-auto px-4">
           <div className="text-left mb-12 md:mb-16">
             <AnimatedSectionTitle className="text-left">Прайс-лист</AnimatedSectionTitle>
-            <p className="text-xl text-muted-foreground max-w-3xl text-left mt-4">
-              Прозрачные цены без скрытых доплат. Групповые скидки до&nbsp;43%
+            <p className="text-xl text-muted-foreground max-w-3xl text-left mt-4" dangerouslySetInnerHTML={{ __html: 'Прозрачные цены без скрытых доплат. Групповые скидки до&nbsp;43%' }}>
             </p>
           </div>
 
@@ -577,7 +574,7 @@ export default function Home() {
                 <Zap className="h-5 w-5 text-accent" />
                 <h3 className="text-2xl font-heading font-bold">Срочные работы</h3>
               </div>
-              <p className="text-lg text-muted-foreground mb-4">Выполним работы в&nbsp;кратчайшие сроки с&nbsp;доплатой 30%</p>
+              <p className="text-lg text-muted-foreground mb-4" dangerouslySetInnerHTML={{ __html: 'Выполним работы в&nbsp;кратчайшие сроки с&nbsp;доплатой 30%' }}></p>
               <Button variant="default">Срочный заказ</Button>
             </Card>
           </div>
@@ -589,8 +586,7 @@ export default function Home() {
         <div className="container mx-auto px-4">
           <div className="text-left mb-12 md:mb-16">
             <AnimatedSectionTitle className="text-left">Как мы&nbsp;работаем</AnimatedSectionTitle>
-            <p className="text-xl text-muted-foreground max-w-3xl text-left mt-4">
-              Прозрачный процесс работы без лишних этапов и&nbsp;дополнительных затрат
+            <p className="text-xl text-muted-foreground max-w-3xl text-left mt-4" dangerouslySetInnerHTML={{ __html: 'Прозрачный процесс работы без лишних этапов и&nbsp;дополнительных затрат' }}>
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
@@ -636,8 +632,7 @@ export default function Home() {
           </div>
           <Card className="p-8 md:p-12 bg-card/80 backdrop-blur-sm border-border/50 max-w-4xl mx-auto text-center">
             <h3 className="text-3xl md:text-4xl font-heading font-bold text-foreground mb-4">Готовы начать работу?</h3>
-            <p className="text-lg text-muted-foreground mb-8">
-              Оставьте заявку на&nbsp;бесплатную консультацию и&nbsp;мы&nbsp;ответим на&nbsp;все ваши вопросы.
+            <p className="text-lg text-muted-foreground mb-8" dangerouslySetInnerHTML={{ __html: 'Оставьте заявку на&nbsp;бесплатную консультацию и&nbsp;мы&nbsp;ответим на&nbsp;все ваши вопросы.' }}>
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button asChild size="lg" variant="default">
@@ -663,5 +658,3 @@ export default function Home() {
     </div>
   );
 }
-
-    
