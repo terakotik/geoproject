@@ -20,7 +20,7 @@ const packages = [
     oldPrice: "14 000 ₽",
     saving: "Экономия 11%",
     audience: "4-7 заявки",
-    features: ["Все услуги пакета Стандарт", "Приоритетное обслуживание", "Персональный менеджер", "Скидка на дополнительные услуги"],
+    features: ["Все услуги пакета Стандарт", "Приоритетное обслуживание", "Персональный менеджер", "Скидка на&nbsp;дополнительные услуги"],
     popular: true,
   },
   {
@@ -112,7 +112,7 @@ export default function PricesPage() {
                     {pkg.features.map((feature, i) => (
                       <li key={i} className="flex items-center gap-3">
                         <CheckCircle className="h-4 w-4 text-accent flex-shrink-0" />
-                        <span className="text-muted-foreground">{feature}</span>
+                        <span className="text-muted-foreground" dangerouslySetInnerHTML={{ __html: feature }}></span>
                       </li>
                     ))}
                   </ul>

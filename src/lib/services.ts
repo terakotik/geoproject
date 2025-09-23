@@ -10,13 +10,13 @@ export type Service = {
 export const services: Service[] = [
   {
     title: "Межевание земельных участков",
-    description: "Определение и закрепление границ земельных участков в натуре",
+    description: "Определение и&nbsp;закрепление границ земельных участков в&nbsp;натуре",
     icon: MapPinIcon,
     slug: "land-surveying",
   },
   {
     title: "Технические планы ОКС",
-    description: "Оформление прав на дома, бани, гаражи и хозпостройки",
+    description: "Оформление прав на&nbsp;дома, бани, гаражи и&nbsp;хозпостройки",
     icon: Building,
     slug: "technical-plans",
   },
@@ -28,13 +28,13 @@ export const services: Service[] = [
   },
   {
     title: "ЗОУИТ (зоны действия факторов)",
-    description: "Определение зон с особыми условиями использования территорий",
+    description: "Определение зон с&nbsp;особыми условиями использования территорий",
     icon: FileTextIcon,
     slug: "zouit",
   },
   {
     title: "Фасадная съемка и 3D",
-    description: "Трехмерное моделирование и фасадная съемка зданий",
+    description: "Трехмерное моделирование и&nbsp;фасадная съемка зданий",
     icon: ScanSearch,
     slug: "facade-survey",
   },
@@ -46,13 +46,13 @@ export const services: Service[] = [
   },
   {
     title: "Лесоустройство",
-    description: "Работы по лесоустройству и лесопользованию",
+    description: "Работы по&nbsp;лесоустройству и&nbsp;лесопользованию",
     icon: TreePine,
     slug: "forest-management",
   },
   {
     title: "Промышленная геодезия",
-    description: "Геодезическое сопровождение строительства и эксплуатации",
+    description: "Геодезическое сопровождение строительства и&nbsp;эксплуатации",
     icon: Factory,
     slug: "industrial-geodesy",
   },

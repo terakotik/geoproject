@@ -46,7 +46,7 @@ export default function ContactPage() {
       <div className="container mx-auto px-4">
         <div className="text-center mb-12 md:mb-16">
           <h1 className="text-4xl lg:text-5xl font-heading font-bold text-foreground mb-4">Контакты</h1>
-          <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto">Свяжитесь с нами удобным способом. Работаем ежедневно с&nbsp;10:00 до&nbsp;20:00</p>
+          <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto">Свяжитесь с&nbsp;нами удобным способом. Работаем ежедневно с&nbsp;10:00 до&nbsp;20:00</p>
         </div>
 
         <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-start">
@@ -57,7 +57,7 @@ export default function ContactPage() {
                 <CardTitle className="text-xl">Режим работы</CardTitle>
               </CardHeader>
               <CardContent className="p-0 space-y-2">
-                <div className="text-lg font-medium">Ежедневно: 10:00 - 20:00</div>
+                <div className="text-lg font-medium">Ежедневно: 10:00&nbsp;- 20:00</div>
                 <div className="text-sm opacity-90">Выезд специалистов в&nbsp;любой день недели</div>
                 <div className="text-sm opacity-90">Срочные выезды&nbsp;- круглосуточно</div>
               </CardContent>

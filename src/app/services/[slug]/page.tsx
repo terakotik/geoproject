@@ -37,7 +37,7 @@ export default function ServicePage({ params }: { params: { slug: string } }) {
               <service.icon className="h-10 w-10" />
             </div>
             <h1 className="text-4xl md:text-5xl font-bold font-heading">{service.title}</h1>
-            <p className="mt-4 text-muted-foreground text-lg">{service.description}</p>
+            <p className="mt-4 text-muted-foreground text-lg" dangerouslySetInnerHTML={{ __html: service.description }}></p>
           </div>
 
           <div className="grid gap-12 md:grid-cols-3">
@@ -53,7 +53,7 @@ export default function ServicePage({ params }: { params: { slug: string } }) {
 
               <Card>
                 <CardHeader>
-                  <CardTitle>Что входит в услугу</CardTitle>
+                  <CardTitle>Что входит в&nbsp;услугу</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <ul className="space-y-3">
@@ -71,7 +71,7 @@ export default function ServicePage({ params }: { params: { slug: string } }) {
             <div className="space-y-6 md:sticky md:top-24 self-start">
                <Card className="bg-primary/5 border-primary/20">
                   <CardHeader>
-                      <CardTitle>Стоимость и сроки</CardTitle>
+                      <CardTitle>Стоимость и&nbsp;сроки</CardTitle>
                   </CardHeader>
                   <CardContent className="space-y-4">
                        <div className="text-left">

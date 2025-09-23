@@ -27,7 +27,7 @@ export default function ServicesPage() {
                </CardHeader>
                <CardContent className="p-0 flex-grow">
                  <h3 className="text-xl font-heading font-semibold text-foreground mb-2">{service.title}</h3>
-                 <p className="text-muted-foreground text-base leading-relaxed">{service.description}</p>
+                 <p className="text-muted-foreground text-base leading-relaxed" dangerouslySetInnerHTML={{ __html: service.description }}></p>
                </CardContent>
                <div className="mt-6 pt-6 border-t border-border">
                  <div className="flex items-center justify-between text-accent font-semibold group-hover:text-primary transition-colors">

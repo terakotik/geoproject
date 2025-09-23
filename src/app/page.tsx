@@ -47,7 +47,7 @@ const packages = [
     oldPrice: "14 000 ₽",
     saving: "Экономия 18%",
     audience: "4-7 заявки",
-    features: ["Все услуги пакета Стандарт", "Приоритетное обслуживание", "Персональный менеджер", "Скидка на дополнительные услуги"],
+    features: ["Все услуги пакета Стандарт", "Приоритетное обслуживание", "Персональный менеджер", "Скидка на&nbsp;дополнительные услуги"],
     popular: true,
   },
   {
@@ -215,10 +215,10 @@ export default function Home() {
             <service.icon className="h-10 w-10 text-muted-foreground" />
           </div>
           <CardTitle className="text-xl md:text-2xl font-heading">{service.title}</CardTitle>
-          <CardDescription className="text-base pt-2">{service.description}</CardDescription>
+          <CardDescription className="text-base pt-2" dangerouslySetInnerHTML={{ __html: service.description }}></CardDescription>
         </CardHeader>
         <CardContent className="flex-grow p-4 md:p-6 pt-0">
-          <ul className="space-y-4 mb-6">
+          <ul className="space-y-4 my-6">
             {details.includes.map((item, i) => (
               <li key={i} className="flex items-center gap-3">
                 <CheckCircle className="h-4 w-4 text-accent flex-shrink-0" />
@@ -498,7 +498,7 @@ export default function Home() {
                       {pkg.features.map((feature, i) => (
                         <li key={i} className="flex items-center gap-3">
                           <CheckCircle className="h-4 w-4 text-accent flex-shrink-0" />
-                          <span className="text-muted-foreground">{feature}</span>
+                          <span className="text-muted-foreground" dangerouslySetInnerHTML={{ __html: feature }}></span>
                         </li>
                       ))}
                     </ul>
@@ -603,7 +603,7 @@ export default function Home() {
                   <CardTitle className="text-lg font-heading font-semibold text-foreground">0{index + 1}. {step.title}</CardTitle>
                 </CardHeader>
                 <CardContent className="p-0">
-                  <p className="text-sm text-muted-foreground">{step.description}</p>
+                  <p className="text-sm text-muted-foreground" dangerouslySetInnerHTML={{ __html: step.description }}></p>
                 </CardContent>
               </Card>
             ))}
