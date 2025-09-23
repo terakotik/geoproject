@@ -97,7 +97,7 @@ export const ContactSheet = () => {
                             </div>
                         </div>
                         
-                        <footer className="mt-auto pt-8 space-y-6">
+                        <footer className="mt-8 pt-8 space-y-6">
                              <div className="flex items-start space-x-4">
                                 <input type="checkbox" id="privacy-sheet" {...register("privacy")} className="mt-1 h-6 w-6 rounded border-border" />
                                 <div className="grid gap-1.5 leading-none">
