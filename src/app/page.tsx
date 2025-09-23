@@ -37,7 +37,7 @@ const packages = [
     oldPrice: "14 000 ₽",
     saving: "Экономия 11%",
     audience: "2-3 заявки",
-    features: ["Межевание участка", "Технический план дома", "Подача документов", "Сопровождение до регистрации"],
+    features: ["Межевание участка", "Технический план дома", "Подача документов", "Сопровождение до&nbsp;регистрации"],
     popular: false,
   },
   {
@@ -73,7 +73,7 @@ const priceSections = [
       { name: "Объединение земельных участков", price: "от 10000 руб.", term: "от 14 дней" },
       { name: "Перераспределение земельных участков", price: "от 8000 руб.", term: "от 14 дней" },
       { name: "Формирование схемы участка на&nbsp;КПТ", price: "от 3000 руб.", term: "2 дня" },
-      { name: "Вынос границ в&nbsp;натуру (4 точки включены)", price: "от 7000 руб.", term: "от 2 дней" },
+      { name: "Вынос границ в&nbsp;натуру (4&nbsp;точки включены)", price: "от 7000 руб.", term: "от 2 дней" },
     ],
   },
   {
@@ -283,7 +283,7 @@ export default function Home() {
               {heroStats.map((stat, index) => (
                 <Card key={index} className="bg-background/30 backdrop-blur-sm border-2 border-dashed border-border/50 hover:border-accent transition-all duration-300 p-6 text-left h-full">
                   <div className="flex items-center gap-4">
-                    <div className="bg-accent/20 p-3 rounded-lg flex items-center justify-center w-16 h-16">
+                    <div className="p-3 rounded-lg flex items-center justify-center w-16 h-16">
                       <stat.icon className="h-8 w-8 text-accent" />
                     </div>
                     <div className="flex flex-col">
@@ -323,14 +323,14 @@ export default function Home() {
                           loop
                           muted
                           playsInline
-                          className="w-32 h-32 object-cover rounded-full border-4 border-white shadow-lg flex-shrink-0"
+                          className="absolute top-4 left-4 w-32 h-32 object-cover rounded-full border-4 border-white shadow-lg flex-shrink-0"
                           src="https://pouch.jumpshare.com/preview/dUHg-gsRDslnFdT3XfFQYUj3M9PXnVuKIjURan0E7Tt9Heoa57PeFb-sbUHpmPWll8ZWyRtlbSgh2j3IOsSmh_aPcQXoRS15iWmHOM-M34oq3xv7xY6eKpTknO-BlLQ66lk3U0W71gNmmot0a0rduW6yjbN-I2pg_cnoHs_AmgI.mp4"
                       />
                       <div className="flex-grow">
-                        <CardHeader className="p-0 mb-6">
+                        <CardHeader className="p-0 mb-6 lg:pl-[150px]">
                             <CardTitle className="text-3xl font-heading font-bold">Геодезическая компания ООО&nbsp;"ГЕОСТРОЙПРОЕКТ"</CardTitle>
                         </CardHeader>
-                        <CardContent className="p-0 text-muted-foreground space-y-4 text-lg">
+                        <CardContent className="p-0 text-muted-foreground space-y-4 text-lg lg:pl-[150px]">
                             <p>Мы&nbsp;рады приветствовать вас на&nbsp;официальном сайте геодезической компании ООО&nbsp;«ГЕОСТРОЙПРОЕКТ» и&nbsp;готовы предложить бесплатную консультацию по&nbsp;вашему вопросу прямо сейчас!</p>
                         </CardContent>
                       </div>
