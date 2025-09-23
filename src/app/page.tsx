@@ -289,7 +289,7 @@ export default function Home() {
                     </div>
                     <div className="flex flex-col">
                       <div className="text-4xl font-bold text-foreground">{stat.value}</div>
-                      <div className="text-sm text-muted-foreground mt-1">{stat.label}</div>
+                      <div className="text-sm text-muted-foreground mt-1 w-24">{stat.label}</div>
                     </div>
                   </div>
                 </Card>
