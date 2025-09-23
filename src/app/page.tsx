@@ -315,20 +315,26 @@ export default function Home() {
         <div className="container mx-auto px-4">
             <div className="grid lg:grid-cols-2 gap-12 items-start">
               <div className="space-y-6">
-                 <Card className="p-6 md:p-8 bg-card/50 backdrop-blur-sm border-border/50 relative overflow-hidden">
-                    <video
-                        autoPlay
-                        loop
-                        muted
-                        playsInline
-                        className="absolute top-4 left-4 w-32 h-32 object-cover rounded-full border-4 border-white shadow-lg"
-                        src="https://pouch.jumpshare.com/preview/dUHg-gsRDslnFdT3XfFQYUj3M9PXnVuKIjURan0E7Tt9Heoa57PeFb-sbUHpmPWll8ZWyRtlbSgh2j3IOsSmh_aPcQXoRS15iWmHOM-M34oq3xv7xY6eKpTknO-BlLQ66lk3U0W71gNmmot0a0rduW6yjbN-I2pg_cnoHs_AmgI.mp4"
-                    />
-                    <CardHeader className="p-0 mb-6">
-                        <CardTitle className="text-3xl font-heading font-bold text-center lg:text-left lg:pl-[150px]">Геодезическая компания ООО "ГЕОСТРОЙПРОЕКТ"</CardTitle>
-                    </CardHeader>
-                    <CardContent className="p-0 text-muted-foreground space-y-4 text-lg lg:pl-[150px]">
-                        <p>Мы рады приветствовать вас на официальном сайте геодезической компании ООО «ГЕОСТРОЙПРОЕКТ» и готовы предложить бесплатную консультацию по вашему вопросу прямо сейчас!</p>
+                 <Card className="p-6 md:p-8 bg-card/50 backdrop-blur-sm border-border/50">
+                   <div className="flex flex-col sm:flex-row items-start gap-6">
+                      <video
+                          autoPlay
+                          loop
+                          muted
+                          playsInline
+                          className="w-32 h-32 object-cover rounded-full border-4 border-white shadow-lg flex-shrink-0 mx-auto sm:mx-0"
+                          src="https://pouch.jumpshare.com/preview/dUHg-gsRDslnFdT3XfFQYUj3M9PXnVuKIjURan0E7Tt9Heoa57PeFb-sbUHpmPWll8ZWyRtlbSgh2j3IOsSmh_aPcQXoRS15iWmHOM-M34oq3xv7xY6eKpTknO-BlLQ66lk3U0W71gNmmot0a0rduW6yjbN-I2pg_cnoHs_AmgI.mp4"
+                      />
+                      <div className="flex-grow text-center sm:text-left">
+                        <CardHeader className="p-0 mb-6">
+                            <CardTitle className="text-3xl font-heading font-bold">Геодезическая компания ООО "ГЕОСТРОЙПРОЕКТ"</CardTitle>
+                        </CardHeader>
+                        <CardContent className="p-0 text-muted-foreground space-y-4 text-lg">
+                            <p>Мы рады приветствовать вас на официальном сайте геодезической компании ООО «ГЕОСТРОЙПРОЕКТ» и готовы предложить бесплатную консультацию по вашему вопросу прямо сейчас!</p>
+                        </CardContent>
+                      </div>
+                    </div>
+                    <CardContent className="p-0 text-muted-foreground space-y-4 text-lg mt-6">
                         <p>У нас работают только опытные кадастровые инженеры, готовые помочь в решении земельных вопросов качественно и в поставленные сроки. Не нужно устанавливать забор и делить землю самостоятельно — это может привести к ненужным разногласиям с соседями, следовательно, к потере денег и времени.</p>
                         <p>Наши специалисты постоянно находятся в курсе последних изменений в законодательстве и всегда готовы оказать вам квалифицированную помощь в оформлении перепланировки квартиры, сопровождении сделок с недвижимостью, заказе межевого плана участка и проектировании домов.</p>
                         <p>Инженерные изыскания – это неотъемлемая часть проектной деятельности, обеспечивающая всестороннее изучение природных и техногенных условий местности планируемого строительства.</p>
