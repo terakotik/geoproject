@@ -90,7 +90,7 @@ export default function Header() {
                   <span className="sr-only">Открыть меню</span>
                 </Button>
               </SheetTrigger>
-              <SheetContent side="right" className="flex flex-col p-0 w-full max-w-sm">
+              <SheetContent side="right" className="flex flex-col p-0 w-full max-w-xs">
                 <div className="p-4 border-b">
                   <Link href="/" onClick={closeMobileMenu}>
                     <Logo />
