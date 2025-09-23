@@ -206,7 +206,7 @@ export default function Home() {
     if (!details) return null;
     return (
       <Card className="flex flex-col h-full hover:border-accent transition-all duration-300 border-border/50 bg-card/50 backdrop-blur-sm relative group p-2 md:p-0">
-        <div className="absolute -top-8 -left-8 text-8xl font-bold text-foreground/5 opacity-80 transition-all duration-300 group-hover:scale-110 group-hover:text-accent/10">
+        <div className="absolute top-2 left-2 text-7xl font-bold text-foreground/5 opacity-80 transition-all duration-300 group-hover:scale-110 group-hover:text-accent/10">
           0{index + 1}
         </div>
         <CardHeader className="p-4 md:p-6">

@@ -21,7 +21,7 @@ const HorizontalScrollCarousel = ({ children }: { children: ReactNode }) => {
 
   return (
     <section ref={targetRef} className="relative h-[300vh] bg-white">
-      <div className="sticky top-0 flex h-screen items-center overflow-hidden">
+      <div className="sticky top-0 flex h-screen items-center">
         <motion.div style={{ x }} className="flex gap-8">
           {children}
         </motion.div>
