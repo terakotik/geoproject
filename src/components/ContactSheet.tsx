@@ -16,11 +16,10 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { AlertCircle, CheckCircle2, Upload } from "lucide-react";
+import { AlertCircle, CheckCircle2 } from "lucide-react";
 import Link from 'next/link';
 import { useState } from "react";
 import Image from "next/image";
-import { cn } from "@/lib/utils";
 
 const formSchema = z.object({
   name: z.string().min(2, { message: "Имя должно быть не короче 2 символов." }),
@@ -53,7 +52,7 @@ export const ContactSheet = () => {
 
     return (
         <Sheet open={isOpen} onOpenChange={onClose}>
-            <SheetContent className="w-[90vw] max-w-[1600px] p-0 overflow-y-auto">
+            <SheetContent className="w-[90vw] max-w-[1600px] p-0 flex flex-col">
                 <SheetHeader className="p-8 sm:p-12 border-b">
                     <div className="flex justify-between items-start gap-8">
                         <div>
@@ -75,9 +74,9 @@ export const ContactSheet = () => {
                         </div>
                     </div>
                 </SheetHeader>
-                <div className="p-8 sm:p-12">
+                <div className="flex-grow p-8 sm:p-12 overflow-y-auto">
                 {formState === 'success' ? (
-                    <div className="text-center py-20 flex flex-col items-center">
+                    <div className="text-center py-20 flex flex-col items-center justify-center h-full">
                         <CheckCircle2 className="h-24 w-24 text-green-500 mx-auto mb-8" />
                         <h3 className="text-4xl font-semibold mb-4">Заявка успешно отправлена!</h3>
                         <p className="text-2xl text-muted-foreground max-w-lg">Спасибо! Мы&nbsp;свяжемся с&nbsp;вами в&nbsp;ближайшее время для уточнения деталей.</p>
