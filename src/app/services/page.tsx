@@ -13,7 +13,7 @@ export default function ServicesPage() {
         <div className="text-center mb-12 md:mb-16">
           <h1 className="text-4xl md:text-5xl font-bold font-heading">Наши услуги</h1>
           <p className="mt-4 max-w-3xl mx-auto text-muted-foreground text-lg">
-            Мы предлагаем полный спектр геодезических и кадастровых услуг, адаптированных для удовлетворения конкретных потребностей вашего проекта.
+            Мы&nbsp;предлагаем полный спектр геодезических и&nbsp;кадастровых услуг, адаптированных для удовлетворения конкретных потребностей вашего проекта.
           </p>
         </div>
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">

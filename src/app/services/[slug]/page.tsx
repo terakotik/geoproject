@@ -40,14 +40,14 @@ export default function ServicePage({ params }: { params: { slug: string } }) {
             <p className="mt-4 text-muted-foreground text-lg">{service.description}</p>
           </div>
 
-          <div className="grid gap-8 md:grid-cols-3">
+          <div className="grid gap-12 md:grid-cols-3">
             <div className="md:col-span-2 space-y-8">
               <Card>
                 <CardHeader>
                   <CardTitle>Описание услуги</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-muted-foreground whitespace-pre-wrap">{details.longDescription}</p>
+                  <p className="text-muted-foreground whitespace-pre-wrap" dangerouslySetInnerHTML={{ __html: details.longDescription }}></p>
                 </CardContent>
               </Card>
 
@@ -60,7 +60,7 @@ export default function ServicePage({ params }: { params: { slug: string } }) {
                     {details.includes.map((item, index) => (
                       <li key={index} className="flex items-start gap-3">
                         <Check className="h-5 w-5 text-accent mt-1 flex-shrink-0" />
-                        <span className="text-muted-foreground">{item}</span>
+                        <span className="text-muted-foreground" dangerouslySetInnerHTML={{ __html: item }}></span>
                       </li>
                     ))}
                   </ul>
@@ -76,11 +76,11 @@ export default function ServicePage({ params }: { params: { slug: string } }) {
                   <CardContent className="space-y-4">
                        <div className="text-left">
                           <p className="text-sm text-muted-foreground">Стоимость</p>
-                          <p className="text-2xl font-bold text-primary">{details.price}</p>
+                          <p className="text-2xl font-bold text-primary" dangerouslySetInnerHTML={{ __html: details.price }}></p>
                       </div>
                        <div className="text-left">
                           <p className="text-sm text-muted-foreground">Сроки</p>
-                          <p className="text-xl font-semibold text-foreground">{details.timeline}</p>
+                          <p className="text-xl font-semibold text-foreground" dangerouslySetInnerHTML={{ __html: details.timeline }}></p>
                       </div>
                   </CardContent>
               </Card>
@@ -91,7 +91,7 @@ export default function ServicePage({ params }: { params: { slug: string } }) {
                 </CardHeader>
                 <CardContent className="space-y-4">
                    <p className="text-sm text-muted-foreground">
-                     Получите бесплатную консультацию и точный расчет для вашего объекта.
+                     Получите бесплатную консультацию и&nbsp;точный расчет для вашего объекта.
                    </p>
                     <Button asChild size="lg" className="w-full">
                       <Link href="/contact">Заказать консультацию <ArrowRight className="ml-2 h-4 w-4" /></Link>

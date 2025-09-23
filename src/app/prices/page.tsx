@@ -40,39 +40,39 @@ const priceSections = [
   {
     title: "Земельные участки",
     items: [
-      { name: "Межевание земельного участка в Спб и ЛО", price: "от 12500 руб.", term: "от 14 дней" },
-      { name: "Межевание земель общего пользования в СНТ, ДНП", price: "индивидуально", term: "" },
-      { name: "Раздел земельного участка", price: "от 10000 руб.", term: "от 14 дней" },
-      { name: "Объединение земельных участков", price: "от 10000 руб.", term: "от 14 дней" },
-      { name: "Перераспределение земельных участков", price: "от 8000 руб.", term: "от 14 дней" },
-      { name: "Формирование схемы участка на КПТ", price: "от 3000 руб.", term: "2 дня" },
-      { name: "Вынос границ в натуру ( 4 точки включены)", price: "от 7000 руб.", term: "от 2 дней" },
+      { name: "Межевание земельного участка в&nbsp;Спб и&nbsp;ЛО", price: "от&nbsp;12500&nbsp;руб.", term: "от&nbsp;14&nbsp;дней" },
+      { name: "Межевание земель общего пользования в&nbsp;СНТ, ДНП", price: "индивидуально", term: "" },
+      { name: "Раздел земельного участка", price: "от&nbsp;10000&nbsp;руб.", term: "от&nbsp;14&nbsp;дней" },
+      { name: "Объединение земельных участков", price: "от&nbsp;10000&nbsp;руб.", term: "от&nbsp;14&nbsp;дней" },
+      { name: "Перераспределение земельных участков", price: "от&nbsp;8000&nbsp;руб.", term: "от&nbsp;14&nbsp;дней" },
+      { name: "Формирование схемы участка на&nbsp;КПТ", price: "от&nbsp;3000&nbsp;руб.", term: "2&nbsp;дня" },
+      { name: "Вынос границ в&nbsp;натуру (4&nbsp;точки включены)", price: "от&nbsp;7000&nbsp;руб.", term: "от&nbsp;2&nbsp;дней" },
     ],
   },
   {
     title: "Объекты капитального строительства",
     items: [
-        { name: "Оформление прав собственности на дом, баню, гараж, хозпостройку", price: "от 12000 руб.", term: "от 5 дней" },
-        { name: "Изготовление технического плана на здание, сооружение, объекта незавершенного строительства", price: "от 8000 руб.", term: "от 5 дней" },
-        { name: "Учет изменений ОКС (перепланировка, реконструкция)", price: "от 12000 руб.", term: "от 5 дней" },
-        { name: "Изготовление акта обследования", price: "от 5000 руб.", term: "от 3 дней" },
-        { name: "Регистрация загородной недвижимости", price: "от 8500 руб.", term: "от 5 дней" },
+        { name: "Оформление прав собственности на&nbsp;дом, баню, гараж, хозпостройку", price: "от&nbsp;12000&nbsp;руб.", term: "от&nbsp;5&nbsp;дней" },
+        { name: "Изготовление технического плана на&nbsp;здание, сооружение, объекта незавершенного строительства", price: "от&nbsp;8000&nbsp;руб.", term: "от&nbsp;5&nbsp;дней" },
+        { name: "Учет изменений ОКС (перепланировка, реконструкция)", price: "от&nbsp;12000&nbsp;руб.", term: "от&nbsp;5&nbsp;дней" },
+        { name: "Изготовление акта обследования", price: "от&nbsp;5000&nbsp;руб.", term: "от&nbsp;3&nbsp;дней" },
+        { name: "Регистрация загородной недвижимости", price: "от&nbsp;8500&nbsp;руб.", term: "от&nbsp;5&nbsp;дней" },
     ],
   },
   {
     title: "Топографическая съемка",
     items: [
-        { name: "Фасадная съемка и 3D", price: "от 10000 руб.", term: "от 3 дней" },
-        { name: "Съёмка для водоканала и газа", price: "от 10000 руб.", term: "от 5 дней" },
-        { name: "Съёмка для ландшафтного дизайна", price: "от 12000 руб.", term: "от 5 дней" },
+        { name: "Фасадная съемка и&nbsp;3D", price: "от&nbsp;10000&nbsp;руб.", term: "от&nbsp;3&nbsp;дней" },
+        { name: "Съёмка для водоканала и&nbsp;газа", price: "от&nbsp;10000&nbsp;руб.", term: "от&nbsp;5&nbsp;дней" },
+        { name: "Съёмка для ландшафтного дизайна", price: "от&nbsp;12000&nbsp;руб.", term: "от&nbsp;5&nbsp;дней" },
     ],
   },
     {
     title: "Дополнительные услуги",
     items: [
-        { name: "Регистрация машиноместа", price: "от 18000 руб.", term: "от 10 дней" },
-        { name: "Подготовка поэтажных планов", price: "от 3000 руб.", term: "от 3 дней" },
-        { name: "Изготовление технического паспорта объекта", price: "от 5000 руб.", term: "от 3 дней" },
+        { name: "Регистрация машиноместа", price: "от&nbsp;18000&nbsp;руб.", term: "от&nbsp;10&nbsp;дней" },
+        { name: "Подготовка поэтажных планов", price: "от&nbsp;3000&nbsp;руб.", term: "от&nbsp;3&nbsp;дней" },
+        { name: "Изготовление технического паспорта объекта", price: "от&nbsp;5000&nbsp;руб.", term: "от&nbsp;3&nbsp;дней" },
     ],
   },
 ];
@@ -85,7 +85,7 @@ export default function PricesPage() {
         <div className="text-center mb-12 md:mb-16">
           <h1 className="text-4xl lg:text-5xl font-heading font-bold text-foreground mb-4">Прайс-лист</h1>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Прозрачные цены без скрытых доплат. Групповые скидки до 43%
+            Прозрачные цены без скрытых доплат. Групповые скидки до&nbsp;43%
           </p>
         </div>
 
@@ -146,12 +146,12 @@ export default function PricesPage() {
                       {section.items.map((item, i) => (
                         <tr key={i} className="border-b border-border/50 hover-gradient transition-colors duration-300 group">
                            <td className="p-4 pr-4 text-foreground relative">
-                              <span className="block transition-transform duration-500 group-hover:translate-x-2">{item.name}</span>
+                              <span className="block transition-transform duration-500 group-hover:translate-x-2" dangerouslySetInnerHTML={{ __html: item.name }}></span>
                             </td>
                             <td className="p-4 text-right font-semibold text-accent relative">
-                               <span className="block transition-transform duration-500 group-hover:-translate-x-2">{item.price}</span>
+                               <span className="block transition-transform duration-500 group-hover:-translate-x-2" dangerouslySetInnerHTML={{ __html: item.price }}></span>
                             </td>
-                          <td className="p-4 text-right text-muted-foreground">{item.term}</td>
+                          <td className="p-4 text-right text-muted-foreground" dangerouslySetInnerHTML={{ __html: item.term }}></td>
                           <td className="p-4 pl-4 text-right">
                             <Button variant="outline" size="sm">Заказать</Button>
                           </td>
@@ -171,7 +171,7 @@ export default function PricesPage() {
               <Zap className="h-5 w-5 text-accent" />
               <h3 className="text-2xl font-heading font-bold text-foreground">Срочные работы</h3>
             </div>
-            <p className="text-lg text-muted-foreground mb-6">Выполним работы в кратчайшие сроки с доплатой 30%</p>
+            <p className="text-lg text-muted-foreground mb-6">Выполним работы в&nbsp;кратчайшие сроки с&nbsp;доплатой 30%</p>
             <Button>Срочный заказ</Button>
           </Card>
         </div>
