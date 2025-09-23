@@ -9,14 +9,14 @@ import { Card } from '@/components/ui/card';
 export default function Footer() {
   return (
     <footer className="bg-black text-white relative overflow-hidden mt-auto">
-      <div className="absolute inset-0 z-0">
+      <div className="absolute inset-0 z-0 hidden md:block">
         <video
           autoPlay
           loop
           muted
           playsInline
           className="w-full h-full object-cover"
-          src="https://pouch.jumpshare.com/preview/dUHg-gsRDslnFdT3XfFQYUj3M9PXnVuKIjURan0E7Tt9Heoa57PeFb-sbUHpmPWll8ZWyRtlbSgh2j3IOsSmh_aPcQXoRS15iWmHOM-M34oq3xv7xY6eKpTknO-BlLQ6ng-PQSvjJiBcStg63zF6um6yjbN-I2pg_cnoHs_AmgI.mp4"
+          src="https://pouch.jumpshare.com/preview/dUHg-gsRDslnFdT3XfFQYUj3M9PXnVuKIjURan0E7Tt9Heoa57PeFb-sbUHpmPWll8ZWyRtlbSgh2j3IOsSmh_aPcQXoRS15iWmHOM-M34oq3xv7xY6eKpTknO-BlLQ6SWyKLki93js7uDN_kGq52W6yjbN-I2pg_cnoHs_AmgI.mp4"
         />
         <div className="absolute inset-0 bg-black/80"></div>
       </div>
