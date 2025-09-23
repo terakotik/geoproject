@@ -53,27 +53,6 @@ export const ContactSheet = () => {
     return (
         <Sheet open={isOpen} onOpenChange={onClose}>
             <SheetContent className="w-[90vw] max-w-[1600px] p-0 flex flex-col">
-                <SheetHeader className="p-6 md:p-8 border-b">
-                    <div className="flex justify-between items-start gap-8">
-                        <div>
-                            <SheetTitle className="text-4xl font-bold" dangerouslySetInnerHTML={{ __html: 'Привет!' }}></SheetTitle>
-                            <SheetDescription className="text-4xl font-bold text-foreground mt-2" dangerouslySetInnerHTML={{ __html: 'Какая у&nbsp;вас задача?' }}>
-                            </SheetDescription>
-                            <p className="text-muted-foreground pt-4 text-lg">
-                                <a href="mailto:danayn11@mail.ru" className="hover:text-accent">danayn11@mail.ru</a>
-                            </p>
-                        </div>
-                        <div className="hidden sm:block text-center flex-shrink-0">
-                             <Image
-                                src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcS1mKBDqAEo3ZgrUseu5xob-zcerfrLTmiy4f-nICu3k9yqN7tW8fI0DJ-36GzaExLCwP5lxuvRYqQNH0J5uQ7rkE8kOxityWueZpaSgeFx"
-                                alt="WhatsApp QR Code"
-                                width={150}
-                                height={150}
-                            />
-                            <p className="text-sm text-muted-foreground mt-2">Связь в&nbsp;WhatsApp</p>
-                        </div>
-                    </div>
-                </SheetHeader>
                 <div className="flex-grow p-6 md:p-8 overflow-y-auto">
                 {formState === 'success' ? (
                     <div className="text-center py-10 flex flex-col items-center justify-center h-full">
@@ -84,6 +63,26 @@ export const ContactSheet = () => {
                     </div>
                  ) : (
                     <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col h-full">
+                        <div className="flex justify-between items-start gap-8 mb-8">
+                            <div>
+                                <h2 className="text-4xl font-bold" dangerouslySetInnerHTML={{ __html: 'Привет!' }}></h2>
+                                <h3 className="text-4xl font-bold text-foreground mt-2" dangerouslySetInnerHTML={{ __html: 'Какая у&nbsp;вас задача?' }}>
+                                </h3>
+                                <p className="text-muted-foreground pt-4 text-lg">
+                                    <a href="mailto:danayn11@mail.ru" className="hover:text-accent">danayn11@mail.ru</a>
+                                </p>
+                            </div>
+                            <div className="hidden sm:block text-center flex-shrink-0">
+                                 <Image
+                                    src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcS1mKBDqAEo3ZgrUseu5xob-zcerfrLTmiy4f-nICu3k9yqN7tW8fI0DJ-36GzaExLCwP5lxuvRYqQNH0J5uQ7rkE8kOxityWueZpaSgeFx"
+                                    alt="WhatsApp QR Code"
+                                    width={150}
+                                    height={150}
+                                />
+                                <p className="text-sm text-muted-foreground mt-2">Связь в&nbsp;WhatsApp</p>
+                            </div>
+                        </div>
+
                         <div className="flex-grow grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-8">
                             <div className="space-y-3">
                                 <Label htmlFor="name" className="text-3xl">ФИО *</Label>
