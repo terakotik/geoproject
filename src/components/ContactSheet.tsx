@@ -70,11 +70,12 @@ export const ContactSheet = () => {
                                 />
                                 <p className="text-sm text-muted-foreground mt-2">Связь в&nbsp;WhatsApp</p>
                             </div>
-                            <div>
-                                <h2 className="text-5xl font-bold" dangerouslySetInnerHTML={{ __html: 'Расскажите о&nbsp;вашей задаче' }}></h2>
-                                <p className="text-muted-foreground pt-4 text-xl">
-                                    Или напишите нам на <a href="mailto:danayn11@mail.ru" className="text-accent hover:underline">danayn11@mail.ru</a>
-                                </p>
+                            <div className="flex-grow">
+                                <div className="space-y-3">
+                                    <Label htmlFor="phone-header" className="text-2xl font-medium">Контактный телефон *</Label>
+                                    <Input id="phone-header" {...register("phone")} placeholder="+7 (___) ___-__-__" className="text-5xl h-24 p-4" />
+                                    {errors.phone && <p className="text-lg text-destructive flex items-center gap-2"><AlertCircle className="h-5 w-5" /> {errors.phone.message}</p>}
+                                </div>
                             </div>
                         </header>
 
