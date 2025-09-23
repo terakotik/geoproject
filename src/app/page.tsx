@@ -1,5 +1,3 @@
-
-
 'use client';
 
 import Image from 'next/image';
@@ -323,13 +321,13 @@ export default function Home() {
                         loop
                         muted
                         playsInline
-                        className="absolute top-4 right-4 w-32 h-32 object-cover rounded-full border-4 border-white shadow-lg"
-                        src="https://pouch.jumpshare.com/preview/o71M6R2-m-V8e-p3wG0fC0_2Gk_d_a5Jm3-p1-y_Xl8p5O7tK1-T14qLp5mQJ_x3QdYV5c4i1QkQ5t3jN_b6O9mK_j1S6O-M2k4A.mp4"
+                        className="absolute top-4 left-4 w-32 h-32 object-cover rounded-full border-4 border-white shadow-lg"
+                        src="https://pouch.jumpshare.com/preview/dUHg-gsRDslnFdT3XfFQYUj3M9PXnVuKIjURan0E7Tt9Heoa57PeFb-sbUHpmPWll8ZWyRtlbSgh2j3IOsSmh_aPcQXoRS15iWmHOM-M34oq3xv7xY6eKpTknO-BlLQ66lk3U0W71gNmmot0a0rduW6yjbN-I2pg_cnoHs_AmgI.mp4"
                     />
                     <CardHeader className="p-0 mb-6">
-                        <CardTitle className="text-3xl font-heading font-bold text-center lg:text-left">Геодезическая компания ООО "ГЕОСТРОЙПРОЕКТ"</CardTitle>
+                        <CardTitle className="text-3xl font-heading font-bold text-center lg:text-left lg:pl-[150px]">Геодезическая компания ООО "ГЕОСТРОЙПРОЕКТ"</CardTitle>
                     </CardHeader>
-                    <CardContent className="p-0 text-muted-foreground space-y-4 text-lg">
+                    <CardContent className="p-0 text-muted-foreground space-y-4 text-lg lg:pl-[150px]">
                         <p>Мы рады приветствовать вас на официальном сайте геодезической компании ООО «ГЕОСТРОЙПРОЕКТ» и готовы предложить бесплатную консультацию по вашему вопросу прямо сейчас!</p>
                         <p>У нас работают только опытные кадастровые инженеры, готовые помочь в решении земельных вопросов качественно и в поставленные сроки. Не нужно устанавливать забор и делить землю самостоятельно — это может привести к ненужным разногласиям с соседями, следовательно, к потере денег и времени.</p>
                         <p>Наши специалисты постоянно находятся в курсе последних изменений в законодательстве и всегда готовы оказать вам квалифицированную помощь в оформлении перепланировки квартиры, сопровождении сделок с недвижимостью, заказе межевого плана участка и проектировании домов.</p>
