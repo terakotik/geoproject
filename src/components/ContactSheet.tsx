@@ -53,67 +53,65 @@ export const ContactSheet = () => {
 
     return (
         <Sheet open={isOpen} onOpenChange={onClose}>
-            <SheetContent className="w-full sm:max-w-xl p-0 overflow-y-auto">
-                <SheetHeader className="p-6 sm:p-8 border-b">
-                    <div className="flex justify-between items-start">
+            <SheetContent className="w-[90vw] max-w-4xl p-0 overflow-y-auto">
+                <SheetHeader className="p-8 sm:p-12 border-b">
+                    <div className="flex justify-between items-start gap-8">
                         <div>
-                            <SheetTitle className="text-3xl sm:text-4xl font-bold" dangerouslySetInnerHTML={{ __html: 'Привет!' }}></SheetTitle>
-                            <SheetDescription className="text-3xl sm:text-4xl font-bold text-foreground" dangerouslySetInnerHTML={{ __html: 'Какая у&nbsp;вас задача?' }}>
+                            <SheetTitle className="text-5xl font-bold" dangerouslySetInnerHTML={{ __html: 'Привет!' }}></SheetTitle>
+                            <SheetDescription className="text-5xl font-bold text-foreground mt-2" dangerouslySetInnerHTML={{ __html: 'Какая у&nbsp;вас задача?' }}>
                             </SheetDescription>
-                            <p className="text-muted-foreground pt-2 text-base">
+                            <p className="text-muted-foreground pt-4 text-xl">
                                 <a href="mailto:danayn11@mail.ru" className="hover:text-accent">danayn11@mail.ru</a>
                             </p>
                         </div>
-                        <div className="hidden sm:block text-center">
+                        <div className="hidden sm:block text-center flex-shrink-0">
                              <Image
                                 src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcS1mKBDqAEo3ZgrUseu5xob-zcerfrLTmiy4f-nICu3k9yqN7tW8fI0DJ-36GzaExLCwP5lxuvRYqQNH0J5uQ7rkE8kOxityWueZpaSgeFx"
                                 alt="WhatsApp QR Code"
-                                width={120}
-                                height={120}
+                                width={150}
+                                height={150}
                             />
-                            <p className="text-xs text-muted-foreground mt-2">Связь в&nbsp;WhatsApp</p>
+                            <p className="text-base text-muted-foreground mt-2">Связь в&nbsp;WhatsApp</p>
                         </div>
                     </div>
                 </SheetHeader>
-                <div className="p-6 sm:p-8">
+                <div className="p-8 sm:p-12">
                 {formState === 'success' ? (
                     <div className="text-center py-20 flex flex-col items-center">
-                        <CheckCircle2 className="h-20 w-20 text-green-500 mx-auto mb-6" />
-                        <h3 className="text-2xl font-semibold mb-4">Заявка успешно отправлена!</h3>
-                        <p className="text-muted-foreground max-w-md">Спасибо! Мы&nbsp;свяжемся с&nbsp;вами в&nbsp;ближайшее время для уточнения деталей.</p>
-                         <Button onClick={onClose} className="mt-8">Закрыть</Button>
+                        <CheckCircle2 className="h-24 w-24 text-green-500 mx-auto mb-8" />
+                        <h3 className="text-4xl font-semibold mb-4">Заявка успешно отправлена!</h3>
+                        <p className="text-2xl text-muted-foreground max-w-lg">Спасибо! Мы&nbsp;свяжемся с&nbsp;вами в&nbsp;ближайшее время для уточнения деталей.</p>
+                         <Button onClick={onClose} className="mt-12 text-2xl p-8">Закрыть</Button>
                     </div>
                  ) : (
-                    <form onSubmit={handleSubmit(onSubmit)} className="space-y-8">
-                        <div className="grid grid-cols-1 gap-y-6">
-                             <div className="space-y-3">
-                                <Label htmlFor="name" className="text-lg">ФИО *</Label>
-                                <Input id="name" {...register("name")} placeholder="Иванов Иван" className="text-lg h-14 p-4" />
-                                {errors.name && <p className="text-sm text-destructive flex items-center gap-1"><AlertCircle className="h-4 w-4" /> {errors.name.message}</p>}
-                            </div>
-                             <div className="space-y-3">
-                                <Label htmlFor="phone" className="text-lg">Номер телефона *</Label>
-                                <Input id="phone" {...register("phone")} placeholder="+7 (___) ___-__-__" className="text-lg h-14 p-4" />
-                                {errors.phone && <p className="text-sm text-destructive flex items-center gap-1"><AlertCircle className="h-4 w-4" /> {errors.phone.message}</p>}
-                            </div>
+                    <form onSubmit={handleSubmit(onSubmit)} className="space-y-12">
+                        <div className="space-y-4">
+                            <Label htmlFor="name" className="text-5xl">ФИО *</Label>
+                            <Input id="name" {...register("name")} placeholder="Иванов Иван" className="text-5xl h-24 p-6" />
+                            {errors.name && <p className="text-xl text-destructive flex items-center gap-2"><AlertCircle className="h-6 w-6" /> {errors.name.message}</p>}
+                        </div>
+                         <div className="space-y-4">
+                            <Label htmlFor="phone" className="text-5xl">Номер телефона *</Label>
+                            <Input id="phone" {...register("phone")} placeholder="+7 (___) ___-__-__" className="text-5xl h-24 p-6" />
+                            {errors.phone && <p className="text-xl text-destructive flex items-center gap-2"><AlertCircle className="h-6 w-6" /> {errors.phone.message}</p>}
                         </div>
 
-                        <div className="space-y-3">
-                            <Label htmlFor="project" className="text-lg">По&nbsp;какому проекту вы&nbsp;хотели&nbsp;бы проконсультироваться?</Label>
-                            <Textarea id="project" {...register("project")} placeholder="Опишите детали вашего проекта, цели, сроки..." rows={5} className="text-lg p-4" />
+                        <div className="space-y-4">
+                            <Label htmlFor="project" className="text-5xl">По&nbsp;какому проекту вы&nbsp;хотели&nbsp;бы проконсультироваться?</Label>
+                            <Textarea id="project" {...register("project")} placeholder="Опишите детали вашего проекта, цели, сроки..." rows={6} className="text-5xl p-6" />
                         </div>
                         
-                        <div className="space-y-6 pt-4">
-                             <div className="flex items-start space-x-3">
-                                <input type="checkbox" id="privacy-sheet" {...register("privacy")} className="mt-1 h-4 w-4 rounded border-border" />
-                                <div className="grid gap-1.5 leading-none">
-                                    <Label htmlFor="privacy-sheet" className="text-base font-normal text-muted-foreground">
+                        <div className="space-y-8 pt-6">
+                             <div className="flex items-start space-x-4">
+                                <input type="checkbox" id="privacy-sheet" {...register("privacy")} className="mt-3 h-8 w-8 rounded border-border" />
+                                <div className="grid gap-2 leading-none">
+                                    <Label htmlFor="privacy-sheet" className="text-2xl font-normal text-muted-foreground">
                                         Нажимая на&nbsp;кнопку, вы&nbsp;даете <Link href="#" className="underline">Согласие на&nbsp;обработку своих персональных данных</Link>
                                     </Label>
-                                    {errors.privacy && <p className="text-sm text-destructive flex items-center gap-1"><AlertCircle className="h-4 w-4" /> {errors.privacy.message}</p>}
+                                    {errors.privacy && <p className="text-xl text-destructive flex items-center gap-2"><AlertCircle className="h-6 w-6" /> {errors.privacy.message}</p>}
                                 </div>
                             </div>
-                            <Button type="submit" size="lg" className="w-full sm:w-auto text-lg py-7 px-10" disabled={formState === 'submitting'}>
+                            <Button type="submit" size="lg" className="w-full sm:w-auto text-4xl py-12 px-16" disabled={formState === 'submitting'}>
                                 {formState === 'submitting' ? 'Отправка...' : 'Отправить'}
                             </Button>
                         </div>
