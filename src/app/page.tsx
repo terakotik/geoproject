@@ -123,7 +123,7 @@ const geoServices = [
 
 const heroStats = [
     { value: "2000+", label: "выполненных проектов", icon: FolderKanban },
-    { value: "21", label: "год на рынке", icon: Award },
+    { value: "21", label: "год на кадастровом рынке", icon: Award },
     { value: "14", label: "дней средний срок", icon: Clock },
 ];
 
