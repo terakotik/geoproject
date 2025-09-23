@@ -282,12 +282,12 @@ export default function Home() {
             </p>
             <div className="grid sm:grid-cols-3 gap-6 my-8">
               {heroStats.map((stat, index) => (
-                <Card key={index} className="bg-background/30 backdrop-blur-sm border-border/20 p-6 text-left shadow-lg">
+                <Card key={index} className="bg-background/30 backdrop-blur-sm border-border/20 p-6 text-left shadow-lg h-full">
                   <div className="flex items-center gap-4">
                     <div className="bg-accent/20 p-3 rounded-lg">
                       <stat.icon className="h-8 w-8 text-accent" />
                     </div>
-                    <div>
+                    <div className="flex flex-col">
                       <div className="text-4xl font-bold text-foreground">{stat.value}</div>
                       <div className="text-sm text-muted-foreground mt-1">{stat.label}</div>
                     </div>
