@@ -27,10 +27,12 @@ import {
 } from "@/components/ui/accordion"
 import { cn } from '@/lib/utils';
 import { usePathname } from 'next/navigation';
+import { useContactSheet } from '@/hooks/use-contact-sheet';
 
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const pathname = usePathname();
+  const { onOpen } = useContactSheet();
 
   const navLinks = [
     { href: '/prices', label: 'Цены' },
@@ -80,8 +82,8 @@ export default function Header() {
             ))}
           </nav>
           <div className="flex items-center gap-2">
-            <Button asChild className="hidden sm:inline-flex">
-              <Link href="/contact">Заказать звонок</Link>
+            <Button onClick={onOpen} className="hidden sm:inline-flex">
+              Заказать звонок
             </Button>
             <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
               <SheetTrigger asChild>
@@ -122,8 +124,8 @@ export default function Header() {
                   </nav>
                 </ScrollArea>
                 <div className="p-4 mt-auto border-t space-y-3 bg-background">
-                   <Button className="w-full" asChild size="lg">
-                     <Link href="/contact" onClick={closeMobileMenu}>Заказать звонок</Link>
+                   <Button className="w-full" onClick={() => { onOpen(); closeMobileMenu(); }} size="lg">
+                     Заказать звонок
                    </Button>
                    <Button variant="outline" className="w-full" asChild size="lg">
                       <a href="tel:+79522764940" onClick={closeMobileMenu} className="flex items-center gap-2">

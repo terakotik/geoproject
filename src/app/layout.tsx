@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils";
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import { Toaster } from "@/components/ui/toaster";
-import { ScrollProgressLine } from '@/components/ScrollProgressLine';
+import { ContactSheetProvider } from '@/components/ContactSheet';
 
 export const metadata: Metadata = {
   title: 'ГЕОСТРОЙПРОЕКТ - Кадастровые работы и геодезические услуги в Санкт-Петербурге',
@@ -24,14 +24,16 @@ export default function RootLayout({
         <link href="https://fonts.googleapis.com/css2?family=PT+Sans:wght@400;700&display=swap" rel="stylesheet" />
       </head>
       <body className={cn("font-body antialiased")}>
-        <div vaul-drawer-wrapper="" className="min-h-screen flex flex-col">
-          <Header />
-          <div className="relative flex-grow flex flex-col">
-            <main className="relative z-10 flex-grow bg-background">{children}</main>
-            <Footer />
+        <ContactSheetProvider>
+          <div vaul-drawer-wrapper="" className="min-h-screen flex flex-col">
+            <Header />
+            <div className="relative flex-grow flex flex-col">
+              <main className="relative z-10 flex-grow bg-background">{children}</main>
+              <Footer />
+            </div>
           </div>
-        </div>
-        <Toaster />
+          <Toaster />
+        </ContactSheetProvider>
       </body>
     </html>
   );

@@ -27,6 +27,7 @@ import {
 } from "@/components/ui/dialog"
 import { useState } from 'react';
 import { ClientsMarquee } from '@/components/ClientsMarquee';
+import { useContactSheet } from '@/hooks/use-contact-sheet';
 
 
 const packages = [
@@ -135,6 +136,7 @@ const heroBenefits = [
 ];
 
 export default function Home() {
+  const { onOpen } = useContactSheet();
   const heroImage = PlaceHolderImages.find(p => p.id === 'hero-background');
   
   const processSteps = [
@@ -207,7 +209,7 @@ export default function Home() {
     if (!details) return null;
     return (
       <Card className="flex flex-col h-full hover:border-accent transition-all duration-300 border bg-card relative group p-6">
-        <div className="absolute top-4 left-4 text-8xl font-bold text-foreground/5 opacity-80 transition-all duration-300 group-hover:scale-110 group-hover:text-accent/10">
+        <div className="absolute top-2 left-2 text-7xl font-bold text-foreground/5 opacity-80 transition-all duration-300 group-hover:scale-110 group-hover:text-accent/10">
           0{index + 1}
         </div>
         <div className="mb-4">
@@ -232,7 +234,7 @@ export default function Home() {
             <div className="font-bold text-accent" dangerouslySetInnerHTML={{ __html: details.price }}></div>
             <div className="text-muted-foreground" dangerouslySetInnerHTML={{ __html: details.timeline }}></div>
           </div>
-          <Button variant="default" size="lg" className="w-full text-lg py-6 bg-accent text-accent-foreground hover:bg-accent/90">
+          <Button variant="default" size="lg" className="w-full text-lg py-6 bg-accent text-accent-foreground hover:bg-accent/90" onClick={onOpen}>
             Заказать услугу
           </Button>
         </div>
@@ -302,8 +304,8 @@ export default function Home() {
               ))}
             </ul>
             <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
-              <Button size="lg" asChild>
-                <Link href="/contact">Бесплатная консультация</Link>
+              <Button size="lg" onClick={onOpen}>
+                Бесплатная консультация
               </Button>
             </div>
           </div>
@@ -404,8 +406,8 @@ export default function Home() {
                       </div>
                       <h3 className="text-2xl font-heading font-semibold text-foreground mb-2" dangerouslySetInnerHTML={{ __html: 'Не&nbsp;нашли нужную услугу?' }}></h3>
                       <p className="text-muted-foreground mb-6" dangerouslySetInnerHTML={{ __html: 'Мы&nbsp;выполняем любые виды геодезических работ под&nbsp;заказ' }}></p>
-                      <Button size="lg" asChild>
-                        <Link href="/contact">Получить консультацию</Link>
+                      <Button size="lg" onClick={onOpen}>
+                        Получить консультацию
                       </Button>
                   </Card>
                 </div>
@@ -438,8 +440,8 @@ export default function Home() {
                 </div>
                 <h3 className="text-2xl font-heading font-semibold text-foreground mb-2" dangerouslySetInnerHTML={{ __html: 'Не&nbsp;нашли нужную услугу?' }}></h3>
                 <p className="text-muted-foreground mb-6" dangerouslySetInnerHTML={{ __html: 'Мы&nbsp;выполняем любые виды геодезических работ под&nbsp;заказ' }}></p>
-                <Button size="lg" asChild>
-                  <Link href="/contact">Получить консультацию</Link>
+                <Button size="lg" onClick={onOpen}>
+                  Получить консультацию
                 </Button>
             </Card>
             <div className="flex justify-center items-center mt-8">
@@ -500,7 +502,7 @@ export default function Home() {
                       ))}
                     </ul>
                   </div>
-                  <Button className="w-full mt-auto">Выбрать пакет</Button>
+                  <Button className="w-full mt-auto" onClick={onOpen}>Выбрать пакет</Button>
                 </Card>
               ))}
             </div>
@@ -536,7 +538,7 @@ export default function Home() {
                             </td>
                             <td className="p-4 text-right text-muted-foreground" dangerouslySetInnerHTML={{ __html: item.term }}></td>
                             <td className="p-4 pl-4 text-right">
-                              <Button variant="outline" size="sm">Заказать</Button>
+                              <Button variant="outline" size="sm" onClick={onOpen}>Заказать</Button>
                             </td>
                           </tr>
                         ))}
@@ -575,7 +577,7 @@ export default function Home() {
                 <h3 className="text-2xl font-heading font-bold">Срочные работы</h3>
               </div>
               <p className="text-lg text-muted-foreground mb-4" dangerouslySetInnerHTML={{ __html: 'Выполним работы в&nbsp;кратчайшие сроки с&nbsp;доплатой 30%' }}></p>
-              <Button variant="default">Срочный заказ</Button>
+              <Button variant="default" onClick={onOpen}>Срочный заказ</Button>
             </Card>
           </div>
         </div>
@@ -635,8 +637,8 @@ export default function Home() {
             <p className="text-lg text-muted-foreground mb-8" dangerouslySetInnerHTML={{ __html: 'Оставьте заявку на&nbsp;бесплатную консультацию и&nbsp;мы&nbsp;ответим на&nbsp;все ваши вопросы.' }}>
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button asChild size="lg" variant="default">
-                <Link href="/contact">Бесплатная консультация</Link>
+              <Button onClick={onOpen} size="lg" variant="default">
+                Бесплатная консультация
               </Button>
               <Button asChild size="lg" variant="outline">
                 <Link href="/prices">Рассчитать стоимость</Link>
