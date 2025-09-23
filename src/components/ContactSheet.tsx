@@ -38,7 +38,7 @@ export const ContactSheet = () => {
     const { register, handleSubmit, formState: { errors } } = useForm<FormData>({
         resolver: zodResolver(formSchema),
         defaultValues: {
-            privacy: false,
+            privacy: true,
         }
     });
 
@@ -64,13 +64,14 @@ export const ContactSheet = () => {
                                 <a href="mailto:danayn11@mail.ru" className="hover:text-accent">danayn11@mail.ru</a>
                             </p>
                         </div>
-                        <div className="hidden sm:block">
+                        <div className="hidden sm:block text-center">
                              <Image
                                 src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcS1mKBDqAEo3ZgrUseu5xob-zcerfrLTmiy4f-nICu3k9yqN7tW8fI0DJ-36GzaExLCwP5lxuvRYqQNH0J5uQ7rkE8kOxityWueZpaSgeFx"
                                 alt="WhatsApp QR Code"
                                 width={120}
                                 height={120}
                             />
+                            <p className="text-xs text-muted-foreground mt-2">Связь в&nbsp;WhatsApp</p>
                         </div>
                     </div>
                 </SheetHeader>
