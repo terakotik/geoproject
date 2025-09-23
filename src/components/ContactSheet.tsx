@@ -23,12 +23,8 @@ import Image from "next/image";
 
 const formSchema = z.object({
   name: z.string().min(2, { message: "Имя должно быть не короче 2 символов." }),
-  company: z.string().optional(),
-  position: z.string().optional(),
   phone: z.string().min(10, { message: "Введите корректный номер телефона." }),
-  email: z.string().email({ message: "Введите корректный email." }),
   project: z.string().optional(),
-  file: z.any().optional(),
   privacy: z.boolean().refine(val => val === true, { message: "Необходимо согласие на обработку данных." }),
 });
 
@@ -56,7 +52,7 @@ export const ContactSheet = () => {
 
     return (
         <Sheet open={isOpen} onOpenChange={onClose}>
-            <SheetContent className="w-full sm:max-w-2xl p-0 overflow-y-auto">
+            <SheetContent className="w-full sm:max-w-xl p-0 overflow-y-auto">
                 <SheetHeader className="p-6 sm:p-8 border-b">
                     <SheetTitle className="text-3xl sm:text-4xl font-bold">Привет!</SheetTitle>
                     <SheetDescription className="text-3xl sm:text-4xl font-bold text-foreground">
@@ -76,36 +72,16 @@ export const ContactSheet = () => {
                     </div>
                  ) : (
                     <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-6">
-                            <div className="space-y-2">
+                        <div className="grid grid-cols-1 gap-y-6">
+                             <div className="space-y-2">
                                 <Label htmlFor="name">ФИО *</Label>
                                 <Input id="name" {...register("name")} placeholder="Иванов Иван" />
                                 {errors.name && <p className="text-sm text-destructive flex items-center gap-1"><AlertCircle className="h-4 w-4" /> {errors.name.message}</p>}
-                            </div>
-                            <div className="space-y-2">
-                                <Label htmlFor="company">Название компании</Label>
-                                <Input id="company" {...register("company")} placeholder="ООО 'Рога и Копыта'" />
-                            </div>
-                            <div className="space-y-2">
-                                <Label htmlFor="position">Должность</Label>
-                                <Input id="position" {...register("position")} placeholder="Генеральный директор" />
-                            </div>
-                            <div className="space-y-2">
-                                <Label htmlFor="email">Рабочий e-mail *</Label>
-                                <Input id="email" type="email" {...register("email")} placeholder="ivanov@work.com" />
-                                {errors.email && <p className="text-sm text-destructive flex items-center gap-1"><AlertCircle className="h-4 w-4" /> {errors.email.message}</p>}
                             </div>
                              <div className="space-y-2">
                                 <Label htmlFor="phone">Номер телефона *</Label>
                                 <Input id="phone" {...register("phone")} placeholder="+7 (___) ___-__-__" />
                                 {errors.phone && <p className="text-sm text-destructive flex items-center gap-1"><AlertCircle className="h-4 w-4" /> {errors.phone.message}</p>}
-                            </div>
-                            <div className="space-y-2">
-                                <Label htmlFor="file-upload" className="cursor-pointer flex items-center gap-2 text-muted-foreground border-b border-dashed h-10 w-full">
-                                    <Upload className="h-4 w-4" />
-                                    <span>Прикрепить файл</span>
-                                </Label>
-                                <Input id="file-upload" type="file" className="hidden" {...register("file")} />
                             </div>
                         </div>
 
