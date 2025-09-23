@@ -591,16 +591,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Clients Section */}
-      <section className="py-16 md:py-24 bg-gradient-hero">
-        <div className="container mx-auto px-4">
-          <div className="mb-12 md:mb-16">
-            <AnimatedSectionTitle className="text-left">Работаем с крупными компаниями</AnimatedSectionTitle>
-          </div>
-          <ClientsMarquee />
-        </div>
-      </section>
-
       {/* CTA Section */}
       <section className="py-16 md:py-24 bg-background">
         <div className="container mx-auto px-4">
@@ -640,7 +630,16 @@ export default function Home() {
           </Card>
         </div>
       </section>
-
+      
+      {/* Clients Section */}
+      <section className="py-16 md:py-24 bg-gradient-hero">
+        <div className="container mx-auto px-4">
+          <div className="mb-12 md:mb-16">
+            <AnimatedSectionTitle className="text-left">Работаем с крупными компаниями</AnimatedSectionTitle>
+          </div>
+          <ClientsMarquee />
+        </div>
+      </section>
     </div>
   );
 }
