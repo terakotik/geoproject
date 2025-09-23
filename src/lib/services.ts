@@ -1,3 +1,4 @@
+
 import { type LucideIcon, DraftingCompass, Scale, FileText, Mountain, Calculator, Map, Building, ScanSearch, LandPlot, Star, CircleCheckBig, FilePenLine, Users, SquareCheckBig, Download, MessageCircle, Zap, Send, Phone, MessageSquare, ExternalLink, ArrowRight, Shield, MapPin as MapPinIcon, Ruler, FileText as FileTextIcon, TreePine, Factory, ListChecks } from "lucide-react";
 
 export type Service = {
@@ -43,12 +44,6 @@ export const services: Service[] = [
     description: "Перераспределение земельных участков согласно требованиям",
     icon: LandPlot,
     slug: "land-division-unification",
-  },
-  {
-    title: "Лесоустройство",
-    description: "Работы по&nbsp;лесоустройству и&nbsp;лесопользованию",
-    icon: TreePine,
-    slug: "forest-management",
   },
   {
     title: "Промышленная геодезия",
@@ -109,12 +104,6 @@ const serviceDetails: Record<string, ServiceDetails> = {
         timeline: "от&nbsp;14&nbsp;дней",
         includes: ["Проект раздела", "Согласования", "Новые участки", "Кадастровый учет"]
     },
-    "forest-management": {
-        longDescription: "Комплекс работ по&nbsp;лесоустройству, включая таксацию лесов, проектирование лесных участков, отвод делянок и&nbsp;подготовку паспортов лесных участков.",
-        price: "индивидуально",
-        timeline: "от&nbsp;20&nbsp;дней",
-        includes: ["Лесная таксация", "Планы лесонасаждений", "Отводы делянок", "Паспорта участков"]
-    },
     "industrial-geodesy": {
         longDescription: "Полное геодезическое сопровождение на&nbsp;всех этапах строительства и&nbsp;эксплуатации промышленных и&nbsp;гражданских объектов, обеспечивающее точность и&nbsp;контроль качества.",
         price: "от&nbsp;25&nbsp;000&nbsp;₽",
@@ -132,3 +121,5 @@ const serviceDetails: Record<string, ServiceDetails> = {
 export function getServiceDetails(slug: string): ServiceDetails | undefined {
     return serviceDetails[slug];
 }
+
+    

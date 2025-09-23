@@ -124,7 +124,7 @@ const geoServices = [
 
 const heroStats = [
     { value: "2000+", label: "выполненных проектов", icon: FolderKanban },
-    { value: "21 год", label: "на&nbsp;рынке кадастра", icon: Award },
+    { value: "21", label: "год на&nbsp;рынке кадастра", icon: Award },
     { value: "14", label: "дней средний срок", icon: Clock },
 ];
 
@@ -215,10 +215,10 @@ export default function Home() {
             <service.icon className="h-10 w-10 text-muted-foreground" />
           </div>
           <CardTitle className="text-xl md:text-2xl font-heading">{service.title}</CardTitle>
-          <CardDescription className="text-base pt-2" dangerouslySetInnerHTML={{ __html: service.description }}></CardDescription>
+          <CardDescription className="text-lg pt-2" dangerouslySetInnerHTML={{ __html: service.description }}></CardDescription>
         </CardHeader>
         <CardContent className="flex-grow p-4 md:p-6 pt-0">
-          <ul className="space-y-4 my-6">
+          <ul className="space-y-4 my-6 text-base">
             {details.includes.map((item, i) => (
               <li key={i} className="flex items-center gap-3">
                 <CheckCircle className="h-4 w-4 text-accent flex-shrink-0" />
@@ -316,7 +316,7 @@ export default function Home() {
         <div className="container mx-auto px-4">
             <div className="grid lg:grid-cols-2 gap-12 items-start">
               <div className="space-y-6">
-                 <Card className="p-6 md:p-8 bg-card/50 backdrop-blur-sm border-border/50 relative overflow-hidden">
+                 <Card className="p-6 md:p-8 bg-card/50 backdrop-blur-sm border-border/50 relative">
                    <div className="flex items-start gap-6">
                       <video
                           autoPlay
@@ -327,10 +327,10 @@ export default function Home() {
                           src="https://pouch.jumpshare.com/preview/dUHg-gsRDslnFdT3XfFQYUj3M9PXnVuKIjURan0E7Tt9Heoa57PeFb-sbUHpmPWll8ZWyRtlbSgh2j3IOsSmh_aPcQXoRS15iWmHOM-M34oq3xv7xY6eKpTknO-BlLQ66lk3U0W71gNmmot0a0rduW6yjbN-I2pg_cnoHs_AmgI.mp4"
                       />
                       <div className="flex-grow">
-                        <CardHeader className="p-0 mb-6 lg:pl-[150px]">
+                        <CardHeader className="p-0 mb-6 flex-grow pl-[150px]">
                             <CardTitle className="text-3xl font-heading font-bold">Геодезическая компания ООО&nbsp;"ГЕОСТРОЙПРОЕКТ"</CardTitle>
                         </CardHeader>
-                        <CardContent className="p-0 text-muted-foreground space-y-4 text-lg lg:pl-[150px]">
+                        <CardContent className="p-0 text-muted-foreground space-y-4 text-lg pl-[150px]">
                             <p>Мы&nbsp;рады приветствовать вас на&nbsp;официальном сайте геодезической компании ООО&nbsp;«ГЕОСТРОЙПРОЕКТ» и&nbsp;готовы предложить бесплатную консультацию по&nbsp;вашему вопросу прямо сейчас!</p>
                         </CardContent>
                       </div>
@@ -663,3 +663,5 @@ export default function Home() {
     </div>
   );
 }
+
+    
