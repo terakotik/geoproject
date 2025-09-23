@@ -144,7 +144,7 @@ export default function PricesPage() {
                     </thead>
                     <tbody>
                       {section.items.map((item, i) => (
-                        <tr key={i} className="border-b border-border/50 hover:bg-muted/50 transition-colors duration-300 group">
+                        <tr key={i} className="border-b border-border/50 hover-gradient transition-colors duration-300 group">
                            <td className="p-4 pr-4 text-foreground relative">
                               <span className="block transition-transform duration-500 group-hover:translate-x-2">{item.name}</span>
                             </td>
