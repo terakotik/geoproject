@@ -278,7 +278,7 @@ export default function Home() {
             <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mt-6 mx-auto md:mx-0">
               Полный спектр кадастровых работ, инженерных изысканий и ЗОУИТ в Санкт-Петербурге и ЛО
             </p>
-            <div className="grid sm:grid-cols-3 gap-6 my-8">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 my-8">
               {heroStats.map((stat, index) => (
                 <Card key={index} className="bg-background/30 backdrop-blur-sm border-border/20 p-6 text-left shadow-lg h-full">
                   <div className="flex items-center gap-4">
