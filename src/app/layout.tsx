@@ -27,7 +27,7 @@ export default function RootLayout({
         <div vaul-drawer-wrapper="" className="min-h-screen flex flex-col">
           <Header />
           <div className="relative flex-grow flex flex-col">
-            <main className="relative z-10 flex-grow">{children}</main>
+            <main className="relative z-10 flex-grow bg-background">{children}</main>
             <Footer />
           </div>
         </div>
