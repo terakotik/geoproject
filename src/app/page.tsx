@@ -1,3 +1,4 @@
+
 'use client';
 
 import Image from 'next/image';
@@ -66,20 +67,20 @@ const priceSections = [
   {
     title: "Земельные участки",
     items: [
-      { name: "Межевание земельного участка в Спб и ЛО", price: "от 12500 руб.", term: "от 14 дней" },
-      { name: "Межевание земель общего пользования в СНТ, ДНП", price: "индивидуально", term: "" },
+      { name: "Межевание земельного участка в&nbsp;Спб и&nbsp;ЛО", price: "от 12500 руб.", term: "от 14 дней" },
+      { name: "Межевание земель общего пользования в&nbsp;СНТ, ДНП", price: "индивидуально", term: "" },
       { name: "Раздел земельного участка", price: "от 10000 руб.", term: "от 14 дней" },
       { name: "Объединение земельных участков", price: "от 10000 руб.", term: "от 14 дней" },
       { name: "Перераспределение земельных участков", price: "от 8000 руб.", term: "от 14 дней" },
-      { name: "Формирование схемы участка на КПТ", price: "от 3000 руб.", term: "2 дня" },
-      { name: "Вынос границ в натуру (4 точки включены)", price: "от 7000 руб.", term: "от 2 дней" },
+      { name: "Формирование схемы участка на&nbsp;КПТ", price: "от 3000 руб.", term: "2 дня" },
+      { name: "Вынос границ в&nbsp;натуру (4 точки включены)", price: "от 7000 руб.", term: "от 2 дней" },
     ],
   },
   {
     title: "Объекты капитального строительства",
     items: [
-        { name: "Оформление прав собственности на дом, баню, гараж, хозпостройку", price: "от 12000 руб.", term: "от 5 дней" },
-        { name: "Изготовление технического плана на здание, сооружение, объекта незавершенного строительства", price: "от 8000 руб.", term: "от 5 дней" },
+        { name: "Оформление прав собственности на&nbsp;дом, баню, гараж, хозпостройку", price: "от 12000 руб.", term: "от 5 дней" },
+        { name: "Изготовление технического плана на&nbsp;здание, сооружение, объекта незавершенного строительства", price: "от 8000 руб.", term: "от 5 дней" },
         { name: "Учет изменений ОКС (перепланировка, реконструкция)", price: "от 12000 руб.", term: "от 5 дней" },
         { name: "Изготовление акта обследования", price: "от 5000 руб.", term: "от 3 дней" },
         { name: "Регистрация загородной недвижимости", price: "от 8500 руб.", term: "от 5 дней" },
@@ -88,8 +89,8 @@ const priceSections = [
   {
     title: "Топографическая съемка",
     items: [
-        { name: "Фасадная съемка и 3D", price: "от 10000 руб.", term: "от 3 дней" },
-        { name: "Съёмка для водоканала и газа", price: "от 10000 руб.", term: "от 5 дней" },
+        { name: "Фасадная съемка и&nbsp;3D", price: "от 10000 руб.", term: "от 3 дней" },
+        { name: "Съёмка для водоканала и&nbsp;газа", price: "от 10000 руб.", term: "от 5 дней" },
         { name: "Съёмка для ландшафтного дизайна", price: "от 12000 руб.", term: "от 5 дней" },
     ],
   },
@@ -123,7 +124,7 @@ const geoServices = [
 
 const heroStats = [
     { value: "2000+", label: "выполненных проектов", icon: FolderKanban },
-    { value: "21", label: "год на&nbsp;кадастровом рынке", icon: Award },
+    { value: "21 год", label: "на&nbsp;рынке кадастра", icon: Award },
     { value: "14", label: "дней средний срок", icon: Clock },
 ];
 
@@ -217,7 +218,7 @@ export default function Home() {
           <CardDescription className="text-base pt-2">{service.description}</CardDescription>
         </CardHeader>
         <CardContent className="flex-grow p-4 md:p-6 pt-0">
-          <ul className="space-y-3 mb-6">
+          <ul className="space-y-4 mb-6">
             {details.includes.map((item, i) => (
               <li key={i} className="flex items-center gap-3">
                 <CheckCircle className="h-4 w-4 text-accent flex-shrink-0" />
@@ -287,7 +288,7 @@ export default function Home() {
                     </div>
                     <div className="flex flex-col">
                       <div className="text-4xl font-bold text-foreground">{stat.value}</div>
-                      <div className="text-sm text-muted-foreground mt-1 w-24">{stat.label}</div>
+                      <div className="text-sm text-muted-foreground mt-1 w-24" dangerouslySetInnerHTML={{ __html: stat.label }}></div>
                     </div>
                   </div>
                 </Card>
@@ -327,10 +328,10 @@ export default function Home() {
                       />
                       <div className="flex-grow text-center sm:text-left">
                         <CardHeader className="p-0 mb-6">
-                            <CardTitle className="text-3xl font-heading font-bold">Геодезическая компания ООО "ГЕОСТРОЙПРОЕКТ"</CardTitle>
+                            <CardTitle className="text-3xl font-heading font-bold">Геодезическая компания ООО&nbsp;"ГЕОСТРОЙПРОЕКТ"</CardTitle>
                         </CardHeader>
                         <CardContent className="p-0 text-muted-foreground space-y-4 text-lg">
-                            <p>Мы&nbsp;рады приветствовать вас на&nbsp;официальном сайте геодезической компании ООО «ГЕОСТРОЙПРОЕКТ» и&nbsp;готовы предложить бесплатную консультацию по&nbsp;вашему вопросу прямо сейчас!</p>
+                            <p>Мы&nbsp;рады приветствовать вас на&nbsp;официальном сайте геодезической компании ООО&nbsp;«ГЕОСТРОЙПРОЕКТ» и&nbsp;готовы предложить бесплатную консультацию по&nbsp;вашему вопросу прямо сейчас!</p>
                         </CardContent>
                       </div>
                     </div>
@@ -338,8 +339,8 @@ export default function Home() {
                         <p>У&nbsp;нас работают только опытные кадастровые инженеры, готовые помочь в&nbsp;решении земельных вопросов качественно и&nbsp;в&nbsp;поставленные сроки. Не&nbsp;нужно устанавливать забор и&nbsp;делить землю самостоятельно&nbsp;- это может привести к&nbsp;ненужным разногласиям с&nbsp;соседями, следовательно, к&nbsp;потере денег и&nbsp;времени.</p>
                         <p>Наши специалисты постоянно находятся в&nbsp;курсе последних изменений в&nbsp;законодательстве и&nbsp;всегда готовы оказать вам квалифицированную помощь в&nbsp;оформлении перепланировки квартиры, сопровождении сделок с&nbsp;недвижимостью, заказе межевого плана участка и&nbsp;проектировании домов.</p>
                         <p>Инженерные изыскания&nbsp;- это неотъемлемая часть проектной деятельности, обеспечивающая всестороннее изучение природных и&nbsp;техногенных условий местности планируемого строительства.</p>
-                        <p>Проведение инженерных работ позволяет получить объем необходимых данных для аргументирования технической возможности и&nbsp;экономической целесообразности проектирования и&nbsp;застройки на&nbsp;конкретной территории. Информировать о&nbsp;возможных рисках и&nbsp;изменениях геологической ситуации и&nbsp;окружающе.</p>
-                        <p className="font-semibold text-foreground">Геодезическая фирма ООО «ГЕОСТРОЙПРОЕКТ» гарантирует качество и&nbsp;законность выполненных работ в&nbsp;г.&nbsp;Санкт-Петербург и&nbsp;Ленинградской области.</p>
+                        <p>Проведение инженерных работ позволяет получить объем необходимых данных для аргументирования технической возможности и&nbsp;экономической целесообразности проектирования и&nbsp;застройки на&nbsp;конкретной территории. Информировать о&nbsp;возможных рисках и&nbsp;изменениях геологической ситуации и&nbsp;окружающей среды.</p>
+                        <p className="font-semibold text-foreground">Геодезическая фирма ООО&nbsp;«ГЕОСТРОЙПРОЕКТ» гарантирует качество и&nbsp;законность выполненных работ в&nbsp;г.&nbsp;Санкт-Петербург и&nbsp;Ленинградской области.</p>
                     </CardContent>
                 </Card>
               </div>
@@ -353,7 +354,7 @@ export default function Home() {
                               {kadastrServices.map((service, i) => (
                                   <li key={i} className="flex items-center gap-3">
                                       <CheckCircle className="h-4 w-4 text-accent flex-shrink-0" />
-                                      <span className="text-muted-foreground">{service}</span>
+                                      <span className="text-muted-foreground" dangerouslySetInnerHTML={{ __html: service }}></span>
                                   </li>
                               ))}
                           </ul>
@@ -368,7 +369,7 @@ export default function Home() {
                               {geoServices.map((service, i) => (
                                   <li key={i} className="flex items-center gap-3">
                                       <CheckCircle className="h-4 w-4 text-accent flex-shrink-0" />
-                                      <span className="text-muted-foreground">{service}</span>
+                                      <span className="text-muted-foreground" dangerouslySetInnerHTML={{ __html: service }}></span>
                                   </li>
                               ))}
                           </ul>
