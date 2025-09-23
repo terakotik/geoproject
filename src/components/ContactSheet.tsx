@@ -53,7 +53,7 @@ export const ContactSheet = () => {
 
     return (
         <Sheet open={isOpen} onOpenChange={onClose}>
-            <SheetContent className="w-full sm:max-w-2xl p-0 overflow-y-auto">
+            <SheetContent className="w-full sm:max-w-xl p-0 overflow-y-auto">
                 <SheetHeader className="p-6 sm:p-8 border-b">
                     <div className="flex justify-between items-start">
                         <div>
