@@ -84,26 +84,26 @@ export const ContactSheet = () => {
                          <Button onClick={onClose} className="mt-8">Закрыть</Button>
                     </div>
                  ) : (
-                    <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-                        <div className="grid grid-cols-1 gap-y-6 text-base">
-                             <div className="space-y-2">
-                                <Label htmlFor="name" className="text-base">ФИО *</Label>
-                                <Input id="name" {...register("name")} placeholder="Иванов Иван" className="text-base" />
+                    <form onSubmit={handleSubmit(onSubmit)} className="space-y-8">
+                        <div className="grid grid-cols-1 gap-y-6">
+                             <div className="space-y-3">
+                                <Label htmlFor="name" className="text-lg">ФИО *</Label>
+                                <Input id="name" {...register("name")} placeholder="Иванов Иван" className="text-lg h-14 p-4" />
                                 {errors.name && <p className="text-sm text-destructive flex items-center gap-1"><AlertCircle className="h-4 w-4" /> {errors.name.message}</p>}
                             </div>
-                             <div className="space-y-2">
-                                <Label htmlFor="phone" className="text-base">Номер телефона *</Label>
-                                <Input id="phone" {...register("phone")} placeholder="+7 (___) ___-__-__" className="text-base" />
+                             <div className="space-y-3">
+                                <Label htmlFor="phone" className="text-lg">Номер телефона *</Label>
+                                <Input id="phone" {...register("phone")} placeholder="+7 (___) ___-__-__" className="text-lg h-14 p-4" />
                                 {errors.phone && <p className="text-sm text-destructive flex items-center gap-1"><AlertCircle className="h-4 w-4" /> {errors.phone.message}</p>}
                             </div>
                         </div>
 
-                        <div className="space-y-2">
-                            <Label htmlFor="project" className="text-base">По&nbsp;какому проекту вы&nbsp;хотели&nbsp;бы проконсультироваться?</Label>
-                            <Textarea id="project" {...register("project")} placeholder="Опишите детали вашего проекта, цели, сроки..." rows={4} className="text-base" />
+                        <div className="space-y-3">
+                            <Label htmlFor="project" className="text-lg">По&nbsp;какому проекту вы&nbsp;хотели&nbsp;бы проконсультироваться?</Label>
+                            <Textarea id="project" {...register("project")} placeholder="Опишите детали вашего проекта, цели, сроки..." rows={5} className="text-lg p-4" />
                         </div>
                         
-                        <div className="space-y-4 pt-4">
+                        <div className="space-y-6 pt-4">
                              <div className="flex items-start space-x-3">
                                 <input type="checkbox" id="privacy-sheet" {...register("privacy")} className="mt-1 h-4 w-4 rounded border-border" />
                                 <div className="grid gap-1.5 leading-none">
@@ -113,7 +113,7 @@ export const ContactSheet = () => {
                                     {errors.privacy && <p className="text-sm text-destructive flex items-center gap-1"><AlertCircle className="h-4 w-4" /> {errors.privacy.message}</p>}
                                 </div>
                             </div>
-                            <Button type="submit" size="lg" className="w-full sm:w-auto text-base" disabled={formState === 'submitting'}>
+                            <Button type="submit" size="lg" className="w-full sm:w-auto text-lg py-7 px-10" disabled={formState === 'submitting'}>
                                 {formState === 'submitting' ? 'Отправка...' : 'Отправить'}
                             </Button>
                         </div>
