@@ -80,10 +80,10 @@ const priceSections = [
 
 export default function PricesPage() {
   return (
-    <div className="py-20 bg-gradient-hero" id="prices">
+    <div className="py-16 md:py-24 bg-gradient-hero" id="prices">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
-          <h1 className="text-4xl lg:text-5xl font-heading font-bold text-foreground mb-6">Прайс-лист</h1>
+        <div className="text-center mb-12 md:mb-16">
+          <h1 className="text-4xl lg:text-5xl font-heading font-bold text-foreground mb-4">Прайс-лист</h1>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
             Прозрачные цены без скрытых доплат. Групповые скидки до 43%
           </p>
@@ -104,7 +104,7 @@ export default function PricesPage() {
                   <div className="text-center py-4">
                     <div className="text-4xl font-heading font-bold text-accent">{pkg.price}</div>
                     <div className="text-sm text-muted-foreground line-through">{pkg.oldPrice}</div>
-                    <div className="text-sm font-medium text-accent">{pkg.saving}</div>
+                    <div className="text-sm font-medium text-accent mt-1">{pkg.saving}</div>
                     <div className="text-xs text-muted-foreground mt-1">{pkg.audience}</div>
                   </div>
                   
@@ -136,23 +136,23 @@ export default function PricesPage() {
                   <table className="w-full">
                     <thead>
                       <tr className="border-b border-border">
-                        <th className="text-left py-3 font-heading font-medium text-muted-foreground text-sm">Вид работ</th>
-                        <th className="text-right py-3 font-heading font-medium text-muted-foreground text-sm">Стоимость</th>
-                        <th className="text-right py-3 font-heading font-medium text-muted-foreground text-sm">Сроки</th>
+                        <th className="text-left p-4 font-heading font-medium text-muted-foreground text-sm">Вид работ</th>
+                        <th className="text-right p-4 font-heading font-medium text-muted-foreground text-sm">Стоимость</th>
+                        <th className="text-right p-4 font-heading font-medium text-muted-foreground text-sm">Сроки</th>
                         <th className="w-28"></th>
                       </tr>
                     </thead>
                     <tbody>
                       {section.items.map((item, i) => (
                         <tr key={i} className="border-b border-border/50 hover:bg-muted/50 transition-colors duration-300 group">
-                           <td className="py-4 pr-4 text-foreground relative">
+                           <td className="p-4 pr-4 text-foreground relative">
                               <span className="block transition-transform duration-500 group-hover:translate-x-2">{item.name}</span>
                             </td>
-                            <td className="py-4 text-right font-semibold text-accent relative">
+                            <td className="p-4 text-right font-semibold text-accent relative">
                                <span className="block transition-transform duration-500 group-hover:-translate-x-2">{item.price}</span>
                             </td>
-                          <td className="py-4 text-right text-muted-foreground">{item.term}</td>
-                          <td className="py-4 pl-4 text-right">
+                          <td className="p-4 text-right text-muted-foreground">{item.term}</td>
+                          <td className="p-4 pl-4 text-right">
                             <Button variant="outline" size="sm">Заказать</Button>
                           </td>
                         </tr>
@@ -171,7 +171,7 @@ export default function PricesPage() {
               <Zap className="h-5 w-5 text-accent" />
               <h3 className="text-2xl font-heading font-bold text-foreground">Срочные работы</h3>
             </div>
-            <p className="text-lg text-muted-foreground mb-4">Выполним работы в кратчайшие сроки с доплатой 30%</p>
+            <p className="text-lg text-muted-foreground mb-6">Выполним работы в кратчайшие сроки с доплатой 30%</p>
             <Button>Срочный заказ</Button>
           </Card>
         </div>

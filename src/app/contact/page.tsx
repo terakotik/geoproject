@@ -11,10 +11,10 @@ export default function ContactPage() {
   const mapImage = PlaceHolderImages.find(p => p.id === 'contact-map');
   
   return (
-    <div className="py-20 bg-background" id="contact">
+    <div className="py-16 md:py-24 bg-background" id="contact">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl lg:text-5xl font-heading font-bold text-foreground mb-6">Контакты</h2>
+        <div className="text-center mb-12 md:mb-16">
+          <h2 className="text-4xl lg:text-5xl font-heading font-bold text-foreground mb-4">Контакты</h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">Свяжитесь с нами удобным способом. Работаем ежедневно с 10:00 до 20:00</p>
         </div>
 
@@ -49,7 +49,7 @@ export default function ContactPage() {
                             <div className="text-xs text-muted-foreground uppercase tracking-wide">Дополнительный</div>
                             <div className="text-sm font-medium text-foreground">+7 (910) 824-78-48</div>
                         </div>
-                        <div>
+                         <div>
                             <div className="text-xs text-muted-foreground uppercase tracking-wide">Резервный</div>
                             <div className="text-sm font-medium text-foreground">+7 (991) 681-58-99</div>
                         </div>
@@ -126,10 +126,10 @@ export default function ContactPage() {
             </Card>
           </div>
           <Card className="p-8 bg-card/80 backdrop-blur-sm border-border/50 sticky top-8">
-              <h3 className="text-2xl font-heading font-bold text-foreground mb-6 text-center">Оставить заявку</h3>
+              <h3 className="text-2xl font-heading font-bold text-foreground mb-4 text-center">Оставить заявку</h3>
               <p className="text-muted-foreground text-center mb-8">Получите бесплатную консультацию и расчет стоимости работ</p>
               <form className="space-y-6">
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                   <div className="space-y-2">
                     <Label htmlFor="name" className="text-foreground">Имя</Label>
                     <Input id="name" placeholder="Ваше имя" className="bg-background/50 border-border focus:border-accent" />
@@ -151,7 +151,7 @@ export default function ContactPage() {
                   <Label htmlFor="message" className="text-foreground">Сообщение</Label>
                   <Textarea id="message" placeholder="Опишите ваш объект и какие работы необходимы..." rows={4} className="bg-background/50 border-border focus:border-accent resize-none" />
                 </div>
-                <div className="space-y-4">
+                <div className="space-y-4 pt-2">
                     <div className="flex items-center space-x-2">
                         <input type="checkbox" id="privacy" required className="rounded border-border" />
                         <Label htmlFor="privacy" className="text-sm text-muted-foreground">
@@ -164,9 +164,9 @@ export default function ContactPage() {
                     </Button>
                 </div>
               </form>
-              <div className="mt-6 pt-6 border-t border-border text-center">
+              <div className="mt-8 pt-8 border-t border-border text-center">
                   <p className="text-sm text-muted-foreground mb-4">Или свяжитесь с нами напрямую:</p>
-                  <div className="flex flex-col sm:flex-row gap-3">
+                  <div className="flex flex-col sm:flex-row gap-4">
                       <Button className="flex-1 h-11 rounded-md px-8 bg-accent text-accent-foreground font-heading font-semibold shadow-brand hover:bg-accent/90 hover:shadow-hero">
                           <Phone className="h-4 w-4 mr-2" />
                           Позвонить

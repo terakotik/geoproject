@@ -27,11 +27,9 @@ export default function RootLayout({
         <ScrollProgressLine />
         <div vaul-drawer-wrapper="" className="min-h-screen flex flex-col">
           <Header />
-          <div className="relative flex-grow">
-            <main className="relative z-10">{children}</main>
-            <div className="sticky bottom-0 z-0">
-              <Footer />
-            </div>
+          <div className="relative flex-grow flex flex-col">
+            <main className="relative z-10 flex-grow">{children}</main>
+            <Footer />
           </div>
         </div>
         <Toaster />

@@ -23,15 +23,15 @@ export default function ServicePage({ params }: { params: { slug: string } }) {
     <div className="py-16 md:py-24 bg-secondary/50">
       <div className="container mx-auto px-4 md:px-6">
         <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-12">
-            <div className="mx-auto bg-muted text-muted-foreground rounded-full p-4 w-fit mb-4">
+          <div className="text-center mb-12 md:mb-16">
+            <div className="mx-auto bg-muted text-muted-foreground rounded-full p-4 w-fit mb-6">
               <service.icon className="h-10 w-10" />
             </div>
             <h1 className="text-4xl md:text-5xl font-bold font-headline">{service.title}</h1>
-            <p className="mt-4 text-muted-foreground">{service.description}</p>
+            <p className="mt-4 text-muted-foreground text-lg">{service.description}</p>
           </div>
 
-          <div className="space-y-12">
+          <div className="space-y-8">
             <Card>
               <CardHeader>
                 <CardTitle>Описание услуги</CardTitle>
@@ -58,7 +58,7 @@ export default function ServicePage({ params }: { params: { slug: string } }) {
             </Card>
 
             <Card className="bg-primary/5">
-                <CardHeader className="flex-row items-center justify-between">
+                <CardHeader className="flex-row items-center justify-between p-6">
                     <div>
                         <CardTitle>Стоимость и сроки</CardTitle>
                         <CardDescription>Прозрачные цены и реалистичные сроки</CardDescription>

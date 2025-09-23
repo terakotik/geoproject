@@ -57,28 +57,28 @@ export default function UpdatesPage() {
     <div className="py-16 md:py-24 bg-gradient-hero">
       <div className="container mx-auto px-4 md:px-6">
         <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-12">
-            <div className="mx-auto bg-primary/20 text-primary rounded-full p-4 w-fit mb-4">
+          <div className="text-center mb-12 md:mb-16">
+            <div className="mx-auto bg-primary/20 text-primary rounded-full p-4 w-fit mb-6">
                <Newspaper className="h-10 w-10" />
             </div>
             <h1 className="text-4xl md:text-5xl font-bold font-headline">Часто задаваемые вопросы</h1>
-            <p className="mt-4 text-muted-foreground">
+            <p className="mt-4 text-muted-foreground text-lg">
              Ответы на популярные вопросы о наших услугах и процессе работы
             </p>
           </div>
-          <Accordion type="single" collapsible className="w-full">
+          <Accordion type="single" collapsible className="w-full space-y-3">
             {faqs.map((faq, index) => (
-              <AccordionItem value={`item-${index}`} key={index} className="bg-card/80 backdrop-blur-sm border-border/50 rounded-lg mb-2 px-4">
-                <AccordionTrigger className="text-lg font-heading font-semibold text-foreground text-left hover:no-underline">
+              <AccordionItem value={`item-${index}`} key={index} className="bg-card/80 backdrop-blur-sm border-border/50 rounded-lg px-6">
+                <AccordionTrigger className="text-lg font-heading font-semibold text-foreground text-left hover:no-underline py-6">
                   {faq.question}
                 </AccordionTrigger>
-                <AccordionContent className="text-base text-muted-foreground pt-2">
+                <AccordionContent className="text-base text-muted-foreground pt-0 pb-6">
                   {faq.answer}
                 </AccordionContent>
               </AccordionItem>
             ))}
           </Accordion>
-           <div className="text-center mt-12">
+           <div className="text-center mt-16">
                 <Card className="inline-block p-8 bg-accent text-accent-foreground max-w-lg">
                     <div className="flex items-center justify-center gap-3 mb-4">
                         <MessageCircle className="h-6 w-6" />
