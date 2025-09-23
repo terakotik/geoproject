@@ -105,7 +105,7 @@ const priceSections = [
 ];
 
 const kadastrServices = [
-    "Межевание земельных участков + подача документов",
+    "Межевание земельных участков&nbsp;+&nbsp;подача документов",
     "Составление технических планов, получение уведомлений, регистрация в&nbsp;Росреестре.",
     "Вынос границ в&nbsp;натуру по&nbsp;законной границе, с&nbsp;выездом на&nbsp;объект установка колышков",
     "Акт обследования",
@@ -130,7 +130,7 @@ const heroStats = [
 
 const heroBenefits = [
     "Лицензированные кадастровые инженеры",
-    "Работы любой сложности под ключ",
+    "Работы любой сложности под&nbsp;ключ",
     "Электронная подача документов",
 ];
 
@@ -281,7 +281,7 @@ export default function Home() {
             </p>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 my-8">
               {heroStats.map((stat, index) => (
-                <Card key={index} className="bg-background/30 backdrop-blur-sm border-border/20 p-6 text-left shadow-lg h-full">
+                <Card key={index} className="bg-background/30 backdrop-blur-sm border-2 border-dashed border-border/50 hover:border-accent transition-all duration-300 p-6 text-left h-full">
                   <div className="flex items-center gap-4">
                     <div className="bg-accent/20 p-3 rounded-lg flex items-center justify-center w-16 h-16">
                       <stat.icon className="h-8 w-8 text-accent" />
@@ -298,7 +298,7 @@ export default function Home() {
               {heroBenefits.map(benefit => (
                 <li key={benefit} className="flex items-center gap-3 text-lg">
                   <CheckCircle className="h-5 w-5 text-accent flex-shrink-0" />
-                  <span>{benefit}</span>
+                  <span dangerouslySetInnerHTML={{ __html: benefit }}></span>
                 </li>
               ))}
             </ul>
@@ -316,17 +316,17 @@ export default function Home() {
         <div className="container mx-auto px-4">
             <div className="grid lg:grid-cols-2 gap-12 items-start">
               <div className="space-y-6">
-                 <Card className="p-6 md:p-8 bg-card/50 backdrop-blur-sm border-border/50">
-                   <div className="flex flex-col sm:flex-row items-start gap-6">
+                 <Card className="p-6 md:p-8 bg-card/50 backdrop-blur-sm border-border/50 relative overflow-hidden">
+                   <div className="flex items-start gap-6">
                       <video
                           autoPlay
                           loop
                           muted
                           playsInline
-                          className="w-32 h-32 object-cover rounded-full border-4 border-white shadow-lg flex-shrink-0 mx-auto sm:mx-0"
+                          className="w-32 h-32 object-cover rounded-full border-4 border-white shadow-lg flex-shrink-0"
                           src="https://pouch.jumpshare.com/preview/dUHg-gsRDslnFdT3XfFQYUj3M9PXnVuKIjURan0E7Tt9Heoa57PeFb-sbUHpmPWll8ZWyRtlbSgh2j3IOsSmh_aPcQXoRS15iWmHOM-M34oq3xv7xY6eKpTknO-BlLQ66lk3U0W71gNmmot0a0rduW6yjbN-I2pg_cnoHs_AmgI.mp4"
                       />
-                      <div className="flex-grow text-center sm:text-left">
+                      <div className="flex-grow">
                         <CardHeader className="p-0 mb-6">
                             <CardTitle className="text-3xl font-heading font-bold">Геодезическая компания ООО&nbsp;"ГЕОСТРОЙПРОЕКТ"</CardTitle>
                         </CardHeader>
