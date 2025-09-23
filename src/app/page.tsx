@@ -284,7 +284,7 @@ export default function Home() {
               {heroStats.map((stat, index) => (
                 <Card key={index} className="bg-background/30 backdrop-blur-sm border-border/20 p-6 text-left shadow-lg h-full">
                   <div className="flex items-center gap-4">
-                    <div className="bg-accent/20 p-3 rounded-lg">
+                    <div className="bg-accent/20 p-3 rounded-lg flex items-center justify-center w-16 h-16">
                       <stat.icon className="h-8 w-8 text-accent" />
                     </div>
                     <div className="flex flex-col">
