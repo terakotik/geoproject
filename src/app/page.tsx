@@ -6,7 +6,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
-import { CheckCircle, Star, CircleCheckBig, FilePenLine, Users, SquareCheckBig, Download, MessageCircle, Zap, Send, Phone, MessageSquare, ExternalLink, ArrowRight, Shield, MapPin as MapPinIcon, Building, Ruler, FileText as FileTextIcon, TreePine, Factory, Calculator, Clock, ListChecks, Linkedin, Twitter } from 'lucide-react';
+import { CheckCircle, Star, CircleCheckBig, FilePenLine, Users, SquareCheckBig, Download, MessageCircle, Zap, Send, Phone, MessageSquare, ExternalLink, ArrowRight, Shield, MapPin as MapPinIcon, Building, Ruler, FileText as FileTextIcon, TreePine, Factory, Calculator, Clock, ListChecks, Linkedin, Twitter, FolderKanban, Award } from 'lucide-react';
 import { services, getServiceDetails } from '@/lib/services';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 import HorizontalScrollCarousel from '@/components/HorizontalScrollCarousel';
@@ -124,9 +124,9 @@ const geoServices = [
 ];
 
 const heroStats = [
-    { value: "2000+", label: "выполненных проектов" },
-    { value: "21", label: "год на рынке" },
-    { value: "14", label: "дней средний срок" },
+    { value: "2000+", label: "выполненных проектов", icon: FolderKanban },
+    { value: "21", label: "год на рынке", icon: Award },
+    { value: "14", label: "дней средний срок", icon: Clock },
 ];
 
 const heroBenefits = [
@@ -281,10 +281,17 @@ export default function Home() {
               Полный спектр кадастровых работ, инженерных изысканий и ЗОУИТ в Санкт-Петербурге и ЛО
             </p>
             <div className="grid sm:grid-cols-3 gap-6 my-8">
-              {heroStats.map(stat => (
-                <Card key={stat.label} className="text-center p-4 bg-muted border-dashed">
-                  <div className="text-4xl font-bold text-accent">{stat.value}</div>
-                  <div className="text-sm opacity-80 text-muted-foreground mt-1">{stat.label}</div>
+              {heroStats.map((stat, index) => (
+                <Card key={index} className="bg-background/30 backdrop-blur-sm border-border/20 p-6 text-left shadow-lg">
+                  <div className="flex items-center gap-4">
+                    <div className="bg-accent/20 p-3 rounded-lg">
+                      <stat.icon className="h-8 w-8 text-accent" />
+                    </div>
+                    <div>
+                      <div className="text-4xl font-bold text-foreground">{stat.value}</div>
+                      <div className="text-sm text-muted-foreground mt-1">{stat.label}</div>
+                    </div>
+                  </div>
                 </Card>
               ))}
             </div>
