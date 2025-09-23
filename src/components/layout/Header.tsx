@@ -18,6 +18,7 @@ import {
 } from "@/components/ui/popover"
 import { services } from '@/lib/services';
 import { useState }from 'react';
+import { ScrollArea } from '@/components/ui/scroll-area';
 
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -80,34 +81,34 @@ export default function Header() {
                     <span className="sr-only">Открыть меню</span>
                   </Button>
                 </SheetTrigger>
-                <SheetContent side="right">
-                  <div className="flex flex-col h-full">
-                    <div className="py-4 border-b">
-                      <Link href="/" onClick={closeMobileMenu}>
-                        <Logo />
-                      </Link>
-                    </div>
-                    <nav className="flex flex-col gap-4 py-6">
-                       <Link href="/services" onClick={closeMobileMenu} className="text-lg text-foreground transition-colors font-medium">
+                <SheetContent side="right" className="flex flex-col p-0">
+                  <div className="p-6 border-b">
+                    <Link href="/" onClick={closeMobileMenu}>
+                      <Logo />
+                    </Link>
+                  </div>
+                  <ScrollArea className="flex-1">
+                    <nav className="flex flex-col gap-2 p-6">
+                       <Link href="/services" onClick={closeMobileMenu} className="text-xl text-foreground transition-colors font-medium py-2">
                           Услуги
                         </Link>
                       {navLinks.map((link) => (
-                        <Link key={link.href} href={link.href} onClick={closeMobileMenu} className="text-lg text-foreground transition-colors font-medium">
+                        <Link key={link.href} href={link.href} onClick={closeMobileMenu} className="text-xl text-foreground transition-colors font-medium py-2">
                           {link.label}
                         </Link>
                       ))}
                     </nav>
-                    <div className="mt-auto space-y-4">
-                       <Button className="w-full" asChild>
-                         <Link href="/contact" onClick={closeMobileMenu}>Заказать звонок</Link>
-                       </Button>
-                       <Button variant="outline" className="w-full" asChild>
-                          <a href="tel:+79522764940" onClick={closeMobileMenu} className="flex items-center gap-2">
-                           <Phone className="h-4 w-4" />
-                           +7 (952) 276-49-40
-                          </a>
-                       </Button>
-                    </div>
+                  </ScrollArea>
+                  <div className="p-6 mt-auto border-t space-y-4">
+                     <Button className="w-full" asChild size="lg">
+                       <Link href="/contact" onClick={closeMobileMenu}>Заказать звонок</Link>
+                     </Button>
+                     <Button variant="outline" className="w-full" asChild size="lg">
+                        <a href="tel:+79522764940" onClick={closeMobileMenu} className="flex items-center gap-2">
+                         <Phone className="h-4 w-4" />
+                         +7 (952) 276-49-40
+                        </a>
+                     </Button>
                   </div>
                 </SheetContent>
               </Sheet>
