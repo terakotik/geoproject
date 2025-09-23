@@ -205,18 +205,18 @@ export default function Home() {
     const details = getServiceDetails(service.slug);
     if (!details) return null;
     return (
-      <Card className="flex flex-col h-full hover:border-accent transition-all duration-300 border-border/50 bg-card/50 backdrop-blur-sm relative group">
+      <Card className="flex flex-col h-full hover:border-accent transition-all duration-300 border-border/50 bg-card/50 backdrop-blur-sm relative group p-2 md:p-0">
         <div className="absolute -top-8 -left-8 text-8xl font-bold text-foreground/5 opacity-80 transition-all duration-300 group-hover:scale-110 group-hover:text-accent/10">
           0{index + 1}
         </div>
-        <CardHeader>
+        <CardHeader className="p-4 md:p-6">
           <div className="p-3 rounded-lg mb-4 self-start">
             <service.icon className="h-10 w-10 text-muted-foreground" />
           </div>
-          <CardTitle className="text-2xl font-heading">{service.title}</CardTitle>
-          <CardDescription className="text-base">{service.description}</CardDescription>
+          <CardTitle className="text-xl md:text-2xl font-heading">{service.title}</CardTitle>
+          <CardDescription className="text-base pt-2">{service.description}</CardDescription>
         </CardHeader>
-        <CardContent className="flex-grow">
+        <CardContent className="flex-grow p-4 md:p-6 pt-0">
           <ul className="space-y-3 mb-6">
             {details.includes.map((item, i) => (
               <li key={i} className="flex items-center gap-3">
@@ -226,7 +226,7 @@ export default function Home() {
             ))}
           </ul>
         </CardContent>
-        <div className="p-6 pt-0 mt-auto">
+        <div className="p-4 md:p-6 pt-0 mt-auto">
           <div className="flex justify-between items-center mb-4 text-lg">
             <div className="font-bold text-accent">{details.price}</div>
             <div className="text-muted-foreground">{details.timeline}</div>
@@ -272,10 +272,10 @@ export default function Home() {
                 </Card>
               </a>
             </div>
-            <h1 className="text-4xl sm:text-5xl lg:text-7xl font-heading font-bold leading-tight text-foreground">
+            <h1 className="text-5xl sm:text-6xl lg:text-7xl font-heading font-bold leading-tight text-foreground">
               Профессиональные <span className="text-accent">геодезические</span> услуги
             </h1>
-            <p className="text-xl text-muted-foreground max-w-2xl mt-6 mx-auto md:mx-0">
+            <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mt-6 mx-auto md:mx-0">
               Полный спектр кадастровых работ, инженерных изысканий и ЗОУИТ в Санкт-Петербурге и ЛО
             </p>
             <div className="grid sm:grid-cols-3 gap-6 my-8">
@@ -361,7 +361,7 @@ export default function Home() {
       {/* Services Section */}
       <section id="services" className="bg-white">
         <div className="container mx-auto px-4 py-16 md:py-24">
-          <div className="text-left mb-16">
+          <div className="text-left mb-12 md:mb-16">
             <AnimatedSectionTitle className="text-left">Наши услуги</AnimatedSectionTitle>
             <p className="text-xl text-muted-foreground max-w-3xl text-left mt-4">
               Предоставляем полный спектр геодезических и кадастровых услуг с гарантией качества и соблюдением сроков
@@ -443,7 +443,7 @@ export default function Home() {
       {/* Prices Section */}
       <section id="prices" className="py-16 md:py-24 bg-gradient-hero">
         <div className="container mx-auto px-4">
-          <div className="text-left mb-16">
+          <div className="text-left mb-12 md:mb-16">
             <AnimatedSectionTitle className="text-left">Прайс-лист</AnimatedSectionTitle>
             <p className="text-xl text-muted-foreground max-w-3xl text-left mt-4">
               Прозрачные цены без скрытых доплат. Групповые скидки до 43%
@@ -565,7 +565,7 @@ export default function Home() {
       {/* Process Section */}
       <section id="about" className="py-16 md:py-24 bg-background">
         <div className="container mx-auto px-4">
-          <div className="text-left mb-16">
+          <div className="text-left mb-12 md:mb-16">
             <AnimatedSectionTitle className="text-left">Как мы работаем</AnimatedSectionTitle>
             <p className="text-xl text-muted-foreground max-w-3xl text-left mt-4">
               Прозрачный процесс работы без лишних этапов и дополнительных затрат
@@ -632,3 +632,5 @@ export default function Home() {
     </div>
   );
 }
+
+    

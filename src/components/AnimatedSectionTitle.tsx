@@ -1,8 +1,9 @@
+
 'use client';
 
 import { motion, useInView } from 'framer-motion';
 import { cn } from '@/lib/utils';
-import { useRef, useEffect, useState } from 'react';
+import { useRef, useEffect } from 'react';
 import React from 'react';
 
 const CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+";
@@ -28,24 +29,24 @@ export const AnimatedSectionTitle = ({ children, className }: { children: React.
       const newText = originalText
         .split('')
         .map((char, index) => {
+          if (char === ' ') return ' ';
           if (progress * originalText.length > index) {
             return originalText[index];
           }
 
-          // Generate a random color with a bias towards yellow, orange, and black
           let r, g, b;
           const rand = Math.random();
 
-          if (rand < 0.4) { // 40% chance for orange/yellow
-            r = Math.floor(Math.random() * 55) + 200; // 200-255
+          if (rand < 0.5) { // 50% chance for orange/yellow
+            r = Math.floor(Math.random() * 55) + 200; // 200-255 (orange-yellow)
             g = Math.floor(Math.random() * 150) + 50; // 50-200
             b = 0;
-          } else if (rand < 0.8) { // 40% chance for black/dark grey
+          } else if (rand < 0.9) { // 40% chance for black/dark grey
             const darkValue = Math.floor(Math.random() * 50); // 0-49
             r = darkValue;
             g = darkValue;
             b = darkValue;
-          } else { // 20% chance for other colors (mostly darkish)
+          } else { // 10% chance for other colors (mostly darkish)
             r = Math.floor(Math.random() * 100);
             g = Math.floor(Math.random() * 100);
             b = Math.floor(Math.random() * 100);
@@ -54,7 +55,7 @@ export const AnimatedSectionTitle = ({ children, className }: { children: React.
           const randomColor = `rgb(${r}, ${g}, ${b})`;
           const randomChar = CHARS[Math.floor(Math.random() * CHARS.length)];
 
-          return `<span style="color: ${randomColor};">${randomChar}</span>`;
+          return `<span style="color: ${randomColor}; text-shadow: 0 0 5px ${randomColor};">${randomChar}</span>`;
         })
         .join('');
       
@@ -86,3 +87,5 @@ export const AnimatedSectionTitle = ({ children, className }: { children: React.
     </h2>
   );
 };
+
+    
