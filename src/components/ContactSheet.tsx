@@ -1,4 +1,5 @@
 
+
 'use client'
 
 import {
@@ -51,7 +52,7 @@ export const ContactSheet = () => {
     return (
         <Sheet open={isOpen} onOpenChange={onClose}>
             <SheetContent className="w-[90vw] max-w-5xl p-0 bg-transparent border-none shadow-none">
-                <div className="bg-white rounded-xl shadow-2xl w-full h-full p-12 md:p-16 relative flex flex-col">
+                <div className="bg-white rounded-none shadow-2xl w-full h-full p-12 md:p-16 relative flex flex-col">
                     <SheetClose className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 transition-colors duration-200 ring-offset-0 focus:ring-0">
                         <X className="w-8 h-8" />
                     </SheetClose>
@@ -61,13 +62,13 @@ export const ContactSheet = () => {
                             <CheckCircle2 className="h-20 w-20 text-green-500 mx-auto mb-6" />
                             <h3 className="text-3xl font-semibold mb-3">Заявка успешно отправлена!</h3>
                             <p className="text-xl text-muted-foreground max-w-lg">Спасибо! Мы свяжемся с вами в ближайшее время для уточнения деталей.</p>
-                            <Button onClick={onClose} className="mt-10 text-xl p-6">Закрыть</Button>
+                            <Button onClick={onClose} className="mt-10 text-xl p-6 rounded-none">Закрыть</Button>
                         </div>
                     ) : (
                         <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col flex-grow">
                             <div className="flex items-start mb-8 space-x-8">
                                 <div className="flex flex-col items-center w-32 h-32 flex-shrink-0">
-                                    <Image src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcS1mKBDqAEo3ZgrUseu5xob-zcerfrLTmiy4f-nICu3k9yqN7tW8fI0DJ-36GzaExLCwP5lxuvRYqQNH0J5uQ7rkE8kOxityWueZpaSgeFx" alt="QR-код для связи" width={128} height={128} className="w-32 h-32 rounded-lg" />
+                                    <Image src="https://placehold.co/120x120/d1d5db/374151?text=QR+Code" alt="QR-код для связи" width={128} height={128} className="w-32 h-32 rounded-none" />
                                     <span className="text-xs text-gray-500 mt-1">Связь в WhatsApp</span>
                                 </div>
                                 <div className="flex-1">
@@ -76,7 +77,7 @@ export const ContactSheet = () => {
                                       id="phone" 
                                       {...register("phone")}
                                       placeholder="+7 (___) ___ - __ - __" 
-                                      className="w-full px-4 py-3 text-5xl border-2 border-yellow-400 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-500" 
+                                      className="w-full px-4 py-3 text-5xl border-2 border-yellow-400 rounded-none focus:outline-none focus:ring-2 focus:ring-yellow-500" 
                                       style={{ height: '128px' }} 
                                       aria-invalid={errors.phone ? "true" : "false"}
                                     />
@@ -84,7 +85,7 @@ export const ContactSheet = () => {
                                 </div>
                             </div>
 
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+                            <div className="grid grid-cols-2 gap-8 mb-8">
                                 <div>
                                     <Label htmlFor="name" className="block text-gray-700 font-medium mb-2">* Ваше имя</Label>
                                     <Input 
@@ -92,7 +93,7 @@ export const ContactSheet = () => {
                                       id="name" 
                                       {...register("name")}
                                       placeholder="Иванов Иван" 
-                                      className="w-full px-4 py-3 text-lg border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-500"
+                                      className="w-full px-4 py-3 text-lg border border-gray-300 rounded-none focus:outline-none focus:ring-2 focus:ring-yellow-500"
                                       aria-invalid={errors.name ? "true" : "false"}
                                     />
                                     {errors.name && <p className="text-sm text-destructive flex items-center gap-1 mt-1"><AlertCircle className="h-4 w-4" /> {errors.name.message}</p>}
@@ -103,7 +104,7 @@ export const ContactSheet = () => {
                                       id="task" 
                                       {...register("task")}
                                       placeholder="Какой объект, какие работы необходимы..." 
-                                      className="w-full px-4 py-3 text-lg border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-500 h-32 resize-none"
+                                      className="w-full px-4 py-3 text-lg border border-gray-300 rounded-none focus:outline-none focus:ring-2 focus:ring-yellow-500 h-32 resize-none"
                                     />
                                 </div>
                             </div>
@@ -114,7 +115,7 @@ export const ContactSheet = () => {
                                       id="privacy" 
                                       type="checkbox" 
                                       {...register("privacy")}
-                                      className="h-4 w-4 rounded text-yellow-500 focus:ring-2 focus:ring-yellow-400 border-gray-300"
+                                      className="h-4 w-4 rounded-none text-yellow-500 focus:ring-2 focus:ring-yellow-400 border-gray-300"
                                       aria-invalid={errors.privacy ? "true" : "false"}
                                     />
                                     <Label htmlFor="privacy" className="ml-2 text-sm text-gray-500 font-normal">
@@ -125,7 +126,7 @@ export const ContactSheet = () => {
                                 <Button 
                                   type="submit"
                                   disabled={formState === 'submitting'}
-                                  className="w-full bg-yellow-400 hover:bg-yellow-500 text-black font-bold py-4 rounded-md shadow-lg transition-colors duration-200 text-xl h-auto"
+                                  className="w-full bg-yellow-400 hover:bg-yellow-500 text-black font-bold py-4 rounded-none shadow-lg transition-colors duration-200 text-xl h-auto"
                                 >
                                     {formState === 'submitting' ? 'Отправка...' : 'Отправить заявку'}
                                 </Button>
