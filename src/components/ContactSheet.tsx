@@ -86,11 +86,6 @@ export const ContactSheet = () => {
                                     <Input id="name" {...register("name")} placeholder="Иванов Иван" className="text-5xl h-24 p-4" />
                                     {errors.name && <p className="text-lg text-destructive flex items-center gap-2"><AlertCircle className="h-5 w-5" /> {errors.name.message}</p>}
                                 </div>
-                                <div className="space-y-3">
-                                    <Label htmlFor="phone" className="text-2xl font-medium">Контактный телефон *</Label>
-                                    <Input id="phone" {...register("phone")} placeholder="+7 (___) ___-__-__" className="text-5xl h-24 p-4" />
-                                    {errors.phone && <p className="text-lg text-destructive flex items-center gap-2"><AlertCircle className="h-5 w-5" /> {errors.phone.message}</p>}
-                                </div>
                             </div>
                             <div className="space-y-3 flex flex-col">
                                 <Label htmlFor="project" className="text-2xl font-medium">Опишите задачу</Label>
