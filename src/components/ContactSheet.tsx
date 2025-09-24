@@ -71,8 +71,9 @@ export function ContactSheet() {
                             </div>
                         ) : (
                             <div className="flex flex-col flex-grow gap-y-4">
-                                <div className="flex items-start space-x-4">
-                                     <div className="border border-input w-48 h-48 flex items-center justify-center rounded-none p-2 shrink-0">
+                                <div className="grid grid-cols-[192px_1fr] gap-x-4">
+                                     <div className="relative w-48 h-48 flex items-center justify-center rounded-none p-2 shrink-0">
+                                         <div className="border-box absolute w-full h-full rounded-none"></div>
                                          <Image src="https://cdn.qrcode-ai.com/qrcode/2ae6c24f24e3d22c22c9907ab56eecb3-1758686681778.png" alt="QR-код для связи в WhatsApp" width={180} height={180} className="rounded-none object-contain"/>
                                      </div>
                                      <div className="border border-input flex-1 h-48 flex flex-col p-4 rounded-none transition-colors">
@@ -97,7 +98,7 @@ export function ContactSheet() {
                                  </div>
                                  {errors.phone && <p className="text-sm text-destructive flex items-center gap-1 -mt-2"><AlertCircle className="h-4 w-4" /> {errors.phone.message}</p>}
 
-                                 <div className="border border-input w-full h-24 flex items-center p-4 relative rounded-none transition-colors">
+                                 <div className="border border-input w-full h-48 flex items-center p-4 relative rounded-none transition-colors">
                                      <Input
                                          id="name"
                                          {...register("name")}
