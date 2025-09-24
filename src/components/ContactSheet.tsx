@@ -53,7 +53,9 @@ export function ContactSheet() {
                      <header className="p-8 flex justify-between items-start border-b">
                         <div>
                             <h1 className="text-4xl font-bold text-gray-800">Заказать звонок</h1>
-                            <p className="text-sm text-gray-500 mt-2">или Отсканируйте, чтобы написать в WhatsApp</p>
+                            <p className="text-sm text-gray-500 mt-2">
+                                Или <span className="font-bold text-green-500">отсканируйте</span>, QR код чтобы написать в WhatsApp
+                            </p>
                         </div>
                         <SheetClose>
                             <X className="h-8 w-8 text-gray-500 cursor-pointer" />
