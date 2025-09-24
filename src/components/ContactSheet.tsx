@@ -55,7 +55,9 @@ export function ContactSheet() {
                         <div>
                             <AnimatedText as="h2" className="text-4xl font-bold text-gray-800">Заказать звонок</AnimatedText>
                             <p className="mt-2">
-                                <AnimatedText as="span" className="text-sm text-gray-500 font-normal">Или <span className="font-bold text-green-500">отсканируйте</span>, QR код чтобы написать в WhatsApp</AnimatedText>
+                                <AnimatedText as="span" className="text-sm text-gray-500 font-normal">
+                                  Или <span className="font-bold text-green-500">отсканируйте</span>, QR код чтобы написать в WhatsApp
+                                </AnimatedText>
                             </p>
                         </div>
                         <SheetClose>

@@ -237,9 +237,9 @@ export default function Home() {
                 </Card>
               </a>
             </div>
-            <h1 className="text-4xl sm:text-6xl lg:text-7xl font-heading font-bold leading-tight text-foreground">
+            <AnimatedText as="h1" className="text-4xl sm:text-6xl lg:text-7xl font-heading font-bold leading-tight text-foreground">
               Профессиональные <span className="text-accent">геодезические</span> услуги
-            </h1>
+            </AnimatedText>
             <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mt-6 mx-auto md:mx-0" dangerouslySetInnerHTML={{ __html: 'Полный спектр кадастровых работ, инженерных изысканий и&nbsp;ЗОУИТ в&nbsp;Санкт-Петербурге и&nbsp;ЛО' }}></p>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 my-8">
               {heroStats.map((stat, index) => (

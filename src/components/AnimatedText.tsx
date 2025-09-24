@@ -26,6 +26,21 @@ type AnimatedTextProps = {
 };
 
 export function AnimatedText({ children, as: Tag = 'h2', className }: AnimatedTextProps) {
+  const renderChildren = () => {
+    if (typeof children !== 'string') {
+      return children;
+    }
+    return children.split(' ').map((word, i) => (
+      <motion.span
+        key={i}
+        variants={defaultAnimations}
+        className="inline-block"
+      >
+        {word}&nbsp;
+      </motion.span>
+    ));
+  };
+
   return (
     <Tag className={className}>
       <motion.span
@@ -34,15 +49,7 @@ export function AnimatedText({ children, as: Tag = 'h2', className }: AnimatedTe
         transition={{ staggerChildren: 0.05 }}
         aria-hidden
       >
-        {children?.toString().split(' ').map((word, i) => (
-          <motion.span
-            key={i}
-            variants={defaultAnimations}
-            className="inline-block"
-          >
-            {word}&nbsp;
-          </motion.span>
-        ))}
+        {renderChildren()}
       </motion.span>
     </Tag>
   );
