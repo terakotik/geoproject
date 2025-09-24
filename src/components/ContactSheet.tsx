@@ -50,7 +50,7 @@ export function ContactSheetProvider() {
         <Sheet open={isOpen} onOpenChange={onClose}>
             <SheetContent className="w-[90vw] max-w-5xl bg-white p-0 rounded-none border-none">
                 <div className="flex flex-col h-full">
-                    <header className="p-8 flex justify-between items-start border-b">
+                     <header className="p-8 flex justify-between items-start border-b">
                         <div>
                             <h1 className="text-4xl font-bold text-gray-800">Заказать звонок</h1>
                             <p className="text-sm text-gray-500 mt-2">или Отсканируйте, чтобы написать в WhatsApp</p>
@@ -73,9 +73,9 @@ export function ContactSheetProvider() {
                             <div className="flex flex-col flex-grow gap-y-4">
                                 <div className="flex items-start space-x-4">
                                      <div className="border border-input w-48 h-48 flex items-center justify-center rounded-none p-2 shrink-0">
-                                         <Image src="https://s1.hostingkartinok.com/uploads/images/2025/09/b801a613247076a925433a85b98f572f.png" alt="QR-код для связи в WhatsApp" width={180} height={180} className="rounded-none object-contain"/>
+                                         <Image src="https://cdn.qrcode-ai.com/qrcode/16105c50d57e6c1480d2d00d3c8956eb-1758684275192.png" alt="QR-код для связи в WhatsApp" width={180} height={180} className="rounded-none object-contain"/>
                                      </div>
-                                     <div className="border border-input flex-1 h-48 flex flex-col p-4 rounded-none">
+                                     <div className="border border-input flex-1 h-48 flex flex-col p-4 rounded-none focus-within:border-primary transition-colors">
                                          <Textarea
                                              id="task"
                                              {...register("task")}
@@ -85,7 +85,7 @@ export function ContactSheetProvider() {
                                      </div>
                                  </div>
                                 
-                                 <div className="border border-input w-full h-24 flex items-center p-4 rounded-none">
+                                 <div className="border border-input w-full h-24 flex items-center p-4 rounded-none focus-within:border-primary transition-colors">
                                      <Input
                                          id="phone"
                                          type="tel"
@@ -97,7 +97,7 @@ export function ContactSheetProvider() {
                                  </div>
                                  {errors.phone && <p className="text-sm text-destructive flex items-center gap-1 -mt-2"><AlertCircle className="h-4 w-4" /> {errors.phone.message}</p>}
 
-                                 <div className="border border-input w-full h-24 flex items-center p-4 relative rounded-none">
+                                 <div className="border border-input w-full h-24 flex items-center p-4 relative rounded-none focus-within:border-primary transition-colors">
                                      <Input
                                          id="name"
                                          {...register("name")}
@@ -112,7 +112,7 @@ export function ContactSheetProvider() {
                                      </div>
                                  </div>
                                  {errors.name && <p className="text-sm text-destructive flex items-center gap-1 -mt-2"><AlertCircle className="h-4 w-4" /> {errors.name.message}</p>}
-                                <div className="mt-auto pt-2">
+                                <div className="pt-2">
                                     <div className="flex items-start space-x-3">
                                         <input type="checkbox" id="privacy" {...register("privacy")} className="w-4 h-4 rounded-none border-border mt-0.5" checked readOnly/>
                                         <div className="grid gap-1.5 leading-none">

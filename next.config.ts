@@ -9,6 +9,7 @@ const nextConfig: NextConfig = {
     ignoreDuringBuilds: true,
   },
   images: {
+    dangerouslyAllowSVG: true,
     remotePatterns: [
       {
         protocol: 'https',
@@ -73,6 +74,12 @@ const nextConfig: NextConfig = {
       {
         protocol: 'https',
         hostname: 'encrypted-tbn1.gstatic.com',
+        port: '',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'cdn.qrcode-ai.com',
         port: '',
         pathname: '/**',
       }
