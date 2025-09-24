@@ -1,5 +1,3 @@
-
-
 'use client'
 
 import {
@@ -40,7 +38,7 @@ export const ContactSheet = () => {
         }
     });
 
-    const onSubmit: SubmitHandler<FormData> = async (data) => {
+     const onSubmit: SubmitHandler<FormData> = async (data) => {
         setFormState('submitting');
         // Simulate API call
         await new Promise(resolve => setTimeout(resolve, 1000));
@@ -51,33 +49,35 @@ export const ContactSheet = () => {
 
     return (
         <Sheet open={isOpen} onOpenChange={onClose}>
-            <SheetContent className="w-[90vw] max-w-5xl bg-white p-8 md:p-12 space-y-4">
-                <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col h-full">
+            <SheetContent className="w-[90vw] max-w-5xl bg-white p-0">
+                 <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col h-full p-8 md:p-12 space-y-4">
                     {formState === 'success' ? (
                         <div className="flex flex-col items-center justify-center flex-grow text-center">
                             <CheckCircle2 className="h-20 w-20 text-green-500 mx-auto mb-6" />
                             <h3 className="text-3xl font-semibold mb-3">Заявка успешно отправлена!</h3>
                             <p className="text-xl text-muted-foreground max-w-lg">Спасибо! Мы свяжемся с вами в ближайшее время для уточнения деталей.</p>
-                            <Button onClick={onClose} className="mt-10 text-xl p-6 rounded-none">Закрыть</Button>
+                             <Button onClick={() => { onClose(); setFormState('idle'); }} className="mt-10 text-xl p-6 rounded-none">Закрыть</Button>
                         </div>
                     ) : (
                         <>
-                            <div className="flex justify-between items-start mb-4">
-                                <h1 className="text-4xl font-bold text-gray-800">Заказать звонок</h1>
+                            <header className="flex justify-between items-start mb-4">
+                                <div>
+                                    <h1 className="text-4xl font-bold text-gray-800">Заказать звонок</h1>
+                                </div>
                                 <SheetClose>
                                     <X className="h-8 w-8 text-gray-500 cursor-pointer" />
                                     <span className="sr-only">Закрыть</span>
                                 </SheetClose>
-                            </div>
+                            </header>
 
-                            <div className="flex-grow space-y-4 flex flex-col">
-                                <div className="text-xs text-gray-500">Отсканируйте, чтобы написать в WhatsApp</div>
+                             <div className="flex-grow space-y-4 flex flex-col">
+                                <p className="text-xs text-gray-500">Отсканируйте, чтобы написать в WhatsApp</p>
                                 
                                 <div className="grid grid-cols-[192px_1fr] gap-4">
-                                    <div className="w-48 h-48">
-                                        <Image src="https://placehold.co/192x192/d1d5db/374151?text=QR+Code" alt="QR-код для связи" width={192} height={192} className="w-full h-full border-2 border-primary" />
-                                    </div>
-                                    <div className="border-2 border-input h-48 flex flex-col focus-within:border-primary">
+                                     <div className="w-48 h-48 border-2 border-primary flex items-center justify-center">
+                                         <Image src="https://placehold.co/192x192/000000/FFFFFF?text=QR" alt="QR-код для связи" width={192} height={192} />
+                                     </div>
+                                    <div className="border-2 border-input h-48 flex flex-col">
                                         <Textarea
                                             id="task"
                                             {...register("task")}
@@ -87,7 +87,7 @@ export const ContactSheet = () => {
                                     </div>
                                 </div>
                                 
-                                <div className="border-2 border-input w-full h-24 flex items-center focus-within:border-primary">
+                                <div className="border-2 border-input w-full h-24 flex items-center">
                                     <Input
                                         id="phone"
                                         type="tel"
@@ -101,7 +101,7 @@ export const ContactSheet = () => {
                                 {errors.phone && <p className="text-sm text-destructive flex items-center gap-1"><AlertCircle className="h-4 w-4" /> {errors.phone.message}</p>}
 
 
-                                <div className="border-2 border-input w-full h-24 flex items-center relative focus-within:border-primary">
+                                <div className="border-2 border-input w-full h-24 flex items-center relative">
                                     <Input
                                         id="name"
                                         type="text"
@@ -112,22 +112,22 @@ export const ContactSheet = () => {
                                     />
                                     <div className="absolute right-4 top-1/2 -translate-y-1/2">
                                         <Button type="submit" disabled={formState === 'submitting'} size="icon" className="bg-primary text-primary-foreground h-16 w-16 hover:bg-primary/90 focus:outline-none rounded-none aspect-square">
-                                            <ArrowRight className="h-8 w-8 text-black" />
+                                            <ArrowRight className="h-8 w-8" />
                                         </Button>
                                     </div>
                                 </div>
                                  {errors.name && <p className="text-sm text-destructive flex items-center gap-1"><AlertCircle className="h-4 w-4" /> {errors.name.message}</p>}
                             </div>
 
-                            <div className="mt-auto pt-4">
+                           <footer className="mt-2">
                                 <div className="flex items-center space-x-2">
-                                    <input type="checkbox" id="privacy" {...register("privacy")} className="w-4 h-4 rounded-none" />
+                                    <input type="checkbox" id="privacy" {...register("privacy")} className="w-4 h-4 rounded-none border-border" />
                                     <Label htmlFor="privacy" className="text-xs text-gray-500 font-normal">
                                         Нажимая на кнопку, вы даете согласие на обработку своих <Link href="#" className="text-primary hover:underline">персональных данных</Link>
                                     </Label>
                                 </div>
                                 {errors.privacy && <p className="text-sm text-destructive flex items-center gap-1 mt-1"><AlertCircle className="h-4 w-4" /> {errors.privacy.message}</p>}
-                            </div>
+                            </footer>
                         </>
                     )}
                 </form>
