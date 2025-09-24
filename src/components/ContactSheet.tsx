@@ -28,7 +28,7 @@ const formSchema = z.object({
 
 type FormData = z.infer<typeof formSchema>;
 
-export function ContactSheetProvider() {
+export function ContactSheet() {
     const { isOpen, onClose } = useContactSheet();
     const [formState, setFormState] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
 
@@ -73,9 +73,9 @@ export function ContactSheetProvider() {
                             <div className="flex flex-col flex-grow gap-y-4">
                                 <div className="flex items-start space-x-4">
                                      <div className="border border-input w-48 h-48 flex items-center justify-center rounded-none p-2 shrink-0">
-                                         <Image src="https://cdn.qrcode-ai.com/qrcode/16105c50d57e6c1480d2d00d3c8956eb-1758684275192.png" alt="QR-код для связи в WhatsApp" width={180} height={180} className="rounded-none object-contain"/>
+                                         <Image src="https://cdn.qrcode-ai.com/qrcode/2ae6c24f24e3d22c22c9907ab56eecb3-1758686681778.png" alt="QR-код для связи в WhatsApp" width={180} height={180} className="rounded-none object-contain"/>
                                      </div>
-                                     <div className="border border-input flex-1 h-48 flex flex-col p-4 rounded-none focus-within:border-primary transition-colors">
+                                     <div className="border border-input flex-1 h-48 flex flex-col p-4 rounded-none transition-colors">
                                          <Textarea
                                              id="task"
                                              {...register("task")}
@@ -85,7 +85,7 @@ export function ContactSheetProvider() {
                                      </div>
                                  </div>
                                 
-                                 <div className="border border-input w-full h-24 flex items-center p-4 rounded-none focus-within:border-primary transition-colors">
+                                 <div className="border border-input w-full h-24 flex items-center p-4 rounded-none transition-colors">
                                      <Input
                                          id="phone"
                                          type="tel"
@@ -97,7 +97,7 @@ export function ContactSheetProvider() {
                                  </div>
                                  {errors.phone && <p className="text-sm text-destructive flex items-center gap-1 -mt-2"><AlertCircle className="h-4 w-4" /> {errors.phone.message}</p>}
 
-                                 <div className="border border-input w-full h-24 flex items-center p-4 relative rounded-none focus-within:border-primary transition-colors">
+                                 <div className="border border-input w-full h-24 flex items-center p-4 relative rounded-none transition-colors">
                                      <Input
                                          id="name"
                                          {...register("name")}
