@@ -52,7 +52,7 @@ export const ContactSheet = () => {
     return (
         <Sheet open={isOpen} onOpenChange={onClose}>
             <SheetContent className="w-[90vw] max-w-5xl p-0 bg-transparent border-none shadow-none">
-                <div className="bg-white rounded-none shadow-2xl w-full h-full p-12 md:p-16 relative flex flex-col">
+                <div className="bg-white shadow-2xl w-full h-full p-12 md:p-16 relative flex flex-col">
                     <SheetClose className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 transition-colors duration-200 ring-offset-0 focus:ring-0">
                         <X className="w-8 h-8" />
                     </SheetClose>
@@ -66,6 +66,7 @@ export const ContactSheet = () => {
                         </div>
                     ) : (
                         <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col flex-grow">
+                            {/* Top row - QR and Phone */}
                             <div className="flex items-start mb-8 space-x-8">
                                 <div className="flex flex-col items-center w-32 h-32 flex-shrink-0">
                                     <Image src="https://placehold.co/120x120/d1d5db/374151?text=QR+Code" alt="QR-код для связи" width={128} height={128} className="w-32 h-32 rounded-none" />
@@ -85,6 +86,7 @@ export const ContactSheet = () => {
                                 </div>
                             </div>
 
+                            {/* Middle row - Name and Task */}
                             <div className="grid grid-cols-2 gap-8 mb-8">
                                 <div>
                                     <Label htmlFor="name" className="block text-gray-700 font-medium mb-2">* Ваше имя</Label>
@@ -94,6 +96,7 @@ export const ContactSheet = () => {
                                       {...register("name")}
                                       placeholder="Иванов Иван" 
                                       className="w-full px-4 py-3 text-lg border border-gray-300 rounded-none focus:outline-none focus:ring-2 focus:ring-yellow-500"
+                                      style={{ height: '128px' }}
                                       aria-invalid={errors.name ? "true" : "false"}
                                     />
                                     {errors.name && <p className="text-sm text-destructive flex items-center gap-1 mt-1"><AlertCircle className="h-4 w-4" /> {errors.name.message}</p>}
