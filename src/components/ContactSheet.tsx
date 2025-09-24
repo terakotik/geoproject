@@ -18,6 +18,7 @@ import { AlertCircle, CheckCircle2, X, ArrowRight } from "lucide-react";
 import Link from 'next/link';
 import { useState } from "react";
 import Image from "next/image";
+import { AnimatedSectionTitle } from "./AnimatedSectionTitle";
 
 const formSchema = z.object({
   name: z.string().min(2, { message: "Имя должно быть не короче 2 символов." }),
@@ -52,7 +53,7 @@ export function ContactSheet() {
                 <div className="flex flex-col h-full">
                      <header className="p-8 flex justify-between items-start border-b">
                         <div>
-                            <h1 className="text-4xl font-bold text-gray-800">Заказать звонок</h1>
+                            <AnimatedSectionTitle className="text-4xl font-bold text-gray-800">Заказать звонок</AnimatedSectionTitle>
                             <p className="text-sm text-gray-500 mt-2">
                                 или <span className="font-bold text-green-500">отсканируйте</span>, QR код чтобы написать в WhatsApp
                             </p>
