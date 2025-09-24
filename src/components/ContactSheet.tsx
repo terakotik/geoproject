@@ -61,7 +61,7 @@ export function ContactSheetProvider() {
                         </SheetClose>
                     </header>
 
-                    <form onSubmit={handleSubmit(onSubmit)} className="flex-grow flex flex-col p-8 pt-4 gap-y-4">
+                    <form onSubmit={handleSubmit(onSubmit)} className="flex-grow flex flex-col p-8 pt-4">
                         {formState === 'success' ? (
                             <div className="flex flex-col items-center justify-center flex-grow text-center">
                                 <CheckCircle2 className="h-20 w-20 text-green-500 mx-auto mb-6" />
@@ -70,52 +70,49 @@ export function ContactSheetProvider() {
                                 <Button onClick={() => { onClose(); setFormState('idle'); }} className="mt-10 text-xl p-6 rounded-none">Закрыть</Button>
                             </div>
                         ) : (
-                            <>
-                                <div className="flex-grow flex flex-col gap-y-4">
-                                     <div className="flex items-start space-x-4">
-                                         <div className="border border-input w-48 h-48 flex items-center justify-center rounded-none p-2">
-                                             <Image src="https://s1.hostingkartinok.com/uploads/images/2025/09/b801a613247076a925433a85b98f572f.png" alt="QR-код для связи в WhatsApp" width={180} height={180} className="rounded-none object-contain"/>
-                                         </div>
-                                         <div className="border border-input flex-1 h-48 flex flex-col p-4 rounded-none focus-within:border-primary transition-colors">
-                                             <Textarea
-                                                 id="task"
-                                                 {...register("task")}
-                                                 placeholder="Коротко о задаче"
-                                                 className="w-full h-full bg-transparent border-none focus:outline-none resize-none text-3xl font-bold placeholder-gray-500 p-0 rounded-none focus-visible:ring-0 focus-visible:ring-offset-0"
-                                             />
-                                         </div>
+                            <div className="flex flex-col flex-grow gap-y-4">
+                                <div className="flex items-start space-x-4">
+                                     <div className="border border-input w-48 h-48 flex items-center justify-center rounded-none p-2 shrink-0">
+                                         <Image src="https://s1.hostingkartinok.com/uploads/images/2025/09/b801a613247076a925433a85b98f572f.png" alt="QR-код для связи в WhatsApp" width={180} height={180} className="rounded-none object-contain"/>
                                      </div>
-                                    
-                                     <div className="border border-input w-full h-24 flex items-center p-4 rounded-none focus-within:border-primary transition-colors">
-                                         <Input
-                                             id="phone"
-                                             type="tel"
-                                             {...register("phone")}
-                                             placeholder="Ваш телефон"
-                                             className="w-full bg-transparent border-none focus:outline-none text-3xl font-bold placeholder-gray-500 p-0 rounded-none focus-visible:ring-0 focus-visible:ring-offset-0"
-                                             aria-invalid={errors.phone ? "true" : "false"}
+                                     <div className="border border-input flex-1 h-48 flex flex-col p-4 rounded-none">
+                                         <Textarea
+                                             id="task"
+                                             {...register("task")}
+                                             placeholder="Коротко о задаче"
+                                             className="w-full h-full bg-transparent border-none focus:outline-none resize-none text-3xl font-bold placeholder-gray-500 p-0 rounded-none focus-visible:ring-0 focus-visible:ring-offset-0"
                                          />
                                      </div>
-                                     {errors.phone && <p className="text-sm text-destructive flex items-center gap-1 -mt-2"><AlertCircle className="h-4 w-4" /> {errors.phone.message}</p>}
+                                 </div>
+                                
+                                 <div className="border border-input w-full h-24 flex items-center p-4 rounded-none">
+                                     <Input
+                                         id="phone"
+                                         type="tel"
+                                         {...register("phone")}
+                                         placeholder="Ваш телефон"
+                                         className="w-full bg-transparent border-none focus:outline-none text-3xl font-bold placeholder-gray-500 p-0 rounded-none focus-visible:ring-0 focus-visible:ring-offset-0"
+                                         aria-invalid={errors.phone ? "true" : "false"}
+                                     />
+                                 </div>
+                                 {errors.phone && <p className="text-sm text-destructive flex items-center gap-1 -mt-2"><AlertCircle className="h-4 w-4" /> {errors.phone.message}</p>}
 
-                                     <div className="border border-input w-full h-24 flex items-center p-4 relative rounded-none focus-within:border-primary transition-colors">
-                                         <Input
-                                             id="name"
-                                             {...register("name")}
-                                             placeholder="Ваше имя"
-                                             className="w-full bg-transparent border-none focus:outline-none text-3xl font-bold placeholder-gray-500 p-0 pr-24 rounded-none focus-visible:ring-0 focus-visible:ring-offset-0"
-                                             aria-invalid={errors.name ? "true" : "false"}
-                                         />
-                                         <div className="absolute right-4 top-1/2 -translate-y-1/2">
-                                             <Button type="submit" disabled={formState === 'submitting'} size="icon" className="bg-primary text-primary-foreground h-16 w-16 hover:bg-primary/90 focus:outline-none rounded-none aspect-square">
-                                                 <ArrowRight className="h-8 w-8" />
-                                             </Button>
-                                         </div>
+                                 <div className="border border-input w-full h-24 flex items-center p-4 relative rounded-none">
+                                     <Input
+                                         id="name"
+                                         {...register("name")}
+                                         placeholder="Ваше имя"
+                                         className="w-full bg-transparent border-none focus:outline-none text-3xl font-bold placeholder-gray-500 p-0 pr-24 rounded-none focus-visible:ring-0 focus-visible:ring-offset-0"
+                                         aria-invalid={errors.name ? "true" : "false"}
+                                     />
+                                     <div className="absolute right-4 top-1/2 -translate-y-1/2">
+                                         <Button type="submit" disabled={formState === 'submitting'} size="icon" className="bg-primary text-primary-foreground h-16 w-16 hover:bg-primary/90 focus:outline-none rounded-none aspect-square">
+                                             <ArrowRight className="h-8 w-8" />
+                                         </Button>
                                      </div>
-                                     {errors.name && <p className="text-sm text-destructive flex items-center gap-1 -mt-2"><AlertCircle className="h-4 w-4" /> {errors.name.message}</p>}
-                                </div>
-
-                                <footer className="mt-auto pt-2">
+                                 </div>
+                                 {errors.name && <p className="text-sm text-destructive flex items-center gap-1 -mt-2"><AlertCircle className="h-4 w-4" /> {errors.name.message}</p>}
+                                <div className="mt-auto pt-2">
                                     <div className="flex items-start space-x-3">
                                         <input type="checkbox" id="privacy" {...register("privacy")} className="w-4 h-4 rounded-none border-border mt-0.5" checked readOnly/>
                                         <div className="grid gap-1.5 leading-none">
@@ -125,8 +122,8 @@ export function ContactSheetProvider() {
                                             {errors.privacy && <p className="text-sm text-destructive flex items-center gap-1"><AlertCircle className="h-4 w-4" /> {errors.privacy.message}</p>}
                                         </div>
                                     </div>
-                                </footer>
-                            </>
+                                </div>
+                            </div>
                         )}
                     </form>
                 </div>
