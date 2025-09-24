@@ -243,14 +243,14 @@ export default function Home() {
             <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mt-6 mx-auto md:mx-0" dangerouslySetInnerHTML={{ __html: 'Полный спектр кадастровых работ, инженерных изысканий и&nbsp;ЗОУИТ в&nbsp;Санкт-Петербурге и&nbsp;ЛО' }}></p>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 my-8">
               {heroStats.map((stat, index) => (
-                <Card key={index} className="bg-background/30 backdrop-blur-sm border-2 border-dashed border-border/50 hover:border-accent transition-all duration-300 p-6 text-left h-full">
-                  <div className="flex items-center gap-4">
-                    <div className="p-3 rounded-lg flex items-center justify-center w-16 h-16">
+                <Card key={index} className="bg-background/30 backdrop-blur-sm border-2 border-dashed border-border/50 hover:border-accent transition-all duration-300 p-6 text-center md:text-left h-full">
+                  <div className="flex flex-col md:flex-row items-center gap-4">
+                    <div className="p-3 rounded-lg flex items-center justify-center w-16 h-16 bg-muted/50 mb-4 md:mb-0">
                       <stat.icon className="h-8 w-8 text-accent" />
                     </div>
                     <div className="flex flex-col">
                       <div className="text-4xl font-bold text-foreground">{stat.value}</div>
-                      <div className="text-sm text-muted-foreground mt-1 w-24" dangerouslySetInnerHTML={{ __html: stat.label }}></div>
+                      <div className="text-sm text-muted-foreground mt-1" dangerouslySetInnerHTML={{ __html: stat.label }}></div>
                     </div>
                   </div>
                 </Card>
@@ -621,5 +621,3 @@ export default function Home() {
     </div>
   );
 }
-
-    
