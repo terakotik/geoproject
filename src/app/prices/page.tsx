@@ -1,6 +1,10 @@
+
+'use client';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { CheckCircle, Star, Zap } from "lucide-react"
+import { AnimatedText } from "@/components/AnimatedText";
+import { useContactSheet } from "@/hooks/use-contact-sheet";
 
 const packages = [
   {
@@ -79,11 +83,13 @@ const priceSections = [
 
 
 export default function PricesPage() {
+  const { onOpen } = useContactSheet();
+
   return (
     <div className="py-16 md:py-24 bg-gradient-hero" id="prices">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12 md:mb-16">
-          <h1 className="text-4xl lg:text-5xl font-heading font-bold text-foreground mb-4">Прайс-лист</h1>
+          <AnimatedText as="h1" className="text-4xl lg:text-5xl font-heading font-bold text-foreground mb-4">Прайс-лист</AnimatedText>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
             Прозрачные цены без скрытых доплат. Групповые скидки до&nbsp;43%
           </p>
@@ -117,7 +123,7 @@ export default function PricesPage() {
                     ))}
                   </ul>
                 </div>
-                <Button className={`w-full mt-auto ${pkg.popular ? '' : 'bg-secondary text-secondary-foreground'}`}>Выбрать пакет</Button>
+                <Button className={`w-full mt-auto ${pkg.popular ? '' : 'bg-secondary text-secondary-foreground'}`} onClick={onOpen}>Выбрать пакет</Button>
               </Card>
             ))}
           </div>
@@ -153,7 +159,7 @@ export default function PricesPage() {
                             </td>
                           <td className="p-4 text-right text-muted-foreground" dangerouslySetInnerHTML={{ __html: item.term }}></td>
                           <td className="p-4 pl-4 text-right">
-                            <Button variant="outline" size="sm">Заказать</Button>
+                            <Button variant="outline" size="sm" onClick={onOpen}>Заказать</Button>
                           </td>
                         </tr>
                       ))}
@@ -172,7 +178,7 @@ export default function PricesPage() {
               <h3 className="text-2xl font-heading font-bold text-foreground">Срочные работы</h3>
             </div>
             <p className="text-lg text-muted-foreground mb-6">Выполним работы в&nbsp;кратчайшие сроки с&nbsp;доплатой 30%</p>
-            <Button>Срочный заказ</Button>
+            <Button onClick={onOpen}>Срочный заказ</Button>
           </Card>
         </div>
       </div>

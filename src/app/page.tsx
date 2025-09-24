@@ -10,7 +10,7 @@ import { services, getServiceDetails } from '@/lib/services';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 import HorizontalScrollCarousel from '@/components/HorizontalScrollCarousel';
 import { HelpCircle } from 'lucide-react';
-import { AnimatedSectionTitle } from '@/components/AnimatedSectionTitle';
+import { AnimatedText } from '@/components/AnimatedText';
 import {
   Tooltip,
   TooltipContent,
@@ -28,6 +28,7 @@ import {
 import { useState } from 'react';
 import { ClientsMarquee } from '@/components/ClientsMarquee';
 import { useContactSheet } from '@/hooks/use-contact-sheet';
+import ServiceCard from '@/components/ServiceCard';
 
 
 const packages = [
@@ -204,45 +205,6 @@ export default function Home() {
     </Dialog>
   );
 
-  const ServiceCard = ({ service, index }: { service: any; index: number }) => {
-    const details = getServiceDetails(service.slug);
-    if (!details) return null;
-    return (
-      <Card className="flex flex-col h-full hover:border-accent transition-all duration-300 border bg-card relative group p-6">
-        <div className="absolute top-2 left-2 text-7xl font-bold text-foreground/5 opacity-80 transition-all duration-300 group-hover:scale-110 group-hover:text-accent/10">
-          0{index + 1}
-        </div>
-        <div className="mb-4">
-          <service.icon className="h-10 w-10 text-muted-foreground" />
-        </div>
-        <CardHeader className="p-0">
-          <CardTitle className="text-2xl font-heading mb-2">{service.title}</CardTitle>
-          <CardDescription className="text-base" dangerouslySetInnerHTML={{ __html: service.description }}></CardDescription>
-        </CardHeader>
-        <CardContent className="flex-grow p-0 pt-6">
-          <ul className="space-y-3 my-4 text-base">
-            {details.includes.map((item, i) => (
-              <li key={i} className="flex items-center gap-3">
-                <CheckCircle className="h-5 w-5 text-accent flex-shrink-0" />
-                <span className="text-muted-foreground" dangerouslySetInnerHTML={{ __html: item }}></span>
-              </li>
-            ))}
-          </ul>
-        </CardContent>
-        <div className="mt-auto">
-          <div className="flex justify-between items-center my-6 text-lg">
-            <div className="font-bold text-accent" dangerouslySetInnerHTML={{ __html: details.price }}></div>
-            <div className="text-muted-foreground" dangerouslySetInnerHTML={{ __html: details.timeline }}></div>
-          </div>
-          <Button variant="default" size="lg" className="w-full text-lg py-6 bg-accent text-accent-foreground hover:bg-accent/90" onClick={onOpen}>
-            Заказать услугу
-          </Button>
-        </div>
-      </Card>
-    );
-  };
-  
-
   return (
     <div className="min-h-screen bg-background">
       {/* Hero Section */}
@@ -275,7 +237,7 @@ export default function Home() {
                 </Card>
               </a>
             </div>
-            <h1 className="text-5xl sm:text-6xl lg:text-7xl font-heading font-bold leading-tight text-foreground">
+            <h1 className="text-4xl sm:text-6xl lg:text-7xl font-heading font-bold leading-tight text-foreground">
               Профессиональные <span className="text-accent">геодезические</span> услуги
             </h1>
             <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mt-6 mx-auto md:mx-0" dangerouslySetInnerHTML={{ __html: 'Полный спектр кадастровых работ, инженерных изысканий и&nbsp;ЗОУИТ в&nbsp;Санкт-Петербурге и&nbsp;ЛО' }}></p>
@@ -384,7 +346,7 @@ export default function Home() {
       <section id="services" className="bg-white">
         <div className="container mx-auto px-4 py-16 md:py-24">
           <div className="text-left mb-12 md:mb-16">
-            <AnimatedSectionTitle className="text-left">Наши услуги</AnimatedSectionTitle>
+            <AnimatedText as="h2" className="text-4xl md:text-5xl font-heading font-bold text-foreground text-left">Наши услуги</AnimatedText>
             <p className="text-xl text-muted-foreground max-w-3xl text-left mt-4" dangerouslySetInnerHTML={{ __html: 'Предоставляем полный спектр геодезических и&nbsp;кадастровых услуг с&nbsp;гарантией качества и&nbsp;соблюдением сроков' }}>
             </p>
           </div>
@@ -395,7 +357,7 @@ export default function Home() {
             <HorizontalScrollCarousel>
                 {services.map((service, index) => (
                     <div key={service.slug} className="min-w-[420px] md:min-w-[480px] px-4">
-                        <ServiceCard service={service} index={index} />
+                        <ServiceCard service={service} index={index} useLink={false} />
                     </div>
                 ))}
                 <div className="min-w-[420px] md:min-w-[480px] px-4">
@@ -465,7 +427,7 @@ export default function Home() {
       <section id="prices" className="py-16 md:py-24 bg-gradient-hero">
         <div className="container mx-auto px-4">
           <div className="text-left mb-12 md:mb-16">
-            <AnimatedSectionTitle className="text-left">Прайс-лист</AnimatedSectionTitle>
+            <AnimatedText as="h2" className="text-4xl md:text-5xl font-heading font-bold text-foreground text-left">Прайс-лист</AnimatedText>
             <p className="text-xl text-muted-foreground max-w-3xl text-left mt-4" dangerouslySetInnerHTML={{ __html: 'Прозрачные цены без скрытых доплат. Групповые скидки до&nbsp;43%' }}>
             </p>
           </div>
@@ -586,7 +548,7 @@ export default function Home() {
       <section id="about" className="py-16 md:py-24 bg-background">
         <div className="container mx-auto px-4">
           <div className="text-left mb-12 md:mb-16">
-            <AnimatedSectionTitle className="text-left">Как мы&nbsp;работаем</AnimatedSectionTitle>
+            <AnimatedText as="h2" className="text-4xl md:text-5xl font-heading font-bold text-foreground text-left">Как мы&nbsp;работаем</AnimatedText>
             <p className="text-xl text-muted-foreground max-w-3xl text-left mt-4" dangerouslySetInnerHTML={{ __html: 'Прозрачный процесс работы без лишних этапов и&nbsp;дополнительных затрат' }}>
             </p>
           </div>
@@ -651,7 +613,7 @@ export default function Home() {
       <section className="py-12 md:py-16 bg-gradient-hero">
         <div className="container mx-auto px-4">
           <div className="mb-8">
-            <AnimatedSectionTitle className="text-left">Работаем с&nbsp;крупными компаниями</AnimatedSectionTitle>
+            <AnimatedText as="h2" className="text-4xl md:text-5xl font-heading font-bold text-foreground text-left">Работаем с&nbsp;крупными компаниями</AnimatedText>
           </div>
           <ClientsMarquee />
         </div>

@@ -1,4 +1,5 @@
 
+'use client';
 import {
   Accordion,
   AccordionContent,
@@ -9,8 +10,12 @@ import { Newspaper, MessageCircle } from 'lucide-react';
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import { AnimatedText } from "@/components/AnimatedText";
+import { useContactSheet } from "@/hooks/use-contact-sheet";
 
 export default function UpdatesPage() {
+  const { onOpen } = useContactSheet();
+
   const faqs = [
       {
           question: "За какие сроки проводится межевание участка?",
@@ -62,7 +67,7 @@ export default function UpdatesPage() {
             <div className="mx-auto bg-primary/20 text-primary rounded-full p-4 w-fit mb-6">
                <Newspaper className="h-10 w-10" />
             </div>
-            <h1 className="text-4xl md:text-5xl font-bold font-headline">Часто задаваемые вопросы</h1>
+            <AnimatedText as="h1" className="text-4xl md:text-5xl font-bold font-headline">Часто задаваемые вопросы</AnimatedText>
             <p className="mt-4 text-muted-foreground text-lg">
              Ответы на&nbsp;популярные вопросы о&nbsp;наших услугах и&nbsp;процессе работы
             </p>
