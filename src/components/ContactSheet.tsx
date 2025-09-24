@@ -15,7 +15,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { AlertCircle, CheckCircle2, X } from "lucide-react";
+import { AlertCircle, CheckCircle2, X, ArrowRight } from "lucide-react";
 import Link from 'next/link';
 import { useState } from "react";
 import Image from "next/image";
@@ -36,7 +36,7 @@ export const ContactSheet = () => {
     const { register, handleSubmit, formState: { errors } } = useForm<FormData>({
         resolver: zodResolver(formSchema),
         defaultValues: {
-            privacy: false,
+            privacy: true,
         }
     });
 
@@ -51,92 +51,86 @@ export const ContactSheet = () => {
 
     return (
         <Sheet open={isOpen} onOpenChange={onClose}>
-            <SheetContent className="w-[90vw] max-w-5xl p-0 bg-transparent border-none shadow-none">
-                <div className="bg-white shadow-2xl w-full h-full p-12 md:p-16 relative flex flex-col">
-                    <SheetClose className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 transition-colors duration-200 ring-offset-0 focus:ring-0">
-                        <X className="w-8 h-8" />
-                    </SheetClose>
-
+            <SheetContent className="w-[90vw] max-w-5xl bg-white p-8 md:p-12 space-y-4">
+                <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col h-full">
                     {formState === 'success' ? (
-                        <div className="text-center flex flex-col items-center justify-center flex-grow">
+                        <div className="flex flex-col items-center justify-center flex-grow text-center">
                             <CheckCircle2 className="h-20 w-20 text-green-500 mx-auto mb-6" />
                             <h3 className="text-3xl font-semibold mb-3">Заявка успешно отправлена!</h3>
                             <p className="text-xl text-muted-foreground max-w-lg">Спасибо! Мы свяжемся с вами в ближайшее время для уточнения деталей.</p>
                             <Button onClick={onClose} className="mt-10 text-xl p-6 rounded-none">Закрыть</Button>
                         </div>
                     ) : (
-                        <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col flex-grow">
-                            {/* Top row - QR and Phone */}
-                            <div className="flex items-start mb-8 space-x-8">
-                                <div className="flex flex-col items-center w-32 h-32 flex-shrink-0">
-                                    <Image src="https://placehold.co/120x120/d1d5db/374151?text=QR+Code" alt="QR-код для связи" width={128} height={128} className="w-32 h-32 rounded-none" />
-                                    <span className="text-xs text-gray-500 mt-1">Связь в WhatsApp</span>
-                                </div>
-                                <div className="flex-1">
-                                    <Input 
-                                      type="tel" 
-                                      id="phone" 
-                                      {...register("phone")}
-                                      placeholder="+7 (___) ___ - __ - __" 
-                                      className="w-full px-4 py-3 text-5xl border-2 border-yellow-400 rounded-none focus:outline-none focus:ring-2 focus:ring-yellow-500" 
-                                      style={{ height: '128px' }} 
-                                      aria-invalid={errors.phone ? "true" : "false"}
-                                    />
-                                     {errors.phone && <p className="text-sm text-destructive flex items-center gap-1 mt-1"><AlertCircle className="h-4 w-4" /> {errors.phone.message}</p>}
-                                </div>
+                        <>
+                            <div className="flex justify-between items-start mb-4">
+                                <h1 className="text-4xl font-bold text-gray-800">Заказать звонок</h1>
+                                <SheetClose>
+                                    <X className="h-8 w-8 text-gray-500 cursor-pointer" />
+                                    <span className="sr-only">Закрыть</span>
+                                </SheetClose>
                             </div>
 
-                            {/* Middle row - Name and Task */}
-                            <div className="grid grid-cols-2 gap-8 mb-8">
-                                <div>
-                                    <Label htmlFor="name" className="block text-gray-700 font-medium mb-2">* Ваше имя</Label>
-                                    <Input 
-                                      type="text" 
-                                      id="name" 
-                                      {...register("name")}
-                                      placeholder="Иванов Иван" 
-                                      className="w-full px-4 py-3 text-lg border border-gray-300 rounded-none focus:outline-none focus:ring-2 focus:ring-yellow-500"
-                                      style={{ height: '128px' }}
-                                      aria-invalid={errors.name ? "true" : "false"}
-                                    />
-                                    {errors.name && <p className="text-sm text-destructive flex items-center gap-1 mt-1"><AlertCircle className="h-4 w-4" /> {errors.name.message}</p>}
+                            <div className="flex-grow space-y-4 flex flex-col">
+                                <div className="text-xs text-gray-500">Отсканируйте, чтобы написать в WhatsApp</div>
+                                
+                                <div className="grid grid-cols-[192px_1fr] gap-4">
+                                    <div className="w-48 h-48">
+                                        <Image src="https://placehold.co/192x192/d1d5db/374151?text=QR+Code" alt="QR-код для связи" width={192} height={192} className="w-full h-full border-2 border-primary" />
+                                    </div>
+                                    <div className="border-2 border-input h-48 flex flex-col focus-within:border-primary">
+                                        <Textarea
+                                            id="task"
+                                            {...register("task")}
+                                            placeholder="Коротко о задаче"
+                                            className="w-full h-full bg-transparent border-none focus:outline-none resize-none text-3xl font-bold placeholder-gray-500 p-4 rounded-none"
+                                        />
+                                    </div>
                                 </div>
-                                <div>
-                                    <Label htmlFor="task" className="block text-gray-700 font-medium mb-2">Опишите задачу</Label>
-                                    <Textarea 
-                                      id="task" 
-                                      {...register("task")}
-                                      placeholder="Какой объект, какие работы необходимы..." 
-                                      className="w-full px-4 py-3 text-lg border border-gray-300 rounded-none focus:outline-none focus:ring-2 focus:ring-yellow-500 h-32 resize-none"
+                                
+                                <div className="border-2 border-input w-full h-24 flex items-center focus-within:border-primary">
+                                    <Input
+                                        id="phone"
+                                        type="tel"
+                                        {...register("phone")}
+                                        placeholder="Ваш телефон"
+                                        className="w-full bg-transparent border-none focus:outline-none text-3xl font-bold placeholder-gray-500 p-4 rounded-none"
+                                        aria-invalid={errors.phone ? "true" : "false"}
                                     />
+                                    
                                 </div>
+                                {errors.phone && <p className="text-sm text-destructive flex items-center gap-1"><AlertCircle className="h-4 w-4" /> {errors.phone.message}</p>}
+
+
+                                <div className="border-2 border-input w-full h-24 flex items-center relative focus-within:border-primary">
+                                    <Input
+                                        id="name"
+                                        type="text"
+                                        {...register("name")}
+                                        placeholder="Ваше имя"
+                                        className="w-full bg-transparent border-none focus:outline-none text-3xl font-bold placeholder-gray-500 p-4 pr-24 rounded-none"
+                                        aria-invalid={errors.name ? "true" : "false"}
+                                    />
+                                    <div className="absolute right-4 top-1/2 -translate-y-1/2">
+                                        <Button type="submit" disabled={formState === 'submitting'} size="icon" className="bg-primary text-primary-foreground h-16 w-16 hover:bg-primary/90 focus:outline-none rounded-none aspect-square">
+                                            <ArrowRight className="h-8 w-8 text-black" />
+                                        </Button>
+                                    </div>
+                                </div>
+                                 {errors.name && <p className="text-sm text-destructive flex items-center gap-1"><AlertCircle className="h-4 w-4" /> {errors.name.message}</p>}
                             </div>
-                            
-                            <div className="mt-auto flex flex-col items-center">
-                                <div className="flex items-center mb-6 self-start">
-                                    <input 
-                                      id="privacy" 
-                                      type="checkbox" 
-                                      {...register("privacy")}
-                                      className="h-4 w-4 rounded-none text-yellow-500 focus:ring-2 focus:ring-yellow-400 border-gray-300"
-                                      aria-invalid={errors.privacy ? "true" : "false"}
-                                    />
-                                    <Label htmlFor="privacy" className="ml-2 text-sm text-gray-500 font-normal">
-                                        Нажимая на кнопку, вы даете согласие на обработку своих <Link href="#" className="text-yellow-600 hover:underline">персональных данных</Link>
+
+                            <div className="mt-auto pt-4">
+                                <div className="flex items-center space-x-2">
+                                    <input type="checkbox" id="privacy" {...register("privacy")} className="w-4 h-4 rounded-none" />
+                                    <Label htmlFor="privacy" className="text-xs text-gray-500 font-normal">
+                                        Нажимая на кнопку, вы даете согласие на обработку своих <Link href="#" className="text-primary hover:underline">персональных данных</Link>
                                     </Label>
                                 </div>
-                                {errors.privacy && <p className="text-sm text-destructive flex items-center gap-1 mb-2 self-start"><AlertCircle className="h-4 w-4" /> {errors.privacy.message}</p>}
-                                <Button 
-                                  type="submit"
-                                  disabled={formState === 'submitting'}
-                                  className="w-full bg-yellow-400 hover:bg-yellow-500 text-black font-bold py-4 rounded-none shadow-lg transition-colors duration-200 text-xl h-auto"
-                                >
-                                    {formState === 'submitting' ? 'Отправка...' : 'Отправить заявку'}
-                                </Button>
+                                {errors.privacy && <p className="text-sm text-destructive flex items-center gap-1 mt-1"><AlertCircle className="h-4 w-4" /> {errors.privacy.message}</p>}
                             </div>
-                        </form>
+                        </>
                     )}
-                </div>
+                </form>
             </SheetContent>
         </Sheet>
     )
