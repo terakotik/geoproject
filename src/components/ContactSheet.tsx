@@ -1,3 +1,4 @@
+
 'use client'
 
 import {
@@ -49,7 +50,7 @@ export const ContactSheet = () => {
 
     return (
         <Sheet open={isOpen} onOpenChange={onClose}>
-            <SheetContent className="w-[90vw] max-w-5xl bg-white p-0">
+            <SheetContent className="w-[90vw] max-w-5xl bg-white p-0 rounded-none">
                  <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col h-full p-8 md:p-12 space-y-4">
                     {formState === 'success' ? (
                         <div className="flex flex-col items-center justify-center flex-grow text-center">
@@ -61,9 +62,7 @@ export const ContactSheet = () => {
                     ) : (
                         <>
                             <header className="flex justify-between items-start mb-4">
-                                <div>
-                                    <h1 className="text-4xl font-bold text-gray-800">Заказать звонок</h1>
-                                </div>
+                                <h1 className="text-4xl font-bold text-gray-800">Заказать звонок</h1>
                                 <SheetClose>
                                     <X className="h-8 w-8 text-gray-500 cursor-pointer" />
                                     <span className="sr-only">Закрыть</span>
