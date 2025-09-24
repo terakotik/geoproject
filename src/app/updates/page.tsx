@@ -1,3 +1,4 @@
+
 import {
   Accordion,
   AccordionContent,
@@ -72,7 +73,8 @@ export default function UpdatesPage() {
                 <AccordionTrigger className="text-lg font-heading font-semibold text-foreground text-left hover:no-underline py-6">
                   {faq.question}
                 </AccordionTrigger>
-                <AccordionContent className="text-base text-muted-foreground pt-0 pb-6" dangerouslySetInnerHTML={{ __html: faq.answer }}>
+                <AccordionContent className="text-base text-muted-foreground pt-0 pb-6">
+                   <div dangerouslySetInnerHTML={{ __html: faq.answer }} />
                 </AccordionContent>
               </AccordionItem>
             ))}
