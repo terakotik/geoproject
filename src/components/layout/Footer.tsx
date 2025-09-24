@@ -20,7 +20,7 @@ export default function Footer() {
           muted
           playsInline
           className="w-full h-full object-cover"
-          src="https://pouch.jumpshare.com/preview/dUHg-gsRDslnFdT3XfFQYUj3M9PXnVuKIjURan0E7Tt9Heoa57PeFb-sbUHpmPWll8ZWyRtlbSgh2j3IOsSmh_aPcQXoRS15iWmHOM-M34oq3xv7xY6eKpTknO-BlLQ6SWyKLki93js7uDN_kGq52W6yjbN-I2pg_cnoHs_AmgI.mp4"
+          src="https://pouch.jumpshare.com/preview/dUHg-gsRDslnFdT3XfFQYUj3M9PXnVuKIjURan0E7Tt9Heoa57PeFb-sbUHpmPWll8ZWyRtlbSgh2j3IOsSmh_aPcQXoRS15iWmHOM-M34oq3xv7xY6eKpTknO-BlLQ6fMHhaj6KSTQHGO3Lt9OKFm6yjbN-I2pg_cnoHs_AmgI.mp4"
         />
         <div className="absolute inset-0 bg-black/80"></div>
       </div>
