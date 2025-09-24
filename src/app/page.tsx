@@ -357,7 +357,7 @@ export default function Home() {
             <HorizontalScrollCarousel>
                 {services.map((service, index) => (
                     <div key={service.slug} className="min-w-[420px] md:min-w-[480px] px-4">
-                        <ServiceCard service={service} index={index} useLink={false} />
+                        <ServiceCard service={service} index={index} />
                     </div>
                 ))}
                 <div className="min-w-[420px] md:min-w-[480px] px-4">

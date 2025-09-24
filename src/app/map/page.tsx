@@ -32,7 +32,7 @@ export default function MapPage() {
                 <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
                 <Input placeholder="Search address or parcel number" className="pl-10" />
              </div>
-             <p className="mt-2 text-center text-sm text-muted-foreground">Interactive map coming soon.</p>
+             <p className="mt-2 text-center text-sm text-muted-foreground">Интерактивная карта в разработке.</p>
           </CardContent>
         </Card>
       </div>
