@@ -24,16 +24,15 @@ export default function RootLayout({
         <link href="https://fonts.googleapis.com/css2?family=PT+Sans:wght@400;700&display=swap" rel="stylesheet" />
       </head>
       <body className={cn("font-body antialiased")}>
-        <ContactSheetProvider>
-          <div vaul-drawer-wrapper="" className="min-h-screen flex flex-col">
-            <Header />
-            <div className="relative flex-grow flex flex-col">
-              <main className="relative z-10 flex-grow bg-background">{children}</main>
-              <Footer />
-            </div>
+        <ContactSheetProvider />
+        <div vaul-drawer-wrapper="" className="min-h-screen flex flex-col">
+          <Header />
+          <div className="relative flex-grow flex flex-col">
+            <main className="relative z-10 flex-grow bg-background">{children}</main>
+            <Footer />
           </div>
-          <Toaster />
-        </ContactSheetProvider>
+        </div>
+        <Toaster />
       </body>
     </html>
   );
