@@ -7,6 +7,7 @@ import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { useContactSheet } from '@/hooks/use-contact-sheet';
+import { AnimatedText } from '../AnimatedText';
 
 export default function Footer() {
   const { onOpen } = useContactSheet();
@@ -114,6 +115,9 @@ export default function Footer() {
           <div className="flex flex-col lg:flex-row justify-between items-center gap-4">
             <div className="text-sm text-white/80" dangerouslySetInnerHTML={{ __html: '© 2025 ООО&nbsp;"ГЕОСТРОЙПРОЕКТ". Все права защищены.' }}>
             </div>
+            <a href="https://www.1target.ru/" target="_blank" rel="noopener noreferrer" className="text-sm text-white/80">
+                <AnimatedText as="span" text="Разработано в 1TARGET" className="text-sm" endSymbol="🚀"/>
+            </a>
             <div className="text-xs text-white/80 text-center lg:text-right" dangerouslySetInnerHTML={{ __html: 'Лицензированные кадастровые инженеры | Работаем с&nbsp;2003 года<br/>Геодезические услуги в&nbsp;Санкт-Петербурге и&nbsp;Ленинградской области' }}>
             </div>
           </div>
