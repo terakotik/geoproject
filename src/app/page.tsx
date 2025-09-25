@@ -244,7 +244,7 @@ export default function Home() {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 my-8">
               {heroStats.map((stat, index) => (
                 <Card key={index} className="bg-background/30 backdrop-blur-sm border-2 border-dashed border-border/50 hover:border-accent transition-all duration-300 p-6 text-center md:text-left h-full">
-                  <div className="flex flex-col md:flex-row items-center gap-4">
+                  <div className="flex flex-col items-center text-center md:flex-row md:items-center md:text-left gap-4">
                     <div className="p-3 rounded-lg flex items-center justify-center w-16 h-16 bg-muted/50 mb-4 md:mb-0">
                       <stat.icon className="h-8 w-8 text-accent" />
                     </div>
@@ -286,7 +286,7 @@ export default function Home() {
                             muted
                             playsInline
                             className="w-32 h-32 object-cover rounded-full border-4 border-white shadow-lg flex-shrink-0 mb-4 lg:mb-0"
-                            src="https://pouch.jumpshare.com/preview/dUHg-gsRDslnFdT3XfFQYUj3M9PXnVuKIjURan0E7Tt9Heoa57PeFb-sbUHpmPWll8ZWyRtlbSgh2j3IOsSmh_aPcQXoRS15iWmHOM-M34oq3xv7xY6eKpTknO-BlLQ6fMHhaj6KSTQHGO3Lt9OKFm6yjbN-I2pg_cnoHs_AmgI.mp4"
+                            src="https://pouch.jumpshare.com/preview/dUHg-gsRDslnFdT3XfFQYUj3M9PXnVuKIjURan0E7Tt9Heoa57PeFb-sbUHpmPWll8ZWyRtlbSgh2j3IOsSmh_aPcQXoRS15iWmHOM-M34oq3xv7xY6eKpTknO-BlLQ6JUqFZxAyzBKDkHpyYMX-zW6yjbN-I2pg_cnoHs_AmgI.mp4"
                         />
                         <div className="flex-grow">
                           <CardHeader className="p-0 mb-6 flex-grow">
