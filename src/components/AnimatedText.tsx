@@ -13,6 +13,7 @@ type AnimatedTextProps = {
 };
 
 const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+";
+const animationColors = ['#000000', '#FFD700', '#FFA500']; // Black, Yellow, Orange
 
 export function AnimatedText({ text, endSymbol, className, as: Tag = 'div' }: AnimatedTextProps) {
   const [currentHtml, setCurrentHtml] = useState<string>('');
@@ -34,20 +35,24 @@ export function AnimatedText({ text, endSymbol, className, as: Tag = 'div' }: An
           if (progress * text.length > index) {
             return char;
           } else {
-            const randomColor = `rgb(${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)})`;
+            const randomColor = animationColors[Math.floor(Math.random() * animationColors.length)];
             return `<span style="color: ${randomColor}">${chars[Math.floor(Math.random() * chars.length)]}</span>`;
           }
         }).join('');
 
-        setCurrentHtml(newHtml);
+        if (ref.current) {
+          ref.current.innerHTML = newHtml;
+        }
 
         if (progress < 1) {
           animationFrameId.current = requestAnimationFrame(animate);
         } else {
-           if (endSymbol) {
-             setCurrentHtml(text + ' ' + endSymbol);
-           } else {
-             setCurrentHtml(text);
+           if (ref.current) {
+             if (endSymbol) {
+               ref.current.innerHTML = text + ' ' + endSymbol;
+             } else {
+               ref.current.innerHTML = text;
+             }
            }
         }
       };
@@ -66,7 +71,6 @@ export function AnimatedText({ text, endSymbol, className, as: Tag = 'div' }: An
     <Tag
       ref={ref}
       className={cn(className)}
-      dangerouslySetInnerHTML={{ __html: currentHtml || '' }}
     />
   );
 }
