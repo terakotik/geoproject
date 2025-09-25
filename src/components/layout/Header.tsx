@@ -117,7 +117,7 @@ export default function Header() {
                       </AccordionItem>
                     </Accordion>
 
-                    {navLinks.filter(link => link.href !== '/services').map((link) => (
+                    {navLinks.filter(link => link.label !== 'Услуги').map((link) => (
                       <Link key={link.href} href={link.href} onClick={closeMobileMenu} className="py-3 font-medium transition-colors hover:bg-muted rounded-md px-3">
                         {link.label}
                       </Link>
