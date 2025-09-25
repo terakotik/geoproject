@@ -5,7 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
-import { CheckCircle, Star, CircleCheckBig, FilePenLine, Users, SquareCheckBig, Download, MessageCircle, Zap, Send, Phone, MessageSquare, ExternalLink, ArrowRight, Shield, MapPin as MapPinIcon, Building, Ruler, FileText as FileTextIcon, TreePine, Factory, Calculator, Clock, ListChecks, Linkedin, Twitter, FolderKanban, Award } from 'lucide-react';
+import { CheckCircle, Star, CircleCheckBig, FilePenLine, Users, SquareCheckBig, Download, MessageCircle, Zap, Send, Phone, MessageSquare, ExternalLink, ArrowRight, Shield, MapPin as MapPinIcon, Building, Ruler, FileText as FileTextIcon, TreePine, Factory, Calculator, Clock, ListChecks, Linkedin, Twitter, FolderKanban, Award, User, Briefcase } from 'lucide-react';
 import { services, getServiceDetails } from '@/lib/services';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 import HorizontalScrollCarousel from '@/components/HorizontalScrollCarousel';
@@ -136,6 +136,23 @@ const heroBenefits = [
     "Электронная подача документов",
 ];
 
+const teamMembers = [
+    {
+        name: "Иванов Иван",
+        role: "Главный инженер",
+        experience: "15 лет опыта в геодезии",
+        imageUrl: "https://picsum.photos/seed/member1/200/200",
+        imageHint: "male engineer face"
+    },
+    {
+        name: "Петрова Анна",
+        role: "Ведущий геодезист",
+        experience: "10 лет в кадастровых работах",
+        imageUrl: "https://picsum.photos/seed/member2/200/200",
+        imageHint: "female surveyor face"
+    }
+];
+
 export default function Home() {
   const { onOpen } = useContactSheet();
   const heroImage = PlaceHolderImages.find(p => p.id === 'hero-background');
@@ -243,9 +260,9 @@ export default function Home() {
             <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mt-6 mx-auto md:mx-0" dangerouslySetInnerHTML={{ __html: 'Полный спектр кадастровых работ, инженерных изысканий и&nbsp;ЗОУИТ в&nbsp;Санкт-Петербурге и&nbsp;ЛО' }}></p>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 my-8">
               {heroStats.map((stat, index) => (
-                <Card key={index} className="bg-background/30 backdrop-blur-sm border-2 border-dashed border-border/50 hover:border-accent transition-all duration-300 p-6 text-center md:text-left h-full">
-                  <div className="flex flex-col items-center text-center md:flex-row md:items-center md:text-left gap-4">
-                    <div className="p-3 rounded-lg flex items-center justify-center w-16 h-16 bg-muted/50 mb-4 md:mb-0">
+                <Card key={index} className="bg-background/30 backdrop-blur-sm border-2 border-dashed border-border/50 hover:border-accent transition-all duration-300 p-6 text-center h-full">
+                  <div className="flex flex-col items-center text-center gap-4">
+                     <div className="p-3 rounded-lg flex items-center justify-center w-16 h-16 bg-muted/50 mb-4">
                       <stat.icon className="h-8 w-8 text-accent" />
                     </div>
                     <div className="flex flex-col">
@@ -566,6 +583,51 @@ export default function Home() {
                 </CardContent>
               </Card>
             ))}
+          </div>
+        </div>
+      </section>
+
+        {/* Team Section */}
+      <section className="py-16 md:py-24 bg-gradient-hero">
+        <div className="container mx-auto px-4">
+          <div className="text-left mb-12 md:mb-16">
+            <AnimatedText as="h2" className="text-4xl md:text-5xl font-heading font-bold text-foreground text-left">О нас</AnimatedText>
+            <p className="text-xl text-muted-foreground max-w-3xl text-left mt-4">Познакомьтесь с нашими ведущими специалистами</p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {teamMembers.map((member, index) => (
+              <Card key={index} className="text-center p-6 bg-card/80 backdrop-blur-sm border-2 border-dashed border-border/50 hover:border-accent transition-all duration-300">
+                <Image
+                  src={member.imageUrl}
+                  alt={member.name}
+                  width={120}
+                  height={120}
+                  data-ai-hint={member.imageHint}
+                  className="rounded-full mx-auto mb-4 border-4 border-background shadow-lg"
+                />
+                <CardHeader className="p-0 mb-2">
+                  <CardTitle className="text-xl font-heading font-semibold text-foreground">{member.name}</CardTitle>
+                </CardHeader>
+                <CardContent className="p-0">
+                  <p className="text-base text-accent font-medium mb-2">{member.role}</p>
+                  <p className="text-sm text-muted-foreground">{member.experience}</p>
+                </CardContent>
+              </Card>
+            ))}
+             <Card className="flex flex-col justify-center text-center p-6 bg-card/80 backdrop-blur-sm border-2 border-dashed border-border/50 hover:border-accent transition-all duration-300">
+                <div className="w-16 h-16 rounded-full flex items-center justify-center mb-6 mx-auto bg-muted">
+                  <Briefcase className="h-7 w-7 text-muted-foreground" />
+                </div>
+                <CardHeader className="p-0 mb-2">
+                  <CardTitle className="text-xl font-heading font-semibold text-foreground">Присоединяйтесь к нам</CardTitle>
+                </CardHeader>
+                <CardContent className="p-0">
+                  <p className="text-sm text-muted-foreground mb-4">Мы всегда в поиске талантливых специалистов</p>
+                   <Button variant="outline" asChild>
+                    <Link href="/contact">Вакансии</Link>
+                  </Button>
+                </CardContent>
+              </Card>
           </div>
         </div>
       </section>
