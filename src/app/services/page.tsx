@@ -16,7 +16,7 @@ export default function ServicesPage() {
        <div className="container mx-auto px-4 md:px-6">
         <Breadcrumbs segments={[{ label: 'Главная', path: '/' }, { label: 'Услуги' }]} className="mb-8" />
         <div className="text-center mb-12 md:mb-16">
-          <AnimatedText as="h1" className="text-4xl md:text-5xl font-bold font-heading">Наши услуги</AnimatedText>
+          <AnimatedText as="h1" text="Наши услуги" className="text-4xl md:text-5xl font-bold font-heading" />
           <p className="mt-4 max-w-3xl mx-auto text-muted-foreground text-lg" dangerouslySetInnerHTML={{ __html: 'Мы&nbsp;предлагаем полный спектр геодезических и&nbsp;кадастровых услуг, адаптированных для удовлетворения конкретных потребностей вашего проекта.' }} >
           </p>
         </div>

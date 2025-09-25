@@ -22,7 +22,7 @@ const packages = [
     description: "Групповой пакет",
     price: "12 500 ₽",
     oldPrice: "14 000 ₽",
-    saving: "Экономия 11%",
+saving: "Экономия 11%",
     audience: "4-7 заявки",
     features: ["Все услуги пакета Стандарт", "Приоритетное обслуживание", "Персональный менеджер", "Скидка на&nbsp;дополнительные услуги"],
     popular: true,
@@ -89,7 +89,7 @@ export default function PricesPage() {
     <div className="py-16 md:py-24 bg-gradient-hero" id="prices">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12 md:mb-16">
-          <AnimatedText as="h1" className="text-4xl lg:text-5xl font-heading font-bold text-foreground mb-4">Прайс-лист</AnimatedText>
+          <AnimatedText as="h1" text="Прайс-лист" className="text-4xl lg:text-5xl font-heading font-bold text-foreground mb-4" />
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
             Прозрачные цены без скрытых доплат. Групповые скидки до&nbsp;43%
           </p>

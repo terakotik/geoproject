@@ -1,78 +1,72 @@
 
 'use client';
 
-import { motion, useAnimation, useInView } from 'framer-motion';
-import { useEffect, useRef, useState, useMemo } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import { useInView } from 'framer-motion';
 import { cn } from '@/lib/utils';
-import React from 'react';
 
 type AnimatedTextProps = {
-  phrases: string[];
-  as?: React.ElementType;
+  text: string;
+  endSymbol?: string;
   className?: string;
-  repeatDelay?: number;
+  as?: React.ElementType;
 };
 
-export function AnimatedText({
-  phrases,
-  as: Tag = 'h2',
-  className,
-  repeatDelay = 3000,
-}: AnimatedTextProps) {
-  const [phraseIndex, setPhraseIndex] = useState(0);
-  const controls = useAnimation();
-  const ref = useRef(null);
+const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+";
+
+export function AnimatedText({ text, endSymbol, className, as: Tag = 'div' }: AnimatedTextProps) {
+  const [currentHtml, setCurrentHtml] = useState<string>('');
+  const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, amount: 0.5 });
+  const animationFrameId = useRef<number | null>(null);
 
   useEffect(() => {
-    if (!isInView) return;
+    if (isInView && ref.current) {
+      let start: number | null = null;
+      const duration = 1500; // Animation duration in ms
 
-    const animate = async () => {
-      await controls.start('visible');
-      await new Promise(resolve => setTimeout(resolve, repeatDelay));
-      await controls.start('hidden');
-      setPhraseIndex(prev => (prev + 1) % phrases.length);
+      const animate = (timestamp: number) => {
+        if (!start) start = timestamp;
+        const elapsed = timestamp - start;
+        const progress = Math.min(elapsed / duration, 1);
+
+        const newHtml = text.split('').map((char, index) => {
+          if (progress * text.length > index) {
+            return char;
+          } else {
+            const randomColor = `rgb(${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)})`;
+            return `<span style="color: ${randomColor}">${chars[Math.floor(Math.random() * chars.length)]}</span>`;
+          }
+        }).join('');
+
+        setCurrentHtml(newHtml);
+
+        if (progress < 1) {
+          animationFrameId.current = requestAnimationFrame(animate);
+        } else {
+           if (endSymbol) {
+             setCurrentHtml(text + ' ' + endSymbol);
+           } else {
+             setCurrentHtml(text);
+           }
+        }
+      };
+
+      animationFrameId.current = requestAnimationFrame(animate);
+    }
+
+    return () => {
+      if (animationFrameId.current) {
+        cancelAnimationFrame(animationFrameId.current);
+      }
     };
-
-    const interval = setInterval(animate, repeatDelay + 1000); // repeatDelay + animation time
-    
-    // Initial animation
-    controls.start('visible');
-
-    return () => clearInterval(interval);
-  }, [isInView, phraseIndex, controls, phrases.length, repeatDelay]);
-
-
-  const animation = {
-    hidden: { opacity: 0, y: 20 },
-    visible: (i: number = 1) => ({
-      opacity: 1,
-      y: 0,
-      transition: { staggerChildren: 0.08, delayChildren: i * 0.08 },
-    }),
-  };
-
-  const words = useMemo(() => phrases[phraseIndex].split(' '), [phraseIndex, phrases]);
+  }, [isInView, text, endSymbol]);
 
   return (
-    <Tag className={cn("overflow-hidden", className)} ref={ref}>
-      <motion.span
-        key={phraseIndex}
-        initial="hidden"
-        animate={controls}
-        variants={animation}
-        aria-hidden
-      >
-        {words.map((word, i) => (
-          <motion.span
-            key={i}
-            variants={animation}
-            className="inline-block"
-          >
-            {word}&nbsp;
-          </motion.span>
-        ))}
-      </motion.span>
-    </Tag>
+    <Tag
+      ref={ref}
+      className={cn(className)}
+      dangerouslySetInnerHTML={{ __html: currentHtml || '' }}
+    />
   );
 }
