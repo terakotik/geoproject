@@ -35,6 +35,7 @@ export default function Header() {
   const { onOpen } = useContactSheet();
 
   const navLinks = [
+    { href: '/services', label: 'Услуги' },
     { href: '/prices', label: 'Цены' },
     { href: '/#about', label: 'О нас' },
     { href: '/contact', label: 'Контакты' },
@@ -73,11 +74,6 @@ export default function Header() {
                 </div>
               </PopoverContent>
             </Popover>
-            <Button variant="ghost" asChild>
-                <Link href="/services">
-                  Услуги
-                </Link>
-              </Button>
             {navLinks.map((link) => (
               <Button key={link.href} variant="ghost" asChild>
                 <Link href={link.href}>
@@ -121,7 +117,7 @@ export default function Header() {
                       </AccordionItem>
                     </Accordion>
 
-                    {navLinks.map((link) => (
+                    {navLinks.filter(link => link.href !== '/services').map((link) => (
                       <Link key={link.href} href={link.href} onClick={closeMobileMenu} className="py-3 font-medium transition-colors hover:bg-muted rounded-md px-3">
                         {link.label}
                       </Link>
