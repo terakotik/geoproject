@@ -136,11 +136,7 @@ const heroBenefits = [
     "Электронная подача документов",
 ];
 
-export default function Home() {
-  const { onOpen } = useContactSheet();
-  const heroImage = PlaceHolderImages.find(p => p.id === 'hero-background');
-  
-  const processSteps = [
+const processSteps = [
     {
       icon: FilePenLine,
       title: 'Заключение договора',
@@ -178,7 +174,8 @@ export default function Home() {
     }
   ];
 
-  const SurveyorDialog = ({ children }: { children: React.ReactNode }) => (
+function SurveyorDialog({ children }: { children: React.ReactNode }) {
+  return (
     <Dialog>
       <DialogTrigger asChild>
         {children}
@@ -204,6 +201,12 @@ export default function Home() {
       </DialogContent>
     </Dialog>
   );
+}
+
+
+export default function Home() {
+  const { onOpen } = useContactSheet();
+  const heroImage = PlaceHolderImages.find(p => p.id === 'hero-background');
 
   return (
     <div className="min-h-screen bg-background">
@@ -346,7 +349,7 @@ export default function Home() {
       <section id="services" className="bg-white">
         <div className="container mx-auto px-4 py-16 md:py-24">
           <div className="text-left mb-12 md:mb-16">
-            <AnimatedText as="h2" text="Наши услуги" className="text-4xl md:text-5xl font-heading font-bold text-foreground text-left" endSymbol="▼" />
+            <AnimatedText as="h2" text="Наши услуги" className="text-4xl md:text-5xl font-heading font-bold text-foreground text-left" />
             <p className="text-xl text-muted-foreground max-w-3xl text-left mt-4" dangerouslySetInnerHTML={{ __html: 'Предоставляем полный спектр геодезических и&nbsp;кадастровых услуг с&nbsp;гарантией качества и&nbsp;соблюдением сроков' }}>
             </p>
           </div>
@@ -427,7 +430,7 @@ export default function Home() {
       <section id="prices" className="py-16 md:py-24 bg-gradient-hero">
         <div className="container mx-auto px-4">
           <div className="text-left mb-12 md:mb-16">
-            <AnimatedText as="h2" text="Прайс-лист" className="text-4xl md:text-5xl font-heading font-bold text-foreground text-left" endSymbol="₽" />
+            <AnimatedText as="h2" text="Прайс-лист" className="text-4xl md:text-5xl font-heading font-bold text-foreground text-left" />
             <p className="text-xl text-muted-foreground max-w-3xl text-left mt-4" dangerouslySetInnerHTML={{ __html: 'Прозрачные цены без скрытых доплат. Групповые скидки до&nbsp;43%' }}>
             </p>
           </div>
@@ -548,7 +551,7 @@ export default function Home() {
       <section id="about" className="py-16 md:py-24 bg-background">
         <div className="container mx-auto px-4">
           <div className="text-left mb-12 md:mb-16">
-            <AnimatedText as="h2" text="Как мы работаем" className="text-4xl md:text-5xl font-heading font-bold text-foreground text-left" endSymbol="⚙️" />
+            <AnimatedText as="h2" text="Как мы работаем" className="text-4xl md:text-5xl font-heading font-bold text-foreground text-left" />
             <p className="text-xl text-muted-foreground max-w-3xl text-left mt-4" dangerouslySetInnerHTML={{ __html: 'Прозрачный процесс работы без лишних этапов и&nbsp;дополнительных затрат' }}>
             </p>
           </div>
@@ -613,7 +616,7 @@ export default function Home() {
       <section className="py-12 md:py-16 bg-gradient-hero">
         <div className="container mx-auto px-4">
           <div className="text-left mb-8">
-            <AnimatedText as="h2" text="Работаем с крупными компаниями" className="text-4xl md:text-5xl font-heading font-bold text-foreground text-left" endSymbol="🤝"/>
+            <AnimatedText as="h2" text="Работаем с крупными компаниями" className="text-4xl md:text-5xl font-heading font-bold text-foreground text-left" />
           </div>
           <ClientsMarquee />
         </div>

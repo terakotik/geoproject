@@ -116,7 +116,7 @@ export default function Footer() {
             <div className="text-sm text-white/80" dangerouslySetInnerHTML={{ __html: '© 2025 ООО&nbsp;"ГЕОСТРОЙПРОЕКТ". Все права защищены.' }}>
             </div>
             <a href="https://www.1target.ru/" target="_blank" rel="noopener noreferrer" className="text-sm text-white/80">
-                <AnimatedText as="span" text="Разработано в 1TARGET" className="text-sm" endSymbol="🚀"/>
+                <AnimatedText as="span" text="Разработчик" className="text-sm"/>
             </a>
             <div className="text-xs text-white/80 text-center lg:text-right" dangerouslySetInnerHTML={{ __html: 'Лицензированные кадастровые инженеры | Работаем с&nbsp;2003 года<br/>Геодезические услуги в&nbsp;Санкт-Петербурге и&nbsp;Ленинградской области' }}>
             </div>
