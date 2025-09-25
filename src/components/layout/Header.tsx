@@ -35,7 +35,6 @@ export default function Header() {
   const { onOpen } = useContactSheet();
 
   const navLinks = [
-    { href: '/services', label: 'Услуги' },
     { href: '/prices', label: 'Цены' },
     { href: '/#about', label: 'О нас' },
     { href: '/contact', label: 'Контакты' },
@@ -74,7 +73,12 @@ export default function Header() {
                 </div>
               </PopoverContent>
             </Popover>
-            {navLinks.slice(1).map((link) => (
+            <Button variant="ghost" asChild>
+                <Link href="/services">
+                  Услуги
+                </Link>
+              </Button>
+            {navLinks.map((link) => (
               <Button key={link.href} variant="ghost" asChild>
                 <Link href={link.href}>
                   {link.label}
@@ -146,5 +150,3 @@ export default function Header() {
     </header>
   );
 }
-
-    
