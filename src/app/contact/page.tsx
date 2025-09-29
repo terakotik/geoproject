@@ -46,7 +46,7 @@ export default function ContactPage() {
       <div className="container mx-auto px-4">
         <div className="text-center mb-12 md:mb-16">
           <h1 className="text-4xl lg:text-5xl font-heading font-bold text-foreground mb-4">Контакты</h1>
-          <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto">Свяжитесь с&nbsp;нами удобным способом. Работаем ежедневно с&nbsp;10:00 до&nbsp;20:00</p>
+          <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto">Свяжитесь с нами удобным способом. Работаем ежедневно с 10:00 до 20:00</p>
         </div>
 
         <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-start">
@@ -57,9 +57,9 @@ export default function ContactPage() {
                 <CardTitle className="text-xl">Режим работы</CardTitle>
               </CardHeader>
               <CardContent className="p-0 space-y-2">
-                <div className="text-lg font-medium">Ежедневно: 10:00&nbsp;- 20:00</div>
-                <div className="text-sm opacity-90">Выезд специалистов в&nbsp;любой день недели</div>
-                <div className="text-sm opacity-90">Срочные выезды&nbsp;- круглосуточно</div>
+                <div className="text-lg font-medium">Ежедневно: 10:00 - 20:00</div>
+                <div className="text-sm opacity-90">Выезд специалистов в любой день недели</div>
+                <div className="text-sm opacity-90">Срочные выезды - круглосуточно</div>
               </CardContent>
             </Card>
 
@@ -96,11 +96,7 @@ export default function ContactPage() {
                         </div>
                         <div>
                             <div className="text-xs text-muted-foreground uppercase tracking-wide">WhatsApp</div>
-                            <a href="https://wa.me/79522764940" target="_blank" rel="noopener noreferrer" className="text-sm font-medium text-foreground hover:text-accent">+7 (952) 276-49-40</a>
-                        </div>
-                         <div>
-                            <div className="text-xs text-muted-foreground uppercase tracking-wide">Viber</div>
-                            <span className="text-sm font-medium text-foreground">+7 (952) 276-49-40</span>
+                            <a href="https://wa.me/79108247848" target="_blank" rel="noopener noreferrer" className="text-sm font-medium text-foreground hover:text-accent">+7 (910) 824-78-48</a>
                         </div>
                     </CardContent>
                 </Card>
@@ -124,7 +120,7 @@ export default function ContactPage() {
                      <CardContent className="p-0 space-y-3">
                         <div>
                             <div className="text-xs text-muted-foreground uppercase tracking-wide">Адрес</div>
-                            <div className="text-sm font-medium text-foreground">Санкт-Петербург, ул. Ефимова, д.&nbsp;1/4, офис&nbsp;301</div>
+                            <div className="text-sm font-medium text-foreground">Санкт-Петербург, ул. Ефимова, д. 1/4, офис 301</div>
                         </div>
                         <div>
                             <div className="text-xs text-muted-foreground uppercase tracking-wide">Метро</div>
@@ -142,10 +138,10 @@ export default function ContactPage() {
                     <CardTitle className="flex items-center gap-2 text-lg"><CircleCheckBig className="h-5 w-5 text-accent"/>Почему выбирают нас</CardTitle>
                 </CardHeader>
                 <CardContent className="p-0 space-y-3 text-sm text-muted-foreground">
-                    <div className="flex items-start gap-3"><CircleCheckBig className="h-4 w-4 text-accent mt-0.5 flex-shrink-0" /><span>Опыт работы с&nbsp;2003 года</span></div>
+                    <div className="flex items-start gap-3"><CircleCheckBig className="h-4 w-4 text-accent mt-0.5 flex-shrink-0" /><span>Опыт работы с 2003 года</span></div>
                     <div className="flex items-start gap-3"><CircleCheckBig className="h-4 w-4 text-accent mt-0.5 flex-shrink-0" /><span>Лицензированные кадастровые инженеры</span></div>
                     <div className="flex items-start gap-3"><CircleCheckBig className="h-4 w-4 text-accent mt-0.5 flex-shrink-0" /><span>Современное геодезическое оборудование</span></div>
-                    <div className="flex items-start gap-3"><CircleCheckBig className="h-4 w-4 text-accent mt-0.5 flex-shrink-0" /><span>Гарантия на&nbsp;все виды работ</span></div>
+                    <div className="flex items-start gap-3"><CircleCheckBig className="h-4 w-4 text-accent mt-0.5 flex-shrink-0" /><span>Гарантия на все виды работ</span></div>
                     <div className="flex items-start gap-3"><CircleCheckBig className="h-4 w-4 text-accent mt-0.5 flex-shrink-0" /><span>Электронная подача документов</span></div>
                 </CardContent>
             </Card>
@@ -154,14 +150,14 @@ export default function ContactPage() {
           <Card className="p-8 sticky top-8">
             <CardHeader className="p-0 text-center mb-6">
               <CardTitle className="text-2xl">Оставить заявку</CardTitle>
-              <p className="text-muted-foreground">Получите бесплатную консультацию и&nbsp;расчет стоимости работ</p>
+              <p className="text-muted-foreground">Получите бесплатную консультацию и расчет стоимости работ</p>
             </CardHeader>
             <CardContent className="p-0">
               {formState === 'success' ? (
                 <div className="text-center py-10">
                   <CheckCircle2 className="h-16 w-16 text-green-500 mx-auto mb-4" />
                   <h3 className="text-xl font-semibold mb-2">Заявка успешно отправлена!</h3>
-                  <p className="text-muted-foreground">Спасибо! Мы&nbsp;свяжемся с&nbsp;вами в&nbsp;ближайшее время.</p>
+                  <p className="text-muted-foreground">Спасибо! Мы свяжемся с вами в ближайшее время.</p>
                 </div>
               ) : (
                 <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
@@ -195,7 +191,7 @@ export default function ContactPage() {
                           <input type="checkbox" id="privacy" {...register("privacy")} className="mt-1 h-4 w-4 rounded border-border" aria-invalid={errors.privacy ? "true" : "false"} />
                           <div className="grid gap-1.5 leading-none">
                             <Label htmlFor="privacy" className="text-sm font-medium text-muted-foreground">
-                                Согласен с&nbsp;<Link href="#" className="text-accent hover:underline">обработкой персональных данных</Link>
+                                Согласен с <Link href="#" className="text-accent hover:underline">обработкой персональных данных</Link>
                             </Label>
                             {errors.privacy && <p className="text-sm text-destructive flex items-center gap-1"><AlertCircle className="h-4 w-4" /> {errors.privacy.message}</p>}
                           </div>
