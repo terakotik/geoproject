@@ -96,7 +96,7 @@ export default function ContactPage() {
                         </div>
                         <div>
                             <div className="text-xs text-muted-foreground uppercase tracking-wide">WhatsApp</div>
-                            <a href="https://wa.me/79108247848" target="_blank" rel="noopener noreferrer" className="text-sm font-medium text-foreground hover:text-accent">+7 (952) 276-49-40</a>
+                            <a href="https://wa.me/79108247848" target="_blank" rel="noopener noreferrer" className="text-sm font-medium text-foreground hover:text-accent">+7 (910) 824-78-48</a>
                         </div>
                          <div>
                             <div className="text-xs text-muted-foreground uppercase tracking-wide">Viber</div>
