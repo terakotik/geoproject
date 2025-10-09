@@ -109,13 +109,13 @@ export default function MemoPage() {
                         </CardContent>
                     </Card>
                     
-                    <div className="text-center mt-12">
-                        <Card className="inline-block p-6 bg-card border">
-                             <CardTitle className="text-xl font-heading mb-4">Вопросы? Звоните!</CardTitle>
-                             <div className="space-y-2">
-                                <a href="tel:+79522764940" className="block text-lg font-semibold text-primary hover:underline">+7 (952) 276-49-40</a>
-                                <a href="tel:+79108247848" className="block text-lg font-semibold text-primary hover:underline">+7 (910) 824-78-48</a>
-                                <a href="tel:+79916815899" className="block text-lg font-semibold text-primary hover:underline">+7 (991) 681-58-99</a>
+                    <div className="mt-12">
+                        <Card className="p-8 bg-card border text-center">
+                             <CardTitle className="text-2xl font-heading mb-4">Вопросы? Звоните!</CardTitle>
+                             <div className="space-y-3 my-6">
+                                <a href="tel:+79522764940" className="block text-xl font-semibold text-primary hover:underline">+7 (952) 276-49-40</a>
+                                <a href="tel:+79108247848" className="block text-xl font-semibold text-primary hover:underline">+7 (910) 824-78-48</a>
+                                <a href="tel:+79916815899" className="block text-xl font-semibold text-primary hover:underline">+7 (991) 681-58-99</a>
                              </div>
                              <p className="text-muted-foreground text-sm mt-4">Срок выполнения до 10 дней</p>
                         </Card>
