@@ -8,7 +8,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Mail, Phone, MapPin, Clock, MessageSquare, ExternalLink, CircleCheckBig, Zap, Send, AlertCircle, CheckCircle2 } from 'lucide-react';
+import { Mail, Phone, MapPin, Clock, MessageSquare, ExternalLink, CircleCheckBig, Zap, Send, AlertCircle, CheckCircle2, FileText } from 'lucide-react';
 import Link from 'next/link';
 
 const formSchema = z.object({
@@ -47,6 +47,15 @@ export default function ContactPage() {
         <div className="text-center mb-12 md:mb-16">
           <h1 className="text-4xl lg:text-5xl font-heading font-bold text-foreground mb-4">Контакты</h1>
           <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto">Свяжитесь с нами удобным способом. Работаем ежедневно с 10:00 до 20:00</p>
+        </div>
+        
+        <div className="text-center mb-8">
+            <Button asChild size="lg">
+                <Link href="/memo">
+                    <FileText className="mr-2 h-5 w-5" />
+                    Памятка по регистрации дома
+                </Link>
+            </Button>
         </div>
 
         <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-start">
