@@ -110,7 +110,7 @@ export default function MemoPage() {
                     </Card>
                     
                     <div className="mt-12">
-                        <Card className="p-8 bg-card border text-center">
+                        <Card className="p-8 bg-card border">
                              <CardTitle className="text-2xl font-heading mb-4">Вопросы? Звоните!</CardTitle>
                              <div className="space-y-3 my-6">
                                 <a href="tel:+79522764940" className="block text-xl font-semibold text-primary hover:underline">+7 (952) 276-49-40</a>
