@@ -22,6 +22,14 @@ const objectRequirements = [
     'Установлены основные перегородки'
 ];
 
+const otherServices = [
+    'Вынос границ в натуру',
+    'Раздел/объединение участков',
+    'Акт обследования',
+    'Геодезическая съемка',
+    'Регистрация перепланировок'
+];
+
 export default function MemoPage() {
     return (
         <div className="py-16 md:py-24 bg-gradient-hero">
@@ -67,13 +75,30 @@ export default function MemoPage() {
                         </CardContent>
                     </Card>
 
-                    <Card>
+                    <Card className="mb-8">
                         <CardHeader>
                             <CardTitle className="text-2xl font-heading">Основные требования к завершенному объекту</CardTitle>
                         </CardHeader>
                         <CardContent>
                             <ul className="space-y-3">
                                 {objectRequirements.map((item, index) => (
+                                    <li key={index} className="flex items-center gap-3">
+                                        <CheckCircle className="h-5 w-5 text-accent flex-shrink-0" />
+                                        <span className="text-muted-foreground">{item}</span>
+                                    </li>
+
+                                ))}
+                            </ul>
+                        </CardContent>
+                    </Card>
+                    
+                    <Card className="mb-8">
+                        <CardHeader>
+                            <CardTitle className="text-2xl font-heading">Еще мы делаем</CardTitle>
+                        </CardHeader>
+                        <CardContent>
+                            <ul className="space-y-3">
+                                {otherServices.map((item, index) => (
                                     <li key={index} className="flex items-center gap-3">
                                         <CheckCircle className="h-5 w-5 text-accent flex-shrink-0" />
                                         <span className="text-muted-foreground">{item}</span>
