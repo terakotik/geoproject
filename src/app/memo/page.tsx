@@ -78,6 +78,7 @@ export default function MemoPage() {
                                         <CheckCircle className="h-5 w-5 text-accent flex-shrink-0" />
                                         <span className="text-muted-foreground">{item}</span>
                                     </li>
+
                                 ))}
                             </ul>
                         </CardContent>
