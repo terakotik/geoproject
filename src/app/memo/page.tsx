@@ -39,7 +39,7 @@ export default function MemoPage() {
                         <div className="inline-block bg-primary text-primary-foreground rounded-full p-4 mb-4">
                             <Building className="h-10 w-10" />
                         </div>
-                        <h1 className="text-4xl md:text-5xl font-heading font-bold text-foreground">Памятка: Регистрация дома</h1>
+                        <h1 className="text-4xl md:text-5xl font-heading font-bold text-foreground">Памятка по регистрации дома (технический план)</h1>
                         <p className="text-lg text-muted-foreground mt-4">Краткое руководство по процессу регистрации вашего дома.</p>
                     </div>
 

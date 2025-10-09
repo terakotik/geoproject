@@ -53,7 +53,7 @@ export default function ContactPage() {
             <Button asChild size="lg">
                 <Link href="/memo">
                     <FileText className="mr-2 h-5 w-5" />
-                    Памятка по регистрации дома
+                    Памятка по регистрации дома (тех. план)
                 </Link>
             </Button>
         </div>
