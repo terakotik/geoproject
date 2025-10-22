@@ -226,10 +226,6 @@ export default function Home() {
         </div>
         <div className="container mx-auto px-4 relative z-10">
           <div className="py-20 max-w-4xl mx-auto flex flex-col items-center">
-            <div className="flex items-center gap-2 text-accent font-semibold bg-accent/20 px-4 py-2 rounded-full text-lg mb-4">
-              <Star className="h-5 w-5 fill-current text-yellow-400" />
-              <span className="text-accent" dangerouslySetInnerHTML={{ __html: 'Нам доверяют с&nbsp;2003 года' }}></span>
-            </div>
             
             <h1 className="text-4xl sm:text-6xl lg:text-7xl font-heading font-bold leading-tight text-foreground">
                Профессиональные <span className="text-accent">геодезические</span> услуги
@@ -293,7 +289,47 @@ export default function Home() {
                           </CardContent>
                         </div>
                     </div>
-                    <CardContent className="p-0 text-muted-foreground space-y-4 text-lg mt-6">
+                     <CardContent className="p-0 text-muted-foreground space-y-4 text-lg mt-6">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-6">
+                            <a href="https://yandex.ru/maps/org/geostroypryekt/100078872995/reviews/" target="_blank" rel="noopener noreferrer" className="block">
+                                <Card className="p-4 h-full bg-card/80 backdrop-blur-sm border-2 border-dashed border-border/50 hover:border-accent transition-all duration-300">
+                                    <div className="flex items-center gap-3">
+                                        <Image src="https://pouch.jumpshare.com/preview/3-S8s_WjBldwOaG2GzM-iB8aQ5Y9zYp2sD5prP-03x8QvH03iXw1dD4_fF9qX0UfO1P5r343k8-ZJ9I09D275w33-Lg.png" alt="Yandex" width={24} height={24} />
+                                        <div className="font-semibold text-lg">Яндекс</div>
+                                    </div>
+                                    <div className="flex items-center gap-1 mt-2">
+                                        <span className="text-lg font-bold text-accent">5.0</span>
+                                        <div className="flex text-yellow-400">
+                                            <Star className="h-5 w-5 fill-current" />
+                                            <Star className="h-5 w-5 fill-current" />
+                                            <Star className="h-5 w-5 fill-current" />
+                                            <Star className="h-5 w-5 fill-current" />
+                                            <Star className="h-5 w-5 fill-current" />
+                                        </div>
+                                    </div>
+                                    <p className="text-sm text-muted-foreground mt-2">Посмотреть отзывы</p>
+                                </Card>
+                            </a>
+                            <a href="https://2gis.ru/spb/firm/70000001041071069/tab/reviews" target="_blank" rel="noopener noreferrer" className="block">
+                                <Card className="p-4 h-full bg-card/80 backdrop-blur-sm border-2 border-dashed border-border/50 hover:border-accent transition-all duration-300">
+                                    <div className="flex items-center gap-3">
+                                         <Image src="https://pouch.jumpshare.com/preview/b-V3XilT3r2Ie1j7oAnNQB8aQ5Y9zYp2sD5prP-03x8QvH03iXw1dD4_fF9qX0UfO1P5r343k8-ZJ9I09D275w33-Lg.png" alt="2GIS" width={24} height={24} />
+                                        <div className="font-semibold text-lg">2ГИС</div>
+                                    </div>
+                                     <div className="flex items-center gap-1 mt-2">
+                                        <span className="text-lg font-bold text-accent">5.0</span>
+                                        <div className="flex text-yellow-400">
+                                            <Star className="h-5 w-5 fill-current" />
+                                            <Star className="h-5 w-5 fill-current" />
+                                            <Star className="h-5 w-5 fill-current" />
+                                            <Star className="h-5 w-5 fill-current" />
+                                            <Star className="h-5 w-5 fill-current" />
+                                        </div>
+                                    </div>
+                                    <p className="text-sm text-muted-foreground mt-2">Посмотреть отзывы</p>
+                                </Card>
+                            </a>
+                        </div>
                         <p dangerouslySetInnerHTML={{ __html: 'У&nbsp;нас работают только опытные кадастровые инженеры, готовые помочь в&nbsp;решении земельных вопросов качественно и&nbsp;в&nbsp;поставленные сроки. Не&nbsp;нужно устанавливать забор и&nbsp;делить землю самостоятельно&nbsp;- это может привести к&nbsp;ненужным разногласиям с&nbsp;соседями, следовательно, к&nbsp;потере денег и&nbsp;времени.' }}></p>
                         <p dangerouslySetInnerHTML={{ __html: 'Наши специалисты постоянно находятся в&nbsp;курсе последних изменений в&nbsp;законодательстве и&nbsp;всегда готовы оказать вам квалифицированную помощь в&nbsp;оформлении перепланировки квартиры, сопровождении сделок с&nbsp;недвижимостью, заказе межевого плана участка и&nbsp;проектировании домов.' }}></p>
                         <p dangerouslySetInnerHTML={{ __html: 'Инженерные изыскания&nbsp;- это неотъемлемая часть проектной деятельности, обеспечивающая всестороннее изучение природных и&nbsp;техногенных условий местности планируемого строительства.' }}></p>
@@ -577,3 +613,5 @@ export default function Home() {
     </div>
   );
 }
+
+    
