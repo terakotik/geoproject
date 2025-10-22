@@ -17,7 +17,7 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover"
 import { services } from '@/lib/services';
-import { useState }from 'react';
+import { useState, useEffect }from 'react';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import {
   Accordion,
@@ -31,20 +31,32 @@ import { useContactSheet } from '@/hooks/use-contact-sheet';
 
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
   const pathname = usePathname();
   const { onOpen } = useContactSheet();
 
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 10);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   const navLinks = [
-    { href: '/services', label: 'Услуги' },
-    { href: '/prices', label: 'Цены' },
     { href: '/#about', label: 'О нас' },
+    { href: '/prices', label: 'Цены' },
+    { href: '/updates', label: 'Вопросы' },
     { href: '/contact', label: 'Контакты' },
   ];
 
   const closeMobileMenu = () => setIsMobileMenuOpen(false);
 
   return (
-    <header className="sticky top-0 z-50 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b border-border">
+    <header className={cn(
+        "sticky top-0 z-50 transition-all duration-300",
+        isScrolled ? "bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b" : "bg-transparent"
+    )}>
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-20">
           <Link href="/" onClick={closeMobileMenu}>
@@ -93,7 +105,7 @@ export default function Header() {
                   <span className="sr-only">Открыть меню</span>
                 </Button>
               </SheetTrigger>
-              <SheetContent side="right" className="flex flex-col p-0 w-full max-w-xs">
+              <SheetContent side="right" className="flex flex-col p-0 w-full max-w-xs bg-background">
                 <div className="p-4 border-b">
                   <Link href="/" onClick={closeMobileMenu}>
                     <Logo />

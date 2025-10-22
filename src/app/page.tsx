@@ -212,66 +212,55 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-background">
       {/* Hero Section */}
-       <section className="relative min-h-[80vh] md:min-h-screen flex items-center justify-center text-center md:text-left overflow-hidden bg-white">
-        <div className="absolute top-0 right-0 h-full w-full md:w-1/2 z-0 mt-[60px] hidden md:block">
+       <section className="relative min-h-[80vh] md:min-h-screen flex items-center justify-center text-center overflow-hidden">
+        <div className="absolute inset-0 z-0">
           <Image
-            src="https://img.freepik.com/free-photo/view-of-modern-business-skyscrapers-in-downtown_181624-54898.jpg?w=1380"
-            alt="Геодезические работы"
-            fill={true}
-            className="md:absolute md:top-0 md:left-0 md:h-full md:w-full object-contain"
+            src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=2070&auto=format&fit=crop"
+            alt="Команда инженеров-геодезистов"
+            layout="fill"
+            objectFit="cover"
+            className="opacity-20"
+            data-ai-hint="team engineers"
           />
+          <div className="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-transparent" />
         </div>
         <div className="container mx-auto px-4 relative z-10">
-          <div className="py-20 max-w-full md:max-w-3xl">
-            <div className="flex flex-col sm:flex-row items-center justify-center md:justify-start gap-4 mb-6">
-              <div className="flex items-center gap-2 text-accent font-semibold bg-accent/20 px-4 py-2 rounded-full text-lg">
-                <Star className="h-5 w-5 fill-current text-yellow-400" />
-                <span className="text-accent" dangerouslySetInnerHTML={{ __html: 'Нам доверяют с&nbsp;2003 года' }}></span>
-              </div>
-              <a href="https://yandex.com/maps/org/geostroyproyekt/144539023058/?ll=30.231738%2C59.920487&mode=search&sll=37.586554%2C55.796284&sspn=0.174408%2C0.060633&text=%D0%B3%D0%B5%D0%BE%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BF%D1%80%D0%BE%D0%B5%D0%B0%D1%82%20%D1%81%D0%B0%D0%BD%D0%BA%D1%82%20%D0%BF%D0%B5%D1%82%D0%B5%D1%80%D0%B1%D1%83%D1%80%D0%B3&z=10" target="_blank" rel="noopener noreferrer">
-                <Card className="flex items-center gap-3 text-foreground font-semibold bg-white/90 px-4 py-2 rounded-full text-lg w-fit border">
-                  <div className="w-6 h-6 rounded-full bg-white flex items-center justify-center">
-                    <span className="font-bold text-red-500">Я</span>
-                  </div>
-                  <span>Яндекс Отзывы</span>
-                  <span className="font-bold">5.0</span>
-                  <div className="flex">
-                    {[...Array(5)].map((_, i) => <Star key={i} className="h-4 w-4 fill-current text-yellow-400" />)}
-                  </div>
-                </Card>
-              </a>
+          <div className="py-20 max-w-4xl mx-auto flex flex-col items-center">
+            <div className="flex items-center gap-2 text-accent font-semibold bg-accent/20 px-4 py-2 rounded-full text-lg mb-4">
+              <Star className="h-5 w-5 fill-current text-yellow-400" />
+              <span className="text-accent" dangerouslySetInnerHTML={{ __html: 'Нам доверяют с&nbsp;2003 года' }}></span>
             </div>
-             <h1 className="text-4xl sm:text-6xl lg:text-7xl font-heading font-bold leading-tight text-foreground">
+            
+            <h1 className="text-4xl sm:text-6xl lg:text-7xl font-heading font-bold leading-tight text-foreground">
                Профессиональные <span className="text-accent">геодезические</span> услуги
             </h1>
-            <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mt-6 mx-auto md:mx-0" dangerouslySetInnerHTML={{ __html: 'Полный спектр кадастровых работ, инженерных изысканий и&nbsp;ЗОУИТ в&nbsp;Санкт-Петербурге и&nbsp;ЛО' }}></p>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 my-8">
-              {heroStats.map((stat, index) => (
-                <Card key={index} className="bg-background/30 backdrop-blur-sm border-2 border-dashed border-border/50 hover:border-accent transition-all duration-300 p-6">
-                  <div className="flex flex-col items-center text-center gap-4 md:flex-row md:text-left">
-                     <div className="p-3 rounded-lg flex items-center justify-center w-16 h-16 bg-muted/50 mb-4 md:mb-0 md:mr-4 shrink-0">
-                      <stat.icon className="h-8 w-8 text-accent" />
-                    </div>
-                    <div className="flex flex-col">
-                      <div className="text-4xl font-bold text-foreground">{stat.value}</div>
-                      <div className="text-sm text-muted-foreground mt-1" dangerouslySetInnerHTML={{ __html: stat.label }}></div>
-                    </div>
-                  </div>
-                </Card>
-              ))}
-            </div>
-            <ul className="space-y-3 my-8 text-foreground inline-block text-left">
-              {heroBenefits.map(benefit => (
-                <li key={benefit} className="flex items-center gap-3 text-lg">
-                  <CheckCircle className="h-5 w-5 text-accent flex-shrink-0" />
-                  <span dangerouslySetInnerHTML={{ __html: benefit }}></span>
-                </li>
-              ))}
-            </ul>
-            <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
-              <Button size="lg" onClick={onOpen}>
+            <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mt-6 mx-auto" dangerouslySetInnerHTML={{ __html: 'Полный спектр кадастровых работ, инженерных изысканий и&nbsp;ЗОУИТ в&nbsp;Санкт-Петербурге и&nbsp;ЛО' }}></p>
+            
+            <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
+              <Button size="lg" onClick={onOpen} className="text-lg py-7 px-8">
                 Бесплатная консультация
               </Button>
+               <Button size="lg" variant="ghost" asChild>
+                  <Link href="#services" className="text-lg py-7 px-8">
+                    Наши услуги <ArrowRight className="ml-2 h-5 w-5" />
+                  </Link>
+                </Button>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16 w-full">
+              {heroStats.map((stat, index) => (
+                <Card key={index} className="bg-background/50 backdrop-blur-sm border-border/20 p-6 text-center">
+                  <CardHeader className="p-0 items-center">
+                    <div className="p-3 rounded-full flex items-center justify-center w-16 h-16 bg-muted mb-4">
+                      <stat.icon className="h-8 w-8 text-accent" />
+                    </div>
+                    <CardTitle className="text-4xl font-bold text-foreground">{stat.value}</CardTitle>
+                  </CardHeader>
+                  <CardContent className="p-0 mt-2">
+                    <p className="text-sm text-muted-foreground" dangerouslySetInnerHTML={{ __html: stat.label }}></p>
+                  </CardContent>
+                </Card>
+              ))}
             </div>
           </div>
         </div>
@@ -285,15 +274,15 @@ export default function Home() {
                  <Card className="p-6 md:p-8 bg-card/50 backdrop-blur-sm border-border/50 relative">
                    <div className="flex flex-col lg:flex-row items-start gap-6">
                        <div className="w-32 h-32 rounded-full border-4 border-white shadow-lg flex-shrink-0 mb-4 lg:mb-0 overflow-hidden relative">
-                           <video 
-                                autoPlay
-                                loop
-                                muted
-                                playsInline
-                                className="absolute top-0 left-0 w-full h-full object-cover"
-                                src="https://d1dzlizqgbwk1w.cloudfront.net/videos/2025/10/22/oudbOxVP.mp4"
-                            >
-                            </video>
+                           <div style={{"position":"relative","paddingTop":"100%","width":"100%"}}>
+                                <iframe 
+                                    src="https://kinescope.io/embed/cuMWcPUTdQMHv8MWFcyFb2" 
+                                    allow="autoplay; fullscreen; picture-in-picture; encrypted-media; gyroscope; accelerometer; clipboard-write; screen-wake-lock;" 
+                                    frameBorder="0" 
+                                    allowFullScreen 
+                                    style={{"position":"absolute","width":"100%","height":"100%","top":"0","left":"0"}}>
+                                </iframe>
+                            </div>
                        </div>
                         <div className="flex-grow">
                           <CardHeader className="p-0 mb-6 flex-grow">
@@ -588,5 +577,3 @@ export default function Home() {
     </div>
   );
 }
-
-    
