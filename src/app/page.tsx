@@ -289,7 +289,7 @@ export default function Home() {
                             muted
                             playsInline
                             className="w-32 h-32 object-cover rounded-full border-4 border-white shadow-lg flex-shrink-0 mb-4 lg:mb-0"
-                            src="https://videos.openai.com/vg-assets/assets%2Ftask_01k5p47k6jfn0sx4zdqj1dtke6%2F1758458131_img_0.webp?st=2025-09-21T11%3A31%3A23Z&se=2025-09-27T12%3A31%3A23Z&sks=b&skt=2025-09-21T11%3A31%3A23Z&ske=2025-09-27T12%3A31%3A23Z&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skoid=cfbc986b-d2bc-4088-8b71-4f962129715b&skv=2019-02-02&sv=2018-11-09&sr=b&sp=r&spr=https%2Chttp&sig=%2BvLVkEGDbgchPMBo4tpdNhineN%2Bel7Y9h8LoWnUrwOs%3D&az=oaivgprodscus"
+                            src="https://pouch.jumpshare.com/preview/dUHg-gsRDslnFdT3XfFQYUj3M9PXnVuKIjURan0E7Tt9Heoa57PeFb-sbUHpmPWll8ZWyRtlbSgh2j3IOsSmh_aPcQXoRS15iWmHOM-M34oq3xv7xY6eKpTknO-BlLQ6JUqFZxAyzBKDkHpyYMX-zW6yjbN-I2pg_cnoHs_AmgI.mp4"
                         />
                         <div className="flex-grow">
                           <CardHeader className="p-0 mb-6 flex-grow">
