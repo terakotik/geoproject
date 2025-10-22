@@ -82,6 +82,12 @@ const nextConfig: NextConfig = {
         hostname: 'cdn.qrcode-ai.com',
         port: '',
         pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'scontent.fdad1-4.fna.fbcdn.net',
+        port: '',
+        pathname: '/**',
       }
     ],
   },
