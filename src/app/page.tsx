@@ -357,48 +357,8 @@ export default function Home() {
             <p className="text-xl text-muted-foreground max-w-3xl text-left mt-4" dangerouslySetInnerHTML={{ __html: 'Предоставляем полный спектр геодезических и&nbsp;кадастровых услуг с&nbsp;гарантией качества и&nbsp;соблюдением сроков' }}>
             </p>
           </div>
-        </div>
-
-        {/* Desktop: Horizontal Scroll */}
-        <div className="hidden md:block">
-            <HorizontalScrollCarousel>
-                {services.map((service, index) => (
-                    <div key={service.slug} className="min-w-[420px] md:min-w-[480px] px-4">
-                        <ServiceCard service={service} index={index} />
-                    </div>
-                ))}
-                <div className="min-w-[420px] md:min-w-[480px] px-4">
-                  <Card className="flex flex-col h-full justify-center items-center text-center p-8 bg-card/50 backdrop-blur-sm border-border/50">
-                      <div className="p-3 rounded-lg mb-4">
-                        <HelpCircle className="h-10 w-10 text-muted-foreground" />
-                      </div>
-                      <h3 className="text-2xl font-heading font-semibold text-foreground mb-2" dangerouslySetInnerHTML={{ __html: 'Не&nbsp;нашли нужную услугу?' }}></h3>
-                      <p className="text-muted-foreground mb-6" dangerouslySetInnerHTML={{ __html: 'Мы&nbsp;выполняем любые виды геодезических работ под&nbsp;заказ' }}></p>
-                      <Button size="lg" onClick={onOpen}>
-                        Получить консультацию
-                      </Button>
-                  </Card>
-                </div>
-                <div className="min-w-[420px] md:min-w-[480px] px-4 flex justify-center items-center">
-                  <SurveyorDialog>
-                    <TooltipProvider>
-                      <Tooltip>
-                        <TooltipTrigger>
-                          <Image src="https://st5.depositphotos.com/46655356/66209/v/450/depositphotos_662097198-stock-illustration-close-caucasian-worker-helmet-head.jpg" alt="Инженер-геодезист" width={400} height={400} className="object-contain cursor-pointer" />
-                        </TooltipTrigger>
-                        <TooltipContent>
-                          <p>Здравствуйте, жду именно ваш проект</p>
-                        </TooltipContent>
-                      </Tooltip>
-                    </TooltipProvider>
-                  </SurveyorDialog>
-                </div>
-            </HorizontalScrollCarousel>
-        </div>
-
-        {/* Mobile: Vertical Grid */}
-        <div className="md:hidden container mx-auto px-4 pb-16">
-          <div className="grid grid-cols-1 gap-8">
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {services.map((service, index) => (
               <ServiceCard key={service.slug} service={service} index={index} />
             ))}
@@ -412,7 +372,7 @@ export default function Home() {
                   Получить консультацию
                 </Button>
             </Card>
-            <div className="flex justify-center items-center mt-8">
+            <div className="flex justify-center items-center mt-8 lg:col-span-1 md:col-span-2">
               <SurveyorDialog>
                 <TooltipProvider>
                   <Tooltip>

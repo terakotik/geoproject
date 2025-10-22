@@ -6,6 +6,10 @@ import { useRef, type ReactNode } from 'react';
 import { useIsMobile } from '@/hooks/use-mobile';
 
 const HorizontalScrollCarousel = ({ children }: { children: ReactNode }) => {
+  // This component is temporarily disabled as per user request to use a standard grid layout.
+  return null;
+
+  /*
   const targetRef = useRef<HTMLDivElement | null>(null);
   const isMobile = useIsMobile();
 
@@ -28,6 +32,7 @@ const HorizontalScrollCarousel = ({ children }: { children: ReactNode }) => {
       </div>
     </section>
   );
+  */
 };
 
 export default HorizontalScrollCarousel;

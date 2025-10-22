@@ -33,7 +33,7 @@ const ServiceCard = React.memo(({ service, index, useLink = true }: ServiceCardP
         </CardHeader>
         <CardContent className="flex-grow p-0 pt-6">
           <ul className="space-y-3 my-4 text-base">
-            {details.includes.map((item, i) => (
+            {details.includes.slice(0, 3).map((item, i) => ( // Show only first 3 items
               <li key={i} className="flex items-center gap-3">
                 <CheckCircle className="h-5 w-5 text-accent flex-shrink-0" />
                 <span className="text-muted-foreground" dangerouslySetInnerHTML={{ __html: item }}></span>
@@ -58,5 +58,3 @@ const ServiceCard = React.memo(({ service, index, useLink = true }: ServiceCardP
 
 ServiceCard.displayName = 'ServiceCard';
 export default ServiceCard;
-
-    
