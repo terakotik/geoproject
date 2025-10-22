@@ -291,32 +291,13 @@ export default function Home() {
                     </div>
                      <CardContent className="p-0 text-muted-foreground space-y-4 text-lg mt-6">
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-6">
-                            <a href="https://yandex.ru/maps/org/geostroypryekt/100078872995/reviews/" target="_blank" rel="noopener noreferrer" className="block">
+                            <a href="https://yandex.com/maps/org/geostroyproyekt/144539023058/?ll=30.231738%2C59.920487&mode=search&sll=37.586554%2C55.796284&sspn=0.174408%2C0.060633&text=%D0%B3%D0%B5%D0%BE%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BF%D1%80%D0%BE%D0%B5%D0%B0%D1%82%20%D1%81%D0%B0%D0%BD%D0%BA%D1%82%20%D0%BF%D0%B5%D1%82%D0%B5%D1%80%D0%B1%D1%83%D1%80%D0%B3&z=10" target="_blank" rel="noopener noreferrer" className="block">
                                 <Card className="p-4 h-full bg-card/80 backdrop-blur-sm border-2 border-dashed border-border/50 hover:border-accent transition-all duration-300">
                                     <div className="flex items-center gap-3">
                                         <Image src="https://pouch.jumpshare.com/preview/3-S8s_WjBldwOaG2GzM-iB8aQ5Y9zYp2sD5prP-03x8QvH03iXw1dD4_fF9qX0UfO1P5r343k8-ZJ9I09D275w33-Lg.png" alt="Yandex" width={24} height={24} />
                                         <div className="font-semibold text-lg">Яндекс</div>
                                     </div>
                                     <div className="flex items-center gap-1 mt-2">
-                                        <span className="text-lg font-bold text-accent">5.0</span>
-                                        <div className="flex text-yellow-400">
-                                            <Star className="h-5 w-5 fill-current" />
-                                            <Star className="h-5 w-5 fill-current" />
-                                            <Star className="h-5 w-5 fill-current" />
-                                            <Star className="h-5 w-5 fill-current" />
-                                            <Star className="h-5 w-5 fill-current" />
-                                        </div>
-                                    </div>
-                                    <p className="text-sm text-muted-foreground mt-2">Посмотреть отзывы</p>
-                                </Card>
-                            </a>
-                            <a href="https://2gis.ru/spb/firm/70000001041071069/tab/reviews" target="_blank" rel="noopener noreferrer" className="block">
-                                <Card className="p-4 h-full bg-card/80 backdrop-blur-sm border-2 border-dashed border-border/50 hover:border-accent transition-all duration-300">
-                                    <div className="flex items-center gap-3">
-                                         <Image src="https://pouch.jumpshare.com/preview/b-V3XilT3r2Ie1j7oAnNQB8aQ5Y9zYp2sD5prP-03x8QvH03iXw1dD4_fF9qX0UfO1P5r343k8-ZJ9I09D275w33-Lg.png" alt="2GIS" width={24} height={24} />
-                                        <div className="font-semibold text-lg">2ГИС</div>
-                                    </div>
-                                     <div className="flex items-center gap-1 mt-2">
                                         <span className="text-lg font-bold text-accent">5.0</span>
                                         <div className="flex text-yellow-400">
                                             <Star className="h-5 w-5 fill-current" />
