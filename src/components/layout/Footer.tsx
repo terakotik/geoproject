@@ -21,7 +21,7 @@ export default function Footer() {
           muted
           playsInline
           className="w-full h-full object-cover"
-          src="https://video.streamable.com/biuc3c.mp4"
+          src="https://d1dzlizqgbwk1w.cloudfront.net/videos/2025/10/22/oudbOxVP.mp4"
         />
         <div className="absolute inset-0 bg-black/80"></div>
       </div>

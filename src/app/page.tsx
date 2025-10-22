@@ -291,7 +291,7 @@ export default function Home() {
                                 muted
                                 playsInline
                                 className="absolute top-0 left-0 w-full h-full object-cover"
-                                src="https://video.streamable.com/biuc3c.mp4"
+                                src="https://d1dzlizqgbwk1w.cloudfront.net/videos/2025/10/22/oudbOxVP.mp4"
                             >
                             </video>
                        </div>
