@@ -284,17 +284,17 @@ export default function Home() {
               <div className="space-y-6">
                  <Card className="p-6 md:p-8 bg-card/50 backdrop-blur-sm border-border/50 relative">
                    <div className="flex flex-col lg:flex-row items-start gap-6">
-                        <div className="w-32 h-32 rounded-full border-4 border-white shadow-lg flex-shrink-0 mb-4 lg:mb-0 overflow-hidden">
-                           <div style={{position: 'relative', paddingTop: '100%', width: '100%'}}>
-                               <iframe 
-                                   src="https://kinescope.io/embed/cuMWcPUTdQMHv8MWFcyFb2" 
-                                   allow="autoplay; fullscreen; picture-in-picture; encrypted-media; gyroscope; accelerometer; clipboard-write; screen-wake-lock;" 
-                                   frameBorder="0" 
-                                   allowFullScreen 
-                                   style={{position: 'absolute', width: '100%', height: '100%', top: 0, left: 0}}
-                                ></iframe>
-                           </div>
-                        </div>
+                       <div className="w-32 h-32 rounded-full border-4 border-white shadow-lg flex-shrink-0 mb-4 lg:mb-0 overflow-hidden relative">
+                           <video 
+                                autoPlay
+                                loop
+                                muted
+                                playsInline
+                                className="absolute top-0 left-0 w-full h-full object-cover"
+                                src="https://video.streamable.com/biuc3c.mp4"
+                            >
+                            </video>
+                       </div>
                         <div className="flex-grow">
                           <CardHeader className="p-0 mb-6 flex-grow">
                               <CardTitle className="text-3xl font-heading font-bold" dangerouslySetInnerHTML={{ __html: 'Геодезическая компания ООО&nbsp;"ГЕОСТРОЙПРОЕКТ"' }}></CardTitle>
