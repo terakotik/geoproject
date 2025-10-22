@@ -1,5 +1,4 @@
 
-
 'use client';
 
 import Image from 'next/image';
@@ -212,74 +211,104 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-background">
       {/* Hero Section */}
-       <section className="relative min-h-[80vh] md:min-h-screen flex items-center justify-center text-center overflow-hidden">
+       <section className="relative min-h-[80vh] md:min-h-screen flex items-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <Image
             src="https://scontent.fdad1-4.fna.fbcdn.net/v/t39.30808-6/475657241_629620156102016_4129712510879142534_n.jpg?stp=dst-jpg_s960x960_tt6&_nc_cat=103&ccb=1-7&_nc_sid=cc71e4&_nc_ohc=S4ER7sDDexsQ7kNvwGgmxAm&_nc_oc=Adk1V-tnH1cT7nuC4fs0R3ukx5Tg_F8f1j8NWLFsIej6vxS2eQkxl-JCFVFn8ETR_qk&_nc_zt=23&_nc_ht=scontent.fdad1-4.fna&_nc_gid=propPRV5A-TX6UojyhDEnA&oh=00_AfcA45kv5F_2kDZdnxR_YoizNG6ni8YsDr8uyAxPGywSlQ&oe=68FF242F"
             alt="Команда инженеров-геодезистов"
             layout="fill"
             objectFit="cover"
-            className="opacity-20 transform -scale-x-100"
+            className="transform -scale-x-100"
             data-ai-hint="team engineers"
+            priority
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-r from-background via-background/70 to-transparent" />
         </div>
         <div className="container mx-auto px-4 relative z-10">
-          <div className="py-20 max-w-4xl mx-auto flex flex-col items-center">
-            
-            <h1 className="text-4xl sm:text-6xl lg:text-7xl font-heading font-bold leading-tight text-foreground">
-               Профессиональные <span className="text-accent">геодезические</span> услуги
-            </h1>
-            <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mt-6 mx-auto" dangerouslySetInnerHTML={{ __html: 'Полный спектр кадастровых работ, инженерных изысканий и&nbsp;ЗОУИТ в&nbsp;Санкт-Петербурге и&nbsp;ЛО' }}></p>
-            
-            <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" onClick={onOpen} className="text-lg py-7 px-8">
-                Бесплатная консультация
-              </Button>
-               <Button size="lg" variant="ghost" asChild>
-                  <Link href="#services" className="text-lg py-7 px-8">
-                    Наши услуги <ArrowRight className="ml-2 h-5 w-5" />
-                  </Link>
+          <div className="grid md:grid-cols-2 gap-8 items-center">
+            <div className="text-left">
+              <h1 className="text-4xl sm:text-6xl lg:text-7xl font-heading font-bold leading-tight text-foreground">
+                 Профессиональные <span className="text-accent">геодезические</span> услуги
+              </h1>
+              <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mt-6" dangerouslySetInnerHTML={{ __html: 'Полный спектр кадастровых работ, инженерных изысканий и&nbsp;ЗОУИТ в&nbsp;Санкт-Петербурге и&nbsp;ЛО' }}></p>
+              
+              <div className="mt-10 flex flex-col sm:flex-row gap-4">
+                <Button size="lg" onClick={onOpen} className="text-lg py-7 px-8">
+                  Бесплатная консультация
                 </Button>
+                 <Button size="lg" variant="ghost" asChild>
+                    <Link href="#services" className="text-lg py-7 px-8">
+                      Наши услуги <ArrowRight className="ml-2 h-5 w-5" />
+                    </Link>
+                  </Button>
+              </div>
             </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16 w-full">
-              {heroStats.map((stat, index) => (
-                <Card key={index} className="bg-background/50 backdrop-blur-sm border-border/20 p-6 text-center">
-                  <CardHeader className="p-0 items-center">
-                    <div className="p-3 rounded-full flex items-center justify-center w-16 h-16 bg-muted mb-4">
-                      <stat.icon className="h-8 w-8 text-accent" />
-                    </div>
-                    <CardTitle className="text-4xl font-bold text-foreground">{stat.value}</CardTitle>
-                  </CardHeader>
-                  <CardContent className="p-0 mt-2">
-                    <p className="text-sm text-muted-foreground" dangerouslySetInnerHTML={{ __html: stat.label }}></p>
-                  </CardContent>
-                </Card>
-              ))}
+            <div className="flex flex-col items-center gap-8">
+                <div className="w-48 h-48 rounded-full border-4 border-white shadow-lg flex-shrink-0 overflow-hidden relative">
+                   <video
+                      autoPlay
+                      loop
+                      muted
+                      playsInline
+                      className="absolute w-full h-full object-cover"
+                      src="https://d1dzlizqgbwk1w.cloudfront.net/videos/2025/10/22/oudbOxVP.mp4"
+                    >
+                   </video>
+               </div>
+               <a href="https://yandex.com/maps/org/geostroyproyekt/144539023058/?ll=30.231738%2C59.920487&mode=search&sll=37.586554%2C55.796284&sspn=0.174408%2C0.060633&text=%D0%B3%D0%B5%D0%BE%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BF%D1%80%D0%BE%D0%B5%D0%B0%D1%82%20%D1%81%D0%B0%D0%BD%D0%BA%D1%82%20%D0%BF%D0%B5%D1%82%D0%B5%D1%80%D0%B1%D1%83%D1%80%D0%B3&z=10" target="_blank" rel="noopener noreferrer" className="block w-full max-w-sm">
+                    <Card className="p-4 bg-card/80 backdrop-blur-sm border-2 border-dashed border-border/50 hover:border-accent transition-all duration-300">
+                        <div className="flex items-center gap-4">
+                            <Image src="https://pouch.jumpshare.com/preview/3-S8s_WjBldwOaG2GzM-iB8aQ5Y9zYp2sD5prP-03x8QvH03iXw1dD4_fF9qX0UfO1P5r343k8-ZJ9I09D275w33-Lg.png" alt="Yandex" width={40} height={40} />
+                            <div className="flex-grow">
+                                <div className="font-semibold text-lg text-foreground">Яндекс Карты</div>
+                                <div className="flex items-center gap-1 mt-1">
+                                    <span className="text-lg font-bold text-accent">5.0</span>
+                                    <div className="flex text-yellow-400">
+                                        <Star className="h-5 w-5 fill-current" />
+                                        <Star className="h-5 w-5 fill-current" />
+                                        <Star className="h-5 w-5 fill-current" />
+                                        <Star className="h-5 w-5 fill-current" />
+                                        <Star className="h-5 w-5 fill-current" />
+                                    </div>
+                                </div>
+                            </div>
+                            <Button variant="ghost" size="icon">
+                               <ArrowRight />
+                            </Button>
+                        </div>
+                    </Card>
+                </a>
             </div>
           </div>
         </div>
       </section>
+      
+      <div className="container mx-auto px-4">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 -mt-16 z-20 relative">
+          {heroStats.map((stat, index) => (
+            <Card key={index} className="bg-card/80 backdrop-blur-sm border-border/50 p-6 text-center">
+              <CardHeader className="p-0 items-center">
+                <div className="p-3 rounded-full flex items-center justify-center w-16 h-16 bg-muted mb-4">
+                  <stat.icon className="h-8 w-8 text-accent" />
+                </div>
+                <CardTitle className="text-4xl font-bold text-foreground">{stat.value}</CardTitle>
+              </CardHeader>
+              <CardContent className="p-0 mt-2">
+                <p className="text-sm text-muted-foreground" dangerouslySetInnerHTML={{ __html: stat.label }}></p>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      </div>
+
 
       {/* SEO Text Section */}
-      <section className="py-16 md:py-24 bg-background">
+      <section className="pt-24 pb-16 md:py-24 bg-background">
         <div className="container mx-auto px-4">
             <div className="grid lg:grid-cols-2 gap-12 items-start">
               <div className="space-y-6">
                  <Card className="p-6 md:p-8 bg-card/50 backdrop-blur-sm border-border/50 relative">
                    <div className="flex flex-col lg:flex-row items-start gap-6">
-                        <div className="w-32 h-32 rounded-full border-4 border-white shadow-lg flex-shrink-0 mb-4 lg:mb-0 overflow-hidden relative">
-                           <video
-                              autoPlay
-                              loop
-                              muted
-                              playsInline
-                              className="absolute w-full h-full object-cover"
-                              src="https://d1dzlizqgbwk1w.cloudfront.net/videos/2025/10/22/oudbOxVP.mp4"
-                            >
-                           </video>
-                       </div>
                         <div className="flex-grow">
                           <CardHeader className="p-0 mb-6 flex-grow">
                               <CardTitle className="text-3xl font-heading font-bold" dangerouslySetInnerHTML={{ __html: 'Геодезическая компания ООО&nbsp;"ГЕОСТРОЙПРОЕКТ"' }}></CardTitle>
@@ -290,27 +319,6 @@ export default function Home() {
                         </div>
                     </div>
                      <CardContent className="p-0 text-muted-foreground space-y-4 text-lg mt-6">
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-6">
-                            <a href="https://yandex.com/maps/org/geostroyproyekt/144539023058/?ll=30.231738%2C59.920487&mode=search&sll=37.586554%2C55.796284&sspn=0.174408%2C0.060633&text=%D0%B3%D0%B5%D0%BE%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BF%D1%80%D0%BE%D0%B5%D0%B0%D1%82%20%D1%81%D0%B0%D0%BD%D0%BA%D1%82%20%D0%BF%D0%B5%D1%82%D0%B5%D1%80%D0%B1%D1%83%D1%80%D0%B3&z=10" target="_blank" rel="noopener noreferrer" className="block">
-                                <Card className="p-4 h-full bg-card/80 backdrop-blur-sm border-2 border-dashed border-border/50 hover:border-accent transition-all duration-300">
-                                    <div className="flex items-center gap-3">
-                                        <Image src="https://pouch.jumpshare.com/preview/3-S8s_WjBldwOaG2GzM-iB8aQ5Y9zYp2sD5prP-03x8QvH03iXw1dD4_fF9qX0UfO1P5r343k8-ZJ9I09D275w33-Lg.png" alt="Yandex" width={24} height={24} />
-                                        <div className="font-semibold text-lg">Яндекс</div>
-                                    </div>
-                                    <div className="flex items-center gap-1 mt-2">
-                                        <span className="text-lg font-bold text-accent">5.0</span>
-                                        <div className="flex text-yellow-400">
-                                            <Star className="h-5 w-5 fill-current" />
-                                            <Star className="h-5 w-5 fill-current" />
-                                            <Star className="h-5 w-5 fill-current" />
-                                            <Star className="h-5 w-5 fill-current" />
-                                            <Star className="h-5 w-5 fill-current" />
-                                        </div>
-                                    </div>
-                                    <p className="text-sm text-muted-foreground mt-2">Посмотреть отзывы</p>
-                                </Card>
-                            </a>
-                        </div>
                         <p dangerouslySetInnerHTML={{ __html: 'У&nbsp;нас работают только опытные кадастровые инженеры, готовые помочь в&nbsp;решении земельных вопросов качественно и&nbsp;в&nbsp;поставленные сроки. Не&nbsp;нужно устанавливать забор и&nbsp;делить землю самостоятельно&nbsp;- это может привести к&nbsp;ненужным разногласиям с&nbsp;соседями, следовательно, к&nbsp;потере денег и&nbsp;времени.' }}></p>
                         <p dangerouslySetInnerHTML={{ __html: 'Наши специалисты постоянно находятся в&nbsp;курсе последних изменений в&nbsp;законодательстве и&nbsp;всегда готовы оказать вам квалифицированную помощь в&nbsp;оформлении перепланировки квартиры, сопровождении сделок с&nbsp;недвижимостью, заказе межевого плана участка и&nbsp;проектировании домов.' }}></p>
                         <p dangerouslySetInnerHTML={{ __html: 'Инженерные изыскания&nbsp;- это неотъемлемая часть проектной деятельности, обеспечивающая всестороннее изучение природных и&nbsp;техногенных условий местности планируемого строительства.' }}></p>
