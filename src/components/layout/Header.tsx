@@ -96,7 +96,7 @@ export default function Header() {
           </nav>
           <div className="flex items-center gap-4">
              <div className="hidden lg:flex items-center gap-4">
-                <a href="tel:+79522764940" className="text-sm font-semibold text-foreground hover:text-accent transition-colors">+7 (952) 276-49-40</a>
+                <a href="tel:+79522764940" className="text-lg font-semibold text-foreground hover:text-accent transition-colors">+7 (952) 276-49-40</a>
                 <Button onClick={onOpen} className="hidden sm:inline-flex">
                   Заказать звонок
                 </Button>
