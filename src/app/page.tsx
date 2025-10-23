@@ -194,7 +194,7 @@ export default function Home() {
             data-ai-hint="team engineers"
             priority
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-background via-background/50 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-r from-background from-0% via-background/80 via-40% to-transparent to-60%" />
         </div>
         <div className="container mx-auto px-4 relative z-10">
           <div className="grid md:grid-cols-2 gap-8 items-center">
