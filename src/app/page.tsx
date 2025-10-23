@@ -221,19 +221,8 @@ export default function Home() {
       
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 -mt-16 z-20 relative">
-          {heroStats.map((stat, index) => (
-            <Card key={index} className="bg-card/80 backdrop-blur-sm p-6 text-center stat-card">
-              <CardHeader className="p-0 items-center mb-4">
-                  <stat.icon className="h-10 w-10 text-accent" />
-              </CardHeader>
-              <CardContent className="p-0">
-                <p className="text-4xl font-bold text-foreground">{stat.value}</p>
-                <p className="text-sm text-muted-foreground mt-1" dangerouslySetInnerHTML={{ __html: stat.label }}></p>
-              </CardContent>
-            </Card>
-          ))}
-           <a href="https://yandex.com/maps/org/geostroyproyekt/144539023058/?ll=30.231738%2C59.920487&mode=search&sll=37.586554%2C55.796284&sspn=0.174408%2C0.060633&text=%D0%B3%D0%B5%D0%BE%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BF%D1%80%D0%BE%D0%B5%D0%B0%D1%82%20%D1%81%D0%B0%D0%BD%D0%BA%D1%82%20%D0%BF%D0%B5%D1%82%D0%B5%D1%80%D0%B1%D1%83%D1%80%D0%B3&z=10" target="_blank" rel="noopener noreferrer" className="block h-full">
-            <Card className="p-6 bg-card/80 backdrop-blur-sm hover:border-accent transition-all h-full stat-card flex flex-col justify-center items-center">
+          <a href="https://yandex.com/maps/org/geostroyproyekt/144539023058/?ll=30.231738%2C59.920487&mode=search&sll=37.586554%2C55.796284&sspn=0.174408%2C0.060633&text=%D0%B3%D0%B5%D0%BE%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BF%D1%80%D0%BE%D0%B5%D0%B0%D1%82%20%D1%81%D0%B0%D0%BD%D0%BA%D1%82%20%D0%BF%D0%B5%D1%82%D0%B5%D1%80%D0%B1%D1%83%D1%80%D0%B3&z=10" target="_blank" rel="noopener noreferrer" className="block h-full">
+            <Card className="p-6 bg-card/80 backdrop-blur-sm h-full stat-card flex flex-col justify-center items-center">
                 <CardHeader className="p-0 flex flex-row items-center gap-4">
                     <div className="w-12 h-12 flex items-center justify-center rounded-full bg-red-500 text-white text-2xl font-bold">Я</div>
                     <div>
@@ -251,6 +240,17 @@ export default function Home() {
                 </CardContent>
             </Card>
           </a>
+          {heroStats.map((stat, index) => (
+            <Card key={index} className="bg-card/80 backdrop-blur-sm p-6 text-center stat-card">
+              <CardHeader className="p-0 items-center mb-4">
+                  <stat.icon className="h-10 w-10 text-accent" />
+              </CardHeader>
+              <CardContent className="p-0">
+                <p className="text-4xl font-bold text-foreground">{stat.value}</p>
+                <p className="text-sm text-muted-foreground mt-1" dangerouslySetInnerHTML={{ __html: stat.label }}></p>
+              </CardContent>
+            </Card>
+          ))}
         </div>
       </div>
 
