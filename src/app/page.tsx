@@ -219,7 +219,7 @@ export default function Home() {
       </section>
       
       <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 -mt-16 z-20 relative">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 -mt-16 z-20 relative">
           {heroStats.map((stat, index) => (
             <Card key={index} className="bg-card/80 backdrop-blur-sm p-6 text-center stat-card">
               <CardHeader className="p-0 items-center mb-4">
@@ -231,6 +231,25 @@ export default function Home() {
               </CardContent>
             </Card>
           ))}
+           <a href="https://yandex.com/maps/org/geostroyproyekt/144539023058/?ll=30.231738%2C59.920487&mode=search&sll=37.586554%2C55.796284&sspn=0.174408%2C0.060633&text=%D0%B3%D0%B5%D0%BE%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BF%D1%80%D0%BE%D0%B5%D0%B0%D1%82%20%D1%81%D0%B0%D0%BD%D0%BA%D1%82%20%D0%BF%D0%B5%D1%82%D0%B5%D1%80%D0%B1%D1%83%D1%80%D0%B3&z=10" target="_blank" rel="noopener noreferrer" className="block h-full">
+            <Card className="p-6 bg-card/80 backdrop-blur-sm hover:border-accent transition-all h-full stat-card flex flex-col justify-center items-center">
+                <CardHeader className="p-0 flex flex-row items-center gap-4">
+                    <div className="w-12 h-12 flex items-center justify-center rounded-full bg-red-500 text-white text-2xl font-bold">Я</div>
+                    <div>
+                        <CardTitle className="text-xl">Яндекс Отзывы</CardTitle>
+                        <div className="flex items-center gap-1">
+                            <span className="text-lg font-bold text-accent">5.0</span>
+                            <div className="flex">
+                                {[...Array(5)].map((_, i) => <Star key={i} className="h-4 w-4 text-yellow-400 fill-yellow-400" />)}
+                            </div>
+                        </div>
+                    </div>
+                </CardHeader>
+                <CardContent className="p-0 mt-4 text-center">
+                    <p className="text-sm text-muted-foreground">Более 100 реальных отзывов от наших клиентов.</p>
+                </CardContent>
+            </Card>
+          </a>
         </div>
       </div>
 
@@ -303,25 +322,6 @@ export default function Home() {
                           </ul>
                       </CardContent>
                   </Card>
-                  <a href="https://yandex.com/maps/org/geostroyproyekt/144539023058/?ll=30.231738%2C59.920487&mode=search&sll=37.586554%2C55.796284&sspn=0.174408%2C0.060633&text=%D0%B3%D0%B5%D0%BE%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BF%D1%80%D0%BE%D0%B5%D0%B0%D1%82%20%D1%81%D0%B0%D0%BD%D0%BA%D1%82%20%D0%BF%D0%B5%D1%82%D0%B5%D1%80%D0%B1%D1%83%D1%80%D0%B3&z=10" target="_blank" rel="noopener noreferrer" className="block">
-                    <Card className="p-6 bg-card/50 backdrop-blur-sm border-border/50 hover:border-accent transition-all">
-                        <CardHeader className="p-0 flex flex-row items-center gap-4">
-                            <div className="w-12 h-12 flex items-center justify-center rounded-full bg-red-500 text-white text-2xl font-bold">Я</div>
-                            <div>
-                                <CardTitle className="text-xl">Яндекс Отзывы</CardTitle>
-                                <div className="flex items-center gap-1">
-                                    <span className="text-lg font-bold text-accent">5.0</span>
-                                    <div className="flex">
-                                        {[...Array(5)].map((_, i) => <Star key={i} className="h-4 w-4 text-yellow-400 fill-yellow-400" />)}
-                                    </div>
-                                </div>
-                            </div>
-                        </CardHeader>
-                        <CardContent className="p-0 mt-4">
-                            <p className="text-sm text-muted-foreground">Более 100 реальных отзывов от наших клиентов.</p>
-                        </CardContent>
-                    </Card>
-                </a>
               </div>
             </div>
         </div>
@@ -518,3 +518,6 @@ export default function Home() {
 
     
 
+
+
+    
