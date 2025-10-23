@@ -486,7 +486,7 @@ export default function Home() {
       {/* CTA Section */}
       <section className="py-16 md:py-24 bg-background">
         <div className="container mx-auto px-4">
-          <Card className="p-8 md:p-12 bg-card/80 backdrop-blur-sm border-border/50 max-w-4xl mx-auto text-center">
+          <div className="p-8 md:p-12 bg-card/80 backdrop-blur-sm border-border/50 max-w-4xl mx-auto text-center rounded-lg">
             <Image
               src="https://s1.hostingkartinok.com/uploads/images/2025/09/c884d8a66894d2a0daf1ce54d11355d2.png"
               alt="Призыв к действию"
@@ -505,7 +505,7 @@ export default function Home() {
                 <Link href="#prices">Рассчитать стоимость</Link>
               </Button>
             </div>
-          </Card>
+          </div>
         </div>
       </section>
 
@@ -533,3 +533,4 @@ export default function Home() {
     
 
     
+
