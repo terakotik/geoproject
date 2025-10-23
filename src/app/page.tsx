@@ -244,10 +244,20 @@ export default function Home() {
               </div>
             </div>
             <div className="flex flex-col items-center gap-8">
+               <div className="relative w-48 h-48 rounded-full overflow-hidden shadow-lg border-4 border-white">
+                  <video
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    className="w-full h-full object-cover"
+                    src="https://d1dzlizqgbwk1w.cloudfront.net/videos/2025/10/22/oudbOxVP.mp4"
+                  />
+                </div>
                <a href="https://yandex.com/maps/org/geostroyproyekt/144539023058/?ll=30.231738%2C59.920487&mode=search&sll=37.586554%2C55.796284&sspn=0.174408%2C0.060633&text=%D0%B3%D0%B5%D0%BE%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BF%D1%80%D0%BE%D0%B5%D0%B0%D1%82%20%D1%81%D0%B0%D0%BD%D0%BA%D1%82%20%D0%BF%D0%B5%D1%82%D0%B5%D1%80%D0%B1%D1%83%D1%80%D0%B3&z=10" target="_blank" rel="noopener noreferrer" className="block w-full max-w-sm">
                     <Card className="p-4 bg-card/80 backdrop-blur-sm border-2 border-dashed border-border/50 hover:border-accent transition-all duration-300">
                         <div className="flex items-center gap-4">
-                            <Image src="https://pouch.jumpshare.com/preview/3-S8s_WjBldwOaG2GzM-iB8aQ5Y9zYp2sD5prP-03x8QvH03iXw1dD4_fF9qX0UfO1P5r343k8-ZJ9I09D275w33-Lg.png" alt="Yandex" width={40} height={40} />
+                            <div className="w-10 h-10 flex items-center justify-center bg-red-500 rounded-full text-white text-2xl font-bold">Я</div>
                             <div className="flex-grow">
                                 <div className="font-semibold text-lg text-foreground">Яндекс Карты</div>
                                 <div className="flex items-center gap-1 mt-1">
