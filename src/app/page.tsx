@@ -243,41 +243,6 @@ export default function Home() {
                   </Button>
               </div>
             </div>
-            <div className="flex flex-col items-center gap-8">
-               <div className="relative w-48 h-48 rounded-full overflow-hidden shadow-lg border-4 border-white">
-                  <video
-                    autoPlay
-                    loop
-                    muted
-                    playsInline
-                    className="w-full h-full object-cover"
-                    src="https://d1dzlizqgbwk1w.cloudfront.net/videos/2025/10/22/oudbOxVP.mp4"
-                  />
-                </div>
-               <a href="https://yandex.com/maps/org/geostroyproyekt/144539023058/?ll=30.231738%2C59.920487&mode=search&sll=37.586554%2C55.796284&sspn=0.174408%2C0.060633&text=%D0%B3%D0%B5%D0%BE%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BF%D1%80%D0%BE%D0%B5%D0%B0%D1%82%20%D1%81%D0%B0%D0%BD%D0%BA%D1%82%20%D0%BF%D0%B5%D1%82%D0%B5%D1%80%D0%B1%D1%83%D1%80%D0%B3&z=10" target="_blank" rel="noopener noreferrer" className="block w-full max-w-sm">
-                    <Card className="p-4 bg-card/80 backdrop-blur-sm border-2 border-dashed border-border/50 hover:border-accent transition-all duration-300">
-                        <div className="flex items-center gap-4">
-                            <div className="w-10 h-10 flex items-center justify-center bg-red-500 rounded-full text-white text-2xl font-bold">Я</div>
-                            <div className="flex-grow">
-                                <div className="font-semibold text-lg text-foreground">Яндекс Карты</div>
-                                <div className="flex items-center gap-1 mt-1">
-                                    <span className="text-lg font-bold text-accent">5.0</span>
-                                    <div className="flex text-yellow-400">
-                                        <Star className="h-5 w-5 fill-current" />
-                                        <Star className="h-5 w-5 fill-current" />
-                                        <Star className="h-5 w-5 fill-current" />
-                                        <Star className="h-5 w-5 fill-current" />
-                                        <Star className="h-5 w-5 fill-current" />
-                                    </div>
-                                </div>
-                            </div>
-                            <Button variant="ghost" size="icon">
-                               <ArrowRight />
-                            </Button>
-                        </div>
-                    </Card>
-                </a>
-            </div>
           </div>
         </div>
       </section>
@@ -308,6 +273,18 @@ export default function Home() {
               <div className="space-y-6">
                  <Card className="p-6 md:p-8 bg-card/50 backdrop-blur-sm border-border/50 relative">
                    <div className="flex flex-col lg:flex-row items-start gap-6">
+                        <div className="flex-shrink-0">
+                           <div className="relative w-36 h-36 rounded-full overflow-hidden shadow-lg border-4 border-white">
+                              <video
+                                autoPlay
+                                loop
+                                muted
+                                playsInline
+                                className="w-full h-full object-cover"
+                                src="https://d1dzlizqgbwk1w.cloudfront.net/videos/2025/10/22/oudbOxVP.mp4"
+                              />
+                            </div>
+                        </div>
                         <div className="flex-grow">
                           <CardHeader className="p-0 mb-6 flex-grow">
                               <CardTitle className="text-3xl font-heading font-bold" dangerouslySetInnerHTML={{ __html: 'Геодезическая компания ООО&nbsp;"ГЕОСТРОЙПРОЕКТ"' }}></CardTitle>
