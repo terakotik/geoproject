@@ -221,7 +221,7 @@ export default function Home() {
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 -mt-16 z-20 relative">
           {heroStats.map((stat, index) => (
-            <Card key={index} className="bg-card/80 backdrop-blur-sm border border-border/20 p-6 text-center">
+            <Card key={index} className="bg-card/80 backdrop-blur-sm p-6 text-center stat-card">
               <CardHeader className="p-0 items-center mb-4">
                   <stat.icon className="h-10 w-10 text-accent" />
               </CardHeader>
@@ -517,3 +517,4 @@ export default function Home() {
     
 
     
+

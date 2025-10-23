@@ -103,6 +103,12 @@
   .hover-gradient:hover {
     background: linear-gradient(90deg, hsl(var(--card)), hsl(var(--accent) / 0.1));
   }
+  .stat-card {
+    @apply border-2 border-dashed border-border/30 transition-colors duration-300;
+  }
+  .stat-card:hover {
+    @apply border-accent;
+  }
 }
 
 @layer utilities {
