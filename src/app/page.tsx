@@ -126,8 +126,8 @@ const geoServices = [
 
 const heroStats = [
     { value: "2000+", label: "выполненных проектов", icon: FolderKanban },
-    { value: "21", label: "на рынке кадастра", icon: Award },
-    { value: "14", label: "дней средний срок", icon: Clock },
+    { value: "21 год", label: "на рынке кадастра", icon: Award },
+    { value: "14 дней", label: "средний срок", icon: Clock },
 ];
 
 const heroBenefits = [
@@ -173,35 +173,6 @@ const processSteps = [
       points: ['Подача в Росреестр', 'Отслеживание статуса', 'Получение документов', 'Передача клиенту']
     }
   ];
-
-function SurveyorDialog({ children }: { children: React.ReactNode }) {
-  return (
-    <Dialog>
-      <DialogTrigger asChild>
-        {children}
-      </DialogTrigger>
-      <DialogContent className="sm:max-w-[425px]">
-        <DialogHeader>
-          <DialogTitle>Заходите к&nbsp;нам еще!</DialogTitle>
-          <DialogDescription>
-            Подписывайтесь на&nbsp;наши социальные сети, чтобы быть в&nbsp;курсе новостей и&nbsp;акций.
-          </DialogDescription>
-        </DialogHeader>
-        <div className="flex justify-center gap-4 py-4">
-            <Button size="icon" variant="ghost" asChild className="text-foreground hover:bg-accent/10 hover:text-accent">
-                <a href="https://t.me/zemla_yslygi" target="_blank" rel="noopener noreferrer"><Send className="h-6 w-6" /></a>
-            </Button>
-             <Button size="icon" variant="ghost" asChild className="text-foreground hover:bg-accent/10 hover:text-accent">
-                <a href="#" target="_blank" rel="noopener noreferrer"><Twitter className="h-6 w-6" /></a>
-            </Button>
-             <Button size="icon" variant="ghost" asChild className="text-foreground hover:bg-accent/10 hover:text-accent">
-                <a href="#" target="_blank" rel="noopener noreferrer"><Linkedin className="h-6 w-6" /></a>
-            </Button>
-        </div>
-      </DialogContent>
-    </Dialog>
-  );
-}
 
 
 export default function Home() {
@@ -250,15 +221,13 @@ export default function Home() {
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 -mt-16 z-20 relative">
           {heroStats.map((stat, index) => (
-            <Card key={index} className="bg-card/80 backdrop-blur-sm border-border/50 p-6 text-center">
-              <CardHeader className="p-0 items-center">
-                <div className="p-3 rounded-full flex items-center justify-center w-16 h-16 bg-muted mb-4">
-                  <stat.icon className="h-8 w-8 text-accent" />
-                </div>
-                <CardTitle className="text-4xl font-bold text-foreground">{stat.value}</CardTitle>
+            <Card key={index} className="bg-card/80 backdrop-blur-sm border border-border/20 p-6 text-center">
+              <CardHeader className="p-0 items-center mb-4">
+                  <stat.icon className="h-10 w-10 text-accent" />
               </CardHeader>
-              <CardContent className="p-0 mt-2">
-                <p className="text-sm text-muted-foreground" dangerouslySetInnerHTML={{ __html: stat.label }}></p>
+              <CardContent className="p-0">
+                <p className="text-4xl font-bold text-foreground">{stat.value}</p>
+                <p className="text-sm text-muted-foreground mt-1" dangerouslySetInnerHTML={{ __html: stat.label }}></p>
               </CardContent>
             </Card>
           ))}
@@ -525,7 +494,7 @@ export default function Home() {
                 Бесплатная консультация
               </Button>
               <Button asChild size="lg" variant="outline">
-                <Link href="/prices">Рассчитать стоимость</Link>
+                <Link href="#prices">Рассчитать стоимость</Link>
               </Button>
             </div>
           </Card>
