@@ -1,4 +1,5 @@
 
+
 'use client';
 
 import Image from 'next/image';
@@ -486,6 +487,13 @@ export default function Home() {
       <section className="py-16 md:py-24 bg-background">
         <div className="container mx-auto px-4">
           <Card className="p-8 md:p-12 bg-card/80 backdrop-blur-sm border-border/50 max-w-4xl mx-auto text-center">
+            <Image
+              src="https://s1.hostingkartinok.com/uploads/images/2025/09/c884d8a66894d2a0daf1ce54d11355d2.png"
+              alt="Призыв к действию"
+              width={800}
+              height={200}
+              className="mx-auto mb-8"
+            />
             <h3 className="text-3xl md:text-4xl font-heading font-bold text-foreground mb-4">Готовы начать работу?</h3>
             <p className="text-lg text-muted-foreground mb-8" dangerouslySetInnerHTML={{ __html: 'Оставьте заявку на&nbsp;бесплатную консультацию и&nbsp;мы&nbsp;ответим на&nbsp;все ваши вопросы.' }}>
             </p>
@@ -519,6 +527,8 @@ export default function Home() {
     
 
 
+
+    
 
     
 
