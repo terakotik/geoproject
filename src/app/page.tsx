@@ -222,7 +222,7 @@ export default function Home() {
             data-ai-hint="team engineers"
             priority
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-background via-background/70 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-r from-background via-background/50 to-transparent" />
         </div>
         <div className="container mx-auto px-4 relative z-10">
           <div className="grid md:grid-cols-2 gap-8 items-center">
@@ -512,24 +512,6 @@ export default function Home() {
       <section className="py-16 md:py-24 bg-background">
         <div className="container mx-auto px-4">
           <div className="text-center mt-16 mb-12">
-            <SurveyorDialog>
-              <TooltipProvider>
-                <Tooltip>
-                  <TooltipTrigger>
-                    <Image
-                      src="https://s1.hostingkartinok.com/uploads/images/2025/09/bd9ae8f1f2379ded19d127067b141970.png"
-                      alt="Инженер-геодезист"
-                      width={500}
-                      height={300}
-                      className="object-contain mx-auto cursor-pointer"
-                    />
-                  </TooltipTrigger>
-                  <TooltipContent>
-                    <p>Заходите к&nbsp;нам еще, подписывайтесь на&nbsp;соц сети</p>
-                  </TooltipContent>
-                </Tooltip>
-              </TooltipProvider>
-            </SurveyorDialog>
           </div>
           <Card className="p-8 md:p-12 bg-card/80 backdrop-blur-sm border-border/50 max-w-4xl mx-auto text-center">
             <h3 className="text-3xl md:text-4xl font-heading font-bold text-foreground mb-4">Готовы начать работу?</h3>
