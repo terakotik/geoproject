@@ -1,0 +1,108 @@
+'use server';
+
+import * as z from 'zod';
+import * as nodemailer from 'nodemailer';
+
+const formSchema = z.object({
+  name: z.string().min(2),
+  phone: z.string().min(10),
+  email: z.string().email().optional().or(z.literal('')),
+  service: z.string().optional(),
+  message: z.string().optional(),
+});
+
+const sheetSchema = z.object({
+    name: z.string().min(2),
+    phone: z.string().min(10),
+    task: z.string().optional(),
+});
+
+type SendEmailResult = {
+  success: boolean;
+  message: string;
+};
+
+const transporter = nodemailer.createTransport({
+    host: "smtp.yandex.ru",
+    port: 465,
+    secure: true,
+    auth: {
+      user: process.env.YANDEX_EMAIL_USER,
+      pass: process.env.YANDEX_EMAIL_PASSWORD,
+    },
+});
+
+export async function sendContactForm(
+  data: z.infer<typeof formSchema>
+): Promise<SendEmailResult> {
+  const parsedData = formSchema.safeParse(data);
+
+  if (!parsedData.success) {
+    return { success: false, message: 'Неверные данные формы.' };
+  }
+
+  const { name, phone, email, service, message } = parsedData.data;
+
+  const subject = `Новая заявка с сайта ГЕОСТРОЙПРОЕКТ от ${name}`;
+  const body = `
+Имя: ${name}
+Телефон: ${phone}
+Email: ${email || 'Не указан'}
+Интересующая услуга: ${service || 'Не указана'}
+Сообщение:
+${message || 'Нет сообщения'}
+    `.trim();
+
+  try {
+    await transporter.sendMail({
+      from: `"ГЕОСТРОЙПРОЕКТ" <${process.env.YANDEX_EMAIL_USER}>`,
+      to: process.env.EMAIL_TO,
+      subject: subject,
+      text: body,
+    });
+    return { success: true, message: 'Ваша заявка успешно отправлена!' };
+  } catch (error) {
+    console.error('Ошибка отправки письма:', error);
+    return {
+      success: false,
+      message: 'Произошла ошибка при отправке заявки. Пожалуйста, попробуйте позже.',
+    };
+  }
+}
+
+
+export async function sendSheetForm(
+    data: z.infer<typeof sheetSchema>
+  ): Promise<SendEmailResult> {
+    const parsedData = sheetSchema.safeParse(data);
+  
+    if (!parsedData.success) {
+      return { success: false, message: 'Неверные данные формы.' };
+    }
+  
+    const { name, phone, task } = parsedData.data;
+  
+    const subject = `Заказ звонка с сайта ГЕОСТРОЙПРОЕКТ от ${name}`;
+    const body = `
+Имя: ${name}
+Телефон: ${phone}
+Коротко о задаче:
+${task || 'Не указано'}
+      `.trim();
+  
+    try {
+      await transporter.sendMail({
+        from: `"ГЕОСТРОЙПРОЕКТ" <${process.env.YANDEX_EMAIL_USER}>`,
+        to: process.env.EMAIL_TO,
+        subject: subject,
+        text: body,
+      });
+      return { success: true, message: 'Ваша заявка успешно отправлена!' };
+    } catch (error) {
+      console.error('Ошибка отправки письма:', error);
+      return {
+        success: false,
+        message: 'Произошла ошибка при отправке заявки. Пожалуйста, попробуйте позже.',
+      };
+    }
+  }

@@ -14,14 +14,14 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { AlertCircle, CheckCircle2, X, ArrowRight } from "lucide-react";
+import { AlertCircle, CheckCircle2, X, ArrowRight, Loader2 } from "lucide-react";
 import Link from 'next/link';
 import { useState } from "react";
 import Image from "next/image";
 import { AnimatedText } from "./AnimatedText";
 import { useToast } from "@/hooks/use-toast";
+import { sendSheetForm } from "@/lib/actions";
 
-const EMAIL_TO = 'danayn11@mail.ru';
 
 const formSchema = z.object({
   name: z.string().min(2, { message: "Имя должно быть не короче 2 символов." }),
@@ -34,7 +34,7 @@ type FormData = z.infer<typeof formSchema>;
 
 export function ContactSheet() {
     const { isOpen, onClose } = useContactSheet();
-    const [formState, setFormState] = useState<'idle' | 'success'>('idle');
+    const [formState, setFormState] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
     const { toast } = useToast();
 
     const { register, handleSubmit, formState: { errors }, reset } = useForm<FormData>({
@@ -44,30 +44,33 @@ export function ContactSheet() {
         }
     });
 
-     const onSubmit: SubmitHandler<FormData> = (data) => {
-        const subject = `Заказ звонка с сайта ГЕОСТРОЙПРОЕКТ от ${data.name}`;
-        const body = `
-Имя: ${data.name}
-Телефон: ${data.phone}
-Коротко о задаче:
-${data.task || 'Не указано'}
-        `.trim();
+     const onSubmit: SubmitHandler<FormData> = async (data) => {
+        setFormState('loading');
+        const result = await sendSheetForm(data);
 
-        const mailtoLink = `mailto:${EMAIL_TO}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-        
-        window.location.href = mailtoLink;
-
-        setFormState('success');
-        reset();
-        toast({
-            title: "Подготовлено письмо для отправки",
-            description: "Ваш почтовый клиент должен открыться для отправки заявки.",
-        });
+        if (result.success) {
+            setFormState('success');
+            reset();
+            toast({
+                title: "Заявка отправлена!",
+                description: "Мы скоро с вами свяжемся.",
+            });
+        } else {
+            setFormState('error');
+             toast({
+                variant: "destructive",
+                title: "Ошибка отправки",
+                description: result.message,
+            });
+             setTimeout(() => {
+                setFormState('idle');
+            }, 3000);
+        }
     };
     
     const handleClose = () => {
         onClose();
-        if (formState === 'success') {
+        if (formState === 'success' || formState === 'error') {
             setTimeout(() => {
                 setFormState('idle');
             }, 500);
@@ -97,8 +100,8 @@ ${data.task || 'Не указано'}
                         {formState === 'success' ? (
                             <div className="flex flex-col items-center justify-center flex-grow text-center">
                                 <CheckCircle2 className="h-20 w-20 text-green-500 mx-auto mb-6" />
-                                <h3 className="text-3xl font-semibold mb-3">Откройте ваш почтовый клиент!</h3>
-                                <p className="text-xl text-muted-foreground max-w-lg">Мы подготовили для вас письмо. Просто нажмите "Отправить", чтобы завершить заявку.</p>
+                                <h3 className="text-3xl font-semibold mb-3">Заявка успешно отправлена!</h3>
+                                <p className="text-xl text-muted-foreground max-w-lg">Мы скоро свяжемся с вами.</p>
                                 <Button onClick={handleClose} className="mt-10 text-xl p-6 rounded-none">Закрыть</Button>
                             </div>
                         ) : (
@@ -114,6 +117,7 @@ ${data.task || 'Не указано'}
                                              {...register("task")}
                                              placeholder="Коротко о задаче"
                                              className="w-full h-full bg-transparent border-none focus:outline-none resize-none text-3xl font-bold placeholder-gray-500 p-0 rounded-none focus-visible:ring-0 focus-visible:ring-offset-0"
+                                             disabled={formState === 'loading'}
                                          />
                                      </div>
                                  </div>
@@ -126,6 +130,7 @@ ${data.task || 'Не указано'}
                                          placeholder="Ваш телефон"
                                          className="w-full bg-transparent border-none focus:outline-none text-3xl font-bold placeholder-gray-500 p-0 rounded-none focus-visible:ring-0 focus-visible:ring-offset-0"
                                          aria-invalid={errors.phone ? "true" : "false"}
+                                         disabled={formState === 'loading'}
                                      />
                                  </div>
                                  {errors.phone && <p className="text-sm text-destructive flex items-center gap-1 -mt-2"><AlertCircle className="h-4 w-4" /> {errors.phone.message}</p>}
@@ -137,17 +142,18 @@ ${data.task || 'Не указано'}
                                          placeholder="Ваше имя"
                                          className="w-full bg-transparent border-none focus:outline-none text-3xl font-bold placeholder-gray-500 p-0 pr-24 rounded-none focus-visible:ring-0 focus-visible:ring-offset-0"
                                          aria-invalid={errors.name ? "true" : "false"}
+                                         disabled={formState === 'loading'}
                                      />
                                      <div className="absolute right-4 top-1/2 -translate-y-1/2">
-                                         <Button type="submit" size="icon" className="bg-primary text-primary-foreground h-16 w-16 hover:bg-primary/90 focus:outline-none rounded-none aspect-square">
-                                             <ArrowRight className="h-8 w-8" />
+                                         <Button type="submit" size="icon" className="bg-primary text-primary-foreground h-16 w-16 hover:bg-primary/90 focus:outline-none rounded-none aspect-square" disabled={formState === 'loading'}>
+                                            {formState === 'loading' ? <Loader2 className="h-8 w-8 animate-spin" /> : <ArrowRight className="h-8 w-8" />}
                                          </Button>
                                      </div>
                                  </div>
                                  {errors.name && <p className="text-sm text-destructive flex items-center gap-1 -mt-2"><AlertCircle className="h-4 w-4" /> {errors.name.message}</p>}
                                 <div className="pt-2">
                                     <div className="flex items-start space-x-3">
-                                        <input type="checkbox" id="privacy" {...register("privacy")} className="w-4 h-4 rounded-none border-border mt-0.5" defaultChecked/>
+                                        <input type="checkbox" id="privacy" {...register("privacy")} className="w-4 h-4 rounded-none border-border mt-0.5" defaultChecked disabled={formState === 'loading'}/>
                                         <div className="grid gap-1.5 leading-none">
                                             <Label htmlFor="privacy" className="text-xs text-gray-500 font-normal">
                                                 Нажимая на кнопку, вы даете согласие на обработку своих <Link href="#" className="text-primary hover:underline">персональных данных</Link>
