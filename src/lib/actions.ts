@@ -1,5 +1,6 @@
 'use server';
 
+require('dotenv').config();
 import * as z from 'zod';
 import * as nodemailer from 'nodemailer';
 
