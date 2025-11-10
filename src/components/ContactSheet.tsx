@@ -19,6 +19,8 @@ import Link from 'next/link';
 import { useState } from "react";
 import Image from "next/image";
 import { AnimatedText } from "./AnimatedText";
+import { sendEmail } from "@/ai/flows/send-email-flow";
+import { useToast } from "@/hooks/use-toast";
 
 const formSchema = z.object({
   name: z.string().min(2, { message: "Имя должно быть не короче 2 символов." }),
@@ -32,8 +34,9 @@ type FormData = z.infer<typeof formSchema>;
 export function ContactSheet() {
     const { isOpen, onClose } = useContactSheet();
     const [formState, setFormState] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
+    const { toast } = useToast();
 
-    const { register, handleSubmit, formState: { errors } } = useForm<FormData>({
+    const { register, handleSubmit, formState: { errors }, reset } = useForm<FormData>({
         resolver: zodResolver(formSchema),
         defaultValues: {
             privacy: true,
@@ -42,13 +45,37 @@ export function ContactSheet() {
 
      const onSubmit: SubmitHandler<FormData> = async (data) => {
         setFormState('submitting');
-        await new Promise(resolve => setTimeout(resolve, 1000));
-        console.log(data);
-        setFormState('success');
+        try {
+          const result = await sendEmail(data);
+          if (result.success) {
+            setFormState('success');
+            reset();
+          } else {
+            throw new Error(result.error || 'Unknown error');
+          }
+        } catch (error) {
+          console.error(error);
+          setFormState('error');
+          toast({
+            variant: "destructive",
+            title: "Ошибка отправки",
+            description: "Не удалось отправить заявку. Пожалуйста, попробуйте еще раз или свяжитесь с нами по телефону.",
+          });
+          setTimeout(() => setFormState('idle'), 3000);
+        }
     };
+    
+    const handleClose = () => {
+        onClose();
+        if (formState === 'success') {
+            setTimeout(() => {
+                setFormState('idle');
+            }, 500);
+        }
+    }
 
     return (
-        <Sheet open={isOpen} onOpenChange={onClose}>
+        <Sheet open={isOpen} onOpenChange={handleClose}>
             <SheetContent className="w-[90vw] max-w-5xl bg-white p-0 rounded-none border-none">
                 <div className="flex flex-col h-full">
                      <header className="p-8 flex justify-between items-start border-b">
@@ -58,9 +85,11 @@ export function ContactSheet() {
                                   Или <span className="font-bold text-green-500">отсканируйте</span>, QR код чтобы написать в WhatsApp
                             </p>
                         </div>
-                        <SheetClose>
-                            <X className="h-8 w-8 text-gray-500 cursor-pointer" />
-                            <span className="sr-only">Закрыть</span>
+                        <SheetClose asChild>
+                            <Button variant="ghost" size="icon" onClick={handleClose}>
+                              <X className="h-8 w-8 text-gray-500 cursor-pointer" />
+                              <span className="sr-only">Закрыть</span>
+                            </Button>
                         </SheetClose>
                     </header>
 
@@ -70,7 +99,7 @@ export function ContactSheet() {
                                 <CheckCircle2 className="h-20 w-20 text-green-500 mx-auto mb-6" />
                                 <h3 className="text-3xl font-semibold mb-3">Заявка успешно отправлена!</h3>
                                 <p className="text-xl text-muted-foreground max-w-lg">Спасибо! Мы свяжемся с вами в ближайшее время для уточнения деталей.</p>
-                                <Button onClick={() => { onClose(); setFormState('idle'); }} className="mt-10 text-xl p-6 rounded-none">Закрыть</Button>
+                                <Button onClick={handleClose} className="mt-10 text-xl p-6 rounded-none">Закрыть</Button>
                             </div>
                         ) : (
                             <div className="flex flex-col flex-grow gap-y-4">
@@ -118,7 +147,7 @@ export function ContactSheet() {
                                  {errors.name && <p className="text-sm text-destructive flex items-center gap-1 -mt-2"><AlertCircle className="h-4 w-4" /> {errors.name.message}</p>}
                                 <div className="pt-2">
                                     <div className="flex items-start space-x-3">
-                                        <input type="checkbox" id="privacy" {...register("privacy")} className="w-4 h-4 rounded-none border-border mt-0.5" checked readOnly/>
+                                        <input type="checkbox" id="privacy" {...register("privacy")} className="w-4 h-4 rounded-none border-border mt-0.5" defaultChecked/>
                                         <div className="grid gap-1.5 leading-none">
                                             <Label htmlFor="privacy" className="text-xs text-gray-500 font-normal">
                                                 Нажимая на кнопку, вы даете согласие на обработку своих <Link href="#" className="text-primary hover:underline">персональных данных</Link>

@@ -10,6 +10,8 @@ import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Mail, Phone, MapPin, Clock, MessageSquare, ExternalLink, CircleCheckBig, Zap, Send, AlertCircle, CheckCircle2, FileText } from 'lucide-react';
 import Link from 'next/link';
+import { sendEmail } from '@/ai/flows/send-email-flow';
+import { useToast } from '@/hooks/use-toast';
 
 const formSchema = z.object({
   name: z.string().min(2, { message: "Имя должно быть не короче 2 символов." }),
@@ -24,6 +26,7 @@ type FormData = z.infer<typeof formSchema>;
 
 export default function ContactPage() {
   const [formState, setFormState] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
+  const { toast } = useToast();
 
   const { register, handleSubmit, formState: { errors } } = useForm<FormData>({
     resolver: zodResolver(formSchema),
@@ -34,11 +37,23 @@ export default function ContactPage() {
 
   const onSubmit: SubmitHandler<FormData> = async (data) => {
     setFormState('submitting');
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 1000));
-    console.log(data);
-    // Simulate success
-    setFormState('success');
+    try {
+      const result = await sendEmail(data);
+      if (result.success) {
+        setFormState('success');
+      } else {
+        throw new Error(result.error || 'Unknown error');
+      }
+    } catch (error) {
+      setFormState('error');
+      toast({
+        variant: "destructive",
+        title: "Ошибка отправки",
+        description: "Не удалось отправить заявку. Пожалуйста, попробуйте еще раз или свяжитесь с нами по телефону.",
+      });
+      // Reset form state after a delay to allow user to try again
+      setTimeout(() => setFormState('idle'), 3000);
+    }
   };
 
   return (
