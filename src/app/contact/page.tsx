@@ -54,7 +54,7 @@ export default function ContactPage() {
         toast({
             variant: "destructive",
             title: "Ошибка отправки",
-            description: result.message,
+            description: result.message || 'Ошибка аутентификации. Проверьте пароль приложения в .env и настройки почты Яндекса.',
         });
         setTimeout(() => {
             setFormState('idle');
