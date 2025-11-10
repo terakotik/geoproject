@@ -1,6 +1,6 @@
 'use server';
 /**
- * @fileOverview A flow for sending emails using nodemailer.
+ * @fileOverview A flow for sending emails using resend.
  *
  * - sendEmail - A function that handles sending emails.
  * - SendEmailInput - The input type for the sendEmail function.
@@ -8,7 +8,7 @@
 
 import { ai } from '@/ai/genkit';
 import { z } from 'genkit';
-import * as nodemailer from 'nodemailer';
+import { Resend } from 'resend';
 
 const SendEmailInputSchema = z.object({
   name: z.string().describe('The name of the person sending the message.'),
@@ -31,17 +31,8 @@ const sendEmailFlow = ai.defineFlow(
     outputSchema: z.object({ success: z.boolean(), error: z.string().optional() }),
   },
   async (input) => {
+    const resend = new Resend(process.env.RESEND_API_KEY);
     const { name, phone, email, service, message, task } = input;
-
-    const transporter = nodemailer.createTransport({
-      host: 'smtp.yandex.ru',
-      port: 465,
-      secure: true, // true for 465, false for other ports
-      auth: {
-        user: process.env.YANDEX_EMAIL_USER,
-        pass: process.env.YANDEX_EMAIL_PASSWORD,
-      },
-    });
 
     const emailHtml = `
       <h1>Новая заявка с сайта!</h1>
@@ -53,19 +44,23 @@ const sendEmailFlow = ai.defineFlow(
       ${task ? `<p><strong>Коротко о задаче:</strong> ${task}</p>` : ''}
     `;
 
-    const mailOptions = {
-      from: `"ГЕОСТРОЙПРОЕКТ" <${process.env.YANDEX_EMAIL_USER}>`,
-      to: process.env.EMAIL_TO,
-      subject: 'Новая заявка с сайта ГЕОСТРОЙПРОЕКТ',
-      html: emailHtml,
-    };
-
     try {
-      await transporter.sendMail(mailOptions);
-      console.log('Email sent successfully');
+      const { data, error } = await resend.emails.send({
+        from: 'ГЕОСТРОЙПРОЕКТ <onboarding@resend.dev>',
+        to: process.env.EMAIL_TO || 'danayn11@mail.ru',
+        subject: 'Новая заявка с сайта ГЕОСТРОЙПРОЕКТ',
+        html: emailHtml,
+      });
+
+      if (error) {
+        console.error('Failed to send email:', error);
+        return { success: false, error: error.message };
+      }
+      
+      console.log('Email sent successfully:', data);
       return { success: true };
     } catch (error: any) {
-      console.error('Failed to send email:', error);
+      console.error('Exception when sending email:', error);
       return { success: false, error: error.message };
     }
   }
