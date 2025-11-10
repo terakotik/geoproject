@@ -19,8 +19,9 @@ import Link from 'next/link';
 import { useState } from "react";
 import Image from "next/image";
 import { AnimatedText } from "./AnimatedText";
-import { sendEmail } from "@/ai/flows/send-email-flow";
 import { useToast } from "@/hooks/use-toast";
+
+const EMAIL_TO = 'danayn11@mail.ru';
 
 const formSchema = z.object({
   name: z.string().min(2, { message: "Имя должно быть не короче 2 символов." }),
@@ -33,7 +34,7 @@ type FormData = z.infer<typeof formSchema>;
 
 export function ContactSheet() {
     const { isOpen, onClose } = useContactSheet();
-    const [formState, setFormState] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
+    const [formState, setFormState] = useState<'idle' | 'success'>('idle');
     const { toast } = useToast();
 
     const { register, handleSubmit, formState: { errors }, reset } = useForm<FormData>({
@@ -43,26 +44,25 @@ export function ContactSheet() {
         }
     });
 
-     const onSubmit: SubmitHandler<FormData> = async (data) => {
-        setFormState('submitting');
-        try {
-          const result = await sendEmail(data);
-          if (result.success) {
-            setFormState('success');
-            reset();
-          } else {
-            throw new Error(result.error || 'Unknown error');
-          }
-        } catch (error) {
-          console.error(error);
-          setFormState('error');
-          toast({
-            variant: "destructive",
-            title: "Ошибка отправки",
-            description: "Не удалось отправить заявку. Пожалуйста, попробуйте еще раз или свяжитесь с нами по телефону.",
-          });
-          setTimeout(() => setFormState('idle'), 3000);
-        }
+     const onSubmit: SubmitHandler<FormData> = (data) => {
+        const subject = `Заказ звонка с сайта ГЕОСТРОЙПРОЕКТ от ${data.name}`;
+        const body = `
+Имя: ${data.name}
+Телефон: ${data.phone}
+Коротко о задаче:
+${data.task || 'Не указано'}
+        `.trim();
+
+        const mailtoLink = `mailto:${EMAIL_TO}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        
+        window.location.href = mailtoLink;
+
+        setFormState('success');
+        reset();
+        toast({
+            title: "Подготовлено письмо для отправки",
+            description: "Ваш почтовый клиент должен открыться для отправки заявки.",
+        });
     };
     
     const handleClose = () => {
@@ -97,8 +97,8 @@ export function ContactSheet() {
                         {formState === 'success' ? (
                             <div className="flex flex-col items-center justify-center flex-grow text-center">
                                 <CheckCircle2 className="h-20 w-20 text-green-500 mx-auto mb-6" />
-                                <h3 className="text-3xl font-semibold mb-3">Заявка успешно отправлена!</h3>
-                                <p className="text-xl text-muted-foreground max-w-lg">Спасибо! Мы свяжемся с вами в ближайшее время для уточнения деталей.</p>
+                                <h3 className="text-3xl font-semibold mb-3">Откройте ваш почтовый клиент!</h3>
+                                <p className="text-xl text-muted-foreground max-w-lg">Мы подготовили для вас письмо. Просто нажмите "Отправить", чтобы завершить заявку.</p>
                                 <Button onClick={handleClose} className="mt-10 text-xl p-6 rounded-none">Закрыть</Button>
                             </div>
                         ) : (
@@ -139,7 +139,7 @@ export function ContactSheet() {
                                          aria-invalid={errors.name ? "true" : "false"}
                                      />
                                      <div className="absolute right-4 top-1/2 -translate-y-1/2">
-                                         <Button type="submit" disabled={formState === 'submitting'} size="icon" className="bg-primary text-primary-foreground h-16 w-16 hover:bg-primary/90 focus:outline-none rounded-none aspect-square">
+                                         <Button type="submit" size="icon" className="bg-primary text-primary-foreground h-16 w-16 hover:bg-primary/90 focus:outline-none rounded-none aspect-square">
                                              <ArrowRight className="h-8 w-8" />
                                          </Button>
                                      </div>

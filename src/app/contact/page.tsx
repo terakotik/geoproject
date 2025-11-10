@@ -10,8 +10,9 @@ import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Mail, Phone, MapPin, Clock, MessageSquare, ExternalLink, CircleCheckBig, Zap, Send, AlertCircle, CheckCircle2, FileText } from 'lucide-react';
 import Link from 'next/link';
-import { sendEmail } from '@/ai/flows/send-email-flow';
 import { useToast } from '@/hooks/use-toast';
+
+const EMAIL_TO = 'danayn11@mail.ru';
 
 const formSchema = z.object({
   name: z.string().min(2, { message: "Имя должно быть не короче 2 символов." }),
@@ -25,35 +26,41 @@ const formSchema = z.object({
 type FormData = z.infer<typeof formSchema>;
 
 export default function ContactPage() {
-  const [formState, setFormState] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
+  const [formState, setFormState] = useState<'idle' | 'success'>('idle');
   const { toast } = useToast();
 
-  const { register, handleSubmit, formState: { errors } } = useForm<FormData>({
+  const { register, handleSubmit, formState: { errors }, reset } = useForm<FormData>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       privacy: false,
     }
   });
 
-  const onSubmit: SubmitHandler<FormData> = async (data) => {
-    setFormState('submitting');
-    try {
-      const result = await sendEmail(data);
-      if (result.success) {
-        setFormState('success');
-      } else {
-        throw new Error(result.error || 'Unknown error');
-      }
-    } catch (error) {
-      setFormState('error');
-      toast({
-        variant: "destructive",
-        title: "Ошибка отправки",
-        description: "Не удалось отправить заявку. Пожалуйста, попробуйте еще раз или свяжитесь с нами по телефону.",
+  const onSubmit: SubmitHandler<FormData> = (data) => {
+    const subject = `Новая заявка с сайта ГЕОСТРОЙПРОЕКТ от ${data.name}`;
+    const body = `
+Имя: ${data.name}
+Телефон: ${data.phone}
+Email: ${data.email || 'Не указан'}
+Интересующая услуга: ${data.service || 'Не указана'}
+Сообщение:
+${data.message || 'Нет сообщения'}
+    `.trim();
+
+    const mailtoLink = `mailto:${EMAIL_TO}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    
+    window.location.href = mailtoLink;
+    
+    setFormState('success');
+    reset();
+     toast({
+        title: "Подготовлено письмо для отправки",
+        description: "Ваш почтовый клиент должен открыться для отправки заявки.",
       });
-      // Reset form state after a delay to allow user to try again
-      setTimeout(() => setFormState('idle'), 3000);
-    }
+
+    setTimeout(() => {
+        setFormState('idle');
+    }, 5000)
   };
 
   return (
@@ -180,8 +187,8 @@ export default function ContactPage() {
               {formState === 'success' ? (
                 <div className="text-center py-10">
                   <CheckCircle2 className="h-16 w-16 text-green-500 mx-auto mb-4" />
-                  <h3 className="text-xl font-semibold mb-2">Заявка успешно отправлена!</h3>
-                  <p className="text-muted-foreground">Спасибо! Мы свяжемся с вами в ближайшее время.</p>
+                  <h3 className="text-xl font-semibold mb-2">Откройте ваш почтовый клиент!</h3>
+                  <p className="text-muted-foreground">Мы подготовили для вас письмо. Просто нажмите "Отправить", чтобы завершить заявку.</p>
                 </div>
               ) : (
                 <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
@@ -220,9 +227,9 @@ export default function ContactPage() {
                             {errors.privacy && <p className="text-sm text-destructive flex items-center gap-1"><AlertCircle className="h-4 w-4" /> {errors.privacy.message}</p>}
                           </div>
                       </div>
-                      <Button type="submit" className="w-full" size="lg" disabled={formState === 'submitting'}>
+                      <Button type="submit" className="w-full" size="lg">
                           <Send className="h-5 w-5 mr-2" />
-                          {formState === 'submitting' ? 'Отправка...' : 'Отправить заявку'}
+                          Отправить заявку
                       </Button>
                   </div>
                 </form>
