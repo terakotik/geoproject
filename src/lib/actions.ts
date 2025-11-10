@@ -64,11 +64,11 @@ ${message || 'Нет сообщения'}
       text: body,
     });
     return { success: true, message: 'Ваша заявка успешно отправлена!' };
-  } catch (error) {
+  } catch (error: any) {
     console.error('Ошибка отправки письма:', error);
     return {
       success: false,
-      message: 'Произошла ошибка при отправке заявки. Пожалуйста, попробуйте позже.',
+      message: error.message || 'Произошла неизвестная ошибка при отправке.',
     };
   }
 }
@@ -102,11 +102,11 @@ ${task || 'Не указано'}
         text: body,
       });
       return { success: true, message: 'Ваша заявка успешно отправлена!' };
-    } catch (error) {
+    } catch (error: any) {
       console.error('Ошибка отправки письма (sheet):', error);
       return {
         success: false,
-        message: 'Произошла ошибка при отправке заявки. Пожалуйста, попробуйте позже.',
+        message: error.message || 'Произошла неизвестная ошибка при отправке.',
       };
     }
   }
