@@ -1,6 +1,5 @@
 'use server';
 
-require('dotenv').config();
 import * as z from 'zod';
 import * as nodemailer from 'nodemailer';
 
@@ -10,12 +9,14 @@ const formSchema = z.object({
   email: z.string().email().optional().or(z.literal('')),
   service: z.string().optional(),
   message: z.string().optional(),
+  privacy: z.boolean().refine(val => val === true),
 });
 
 const sheetSchema = z.object({
     name: z.string().min(2),
     phone: z.string().min(10),
     task: z.string().optional(),
+    privacy: z.boolean().refine(val => val === true),
 });
 
 type SendEmailResult = {
@@ -39,6 +40,7 @@ export async function sendContactForm(
   const parsedData = formSchema.safeParse(data);
 
   if (!parsedData.success) {
+    console.error('Validation errors:', parsedData.error.flatten().fieldErrors);
     return { success: false, message: 'Неверные данные формы.' };
   }
 
@@ -78,6 +80,7 @@ export async function sendSheetForm(
     const parsedData = sheetSchema.safeParse(data);
   
     if (!parsedData.success) {
+      console.error('Validation errors (sheet):', parsedData.error.flatten().fieldErrors);
       return { success: false, message: 'Неверные данные формы.' };
     }
   
@@ -100,7 +103,7 @@ ${task || 'Не указано'}
       });
       return { success: true, message: 'Ваша заявка успешно отправлена!' };
     } catch (error) {
-      console.error('Ошибка отправки письма:', error);
+      console.error('Ошибка отправки письма (sheet):', error);
       return {
         success: false,
         message: 'Произошла ошибка при отправке заявки. Пожалуйста, попробуйте позже.',
