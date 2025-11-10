@@ -25,7 +25,9 @@ type SendEmailResult = {
 };
 
 const transporter = nodemailer.createTransport({
-    service: 'yandex',
+    host: 'smtp.yandex.ru',
+    port: 465,
+    secure: true, // true for 465, false for other ports
     auth: {
       user: process.env.YANDEX_EMAIL_USER,
       pass: process.env.YANDEX_EMAIL_PASSWORD,
