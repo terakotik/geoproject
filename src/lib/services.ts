@@ -52,10 +52,10 @@ export const services: Service[] = [
     slug: "industrial-geodesy",
   },
   {
-    title: "Кадастровая оценка",
-    description: "Определение кадастровой стоимости объектов недвижимости",
+    title: "Кадастровые работы",
+    description: "Комплекс работ для внесения сведений в&nbsp;ЕГРН",
     icon: Calculator,
-    slug: "cadastral-valuation",
+    slug: "cadastral-works",
   },
 ];
 
@@ -70,19 +70,19 @@ type ServiceDetails = {
 const serviceDetails: Record<string, ServiceDetails> = {
     "land-surveying": {
         longDescription: "Полный комплекс работ по&nbsp;определению и&nbsp;юридическому закреплению границ вашего земельного участка. Услуга необходима для постановки на&nbsp;кадастровый учет, разрешения споров с&nbsp;соседями и&nbsp;при любых сделках с&nbsp;землей.",
-        price: "от&nbsp;12&nbsp;500&nbsp;₽",
+        price: "от&nbsp;18&nbsp;000&nbsp;₽",
         timeline: "от&nbsp;14&nbsp;дней",
         includes: ["Выезд геодезистов", "Согласование границ", "Межевой план", "Подача в&nbsp;Росреестр"]
     },
     "technical-plans": {
         longDescription: "Изготовление технического плана для объектов капитального строительства (ОКС), необходимого для постановки на&nbsp;кадастровый учет и&nbsp;регистрации прав собственности на&nbsp;жилые дома, бани, гаражи и&nbsp;другие постройки.",
-        price: "от&nbsp;12&nbsp;000&nbsp;₽",
+        price: "от&nbsp;18&nbsp;000&nbsp;₽",
         timeline: "от&nbsp;5&nbsp;дней",
         includes: ["Обмеры здания", "Технический план", "Регистрация прав", "Электронная подача"]
     },
     "topographic-survey": {
         longDescription: "Создание детальных топографических планов и&nbsp;карт местности в&nbsp;различных масштабах. Топосъемка является основой для проектирования, строительства, ландшафтного дизайна и&nbsp;получения разрешительной документации.",
-        price: "от&nbsp;10&nbsp;000&nbsp;₽",
+        price: "от&nbsp;18&nbsp;000&nbsp;₽",
         timeline: "от&nbsp;3&nbsp;дней",
         includes: ["Полевые работы", "Камеральная обработка", "План в&nbsp;AutoCAD", "Различные масштабы"]
     },
@@ -100,9 +100,9 @@ const serviceDetails: Record<string, ServiceDetails> = {
     },
     "land-division-unification": {
         longDescription: "Кадастровые работы по&nbsp;разделу одного земельного участка на&nbsp;несколько или объединению нескольких смежных участков в&nbsp;один с&nbsp;последующей регистрацией в&nbsp;Росреестре.",
-        price: "от&nbsp;10&nbsp;000&nbsp;₽",
+        price: "от&nbsp;16&nbsp;000&nbsp;₽",
         timeline: "от&nbsp;14&nbsp;дней",
-        includes: ["Проект раздела", "Согласования", "Новые участки", "Кадастровый учет"]
+        includes: ["Проект раздела/объединения", "Согласования", "Новые межевые планы", "Кадастровый учет"]
     },
     "industrial-geodesy": {
         longDescription: "Полное геодезическое сопровождение на&nbsp;всех этапах строительства и&nbsp;эксплуатации промышленных и&nbsp;гражданских объектов, обеспечивающее точность и&nbsp;контроль качества.",
@@ -110,16 +110,17 @@ const serviceDetails: Record<string, ServiceDetails> = {
         timeline: "от&nbsp;7&nbsp;дней",
         includes: ["Разбивочные работы", "Исполнительная съемка", "Наблюдения за&nbsp;деформациями", "Контроль качества"]
     },
-    "cadastral-valuation": {
-        longDescription: "Определение кадастровой стоимости земельных участков и&nbsp;объектов капитального строительства для целей налогообложения и&nbsp;совершения сделок.",
-        price: "от&nbsp;8&nbsp;000&nbsp;₽",
+    "cadastral-works": {
+        longDescription: "Комплекс работ для внесения или изменения сведений в Едином государственном реестре недвижимости (ЕГРН), включая исправление реестровых ошибок, межевание и подготовку технических планов.",
+        price: "от&nbsp;16&nbsp;000&nbsp;₽",
         timeline: "от&nbsp;5&nbsp;дней",
-        includes: ["Анализ рынка", "Расчет стоимости", "Отчет об&nbsp;оценке", "Экспертиза оценки"]
+        includes: ["Анализ документов", "Геодезическая съемка", "Подготовка планов", "Взаимодействие с Росреестром"]
     }
 }
 
 export function getServiceDetails(slug: string): ServiceDetails | undefined {
+    if (slug === 'cadastral-valuation') {
+        return serviceDetails['cadastral-works'];
+    }
     return serviceDetails[slug];
 }
-
-    
