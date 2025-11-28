@@ -2,11 +2,30 @@
 
 import { useEffect } from 'react';
 import { useToast } from "@/hooks/use-toast";
-import { WifiOff, ShieldCheck } from 'lucide-react';
-import Link from 'next/link';
+import { Rocket } from 'lucide-react';
 
 export function GpsJammingToast() {
   const { toast } = useToast();
+
+  const showSecondToast = () => {
+    toast({
+      duration: 10000,
+      className: 'w-full max-w-md p-6 bg-card border-accent/20',
+      description: (
+        <div className="flex items-start gap-4">
+          <div className="flex-shrink-0">
+             <Rocket className="h-10 w-10 text-accent" />
+          </div>
+          <div className="flex-grow">
+            <h3 className="font-bold text-base text-foreground">Работаем быстрее конкурентов</h3>
+            <p className="text-sm text-muted-foreground mt-1">
+              Средний срок выполнения работ — 14 дней. Электронная подача документов в Росреестр.
+            </p>
+          </div>
+        </div>
+      ),
+    });
+  };
 
   useEffect(() => {
     const hasBeenShown = sessionStorage.getItem('gpsJammingToastShown');
@@ -17,7 +36,10 @@ export function GpsJammingToast() {
         className: 'w-full max-w-md p-6 bg-card border-primary/20',
         action: (
            <button
-            onClick={() => dismiss()}
+            onClick={() => {
+              dismiss();
+              showSecondToast();
+            }}
             className="text-sm font-semibold text-primary hover:underline"
           >
             Хорошо
