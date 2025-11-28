@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useEffect } from 'react';
@@ -19,7 +20,7 @@ export function GpsJammingToast() {
           <div className="flex-grow">
             <h3 className="font-bold text-base text-foreground">Работаем быстрее конкурентов</h3>
             <p className="text-sm text-muted-foreground mt-1">
-              Средний срок выполнения работ — 14 дней. Электронная подача документов в Росреестр.
+              Моментально отвечаем на звонок и диагностируем вашу ситуацию.
             </p>
           </div>
         </div>
