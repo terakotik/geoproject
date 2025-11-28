@@ -12,7 +12,7 @@ const formSchema = z.object({
   privacy: z.boolean().refine(val => val === true),
 });
 
-const sheetSchema = z.object({
+const dialogSchema = z.object({
     name: z.string().min(2),
     phone: z.string().min(10),
     task: z.string().optional(),
@@ -74,13 +74,13 @@ ${message || 'Нет сообщения'}
 }
 
 
-export async function sendSheetForm(
-    data: z.infer<typeof sheetSchema>
+export async function sendDialogForm(
+    data: z.infer<typeof dialogSchema>
   ): Promise<SendEmailResult> {
-    const parsedData = sheetSchema.safeParse(data);
+    const parsedData = dialogSchema.safeParse(data);
   
     if (!parsedData.success) {
-      console.error('Validation errors (sheet):', parsedData.error.flatten().fieldErrors);
+      console.error('Validation errors (dialog):', parsedData.error.flatten().fieldErrors);
       return { success: false, message: 'Неверные данные формы.' };
     }
   
@@ -103,7 +103,7 @@ ${task || 'Не указано'}
       });
       return { success: true, message: 'Ваша заявка успешно отправлена!' };
     } catch (error: any) {
-      console.error('Ошибка отправки письма (sheet):', error);
+      console.error('Ошибка отправки письма (dialog):', error);
       return {
         success: false,
         message: error.message || 'Произошла неизвестная ошибка при отправке.',

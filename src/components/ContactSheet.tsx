@@ -14,13 +14,13 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { AlertCircle, CheckCircle2, X, ArrowRight, Loader2 } from "lucide-react";
+import { AlertCircle, CheckCircle2, X, ArrowRight, Loader2, Send } from "lucide-react";
 import Link from 'next/link';
 import { useState } from "react";
 import Image from "next/image";
 import { AnimatedText } from "./AnimatedText";
 import { useToast } from "@/hooks/use-toast";
-import { sendSheetForm } from "@/lib/actions";
+import { sendDialogForm } from "@/lib/actions";
 
 
 const formSchema = z.object({
@@ -46,7 +46,7 @@ export function ContactSheet() {
 
      const onSubmit: SubmitHandler<FormData> = async (data) => {
         setFormState('loading');
-        const result = await sendSheetForm(data);
+        const result = await sendDialogForm(data);
 
         if (result.success) {
             setFormState('success');
@@ -60,7 +60,7 @@ export function ContactSheet() {
              toast({
                 variant: "destructive",
                 title: "Ошибка отправки",
-                description: result.message || 'Ошибка аутентификации. Проверьте пароль приложения в .env и настройки почты Яндекса.',
+                description: result.message || 'Произошла ошибка.',
             });
              setTimeout(() => {
                 setFormState('idle');
@@ -106,8 +106,8 @@ export function ContactSheet() {
                             </div>
                         ) : (
                             <div className="flex flex-col flex-grow gap-y-4">
-                                <div className="grid grid-cols-[192px_1fr] gap-x-4">
-                                     <div className="relative w-48 h-48 flex items-center justify-center rounded-none p-2 shrink-0">
+                                <div className="grid grid-cols-1 md:grid-cols-[192px_1fr] gap-4">
+                                     <div className="relative w-48 h-48 flex items-center justify-center rounded-none p-2 shrink-0 mx-auto">
                                          <div className="border-box absolute w-full h-full rounded-lg"></div>
                                          <Image src="https://cdn.qrcode-ai.com/qrcode/2ae6c24f24e3d22c22c9907ab56eecb3-1758686681778.png" alt="QR-код для связи в WhatsApp" width={180} height={180} className="rounded-none object-contain"/>
                                      </div>
@@ -140,18 +140,18 @@ export function ContactSheet() {
                                          id="name"
                                          {...register("name")}
                                          placeholder="Ваше имя"
-                                         className="w-full bg-transparent border-none focus:outline-none text-3xl font-bold placeholder-gray-500 p-0 pr-24 rounded-none focus-visible:ring-0 focus-visible:ring-offset-0"
+                                         className="w-full bg-transparent border-none focus:outline-none text-3xl font-bold placeholder-gray-500 p-0 rounded-none focus-visible:ring-0 focus-visible:ring-offset-0"
                                          aria-invalid={errors.name ? "true" : "false"}
                                          disabled={formState === 'loading'}
                                      />
-                                     <div className="absolute right-4 top-1/2 -translate-y-1/2">
-                                         <Button type="submit" size="icon" className="bg-primary text-primary-foreground h-16 w-16 hover:bg-primary/90 focus:outline-none rounded-none aspect-square" disabled={formState === 'loading'}>
-                                            {formState === 'loading' ? <Loader2 className="h-8 w-8 animate-spin" /> : <ArrowRight className="h-8 w-8" />}
-                                         </Button>
-                                     </div>
                                  </div>
                                  {errors.name && <p className="text-sm text-destructive flex items-center gap-1 -mt-2"><AlertCircle className="h-4 w-4" /> {errors.name.message}</p>}
-                                <div className="pt-2">
+                                 
+                                <div className="pt-4 flex flex-col gap-4">
+                                     <Button type="submit" size="lg" className="w-full h-20 text-2xl bg-primary text-primary-foreground hover:bg-primary/90 focus:outline-none rounded-none" disabled={formState === 'loading'}>
+                                        {formState === 'loading' ? <Loader2 className="h-8 w-8 animate-spin" /> : <Send className="h-8 w-8 mr-3" />}
+                                        {formState === 'loading' ? 'Отправка...' : 'Отправить заявку'}
+                                     </Button>
                                     <div className="flex items-start space-x-3">
                                         <input type="checkbox" id="privacy" {...register("privacy")} className="w-4 h-4 rounded-none border-border mt-0.5" defaultChecked disabled={formState === 'loading'}/>
                                         <div className="grid gap-1.5 leading-none">
