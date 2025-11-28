@@ -5,6 +5,7 @@ import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import { Toaster } from "@/components/ui/toaster";
 import { ContactSheet } from '@/components/ContactSheet';
+import { GpsJammingToast } from '@/components/GpsJammingToast';
 
 export const metadata: Metadata = {
   title: 'ГЕОСТРОЙПРОЕКТ - Кадастровые работы и геодезические услуги в Санкт-Петербурге',
@@ -33,6 +34,7 @@ export default function RootLayout({
           </div>
         </div>
         <Toaster />
+        <GpsJammingToast />
       </body>
     </html>
   );
