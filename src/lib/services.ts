@@ -1,5 +1,5 @@
 
-import { type LucideIcon, DraftingCompass, Scale, FileText, Mountain, Calculator, Map, Building, ScanSearch, LandPlot, Star, CircleCheckBig, FilePenLine, Users, SquareCheckBig, Download, MessageCircle, Zap, Send, Phone, MessageSquare, ExternalLink, ArrowRight, Shield, MapPin as MapPinIcon, Ruler, FileText as FileTextIcon, TreePine, Factory, ListChecks } from "lucide-react";
+import { type LucideIcon, File, DraftingCompass, Scale, FileText, Mountain, Calculator, Map, Building, ScanSearch, LandPlot, Star, CircleCheckBig, FilePenLine, Users, SquareCheckBig, Download, MessageCircle, Zap, Send, Phone, MessageSquare, ExternalLink, ArrowRight, Shield, MapPin as MapPinIcon, Ruler, FileText as FileTextIcon, TreePine, Factory, ListChecks } from "lucide-react";
 
 export type Service = {
   title: string;
@@ -57,6 +57,12 @@ export const services: Service[] = [
     icon: Calculator,
     slug: "cadastral-works",
   },
+  {
+    title: "Технические паспорта",
+    description: "Изготовление и оформление технических паспортов на объекты недвижимости",
+    icon: File,
+    slug: "technical-passports",
+  }
 ];
 
 
@@ -115,6 +121,12 @@ const serviceDetails: Record<string, ServiceDetails> = {
         price: "от&nbsp;16&nbsp;000&nbsp;₽",
         timeline: "от&nbsp;5&nbsp;дней",
         includes: ["Анализ документов", "Геодезическая съемка", "Подготовка планов", "Взаимодействие с Росреестром"]
+    },
+    "technical-passports": {
+        longDescription: "Подготовка и оформление технического паспорта на квартиру, дом, здание или помещение. Технический паспорт содержит основные технические характеристики объекта и требуется для различных юридических процедур.",
+        price: "от&nbsp;6&nbsp;500&nbsp;₽",
+        timeline: "от&nbsp;3&nbsp;дней",
+        includes: ["Выезд техника", "Проведение замеров", "Оформление паспорта", "Регистрация в БТИ (при необходимости)"]
     }
 }
 
