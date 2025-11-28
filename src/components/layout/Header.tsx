@@ -27,13 +27,13 @@ import {
 } from "@/components/ui/accordion"
 import { cn } from '@/lib/utils';
 import { usePathname } from 'next/navigation';
-import { useContactSheet } from '@/hooks/use-contact-sheet';
+import { useContactDialog } from '@/hooks/use-contact-dialog';
 
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const pathname = usePathname();
-  const { onOpen } = useContactSheet();
+  const { onOpen } = useContactDialog();
 
   useEffect(() => {
     const handleScroll = () => {

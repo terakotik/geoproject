@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils";
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import { Toaster } from "@/components/ui/toaster";
-import { ContactSheet } from '@/components/ContactSheet';
+import { ContactDialog } from '@/components/ContactDialog';
 import { GpsJammingToast } from '@/components/GpsJammingToast';
 
 export const metadata: Metadata = {
@@ -25,7 +25,7 @@ export default function RootLayout({
         <link href="https://fonts.googleapis.com/css2?family=PT+Sans:wght@400;700&display=swap" rel="stylesheet" />
       </head>
       <body className={cn("font-body antialiased")}>
-        <ContactSheet />
+        <ContactDialog />
         <div vaul-drawer-wrapper="" className="min-h-screen flex flex-col">
           <Header />
           <div className="relative flex-grow flex flex-col">

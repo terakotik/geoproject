@@ -11,10 +11,10 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { AnimatedText } from "@/components/AnimatedText";
-import { useContactSheet } from "@/hooks/use-contact-sheet";
+import { useContactDialog } from "@/hooks/use-contact-dialog";
 
 export default function UpdatesPage() {
-  const { onOpen } = useContactSheet();
+  const { onOpen } = useContactDialog();
 
   const faqs = [
       {

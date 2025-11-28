@@ -4,14 +4,14 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { CheckCircle, Star, Zap } from "lucide-react"
 import { AnimatedText } from "@/components/AnimatedText";
-import { useContactSheet } from "@/hooks/use-contact-sheet";
+import { useContactDialog } from "@/hooks/use-contact-dialog";
 
 const packages = [
   {
     title: "Стандарт",
     description: "Межевание + Технический план",
-    price: "16 500 ₽",
-    oldPrice: "18 500 ₽",
+    price: "21 450 ₽",
+    oldPrice: "24 050 ₽",
     saving: "Экономия 11%",
     audience: "2-3 заявки",
     features: ["Межевание участка", "Технический план дома", "Подача документов", "Сопровождение до&nbsp;регистрации"],
@@ -20,8 +20,8 @@ const packages = [
   {
     title: "Популярный",
     description: "Групповой пакет",
-    price: "15 000 ₽",
-    oldPrice: "18 500 ₽",
+    price: "19 500 ₽",
+    oldPrice: "24 050 ₽",
     saving: "Экономия 19%",
     audience: "4-7 заявки",
     features: ["Все услуги пакета Стандарт", "Приоритетное обслуживание", "Персональный менеджер", "Скидка на&nbsp;дополнительные услуги"],
@@ -30,8 +30,8 @@ const packages = [
   {
     title: "Максимум",
     description: "Для больших объемов",
-    price: "10 500 ₽",
-    oldPrice: "18 500 ₽",
+    price: "13 650 ₽",
+    oldPrice: "24 050 ₽",
     saving: "Экономия 43%",
     audience: "20+ заявок",
     features: ["Все услуги предыдущих пакетов", "Индивидуальные условия", "Выездные консультации", "Круглосуточная поддержка"],
@@ -65,6 +65,7 @@ const priceSections = [
         { name: "Технический план дома / здания (до 200 кв.м)", price: "18 000 ₽", term: "" },
         { name: "Акт обследования (Снятие с учета/Снос)", price: "7 000 ₽", term: "" },
         { name: "Регистрация машиноместа", price: "18 000 ₽", term: "" },
+        { name: "Технический паспорт", price: "6 500 ₽", term: "" },
     ],
   },
   {
@@ -83,7 +84,7 @@ const priceSections = [
 
 
 export default function PricesPage() {
-  const { onOpen } = useContactSheet();
+  const { onOpen } = useContactDialog();
 
   return (
     <div className="py-16 md:py-24 bg-gradient-hero" id="prices">

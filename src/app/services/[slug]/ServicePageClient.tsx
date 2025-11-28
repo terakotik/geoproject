@@ -7,10 +7,10 @@ import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { Check, ArrowRight, Phone } from 'lucide-react';
 import { Breadcrumbs } from '@/components/ui/breadcrumbs';
-import { useContactSheet } from '@/hooks/use-contact-sheet';
+import { useContactDialog } from '@/hooks/use-contact-dialog';
 
 export default function ServicePageClient({ slug }: { slug: string }) {
-  const { onOpen } = useContactSheet();
+  const { onOpen } = useContactDialog();
   const service = services.find((s) => s.slug === slug);
   const details = getServiceDetails(slug);
 

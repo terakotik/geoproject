@@ -6,7 +6,7 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/com
 import { Button } from '@/components/ui/button';
 import { CheckCircle } from 'lucide-react';
 import { services, getServiceDetails, Service } from '@/lib/services';
-import { useContactSheet } from '@/hooks/use-contact-sheet';
+import { useContactDialog } from '@/hooks/use-contact-dialog';
 
 type ServiceCardProps = {
   service: Service;
@@ -15,7 +15,7 @@ type ServiceCardProps = {
 };
 
 const ServiceCard = React.memo(({ service, index, useLink = true }: ServiceCardProps) => {
-  const { onOpen } = useContactSheet();
+  const { onOpen } = useContactDialog();
   const details = getServiceDetails(service.slug);
   if (!details) return null;
 

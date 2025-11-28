@@ -6,11 +6,11 @@ import { Facebook, Twitter, Linkedin, Send, MessageSquare, ExternalLink, Clock, 
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
-import { useContactSheet } from '@/hooks/use-contact-sheet';
+import { useContactDialog } from '@/hooks/use-contact-dialog';
 import { AnimatedText } from '../AnimatedText';
 
 export default function Footer() {
-  const { onOpen } = useContactSheet();
+  const { onOpen } = useContactDialog();
 
   return (
     <footer className="bg-black text-white relative overflow-hidden">
