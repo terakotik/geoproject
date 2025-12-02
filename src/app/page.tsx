@@ -30,6 +30,7 @@ import { useState } from 'react';
 import { ClientsMarquee } from '@/components/ClientsMarquee';
 import { useContactDialog } from '@/hooks/use-contact-dialog';
 import ServiceCard from '@/components/ServiceCard';
+import { YandexReviews } from '@/components/YandexReviews';
 
 
 const packages = [
@@ -485,6 +486,14 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Reviews Section */}
+      <section className="py-16 md:py-24 bg-background">
+        <div className="container mx-auto px-4">
+          <YandexReviews />
+        </div>
+      </section>
+
+
       {/* CTA Section */}
       <section className="py-16 md:py-24 bg-background">
         <div className="container mx-auto px-4">
@@ -535,3 +544,4 @@ export default function Home() {
     
 
     
+
