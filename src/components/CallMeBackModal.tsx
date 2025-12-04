@@ -5,19 +5,19 @@ import React, { useState, useEffect } from 'react';
 export function CallMeBackModal() {
   const { isOpen, onClose } = useContactDialog();
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isWhatsappSubmitting, setIsWhatsappSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+  const [phone, setPhone] = useState('');
 
   const handlePhoneInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     let x = e.target.value.replace(/\D/g, '').match(/(\d{0,1})(\d{0,3})(\d{0,3})(\d{0,2})(\d{0,2})/);
     if (!x) return;
-    e.target.value = !x[2] ? (x[1] ? `+${x[1]}`: '') : '+7 (' + x[2] + ') ' + x[3] + (x[4] ? '-' + x[4] : '') + (x[5] ? '-' + x[5] : '');
+    const formattedPhone = !x[2] ? (x[1] ? `+${x[1]}`: '') : '+7 (' + x[2] + ') ' + x[3] + (x[4] ? '-' + x[4] : '') + (x[5] ? '-' + x[5] : '');
+    e.target.value = formattedPhone;
+    setPhone(formattedPhone);
   };
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    const formData = new FormData(e.currentTarget);
-    
+  const sendToFormspree = async (formData: FormData) => {
     try {
       const response = await fetch("https://formspree.io/f/mjknobdj", {
         method: "POST",
@@ -26,27 +26,58 @@ export function CallMeBackModal() {
           'Accept': 'application/json'
         }
       });
-
-      if (response.ok) {
-        setIsSuccess(true);
-        setTimeout(() => {
-          handleClose();
-        }, 2000); // Close after 2 seconds
-      } else {
-        alert('Произошла ошибка при отправке.');
-      }
+      return response.ok;
     } catch (error) {
-      alert('Не удалось отправить. Проверьте соединение.');
-    } finally {
-      setIsSubmitting(false);
+      console.error('Formspree submission error:', error);
+      return false;
     }
+  };
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    const formData = new FormData(e.currentTarget);
+    formData.append('source', 'Call Me Back Modal (Phone Call)');
+    
+    const success = await sendToFormspree(formData);
+    
+    if (success) {
+      setIsSuccess(true);
+      setTimeout(() => {
+        handleClose();
+      }, 2000); 
+    } else {
+      alert('Произошла ошибка при отправке.');
+    }
+    
+    setIsSubmitting(false);
+  };
+
+  const handleWhatsappSubmit = async () => {
+    if (!phone) {
+        alert('Пожалуйста, введите номер телефона.');
+        return;
+    }
+    setIsWhatsappSubmitting(true);
+    const formData = new FormData();
+    formData.append('phone', phone);
+    formData.append('source', 'Call Me Back Modal (WhatsApp)');
+    
+    const success = await sendToFormspree(formData);
+
+    if (success) {
+        window.open('https://wa.me/79108247848', '_blank');
+    } else {
+        alert('Не удалось сохранить ваш номер. Пожалуйста, попробуйте снова.');
+    }
+    setIsWhatsappSubmitting(false);
   };
   
   const handleClose = () => {
     onClose();
-    // Reset state after closing animation
     setTimeout(() => {
         setIsSuccess(false);
+        setPhone('');
     }, 300);
   }
 
@@ -190,7 +221,6 @@ export function CallMeBackModal() {
                     color: '#000'
                   }}
                 />
-                <input type="hidden" name="source" value="Call Me Back Modal" />
 
                 <button type="submit" className="submit-btn" disabled={isSubmitting}>
                   {isSubmitting ? 'Отправка...' : '🔥 ПОЗВОНИТЕ МНЕ СРОЧНО!'}
@@ -199,10 +229,10 @@ export function CallMeBackModal() {
               
               <div className="divider">ИЛИ</div>
 
-              <a href="https://wa.me/79108247848" target="_blank" rel="noopener noreferrer" className="submit-btn whatsapp-btn">
+              <button onClick={handleWhatsappSubmit} className="submit-btn whatsapp-btn" disabled={isWhatsappSubmitting}>
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="white"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.894 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.433-9.89-9.89-9.89-5.451 0-9.887 4.434-9.889 9.884-.001 2.225.651 4.315 1.847 6.062l-1.078 3.961 4.049-1.065z"/></svg>
-                Напишите срочно в WhatsApp
-              </a>
+                {isWhatsappSubmitting ? 'Сохраняем...' : 'Напишите срочно в WhatsApp'}
+              </button>
 
               <div style={{ textAlign: 'center', marginTop: '20px', color: '#CCC', fontSize: '14px' }}>
                 ⭐ 500+ клиентов в СПб · 100% конфиденциально
