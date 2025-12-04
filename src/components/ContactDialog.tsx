@@ -27,6 +27,7 @@ export function ContactDialog() {
             // Optional: Auto-close after a few seconds
             // setTimeout(() => {
             //     onClose();
+            //     // Reset formspree state if needed, though it usually resets on unmount
             // }, 4000);
         }
     }, [state.succeeded, isOpen, onClose]);
@@ -37,7 +38,11 @@ export function ContactDialog() {
     }
 
     return (
-        <Dialog open={isOpen} onOpenChange={handleClose}>
+        <Dialog open={isOpen} onOpenChange={(open) => {
+            if (!open) {
+                handleClose();
+            }
+        }}>
             <DialogContent className="w-[90vw] max-w-4xl bg-white p-0 rounded-none border-none">
                 <div className="flex flex-col h-full">
                      <header className="p-8 flex justify-between items-start border-b">
@@ -48,7 +53,7 @@ export function ContactDialog() {
                             </p>
                         </div>
                         <DialogClose asChild>
-                            <Button variant="ghost" size="icon" onClick={handleClose}>
+                            <Button variant="ghost" size="icon">
                               <X className="h-8 w-8 text-gray-500 cursor-pointer" />
                               <span className="sr-only">Закрыть</span>
                             </Button>
@@ -92,6 +97,8 @@ export function ContactDialog() {
                                          disabled={state.submitting}
                                      />
                                  </div>
+                                  <ValidationError prefix="Phone" field="phone" errors={state.errors} className="text-sm text-destructive flex items-center gap-1 -mt-2" />
+
                                  
                                  <div className="border border-input w-full h-24 flex items-center p-4 relative rounded-none transition-colors">
                                      <Input
@@ -103,6 +110,8 @@ export function ContactDialog() {
                                          disabled={state.submitting}
                                      />
                                  </div>
+                                 <ValidationError prefix="Name" field="name" errors={state.errors} className="text-sm text-destructive flex items-center gap-1 -mt-2" />
+
                                  
                                 <div className="pt-4 flex flex-col gap-4">
                                      <Button type="submit" size="lg" className="w-full h-20 text-2xl bg-primary text-primary-foreground hover:bg-primary/90 focus:outline-none rounded-none" disabled={state.submitting}>
@@ -110,9 +119,9 @@ export function ContactDialog() {
                                         {state.submitting ? 'Отправка...' : 'Отправить заявку'}
                                      </Button>
                                     <div className="flex items-start space-x-3">
-                                        <input type="checkbox" id="privacy" name="privacy" className="w-4 h-4 rounded-none border-border mt-0.5" defaultChecked required disabled={state.submitting}/>
+                                        <input type="checkbox" id="privacy-dialog" name="privacy" className="w-4 h-4 rounded-none border-border mt-0.5" defaultChecked required disabled={state.submitting}/>
                                         <div className="grid gap-1.5 leading-none">
-                                            <Label htmlFor="privacy" className="text-xs text-gray-500 font-normal">
+                                            <Label htmlFor="privacy-dialog" className="text-xs text-gray-500 font-normal">
                                                 Нажимая на кнопку, вы даете согласие на обработку своих <Link href="#" className="text-primary hover:underline">персональных данных</Link>
                                             </Label>
                                         </div>
