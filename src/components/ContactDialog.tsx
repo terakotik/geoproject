@@ -6,7 +6,6 @@ import {
     DialogClose,
 } from "@/components/ui/dialog"
 import { useContactDialog } from "@/hooks/use-contact-dialog"
-import { useForm, ValidationError } from '@formspree/react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -20,18 +19,53 @@ import { AnimatedText } from "./AnimatedText";
 
 export function ContactDialog() {
     const { isOpen, onClose } = useContactDialog();
-    const [state, handleSubmit] = useForm("mjknobdj");
+    const [submitting, setSubmitting] = useState(false);
+    const [succeeded, setSucceeded] = useState(false);
+    const [error, setError] = useState<string | null>(null);
     
     useEffect(() => {
-        if (state.succeeded && isOpen) {
-            // Optional: Auto-close after a few seconds
-            // setTimeout(() => {
-            //     onClose();
-            //     // Reset formspree state if needed, though it usually resets on unmount
-            // }, 4000);
+        if (succeeded && isOpen) {
+            // No auto-close, let user close it.
         }
-    }, [state.succeeded, isOpen, onClose]);
+        if (!isOpen) {
+            // Reset state when dialog is closed
+            setTimeout(() => {
+                setSucceeded(false);
+                setError(null);
+            }, 300); // After animation
+        }
+    }, [succeeded, isOpen]);
 
+    async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+        event.preventDefault();
+        setSubmitting(true);
+        setError(null);
+        const formData = new FormData(event.currentTarget);
+
+        try {
+          const response = await fetch("https://formspree.io/f/mjknobdj", {
+            method: "POST",
+            body: formData,
+            headers: {
+              'Accept': 'application/json'
+            }
+          });
+          if (response.ok) {
+            setSucceeded(true);
+          } else {
+            const data = await response.json();
+            if (Object.hasOwn(data, 'errors')) {
+                setError(data["errors"].map((error: any) => error["message"]).join(", "));
+            } else {
+                setError("Что-то пошло не так при отправке формы.");
+            }
+          }
+        } catch (error) {
+          setError("Не удалось отправить форму. Проверьте подключение к сети.");
+        } finally {
+          setSubmitting(false);
+        }
+    }
 
     const handleClose = () => {
         onClose();
@@ -53,7 +87,7 @@ export function ContactDialog() {
                             </p>
                         </div>
                         <DialogClose asChild>
-                            <Button variant="ghost" size="icon">
+                            <Button variant="ghost" size="icon" onClick={handleClose}>
                               <X className="h-8 w-8 text-gray-500 cursor-pointer" />
                               <span className="sr-only">Закрыть</span>
                             </Button>
@@ -61,7 +95,7 @@ export function ContactDialog() {
                     </header>
 
                     <form onSubmit={handleSubmit} className="flex-grow flex flex-col p-8 pt-4">
-                        {state.succeeded ? (
+                        {succeeded ? (
                             <div className="flex flex-col items-center justify-center flex-grow text-center py-10">
                                 <CheckCircle2 className="h-20 w-20 text-green-500 mx-auto mb-6" />
                                 <h3 className="text-3xl font-semibold mb-3">Заявка успешно отправлена!</h3>
@@ -81,7 +115,7 @@ export function ContactDialog() {
                                              name="task"
                                              placeholder="Коротко о задаче"
                                              className="w-full h-full bg-transparent border-none focus:outline-none resize-none text-3xl font-bold placeholder-gray-500 p-0 rounded-none focus-visible:ring-0 focus-visible:ring-offset-0"
-                                             disabled={state.submitting}
+                                             disabled={submitting}
                                          />
                                      </div>
                                  </div>
@@ -94,11 +128,9 @@ export function ContactDialog() {
                                          placeholder="Ваш телефон"
                                          className="w-full bg-transparent border-none focus:outline-none text-3xl font-bold placeholder-gray-500 p-0 rounded-none focus-visible:ring-0 focus-visible:ring-offset-0"
                                          required
-                                         disabled={state.submitting}
+                                         disabled={submitting}
                                      />
                                  </div>
-                                  <ValidationError prefix="Phone" field="phone" errors={state.errors} className="text-sm text-destructive flex items-center gap-1 -mt-2" />
-
                                  
                                  <div className="border border-input w-full h-24 flex items-center p-4 relative rounded-none transition-colors">
                                      <Input
@@ -107,19 +139,23 @@ export function ContactDialog() {
                                          placeholder="Ваше имя"
                                          className="w-full bg-transparent border-none focus:outline-none text-3xl font-bold placeholder-gray-500 p-0 rounded-none focus-visible:ring-0 focus-visible:ring-offset-0"
                                          required
-                                         disabled={state.submitting}
+                                         disabled={submitting}
                                      />
                                  </div>
-                                 <ValidationError prefix="Name" field="name" errors={state.errors} className="text-sm text-destructive flex items-center gap-1 -mt-2" />
 
+                                {error && (
+                                    <div className="text-sm text-destructive flex items-center gap-1">
+                                        <AlertCircle className="h-4 w-4" /> {error}
+                                    </div>
+                                )}
                                  
                                 <div className="pt-4 flex flex-col gap-4">
-                                     <Button type="submit" size="lg" className="w-full h-20 text-2xl bg-primary text-primary-foreground hover:bg-primary/90 focus:outline-none rounded-none" disabled={state.submitting}>
-                                        {state.submitting ? <Loader2 className="h-8 w-8 animate-spin" /> : <Send className="h-8 w-8 mr-3" />}
-                                        {state.submitting ? 'Отправка...' : 'Отправить заявку'}
+                                     <Button type="submit" size="lg" className="w-full h-20 text-2xl bg-primary text-primary-foreground hover:bg-primary/90 focus:outline-none rounded-none" disabled={submitting}>
+                                        {submitting ? <Loader2 className="h-8 w-8 animate-spin" /> : <Send className="h-8 w-8 mr-3" />}
+                                        {submitting ? 'Отправка...' : 'Отправить заявку'}
                                      </Button>
                                     <div className="flex items-start space-x-3">
-                                        <input type="checkbox" id="privacy-dialog" name="privacy" className="w-4 h-4 rounded-none border-border mt-0.5" defaultChecked required disabled={state.submitting}/>
+                                        <input type="checkbox" id="privacy-dialog" name="privacy" className="w-4 h-4 rounded-none border-border mt-0.5" defaultChecked required disabled={submitting}/>
                                         <div className="grid gap-1.5 leading-none">
                                             <Label htmlFor="privacy-dialog" className="text-xs text-gray-500 font-normal">
                                                 Нажимая на кнопку, вы даете согласие на обработку своих <Link href="#" className="text-primary hover:underline">персональных данных</Link>

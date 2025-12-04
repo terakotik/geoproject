@@ -1,5 +1,5 @@
 'use client';
-import { useForm, ValidationError } from '@formspree/react';
+import { useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -9,9 +9,43 @@ import { Mail, Phone, MapPin, Clock, MessageSquare, ExternalLink, CircleCheckBig
 import Link from 'next/link';
 
 export default function ContactPage() {
-  const [state, handleSubmit] = useForm("mjknobdj");
+  const [submitting, setSubmitting] = useState(false);
+  const [succeeded, setSucceeded] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
-  if (state.succeeded) {
+  async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    setSubmitting(true);
+    setError(null);
+    const formData = new FormData(event.currentTarget);
+
+    try {
+      const response = await fetch("https://formspree.io/f/mjknobdj", {
+        method: "POST",
+        body: formData,
+        headers: {
+          'Accept': 'application/json'
+        }
+      });
+      if (response.ok) {
+        setSucceeded(true);
+      } else {
+        const data = await response.json();
+        if (Object.hasOwn(data, 'errors')) {
+            setError(data["errors"].map((error: any) => error["message"]).join(", "));
+        } else {
+            setError("Что-то пошло не так при отправке формы.");
+        }
+      }
+    } catch (error) {
+      setError("Не удалось отправить форму. Проверьте подключение к сети.");
+    } finally {
+      setSubmitting(false);
+    }
+  }
+
+
+  if (succeeded) {
       return (
           <div className="py-16 md:py-24 bg-background flex items-center justify-center min-h-[60vh]">
               <div className="text-center">
@@ -151,39 +185,42 @@ export default function ContactPage() {
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div className="space-y-2">
                       <Label htmlFor="name" className="text-foreground">Имя *</Label>
-                      <Input id="name" name="name" placeholder="Ваше имя" required disabled={state.submitting} />
+                      <Input id="name" name="name" placeholder="Ваше имя" required disabled={submitting} />
                     </div>
                     <div className="space-y-2">
                       <Label htmlFor="phone" className="text-foreground">Телефон *</Label>
-                      <Input id="phone" name="phone" placeholder="+7 (___) ___-__-__" required disabled={state.submitting}/>
+                      <Input id="phone" name="phone" placeholder="+7 (___) ___-__-__" required disabled={submitting}/>
                     </div>
                   </div>
                   <div className="space-y-2">
                      <Label htmlFor="email" className="text-foreground">Email</Label>
-                     <Input id="email" type="email" name="email" placeholder="your@email.com" disabled={state.submitting} />
-                     <ValidationError prefix="Email" field="email" errors={state.errors} className="text-sm text-destructive flex items-center gap-1" />
+                     <Input id="email" type="email" name="email" placeholder="your@email.com" disabled={submitting} />
                   </div>
                   <div className="space-y-2">
                     <Label htmlFor="service" className="text-foreground">Интересующая услуга</Label>
-                    <Input id="service" name="service" placeholder="Межевание, ЗОУИТ, топосъемка..." disabled={state.submitting} />
+                    <Input id="service" name="service" placeholder="Межевание, ЗОУИТ, топосъемка..." disabled={submitting} />
                   </div>
                   <div className="space-y-2">
                     <Label htmlFor="message" className="text-foreground">Сообщение</Label>
-                    <Textarea id="message" name="message" placeholder="Опишите ваш объект и какие работы необходимы..." rows={4} className="resize-none" disabled={state.submitting} />
-                    <ValidationError prefix="Message" field="message" errors={state.errors} className="text-sm text-destructive flex items-center gap-1" />
+                    <Textarea id="message" name="message" placeholder="Опишите ваш объект и какие работы необходимы..." rows={4} className="resize-none" disabled={submitting} />
                   </div>
+                  {error && (
+                    <div className="text-sm text-destructive flex items-center gap-1">
+                        <AlertCircle className="h-4 w-4" /> {error}
+                    </div>
+                  )}
                   <div className="space-y-4 pt-2">
                       <div className="flex items-start space-x-3">
-                          <input type="checkbox" id="privacy" name="privacy" defaultChecked required className="mt-1 h-4 w-4 rounded border-border" disabled={state.submitting} />
+                          <input type="checkbox" id="privacy" name="privacy" defaultChecked required className="mt-1 h-4 w-4 rounded border-border" disabled={submitting} />
                           <div className="grid gap-1.5 leading-none">
                             <Label htmlFor="privacy" className="text-sm font-medium text-muted-foreground">
                                 Согласен с <Link href="#" className="text-accent hover:underline">обработкой персональных данных</Link>
                             </Label>
                           </div>
                       </div>
-                      <Button type="submit" className="w-full" size="lg" disabled={state.submitting}>
-                          {state.submitting ? <Loader2 className="h-5 w-5 mr-2 animate-spin" /> : <Send className="h-5 w-5 mr-2" />}
-                          {state.submitting ? 'Отправка...' : 'Отправить заявку'}
+                      <Button type="submit" className="w-full" size="lg" disabled={submitting}>
+                          {submitting ? <Loader2 className="h-5 w-5 mr-2 animate-spin" /> : <Send className="h-5 w-5 mr-2" />}
+                          {submitting ? 'Отправка...' : 'Отправить заявку'}
                       </Button>
                   </div>
                 </form>
