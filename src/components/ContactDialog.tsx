@@ -1,4 +1,3 @@
-
 'use client'
 
 import {
@@ -7,74 +6,34 @@ import {
     DialogClose,
 } from "@/components/ui/dialog"
 import { useContactDialog } from "@/hooks/use-contact-dialog"
-import { useForm, SubmitHandler } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
-import * as z from 'zod';
+import { useForm, ValidationError } from '@formspree/react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { AlertCircle, CheckCircle2, X, Loader2, Send } from "lucide-react";
 import Link from 'next/link';
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import { AnimatedText } from "./AnimatedText";
-import { useToast } from "@/hooks/use-toast";
-import { sendDialogForm } from "@/lib/actions";
 
-
-const formSchema = z.object({
-  name: z.string().min(2, { message: "Имя должно быть не короче 2 символов." }),
-  phone: z.string().min(10, { message: "Введите корректный номер телефона." }),
-  task: z.string().optional(),
-  privacy: z.boolean().refine(val => val === true, { message: "Необходимо согласие на обработку данных." }),
-});
-
-type FormData = z.infer<typeof formSchema>;
 
 export function ContactDialog() {
     const { isOpen, onClose } = useContactDialog();
-    const [formState, setFormState] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
-    const { toast } = useToast();
-
-    const { register, handleSubmit, formState: { errors }, reset } = useForm<FormData>({
-        resolver: zodResolver(formSchema),
-        defaultValues: {
-            privacy: true,
-        }
-    });
-
-     const onSubmit: SubmitHandler<FormData> = async (data) => {
-        setFormState('loading');
-        const result = await sendDialogForm(data);
-
-        if (result.success) {
-            setFormState('success');
-            reset();
-            toast({
-                title: "Заявка отправлена!",
-                description: "Мы скоро с вами свяжемся.",
-            });
-        } else {
-            setFormState('error');
-             toast({
-                variant: "destructive",
-                title: "Ошибка отправки",
-                description: result.message || 'Произошла ошибка.',
-            });
-             setTimeout(() => {
-                setFormState('idle');
-            }, 3000);
-        }
-    };
+    const [state, handleSubmit] = useForm("mjknobdj");
     
+    useEffect(() => {
+        if (state.succeeded && isOpen) {
+            // Optional: Auto-close after a few seconds
+            // setTimeout(() => {
+            //     onClose();
+            // }, 4000);
+        }
+    }, [state.succeeded, isOpen, onClose]);
+
+
     const handleClose = () => {
         onClose();
-        if (formState === 'success' || formState === 'error') {
-            setTimeout(() => {
-                setFormState('idle');
-            }, 500);
-        }
     }
 
     return (
@@ -96,8 +55,8 @@ export function ContactDialog() {
                         </DialogClose>
                     </header>
 
-                    <form onSubmit={handleSubmit(onSubmit)} className="flex-grow flex flex-col p-8 pt-4">
-                        {formState === 'success' ? (
+                    <form onSubmit={handleSubmit} className="flex-grow flex flex-col p-8 pt-4">
+                        {state.succeeded ? (
                             <div className="flex flex-col items-center justify-center flex-grow text-center py-10">
                                 <CheckCircle2 className="h-20 w-20 text-green-500 mx-auto mb-6" />
                                 <h3 className="text-3xl font-semibold mb-3">Заявка успешно отправлена!</h3>
@@ -114,10 +73,10 @@ export function ContactDialog() {
                                      <div className="border border-input flex-1 h-48 flex flex-col p-4 rounded-none transition-colors">
                                          <Textarea
                                              id="task"
-                                             {...register("task")}
+                                             name="task"
                                              placeholder="Коротко о задаче"
                                              className="w-full h-full bg-transparent border-none focus:outline-none resize-none text-3xl font-bold placeholder-gray-500 p-0 rounded-none focus-visible:ring-0 focus-visible:ring-offset-0"
-                                             disabled={formState === 'loading'}
+                                             disabled={state.submitting}
                                          />
                                      </div>
                                  </div>
@@ -126,39 +85,36 @@ export function ContactDialog() {
                                      <Input
                                          id="phone"
                                          type="tel"
-                                         {...register("phone")}
+                                         name="phone"
                                          placeholder="Ваш телефон"
                                          className="w-full bg-transparent border-none focus:outline-none text-3xl font-bold placeholder-gray-500 p-0 rounded-none focus-visible:ring-0 focus-visible:ring-offset-0"
-                                         aria-invalid={errors.phone ? "true" : "false"}
-                                         disabled={formState === 'loading'}
+                                         required
+                                         disabled={state.submitting}
                                      />
                                  </div>
-                                 {errors.phone && <p className="text-sm text-destructive flex items-center gap-1 -mt-2"><AlertCircle className="h-4 w-4" /> {errors.phone.message}</p>}
-
+                                 
                                  <div className="border border-input w-full h-24 flex items-center p-4 relative rounded-none transition-colors">
                                      <Input
                                          id="name"
-                                         {...register("name")}
+                                         name="name"
                                          placeholder="Ваше имя"
                                          className="w-full bg-transparent border-none focus:outline-none text-3xl font-bold placeholder-gray-500 p-0 rounded-none focus-visible:ring-0 focus-visible:ring-offset-0"
-                                         aria-invalid={errors.name ? "true" : "false"}
-                                         disabled={formState === 'loading'}
+                                         required
+                                         disabled={state.submitting}
                                      />
                                  </div>
-                                 {errors.name && <p className="text-sm text-destructive flex items-center gap-1 -mt-2"><AlertCircle className="h-4 w-4" /> {errors.name.message}</p>}
                                  
                                 <div className="pt-4 flex flex-col gap-4">
-                                     <Button type="submit" size="lg" className="w-full h-20 text-2xl bg-primary text-primary-foreground hover:bg-primary/90 focus:outline-none rounded-none" disabled={formState === 'loading'}>
-                                        {formState === 'loading' ? <Loader2 className="h-8 w-8 animate-spin" /> : <Send className="h-8 w-8 mr-3" />}
-                                        {formState === 'loading' ? 'Отправка...' : 'Отправить заявку'}
+                                     <Button type="submit" size="lg" className="w-full h-20 text-2xl bg-primary text-primary-foreground hover:bg-primary/90 focus:outline-none rounded-none" disabled={state.submitting}>
+                                        {state.submitting ? <Loader2 className="h-8 w-8 animate-spin" /> : <Send className="h-8 w-8 mr-3" />}
+                                        {state.submitting ? 'Отправка...' : 'Отправить заявку'}
                                      </Button>
                                     <div className="flex items-start space-x-3">
-                                        <input type="checkbox" id="privacy" {...register("privacy")} className="w-4 h-4 rounded-none border-border mt-0.5" defaultChecked disabled={formState === 'loading'}/>
+                                        <input type="checkbox" id="privacy" name="privacy" className="w-4 h-4 rounded-none border-border mt-0.5" defaultChecked required disabled={state.submitting}/>
                                         <div className="grid gap-1.5 leading-none">
                                             <Label htmlFor="privacy" className="text-xs text-gray-500 font-normal">
                                                 Нажимая на кнопку, вы даете согласие на обработку своих <Link href="#" className="text-primary hover:underline">персональных данных</Link>
                                             </Label>
-                                            {errors.privacy && <p className="text-sm text-destructive flex items-center gap-1"><AlertCircle className="h-4 w-4" /> {errors.privacy.message}</p>}
                                         </div>
                                     </div>
                                 </div>

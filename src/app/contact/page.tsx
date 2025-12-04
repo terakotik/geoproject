@@ -1,8 +1,5 @@
 'use client';
-import { useState } from 'react';
-import { useForm, SubmitHandler } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
-import * as z from 'zod';
+import { useForm, ValidationError } from '@formspree/react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -10,57 +7,24 @@ import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Mail, Phone, MapPin, Clock, MessageSquare, ExternalLink, CircleCheckBig, Zap, Send, AlertCircle, CheckCircle2, FileText, Loader2 } from 'lucide-react';
 import Link from 'next/link';
-import { useToast } from '@/hooks/use-toast';
-import { sendContactForm } from '@/lib/actions';
-
-const formSchema = z.object({
-  name: z.string().min(2, { message: "Имя должно быть не короче 2 символов." }),
-  phone: z.string().min(10, { message: "Введите корректный номер телефона." }),
-  email: z.string().email({ message: "Введите корректный email." }).optional().or(z.literal('')),
-  service: z.string().optional(),
-  message: z.string().optional(),
-  privacy: z.boolean().refine(val => val === true, { message: "Необходимо согласие на обработку данных." }),
-});
-
-type FormData = z.infer<typeof formSchema>;
 
 export default function ContactPage() {
-  const [formState, setFormState] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
-  const { toast } = useToast();
+  const [state, handleSubmit] = useForm("mjknobdj");
 
-  const { register, handleSubmit, formState: { errors }, reset } = useForm<FormData>({
-    resolver: zodResolver(formSchema),
-    defaultValues: {
-      privacy: false,
-    }
-  });
-
-  const onSubmit: SubmitHandler<FormData> = async (data) => {
-    setFormState('loading');
-    const result = await sendContactForm(data);
-
-    if (result.success) {
-        setFormState('success');
-        reset();
-        toast({
-            title: "Заявка отправлена!",
-            description: "Мы скоро с вами свяжемся.",
-        });
-        setTimeout(() => {
-            setFormState('idle');
-        }, 5000);
-    } else {
-        setFormState('error');
-        toast({
-            variant: "destructive",
-            title: "Ошибка отправки",
-            description: result.message || 'Ошибка аутентификации. Проверьте пароль приложения в .env и настройки почты Яндекса.',
-        });
-        setTimeout(() => {
-            setFormState('idle');
-        }, 5000);
-    }
-  };
+  if (state.succeeded) {
+      return (
+          <div className="py-16 md:py-24 bg-background flex items-center justify-center min-h-[60vh]">
+              <div className="text-center">
+                  <CheckCircle2 className="h-16 w-16 text-green-500 mx-auto mb-4" />
+                  <h3 className="text-2xl font-semibold mb-2">Спасибо за вашу заявку!</h3>
+                  <p className="text-muted-foreground">Мы скоро свяжемся с вами.</p>
+                  <Button asChild className="mt-6">
+                      <Link href="/">Вернуться на главную</Link>
+                  </Button>
+              </div>
+          </div>
+      );
+  }
 
   return (
     <div className="py-16 md:py-24 bg-background" id="contact">
@@ -183,56 +147,46 @@ export default function ContactPage() {
               <p className="text-muted-foreground">Получите бесплатную консультацию и расчет стоимости работ</p>
             </CardHeader>
             <CardContent className="p-0">
-              {formState === 'success' ? (
-                <div className="text-center py-10">
-                  <CheckCircle2 className="h-16 w-16 text-green-500 mx-auto mb-4" />
-                  <h3 className="text-xl font-semibold mb-2">Заявка успешно отправлена!</h3>
-                  <p className="text-muted-foreground">Мы скоро свяжемся с вами.</p>
-                </div>
-              ) : (
-                <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+                <form onSubmit={handleSubmit} className="space-y-6">
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div className="space-y-2">
                       <Label htmlFor="name" className="text-foreground">Имя *</Label>
-                      <Input id="name" {...register("name")} placeholder="Ваше имя" aria-invalid={errors.name ? "true" : "false"} disabled={formState === 'loading'} />
-                      {errors.name && <p className="text-sm text-destructive flex items-center gap-1"><AlertCircle className="h-4 w-4" /> {errors.name.message}</p>}
+                      <Input id="name" name="name" placeholder="Ваше имя" required disabled={state.submitting} />
                     </div>
                     <div className="space-y-2">
                       <Label htmlFor="phone" className="text-foreground">Телефон *</Label>
-                      <Input id="phone" {...register("phone")} placeholder="+7 (___) ___-__-__" aria-invalid={errors.phone ? "true".toString() : "false"} disabled={formState === 'loading'}/>
-                      {errors.phone && <p className="text-sm text-destructive flex items-center gap-1"><AlertCircle className="h-4 w-4" /> {errors.phone.message}</p>}
+                      <Input id="phone" name="phone" placeholder="+7 (___) ___-__-__" required disabled={state.submitting}/>
                     </div>
                   </div>
                   <div className="space-y-2">
                      <Label htmlFor="email" className="text-foreground">Email</Label>
-                     <Input id="email" type="email" {...register("email")} placeholder="your@email.com" aria-invalid={errors.email ? "true" : "false"} disabled={formState === 'loading'} />
-                     {errors.email && <p className="text-sm text-destructive flex items-center gap-1"><AlertCircle className="h-4 w-4" /> {errors.email.message}</p>}
+                     <Input id="email" type="email" name="email" placeholder="your@email.com" disabled={state.submitting} />
+                     <ValidationError prefix="Email" field="email" errors={state.errors} className="text-sm text-destructive flex items-center gap-1" />
                   </div>
                   <div className="space-y-2">
                     <Label htmlFor="service" className="text-foreground">Интересующая услуга</Label>
-                    <Input id="service" {...register("service")} placeholder="Межевание, ЗОУИТ, топосъемка..." disabled={formState === 'loading'} />
+                    <Input id="service" name="service" placeholder="Межевание, ЗОУИТ, топосъемка..." disabled={state.submitting} />
                   </div>
                   <div className="space-y-2">
                     <Label htmlFor="message" className="text-foreground">Сообщение</Label>
-                    <Textarea id="message" {...register("message")} placeholder="Опишите ваш объект и какие работы необходимы..." rows={4} className="resize-none" disabled={formState === 'loading'} />
+                    <Textarea id="message" name="message" placeholder="Опишите ваш объект и какие работы необходимы..." rows={4} className="resize-none" disabled={state.submitting} />
+                    <ValidationError prefix="Message" field="message" errors={state.errors} className="text-sm text-destructive flex items-center gap-1" />
                   </div>
                   <div className="space-y-4 pt-2">
                       <div className="flex items-start space-x-3">
-                          <input type="checkbox" id="privacy" {...register("privacy")} className="mt-1 h-4 w-4 rounded border-border" aria-invalid={errors.privacy ? "true" : "false"} disabled={formState === 'loading'} />
+                          <input type="checkbox" id="privacy" name="privacy" defaultChecked required className="mt-1 h-4 w-4 rounded border-border" disabled={state.submitting} />
                           <div className="grid gap-1.5 leading-none">
                             <Label htmlFor="privacy" className="text-sm font-medium text-muted-foreground">
                                 Согласен с <Link href="#" className="text-accent hover:underline">обработкой персональных данных</Link>
                             </Label>
-                            {errors.privacy && <p className="text-sm text-destructive flex items-center gap-1"><AlertCircle className="h-4 w-4" /> {errors.privacy.message}</p>}
                           </div>
                       </div>
-                      <Button type="submit" className="w-full" size="lg" disabled={formState === 'loading'}>
-                          {formState === 'loading' ? <Loader2 className="h-5 w-5 mr-2 animate-spin" /> : <Send className="h-5 w-5 mr-2" />}
-                          {formState === 'loading' ? 'Отправка...' : 'Отправить заявку'}
+                      <Button type="submit" className="w-full" size="lg" disabled={state.submitting}>
+                          {state.submitting ? <Loader2 className="h-5 w-5 mr-2 animate-spin" /> : <Send className="h-5 w-5 mr-2" />}
+                          {state.submitting ? 'Отправка...' : 'Отправить заявку'}
                       </Button>
                   </div>
                 </form>
-              )}
             </CardContent>
           </Card>
         </div>
