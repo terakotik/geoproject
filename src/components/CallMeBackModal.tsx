@@ -1,6 +1,6 @@
 'use client';
 
-import { useContactDialog } from '@/hooks/use-contact-dialog.tsx';
+import { useContactDialog } from '@/hooks/use-contact-dialog';
 import { Dialog, DialogContent } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -64,7 +64,7 @@ export function CallMeBackModal() {
           <div className="text-xs text-neutral-400 pt-4">
             <label className="flex items-start justify-center gap-2">
               <input type="checkbox" defaultChecked required className="mt-0.5 h-4 w-4 rounded border-neutral-600 bg-neutral-800 accent-yellow-400" />
-              <span>Я согласен с условиями <Link href="/privacy-policy" className="underline hover:text-yellow-300">Политики обработки персональных данных</Link> и даю <Link href="/user-agreement" className="underline hover:text-yellow-300">Согласие на обработку моих персональных данных</Link></span>
+              <span>Я согласен с условиями <Link href="/privacy-policy" className="underline hover:text-yellow-300" target="_blank">Политики обработки персональных данных</Link> и даю <Link href="/user-agreement" className="underline hover:text-yellow-300" target="_blank">Согласие на обработку моих персональных данных</Link></span>
             </label>
           </div>
 

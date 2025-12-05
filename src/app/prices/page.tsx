@@ -4,7 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { CheckCircle, Star, Zap } from "lucide-react"
 import { AnimatedText } from "@/components/AnimatedText";
-import { useContactDialog } from "@/hooks/use-contact-dialog.tsx";
+import { useContactDialog } from "@/hooks/use-contact-dialog";
 
 const packages = [
   {
@@ -124,7 +124,7 @@ export default function PricesPage() {
                     ))}
                   </ul>
                 </div>
-                <Button className={`w-full mt-auto ${pkg.popular ? '' : 'bg-secondary text-secondary-foreground'}`} onClick={onOpen}>Выбрать пакет</Button>
+                <Button className={`w-full mt-auto`} onClick={onOpen}>Выбрать пакет</Button>
               </Card>
             ))}
           </div>

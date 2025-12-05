@@ -7,7 +7,7 @@ import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { Check, ArrowRight, Phone } from 'lucide-react';
 import { Breadcrumbs } from '@/components/ui/breadcrumbs';
-import { useContactDialog } from '@/hooks/use-contact-dialog.tsx';
+import { useContactDialog } from '@/hooks/use-contact-dialog';
 
 export default function ServicePageClient({ slug }: { slug: string }) {
   const service = services.find((s) => s.slug === slug);

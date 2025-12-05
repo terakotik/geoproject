@@ -6,6 +6,7 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/com
 import { Button } from '@/components/ui/button';
 import { CheckCircle } from 'lucide-react';
 import { services, getServiceDetails, Service } from '@/lib/services';
+import { useContactDialog } from '@/hooks/use-contact-dialog';
 
 type ServiceCardProps = {
   service: Service;
@@ -15,6 +16,8 @@ type ServiceCardProps = {
 
 const ServiceCard = React.memo(({ service, index, useLink = true }: ServiceCardProps) => {
   const details = getServiceDetails(service.slug);
+  const { onOpen } = useContactDialog();
+
   if (!details) return null;
 
   const CardBody = () => (
@@ -26,7 +29,11 @@ const ServiceCard = React.memo(({ service, index, useLink = true }: ServiceCardP
           <service.icon className="h-10 w-10 text-muted-foreground" />
         </div>
         <CardHeader className="p-0">
-          <CardTitle className="text-2xl font-heading mb-2">{service.title}</CardTitle>
+          <CardTitle className="text-2xl font-heading mb-2">
+            <Link href={`/services/${service.slug}`} className="hover:text-accent transition-colors">
+              {service.title}
+            </Link>
+          </CardTitle>
           <CardDescription className="text-base" dangerouslySetInnerHTML={{ __html: service.description }}></CardDescription>
         </CardHeader>
         <CardContent className="flex-grow p-0 pt-6">
@@ -44,8 +51,8 @@ const ServiceCard = React.memo(({ service, index, useLink = true }: ServiceCardP
             <div className="font-bold text-accent" dangerouslySetInnerHTML={{ __html: details.price }}></div>
             <div className="text-muted-foreground" dangerouslySetInnerHTML={{ __html: details.timeline }}></div>
           </div>
-           <Button variant="default" size="lg" className="w-full text-lg py-6 bg-accent text-accent-foreground hover:bg-accent/90" asChild>
-            <Link href={`/services/${service.slug}`}>Заказать услугу</Link>
+           <Button variant="default" size="lg" className="w-full text-lg py-6 bg-accent text-accent-foreground hover:bg-accent/90" onClick={onOpen}>
+            Заказать услугу
           </Button>
         </div>
       </Card>

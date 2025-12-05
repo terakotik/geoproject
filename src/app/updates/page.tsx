@@ -11,7 +11,7 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { AnimatedText } from "@/components/AnimatedText";
-import { useContactDialog } from "@/hooks/use-contact-dialog.tsx";
+import { useContactDialog } from "@/hooks/use-contact-dialog";
 
 export default function UpdatesPage() {
   const { onOpen } = useContactDialog();

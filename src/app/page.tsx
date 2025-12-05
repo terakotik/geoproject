@@ -30,6 +30,7 @@ import { useState, useEffect } from 'react';
 import { ClientsMarquee } from '@/components/ClientsMarquee';
 import ServiceCard from '@/components/ServiceCard';
 import { YandexReviews } from '@/components/YandexReviews';
+import { useContactDialog } from "@/hooks/use-contact-dialog";
 
 
 const packages = [
@@ -186,6 +187,7 @@ const heroVideos = [
 export default function Home() {
   const heroImage = PlaceHolderImages.find(p => p.id === 'hero-background');
   const [videoSrc, setVideoSrc] = useState(heroVideos[0]);
+  const { onOpen } = useContactDialog();
 
   useEffect(() => {
     setVideoSrc(heroVideos[Math.floor(Math.random() * heroVideos.length)]);
@@ -215,8 +217,8 @@ export default function Home() {
               <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mt-6" dangerouslySetInnerHTML={{ __html: 'Полный спектр кадастровых работ, инженерных изысканий и&nbsp;ЗОУИТ в&nbsp;Санкт-Петербурге и&nbsp;ЛО' }}></p>
               
               <div className="mt-10 flex flex-col sm:flex-row gap-4">
-                <Button size="lg" asChild className="text-lg py-7 px-8">
-                  <Link href="/contact">Бесплатная консультация</Link>
+                <Button size="lg" className="text-lg py-7 px-8" onClick={onOpen}>
+                  Бесплатная консультация
                 </Button>
                  <Button size="lg" variant="ghost" asChild>
                     <Link href="#services" className="text-lg py-7 px-8">
@@ -357,9 +359,7 @@ export default function Home() {
                 </div>
                 <h3 className="text-2xl font-heading font-semibold text-foreground mb-2" dangerouslySetInnerHTML={{ __html: 'Не&nbsp;нашли нужную услугу?' }}></h3>
                 <p className="text-muted-foreground mb-6" dangerouslySetInnerHTML={{ __html: 'Мы&nbsp;выполняем любые виды геодезических работ под&nbsp;заказ' }}></p>
-                <Button size="lg" asChild>
-                  <Link href="/contact">Получить консультацию</Link>
-                </Button>
+                <Button size="lg" onClick={onOpen}>Получить консультацию</Button>
             </Card>
           </div>
         </div>
@@ -405,7 +405,7 @@ export default function Home() {
                       ))}
                     </ul>
                   </div>
-                  <Button className="w-full mt-auto" asChild><Link href="/contact">Выбрать пакет</Link></Button>
+                  <Button className="w-full mt-auto" onClick={onOpen}>Выбрать пакет</Button>
                 </Card>
               ))}
             </div>
@@ -441,7 +441,7 @@ export default function Home() {
                             </td>
                             <td className="p-4 text-right text-muted-foreground" dangerouslySetInnerHTML={{ __html: item.term }}></td>
                             <td className="p-4 pl-4 text-right">
-                              <Button variant="outline" size="sm" asChild><Link href="/contact">Заказать</Link></Button>
+                              <Button variant="outline" size="sm" onClick={onOpen}>Заказать</Button>
                             </td>
                           </tr>
                         ))}
@@ -461,7 +461,7 @@ export default function Home() {
                 <h3 className="text-2xl font-heading font-bold">Срочные работы</h3>
               </div>
               <p className="text-lg text-muted-foreground mb-4" dangerouslySetInnerHTML={{ __html: 'Выполним работы в&nbsp;кратчайшие сроки с&nbsp;доплатой 30%' }}></p>
-              <Button variant="default" asChild><Link href="/contact">Срочный заказ</Link></Button>
+              <Button variant="default" onClick={onOpen}>Срочный заказ</Button>
             </Card>
           </div>
         </div>
@@ -516,8 +516,8 @@ export default function Home() {
             <p className="text-lg text-muted-foreground mb-8" dangerouslySetInnerHTML={{ __html: 'Оставьте заявку на&nbsp;бесплатную консультацию и&nbsp;мы&nbsp;ответим на&nbsp;все ваши вопросы.' }}>
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button asChild size="lg" variant="default">
-                <Link href="/contact">Бесплатная консультация</Link>
+              <Button size="lg" variant="default" onClick={onOpen}>
+                Бесплатная консультация
               </Button>
               <Button asChild size="lg" variant="outline">
                 <Link href="#prices">Рассчитать стоимость</Link>
@@ -539,30 +539,3 @@ export default function Home() {
     </div>
   );
 }
-
-    
-
-    
-
-
-
-    
-
-    
-
-    
-
-    
-
-
-
-
-    
-
-    
-
-    
-
-    
-
-
