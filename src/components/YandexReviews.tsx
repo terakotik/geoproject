@@ -104,7 +104,7 @@ export function YandexReviews() {
                         ${ICONS.thumb} 5.0
                     </a>
                 </div>
-                <a href="https://yandex.com/maps/org/geostroyproyekt/144539023058/add-review/" target="_blank" rel="noopener noreferrer" class="ya-btn-write">Оставить отзыв</a>
+                <a href="https://yandex.com/maps/org/geostroyproyekt/144539023058/reviews/?indoorLevel=1&ll=30.316916%2C59.926206&z=16" target="_blank" rel="noopener noreferrer" class="ya-btn-write">Оставить отзыв</a>
             </div>
 
             <div style="position: relative;">
