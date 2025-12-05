@@ -1,7 +1,7 @@
 'use client';
 
 import { useContactDialog } from '@/hooks/use-contact-dialog';
-import { Dialog, DialogContent } from '@/components/ui/dialog';
+import { Dialog, DialogContent, DialogClose } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Zap, Phone, MessageSquare, Check, Shield, X, Loader2, AlertCircle, CheckCircle2 } from 'lucide-react';
@@ -18,6 +18,8 @@ export function CallMeBackModal() {
   useEffect(() => {
     if (isOpen) {
       setPhone('+7 (');
+      setError(null);
+      setSucceeded(false);
     }
   }, [isOpen]);
 
@@ -54,6 +56,8 @@ export function CallMeBackModal() {
     setError(null);
     const formData = new FormData(event.currentTarget);
     formData.set('phone', phone); // Ensure formatted phone is in form data
+    formData.append('source', 'CallMeBack Modal');
+
 
     try {
       const response = await fetch("https://formspree.io/f/mjknobdj", {
@@ -84,9 +88,6 @@ export function CallMeBackModal() {
   };
 
   const handleClose = () => {
-    setSucceeded(false);
-    setError(null);
-    setPhone('');
     onClose();
   }
 
@@ -94,9 +95,6 @@ export function CallMeBackModal() {
     <Dialog open={isOpen} onOpenChange={handleClose}>
       <DialogContent className="p-0 max-w-md bg-[#1e1e24] text-white border-[#333] shadow-2xl shadow-black/50 rounded-2xl">
         <div className="relative p-8 md:p-10">
-          <button onClick={handleClose} className="absolute top-4 right-4 w-8 h-8 bg-white/10 rounded-full flex items-center justify-center text-[#a0a0a5] hover:bg-white/20 hover:text-white transition-all duration-300">
-            <X size={18} />
-          </button>
           
           {succeeded ? (
             <div className="flex flex-col items-center justify-center h-full py-16 text-center">
