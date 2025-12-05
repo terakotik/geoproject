@@ -7,10 +7,12 @@ import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { Check, ArrowRight, Phone } from 'lucide-react';
 import { Breadcrumbs } from '@/components/ui/breadcrumbs';
+import { useContactDialog } from '@/hooks/use-contact-dialog.tsx';
 
 export default function ServicePageClient({ slug }: { slug: string }) {
   const service = services.find((s) => s.slug === slug);
   const details = getServiceDetails(slug);
+  const { onOpen } = useContactDialog();
 
   if (!service || !details) {
     notFound();
@@ -104,10 +106,8 @@ export default function ServicePageClient({ slug }: { slug: string }) {
                   <p className="text-sm text-muted-foreground">
                     Получите бесплатную консультацию и&nbsp;точный расчет для вашего объекта.
                   </p>
-                  <Button size="lg" className="w-full" asChild>
-                    <Link href="/contact">
-                      Заказать консультацию <ArrowRight className="ml-2 h-4 w-4" />
-                    </Link>
+                  <Button size="lg" className="w-full" onClick={onOpen}>
+                    Заказать консультацию <ArrowRight className="ml-2 h-4 w-4" />
                   </Button>
                   <Button asChild size="lg" variant="outline" className="w-full">
                     <a href="tel:+79522764940">

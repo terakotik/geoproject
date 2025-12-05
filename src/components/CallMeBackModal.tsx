@@ -14,10 +14,9 @@ export function CallMeBackModal() {
     event.preventDefault();
     // Here you would typically handle form submission, e.g., send data to an API
     console.log("Form submitted from modal");
-    // This logic is now handled by the floating widget
-    // if (startCountdown) {
-    //   startCountdown(); 
-    // }
+    if (startCountdown) {
+       startCountdown(); 
+    }
     onClose(); 
   };
 
@@ -59,7 +58,7 @@ export function CallMeBackModal() {
             className="w-full h-14 bg-green-500 hover:bg-green-600 text-white text-lg font-bold rounded-xl flex items-center gap-2"
             asChild
           >
-            <a href="https://wa.me/79522764940" target="_blank" rel="noopener noreferrer">
+            <a href="https://wa.me/79108247848?text=Здравствуйте, у меня вопрос" target="_blank" rel="noopener noreferrer">
               <MessageSquare className="h-5 w-5" />
               Напишите срочно в WhatsApp
             </a>
