@@ -197,7 +197,6 @@ export default function Home() {
             priority
             className="transform scale-80"
           />
-          <div className="absolute inset-0 bg-gradient-to-l from-background from-0% via-background/80 via-40% to-transparent to-60%" />
         </div>
         <div className="container mx-auto px-4 relative z-10">
           <div className="grid md:grid-cols-2 gap-8 items-center">
@@ -549,6 +548,8 @@ export default function Home() {
 
 
 
+
+    
 
     
 
