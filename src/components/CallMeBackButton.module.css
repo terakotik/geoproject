@@ -1,0 +1,144 @@
+/* CallWidget.module.css */
+
+.widgetWrapper {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 999999;
+  width: 90%;
+  max-width: 400px;
+  font-family: sans-serif;
+  display: block;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  animation: mainPulse 2s infinite ease-in-out;
+  border-radius: 50px;
+}
+
+.btnLayer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 20px;
+  border-radius: 50px;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+/* СЛОЙ 1: ЖЕЛТЫЙ */
+.layerYellow {
+  background: linear-gradient(180deg, #FFEB3B 0%, #FFC107 100%);
+  border: 1px solid #FFD54F;
+  color: #222;
+  position: relative;
+  box-shadow: 0 10px 25px rgba(255, 193, 7, 0.4);
+}
+
+.layerYellow .phoneIcon svg {
+  fill: #D32F2F;
+}
+
+/* СЛОЙ 2: ЗЕЛЕНЫЙ */
+.layerGreen {
+  background: linear-gradient(180deg, #4CAF50 0%, #2E7D32 100%);
+  color: #fff;
+  border: 1px solid #2E7D32;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  /* Изначально скрыт (обрезан слева на 100%) */
+  clip-path: inset(0 0 0 100%);
+  transition: clip-path 0.05s linear;
+}
+
+.layerGreen .phoneIcon svg {
+  fill: #ffffff;
+}
+
+/* ВНУТРЕННОСТИ */
+.btnContent {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  justify-content: center;
+}
+
+.phoneIcon {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  flex-shrink: 0;
+  animation: phoneShake 3s infinite ease-in-out;
+}
+
+.textGroup {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
+  align-items: flex-start;
+}
+
+.mainText {
+  font-weight: 800;
+  font-size: 16px;
+  text-transform: uppercase;
+}
+
+.subText {
+  font-size: 11px;
+  font-weight: 500;
+}
+
+/* СОСТОЯНИЕ ТАЙМЕРА (Класс добавляется динамически) */
+.timerActive .mainText {
+  font-size: 24px;
+  font-family: 'Courier New', monospace;
+  font-weight: 900;
+  letter-spacing: -1px;
+}
+
+.timerActive .phoneIcon {
+  display: none;
+}
+
+.timerActive .textGroup {
+  align-items: center;
+  width: 100%;
+}
+
+/* РЕЖИМ WHATSAPP */
+.whatsappMode {
+  animation: panicPulse 0.8s infinite !important;
+  box-shadow: 0 10px 25px rgba(76, 175, 80, 0.6) !important;
+}
+
+/* АНИМАЦИИ */
+@keyframes mainPulse {
+  0% { transform: translateX(-50%) scale(1); }
+  50% { transform: translateX(-50%) scale(1.03); }
+  100% { transform: translateX(-50%) scale(1); }
+}
+
+@keyframes panicPulse {
+  0% { transform: translateX(-50%) scale(1); }
+  50% { transform: translateX(-50%) scale(1.05); }
+  100% { transform: translateX(-50%) scale(1); }
+}
+
+@keyframes phoneShake {
+  0%, 90%, 100% { transform: rotate(0deg); }
+  92% { transform: rotate(-10deg); }
+  94% { transform: rotate(10deg); }
+  96% { transform: rotate(-10deg); }
+  98% { transform: rotate(10deg); }
+}
