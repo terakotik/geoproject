@@ -10,7 +10,7 @@ export function GpsJammingToast() {
 
   const showSecondToast = () => {
     toast({
-      duration: 6000, // 6 seconds
+      duration: 1000, // 1 second
       className: 'w-full max-w-md p-6 bg-card border-accent/20',
       description: (
         <div className="flex items-start gap-4">
@@ -34,7 +34,7 @@ export function GpsJammingToast() {
     if (!hasBeenShown) {
       // Show the first toast
       toast({
-        duration: 6000, // 6 seconds
+        duration: 1000, // 1 second
         className: 'w-full max-w-md p-6 bg-card border-primary/20',
         description: (
           <div className="flex items-start gap-4">
@@ -61,7 +61,7 @@ export function GpsJammingToast() {
       // Set a timer to show the second toast after the first one
       setTimeout(() => {
         showSecondToast();
-      }, 6500); // Wait for the first toast duration + a small delay
+      }, 1500); // Wait for the first toast duration + a small delay
 
       sessionStorage.setItem('gpsJammingToastShown', 'true');
     }
