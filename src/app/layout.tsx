@@ -6,6 +6,7 @@ import Footer from '@/components/layout/Footer';
 import { Toaster } from "@/components/ui/toaster";
 import { GpsJammingToast } from '@/components/GpsJammingToast';
 import { CallMeBackModal } from '@/components/CallMeBackModal';
+import { CallMeBackButton } from '@/components/CallMeBackButton';
 
 export const metadata: Metadata = {
   title: 'ГЕОСТРОЙПРОЕКТ - Кадастровые работы и геодезические услуги в Санкт-Петербурге',
@@ -26,6 +27,7 @@ export default function RootLayout({
       </head>
       <body className={cn("font-body antialiased")}>
         <CallMeBackModal />
+        <CallMeBackButton />
         <div vaul-drawer-wrapper="" className="min-h-screen flex flex-col">
           <Header />
           <div className="relative flex-grow flex flex-col">
