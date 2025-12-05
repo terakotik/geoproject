@@ -26,7 +26,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog"
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { ClientsMarquee } from '@/components/ClientsMarquee';
 import { useContactDialog } from '@/hooks/use-contact-dialog';
 import ServiceCard from '@/components/ServiceCard';
@@ -178,10 +178,20 @@ const processSteps = [
     }
   ];
 
+const heroVideos = [
+    'https://d1dzlizqgbwk1w.cloudfront.net/videos/2025/12/05/oBoewigD.mp4',
+    'https://d1dzlizqgbwk1w.cloudfront.net/videos/2025/10/22/oudbOxVP.mp4',
+];
+
 
 export default function Home() {
   const { onOpen } = useContactDialog();
   const heroImage = PlaceHolderImages.find(p => p.id === 'hero-background');
+  const [videoSrc, setVideoSrc] = useState(heroVideos[0]);
+
+  useEffect(() => {
+    setVideoSrc(heroVideos[Math.floor(Math.random() * heroVideos.length)]);
+  }, []);
 
   return (
     <div className="min-h-screen bg-background">
@@ -189,12 +199,13 @@ export default function Home() {
        <section className="relative min-h-[80vh] md:min-h-screen flex items-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <video
+            key={videoSrc}
             autoPlay
             loop
             muted
             playsInline
             className="w-full h-full object-cover"
-            src="https://d1dzlizqgbwk1w.cloudfront.net/videos/2025/12/05/oBoewigD.mp4"
+            src={videoSrc}
           />
         </div>
         <div className="container mx-auto px-4 relative z-10">
@@ -555,3 +566,4 @@ export default function Home() {
     
 
     
+
