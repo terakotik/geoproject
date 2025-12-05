@@ -38,7 +38,7 @@ export function CallMeBackButton() {
 
   const startCountdown = () => {
     setState("counting");
-    onOpen(); // Открываем модальное окно при старте таймера
+    onOpen(); 
 
     if (yellowLayerRef.current) yellowLayerRef.current.classList.add(styles.timerActive);
     if (greenLayerRef.current) greenLayerRef.current.classList.add(styles.timerActive);
@@ -125,18 +125,16 @@ export function CallMeBackButton() {
   );
 
   return (
-    <div className="md:hidden">
-      <div 
-        className={styles.widgetWrapper} 
-        ref={wrapperRef} 
-        onClick={handleClick}
-      >
-        <div className={`${styles.btnLayer} ${styles.layerYellow}`} ref={yellowLayerRef}>
-          {renderContent("yellow")}
-        </div>
-        <div className={`${styles.btnLayer} ${styles.layerGreen}`} ref={greenLayerRef}>
-          {renderContent("green")}
-        </div>
+    <div 
+      className={styles.widgetWrapper} 
+      ref={wrapperRef} 
+      onClick={handleClick}
+    >
+      <div className={`${styles.btnLayer} ${styles.layerYellow}`} ref={yellowLayerRef}>
+        {renderContent("yellow")}
+      </div>
+      <div className={`${styles.btnLayer} ${styles.layerGreen}`} ref={greenLayerRef}>
+        {renderContent("green")}
       </div>
     </div>
   );
