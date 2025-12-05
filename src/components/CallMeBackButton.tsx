@@ -33,13 +33,6 @@ export function CallMeBackButton() {
           cursor: pointer;
         }
         
-        @media (min-width: 640px) {
-            .big-call-btn {
-                font-size: 18px;
-                padding: 18px 24px;
-            }
-        }
-
         .pulse-ring {
           position: absolute;
           top: -10px;
@@ -62,11 +55,13 @@ export function CallMeBackButton() {
           100% { transform: scale(1.4); opacity: 0; }
         }
       `}</style>
-      <div className="fixed-call-button md:hidden">
-        <div className="pulse-ring"></div>
-        <button className="big-call-btn" onClick={onOpen}>
-          📞 ЗАКАЗАТЬ ЗВОНОК
-        </button>
+      <div className="md:hidden">
+        <div className="fixed-call-button">
+          <div className="pulse-ring"></div>
+          <button className="big-call-btn" onClick={onOpen}>
+            📞 ЗАКАЗАТЬ ЗВОНОК
+          </button>
+        </div>
       </div>
     </>
   );
