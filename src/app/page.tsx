@@ -179,8 +179,8 @@ const processSteps = [
   ];
 
 const heroVideos = [
-    'https://d1dzlizqgbwk1w.cloudfront.net/videos/2025/12/05/oBoewigD.mp4',
-    'https://d1dzlizqgbwk1w.cloudfront.net/videos/2025/10/22/oudbOxVP.mp4',
+    'https://d1dzlizqgbwk1w.cloudfront.net/videos/2025/12/05/ByjmlPeR.mp4',
+    'https://d1dzlizqgbwk1w.cloudfront.net/videos/2025/12/05/xGmJGWAG.mp4',
 ];
 
 
