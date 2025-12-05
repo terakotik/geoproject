@@ -193,7 +193,7 @@ export default function Home() {
             alt="Команда инженеров-геодезистов"
             fill
             objectFit="cover"
-            className="transform -scale-x-100"
+            className="transform -scale-x-100 scale-130"
             data-ai-hint="team engineers"
             priority
           />
@@ -549,5 +549,7 @@ export default function Home() {
 
 
 
+
+    
 
     
