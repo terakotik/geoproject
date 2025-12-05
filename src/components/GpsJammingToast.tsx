@@ -10,7 +10,7 @@ export function GpsJammingToast() {
 
   const showSecondToast = () => {
     toast({
-      duration: 10000,
+      duration: 6000, // 6 seconds
       className: 'w-full max-w-md p-6 bg-card border-accent/20',
       description: (
         <div className="flex items-start gap-4">
@@ -32,20 +32,10 @@ export function GpsJammingToast() {
     const hasBeenShown = sessionStorage.getItem('gpsJammingToastShown');
 
     if (!hasBeenShown) {
-      const { dismiss } = toast({
-        duration: 15000, // 15 seconds
+      // Show the first toast
+      toast({
+        duration: 6000, // 6 seconds
         className: 'w-full max-w-md p-6 bg-card border-primary/20',
-        action: (
-           <button
-            onClick={() => {
-              dismiss();
-              showSecondToast();
-            }}
-            className="text-sm font-semibold text-primary hover:underline"
-          >
-            Хорошо
-          </button>
-        ),
         description: (
           <div className="flex items-start gap-4">
             <div className="flex-shrink-0">
@@ -67,6 +57,12 @@ export function GpsJammingToast() {
           </div>
         ),
       });
+
+      // Set a timer to show the second toast after the first one
+      setTimeout(() => {
+        showSecondToast();
+      }, 6500); // Wait for the first toast duration + a small delay
+
       sessionStorage.setItem('gpsJammingToastShown', 'true');
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
