@@ -8,15 +8,12 @@ import { Rocket, Flame, MessageSquare, Star } from 'lucide-react';
 import Link from 'next/link';
 
 export function CallMeBackModal() {
-  const { isOpen, onClose, startCountdown } = useContactDialog();
+  const { isOpen, onClose } = useContactDialog();
   
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     // Here you would typically handle form submission, e.g., send data to an API
     console.log("Form submitted from modal");
-    if (startCountdown) {
-       startCountdown(); 
-    }
     onClose(); 
   };
 
