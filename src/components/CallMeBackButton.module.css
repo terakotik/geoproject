@@ -6,27 +6,29 @@
   left: 50%;
   transform: translateX(-50%);
   z-index: 999999;
-  width: 90%;
-  max-width: 400px;
-  font-family: sans-serif;
+  width: 92%; /* Чуть шире для удобного ввода */
+  max-width: 420px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   display: block;
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
   animation: mainPulse 2s infinite ease-in-out;
-  border-radius: 50px;
+  border-radius: 60px; /* Более округло */
 }
 
+/* Общий слой кнопки */
 .btnLayer {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 12px 20px;
-  border-radius: 50px;
+  padding: 8px 10px; /* Отступы меньше, чтобы элементы были крупнее */
+  border-radius: 60px;
   box-sizing: border-box;
   width: 100%;
-  height: 100%;
+  min-height: 64px; /* Сделали кнопку ВЫШЕ и КРУПНЕЕ */
   text-decoration: none;
   white-space: nowrap;
+  transition: all 0.3s ease;
 }
 
 /* СЛОЙ 1: ЖЕЛТЫЙ */
@@ -51,31 +53,31 @@
   top: 0;
   left: 0;
   z-index: 10;
-  /* Изначально скрыт (обрезан слева на 100%) */
   clip-path: inset(0 0 0 100%);
   transition: clip-path 0.05s linear;
+  pointer-events: none; 
 }
 
 .layerGreen .phoneIcon svg {
   fill: #ffffff;
 }
 
-/* ВНУТРЕННОСТИ */
+/* --- ВНУТРЕННИЙ КОНТЕНТ (Иконка + Текст) --- */
 .btnContent {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 15px;
   width: 100%;
   justify-content: center;
 }
 
 .phoneIcon {
-  width: 40px;
-  height: 40px;
+  width: 44px;
+  height: 44px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.4);
   border-radius: 50%;
   flex-shrink: 0;
   animation: phoneShake 3s infinite ease-in-out;
@@ -90,33 +92,79 @@
 
 .mainText {
   font-weight: 800;
-  font-size: 16px;
+  font-size: 18px; /* Крупнее */
   text-transform: uppercase;
 }
 
 .subText {
-  font-size: 11px;
-  font-weight: 500;
+  font-size: 13px; /* Крупнее */
+  font-weight: 600;
+  opacity: 0.8;
 }
 
-/* СОСТОЯНИЕ ТАЙМЕРА (Класс добавляется динамически) */
+/* --- ФОРМА ВВОДА (Как на картинке) --- */
+.inputForm {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  justify-content: space-between;
+  padding-left: 10px; /* Отступ слева для текста */
+}
+
+.phoneInput {
+  background: transparent;
+  border: none;
+  outline: none;
+  font-size: 16px; /* Крупный шрифт ввода */
+  font-weight: 500;
+  color: #333;
+  width: 100%;
+  height: 100%;
+  /* Цвет плейсхолдера */
+}
+
+.phoneInput::placeholder {
+  color: #666;
+  font-weight: 400;
+  font-size: 14px; /* Чуть меньше, чтобы длинный текст влез */
+}
+
+/* Черная кнопка с галочкой */
+.submitBtn {
+  background: #1a1a1a; /* Черный цвет */
+  color: #FFEB3B;      /* Желтая галочка */
+  border: none;
+  border-radius: 50%;
+  width: 48px;         /* Большая кнопка */
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  flex-shrink: 0;
+  margin-left: 10px;
+  transition: transform 0.2s, background 0.2s;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+.submitBtn:active {
+  transform: scale(0.92);
+  background: #000;
+}
+
+/* --- АКТИВНЫЕ СОСТОЯНИЯ --- */
+
 .timerActive .mainText {
-  font-size: 24px;
+  font-size: 28px; /* Таймер очень крупно */
   font-family: 'Courier New', monospace;
   font-weight: 900;
   letter-spacing: -1px;
 }
 
-.timerActive .phoneIcon {
-  display: none;
-}
+.timerActive .phoneIcon { display: none; }
+.timerActive .textGroup { align-items: center; width: 100%; }
 
-.timerActive .textGroup {
-  align-items: center;
-  width: 100%;
-}
-
-/* РЕЖИМ WHATSAPP */
 .whatsappMode {
   animation: panicPulse 0.8s infinite !important;
   box-shadow: 0 10px 25px rgba(76, 175, 80, 0.6) !important;
@@ -125,7 +173,7 @@
 /* АНИМАЦИИ */
 @keyframes mainPulse {
   0% { transform: translateX(-50%) scale(1); }
-  50% { transform: translateX(-50%) scale(1.03); }
+  50% { transform: translateX(-50%) scale(1.02); }
   100% { transform: translateX(-50%) scale(1); }
 }
 
