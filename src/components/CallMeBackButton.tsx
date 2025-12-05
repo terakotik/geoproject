@@ -131,27 +131,18 @@ export default function CallMeBackButton() {
       formData.append("source", "CallMeBackButton Widget");
 
       try {
-        const response = await fetch("https://formspree.io/f/mjknobdj", {
+        await fetch("https://formspree.io/f/mjknobdj", {
             method: "POST",
             body: formData,
             headers: {
                 'Accept': 'application/json'
             }
         });
-        if (response.ok) {
-            startProcess();
-        } else {
-            // Handle error silently or show a message if UI is updated
-            console.error("Formspree submission failed");
-            // Optionally, still start the process to not block the user
-            startProcess();
-        }
       } catch (error) {
-          console.error("Failed to submit form", error);
-          // Optionally, still start the process
-          startProcess();
+          console.error("Failed to submit form from widget", error);
       } finally {
           setSubmitting(false);
+          startProcess();
       }
   };
 
@@ -170,7 +161,7 @@ export default function CallMeBackButton() {
             <div className={`${styles.viewInput} js-view-input`} ref={el => viewInputsRef.current[0] = el}>
                 <div className={styles.topLabel}>Введите номер - позвоним за 30с</div>
                 <div className={styles.inputRow}>
-                    <input type="tel" className={`${styles.phoneField} js-phone-input`} defaultValue="+7 " ref={el => phoneInputsRef.current[0] = el} disabled={submitting}/>
+                    <input type="tel" className={`${styles.phoneField} js-phone-input`} defaultValue="+7 " ref={el => phoneInputsRef.current[0] = el} disabled={submitting} onClick={(e) => e.stopPropagation()} />
                     <button className={`${styles.btnOk} js-btn-ok`} onClick={handleOkClick} ref={el => btnsOkRef.current[0] = el} disabled={submitting}>
                         {submitting ? 
                             <svg className="animate-spin" width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
