@@ -189,9 +189,9 @@ export default function Home() {
        <section className="relative min-h-[80vh] md:min-h-screen flex items-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <Image
-            src="https://scontent.fdad1-4.fna.fbcdn.net/v/t39.30808-6/475657241_629620156102016_4129712510879142534_n.jpg?stp=dst-jpg_s960x960_tt6&_nc_cat=103&ccb=1-7&_nc_sid=cc71e4&_nc_ohc=S4ER7sDDexsQ7kNvwGgmxAm&_nc_oc=Adk1V-tnH1cT7nuC4fs0R3ukx5Tg_F8f1j8NWLFsIej6vxS2eQkxl-JCFVFn8ETR_qk&_nc_zt=23&_nc_ht=scontent.fdad1-4.fna&_nc_gid=propPRV5A-TX6UojyhDEnA&oh=00_AfcA45kv5F_2kDZdnxR_YoizNG6ni8YsDr8uyAxPGywSlQ&oe=68FF242F"
+            src="https://s1.hostingkartinok.com/uploads/images/2025/09/b85429ca53e346f04dcf7f53093952f0.jpg"
             alt="Команда инженеров-геодезистов"
-            layout="fill"
+            fill
             objectFit="cover"
             className="transform -scale-x-100"
             data-ai-hint="team engineers"
@@ -546,4 +546,5 @@ export default function Home() {
     
 
     
+
 
