@@ -17,6 +17,7 @@ export default function CallMeBackButton() {
   const btnsOkRef = useRef<(HTMLButtonElement | null)[]>([]);
   const timerDigitsAllRef = useRef<(HTMLDivElement | null)[]>([]);
   const statusTextAllRef = useRef<(HTMLDivElement | null)[]>([]);
+  const topLabelRef = useRef<HTMLDivElement | null>(null);
 
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
   const [isFinal, setIsFinal] = useState(false);
@@ -132,6 +133,13 @@ export default function CallMeBackButton() {
       const phoneNumber = mainInput.value.replace(/\D/g, '');
       if (phoneNumber.length < 11) {
           triggerShake();
+          if (topLabelRef.current) {
+            const originalText = topLabelRef.current.innerText;
+            topLabelRef.current.innerText = "Не хватает цифр в номере";
+            setTimeout(() => {
+                if(topLabelRef.current) topLabelRef.current.innerText = originalText;
+            }, 3000);
+          }
           return;
       }
 
@@ -169,7 +177,7 @@ export default function CallMeBackButton() {
         <div className={`${styles.layer} ${styles.layerYellow}`}>
             
             <div className={`${styles.viewInput} js-view-input`} ref={el => viewInputsRef.current[0] = el}>
-                <div className={styles.topLabel}>Введите номер - позвоним за 30с</div>
+                <div className={styles.topLabel} ref={topLabelRef}>Введите номер - позвоним за 30с</div>
                 <div className={styles.inputRow}>
                     <input type="tel" className={`${styles.phoneField} js-phone-input`} defaultValue="+7 " ref={el => phoneInputsRef.current[0] = el} disabled={submitting} onClick={(e) => e.stopPropagation()} />
                     <button className={`${styles.btnOk} js-btn-ok`} onClick={handleOkClick} ref={el => btnsOkRef.current[0] = el} disabled={submitting}>
@@ -205,3 +213,5 @@ export default function CallMeBackButton() {
       </div>
   );
 }
+
+    
