@@ -58,7 +58,7 @@ export default function Header() {
         isScrolled ? "bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b" : "bg-transparent"
     )}>
       <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between h-20">
+        <div className="flex items-center justify-between h-16 md:h-20">
           <Link href="/" onClick={closeMobileMenu}>
             <Logo />
           </Link>

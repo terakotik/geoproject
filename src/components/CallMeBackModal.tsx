@@ -1,3 +1,4 @@
+
 'use client';
 import { useContactDialog } from '@/hooks/use-contact-dialog';
 import React, { useState, useEffect } from 'react';
@@ -114,7 +115,7 @@ export function CallMeBackModal() {
         .modal-content {
           background: #000;
           border-radius: 24px;
-          padding: 30px 25px;
+          padding: 20px;
           max-width: 420px;
           width: 100%;
           text-align: center;
@@ -127,9 +128,9 @@ export function CallMeBackModal() {
         .submit-btn {
           background: linear-gradient(135deg, #FFEB3B, #FFC107);
           color: #000;
-          font-size: 20px;
+          font-size: 16px;
           font-weight: 900;
-          padding: 20px;
+          padding: 16px;
           border-radius: 50px;
           border: none;
           width: 100%;
@@ -162,7 +163,7 @@ export function CallMeBackModal() {
             align-items: center;
             text-align: center;
             color: #777;
-            margin: 20px 0;
+            margin: 15px 0;
             font-size: 14px;
         }
 
@@ -183,11 +184,20 @@ export function CallMeBackModal() {
 
         input[type="tel"] {
           font-family: monospace;
+          font-size: 20px;
+          padding: 15px;
+          height: 55px;
+          width: 100%;
+          text-align: center;
+          background: #FFF;
+          border: 2px solid #FFEB3B;
+          border-radius: 16px;
+          color: #000;
         }
         
         .privacy-container {
-          margin-top: 20px;
-          font-size: 12px;
+          margin-top: 15px;
+          font-size: 11px;
           color: #999;
           text-align: left;
           display: flex;
@@ -211,6 +221,24 @@ export function CallMeBackModal() {
         @keyframes zoomIn {
             to { transform: scale(1); }
         }
+
+        @media (min-width: 640px) {
+          .modal-content {
+            padding: 30px 25px;
+          }
+          .submit-btn {
+            font-size: 20px;
+            padding: 20px;
+          }
+          input[type="tel"] {
+            font-size: 22px;
+            padding: 18px;
+            height: 60px;
+          }
+           .privacy-container {
+             font-size: 12px;
+          }
+        }
       `}</style>
       <div id="callModal" className="modal-call" onClick={handleClose}>
         <div className="modal-content" onClick={(e) => e.stopPropagation()}>
@@ -223,9 +251,9 @@ export function CallMeBackModal() {
             </div>
           ) : (
             <>
-              <h2>🚀 Мы перезвоним <span style={{ color: '#FFEB3B' }}>через 30 секунд</span></h2>
-              <p style={{ fontSize: '18px', margin: '15px 0', color: '#FFF' }}>
-                Оставьте телефон — специалист уже на линии! (Геодезия СПб)
+              <h2 className="text-xl sm:text-2xl">🚀 Мы перезвоним <span style={{ color: '#FFEB3B' }}>через 30 секунд</span></h2>
+              <p style={{ fontSize: '16px', margin: '15px 0', color: '#FFF' }}>
+                Оставьте телефон — специалист уже на линии!
               </p>
 
               <form id="callForm" onSubmit={handleSubmit}>
@@ -236,17 +264,6 @@ export function CallMeBackModal() {
                   placeholder="+7 (___) ___-__-__"
                   required
                   onChange={handlePhoneInput}
-                  style={{
-                    fontSize: '22px',
-                    padding: '18px',
-                    height: '60px',
-                    width: '100%',
-                    textAlign: 'center',
-                    background: '#FFF',
-                    border: '2px solid #FFEB3B',
-                    borderRadius: '16px',
-                    color: '#000'
-                  }}
                 />
                 
                 <button type="submit" className="submit-btn" disabled={isSubmitting || !isPrivacyChecked}>
@@ -258,7 +275,7 @@ export function CallMeBackModal() {
 
               <button onClick={handleWhatsappSubmit} className="submit-btn whatsapp-btn" disabled={isWhatsappSubmitting || !isPrivacyChecked}>
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="white"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.894 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.433-9.89-9.89-9.89-5.451 0-9.887 4.434-9.889 9.884-.001 2.225.651 4.315 1.847 6.062l-1.078 3.961 4.049-1.065z"/></svg>
-                {isWhatsappSubmitting ? 'Отправка...' : 'Напишите срочно в WhatsApp'}
+                {isWhatsappSubmitting ? 'Отправка...' : 'Напишите в WhatsApp'}
               </button>
 
               <div className="privacy-container">
@@ -268,10 +285,10 @@ export function CallMeBackModal() {
                   </label>
               </div>
 
-              <div style={{ textAlign: 'center', marginTop: '20px', color: '#CCC', fontSize: '14px' }}>
+              <div style={{ textAlign: 'center', marginTop: '15px', color: '#CCC', fontSize: '12px' }}>
                 ⭐ 500+ клиентов в СПб · 100% конфиденциально
               </div>
-              <button onClick={handleClose} style={{ background: 'none', color: '#FFEB3B', border: 'none', fontSize: '16px', cursor: 'pointer', marginTop: '10px' }}>
+              <button onClick={handleClose} style={{ background: 'none', color: '#FFEB3B', border: 'none', fontSize: '14px', cursor: 'pointer', marginTop: '10px' }}>
                 Закрыть
               </button>
             </>

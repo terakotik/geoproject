@@ -1,3 +1,4 @@
+
 'use client';
 import { useContactDialog } from '@/hooks/use-contact-dialog';
 
@@ -21,8 +22,8 @@ export function CallMeBackButton() {
           background: linear-gradient(135deg, #FFEB3B, #FFC107);
           color: #000;
           font-weight: 900;
-          font-size: 18px;
-          padding: 18px 24px;
+          font-size: 16px;
+          padding: 16px 20px;
           border-radius: 50px;
           border: none;
           box-shadow: 0 10px 30px rgba(255, 235, 59, 0.4);
@@ -30,6 +31,13 @@ export function CallMeBackButton() {
           animation: pulse 2s infinite;
           text-transform: uppercase;
           cursor: pointer;
+        }
+        
+        @media (min-width: 640px) {
+            .big-call-btn {
+                font-size: 18px;
+                padding: 18px 24px;
+            }
         }
 
         .pulse-ring {
@@ -54,10 +62,10 @@ export function CallMeBackButton() {
           100% { transform: scale(1.4); opacity: 0; }
         }
       `}</style>
-      <div className="fixed-call-button">
+      <div className="fixed-call-button md:hidden">
         <div className="pulse-ring"></div>
         <button className="big-call-btn" onClick={onOpen}>
-          📞 ЗАКАЗАТЬ ЗВОНОК ЗА 30 СЕКУНД
+          📞 ЗАКАЗАТЬ ЗВОНОК
         </button>
       </div>
     </>
