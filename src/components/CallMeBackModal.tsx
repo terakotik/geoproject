@@ -9,7 +9,7 @@ export function CallMeBackModal() {
   const [isWhatsappSubmitting, setIsWhatsappSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [phone, setPhone] = useState('');
-  const [isPrivacyChecked, setIsPrivacyChecked] = useState(false);
+  const [isPrivacyChecked, setIsPrivacyChecked] = useState(true);
 
   const handlePhoneInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     let x = e.target.value.replace(/\D/g, '').match(/(\d{0,1})(\d{0,3})(\d{0,3})(\d{0,2})(\d{0,2})/);
@@ -84,7 +84,7 @@ export function CallMeBackModal() {
     setTimeout(() => {
         setIsSuccess(false);
         setPhone('');
-        setIsPrivacyChecked(false);
+        setIsPrivacyChecked(true);
     }, 300);
   }
 
@@ -248,14 +248,7 @@ export function CallMeBackModal() {
                     color: '#000'
                   }}
                 />
-
-                <div className="privacy-container">
-                    <input type="checkbox" id="modal_privacy_policy" name="privacy_policy" required checked={isPrivacyChecked} onChange={(e) => setIsPrivacyChecked(e.target.checked)} />
-                    <label htmlFor="modal_privacy_policy">
-                        Я согласен с условиями <Link href="/privacy-policy" target="_blank">Политики обработки персональных данных</Link> и даю <Link href="/user-agreement" target="_blank">Согласие на обработку моих персональных данных</Link>
-                    </label>
-                </div>
-
+                
                 <button type="submit" className="submit-btn" disabled={isSubmitting || !isPrivacyChecked}>
                   {isSubmitting ? 'Отправка...' : '🔥 ПОЗВОНИТЕ МНЕ СРОЧНО!'}
                 </button>
@@ -267,6 +260,13 @@ export function CallMeBackModal() {
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="white"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.894 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.433-9.89-9.89-9.89-5.451 0-9.887 4.434-9.889 9.884-.001 2.225.651 4.315 1.847 6.062l-1.078 3.961 4.049-1.065z"/></svg>
                 {isWhatsappSubmitting ? 'Отправка...' : 'Напишите срочно в WhatsApp'}
               </button>
+
+              <div className="privacy-container">
+                  <input type="checkbox" id="modal_privacy_policy" name="privacy_policy" required defaultChecked={isPrivacyChecked} onChange={(e) => setIsPrivacyChecked(e.target.checked)} className="form-checkbox h-5 w-5 text-gray-600" />
+                  <label htmlFor="modal_privacy_policy">
+                      Я согласен с условиями <Link href="/privacy-policy" target="_blank">Политики обработки персональных данных</Link> и даю <Link href="/user-agreement" target="_blank">Согласие на обработку моих персональных данных</Link>
+                  </label>
+              </div>
 
               <div style={{ textAlign: 'center', marginTop: '20px', color: '#CCC', fontSize: '14px' }}>
                 ⭐ 500+ клиентов в СПб · 100% конфиденциально
