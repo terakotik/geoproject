@@ -5,7 +5,7 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 
 export function CallMeBackModal() {
-  const { isOpen, onOpen, onClose } = useContactDialog();
+  const { isOpen, onClose, startCountdown } = useContactDialog();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isWhatsappSubmitting, setIsWhatsappSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
@@ -48,7 +48,8 @@ export function CallMeBackModal() {
       setIsSuccess(true);
       setTimeout(() => {
         handleClose();
-      }, 2000); 
+        startCountdown();
+      }, 500); 
     } else {
       alert('Произошла ошибка при отправке.');
     }
@@ -245,7 +246,7 @@ export function CallMeBackModal() {
               <div>
                 <h2>Спасибо!</h2>
                 <p style={{ fontSize: '18px', margin: '15px 0', color: '#FFF' }}>
-                  Ваша заявка принята. Мы скоро свяжемся с вами!
+                  Соединяем со специалистом...
                 </p>
               </div>
             ) : (

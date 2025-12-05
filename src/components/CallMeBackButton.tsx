@@ -8,8 +8,7 @@ const WHATSAPP_PHONE = "79108247848"; // ВАШ НОМЕР БЕЗ +
 const START_SECONDS = 26;
 
 export function CallMeBackButton() {
-  const { onOpen } = useContactDialog();
-  const [state, setState] = useState("idle"); // 'idle', 'counting', 'panic'
+  const { onOpen, animationState, setAnimationState } = useContactDialog();
   
   const wrapperRef = useRef<HTMLDivElement>(null);
   const greenLayerRef = useRef<HTMLDivElement>(null);
@@ -21,6 +20,14 @@ export function CallMeBackButton() {
   const timerIntervalRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
+    if (animationState === 'counting') {
+      startCountdown();
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [animationState]);
+
+
+  useEffect(() => {
     return () => {
       if (timerIntervalRef.current) clearInterval(timerIntervalRef.current);
     };
@@ -29,17 +36,14 @@ export function CallMeBackButton() {
   const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
     e.preventDefault();
 
-    if (state === "idle") {
-      startCountdown();
-    } else if (state === "panic") {
+    if (animationState === 'idle') {
+      onOpen();
+    } else if (animationState === 'panic') {
       window.location.href = `https://wa.me/${WHATSAPP_PHONE}?text=Здравствуйте,%20я%20не%20дождался%20звонка,%20срочно%20ответьте!`;
     }
   };
 
   const startCountdown = () => {
-    setState("counting");
-    onOpen(); 
-
     if (yellowLayerRef.current) yellowLayerRef.current.classList.add(styles.timerActive);
     if (greenLayerRef.current) greenLayerRef.current.classList.add(styles.timerActive);
 
@@ -70,7 +74,7 @@ export function CallMeBackButton() {
   };
 
   const activatePanicMode = () => {
-    setState("panic");
+    setAnimationState('panic');
 
     if (yellowLayerRef.current) yellowLayerRef.current.classList.remove(styles.timerActive);
     if (greenLayerRef.current) greenLayerRef.current.classList.remove(styles.timerActive);
@@ -105,8 +109,8 @@ export function CallMeBackButton() {
         <span
           className={styles.mainText}
           ref={(el) => {
-            if (layerName === "yellow") mainTextRefs.current[0] = el;
-            else mainTextRefs.current[1] = el;
+            const index = layerName === "yellow" ? 0 : 1;
+            if (el) mainTextRefs.current[index] = el;
           }}
         >
           ЗАКАЗАТЬ ЗВОНОК
@@ -114,8 +118,8 @@ export function CallMeBackButton() {
         <span
           className={styles.subText}
           ref={(el) => {
-            if (layerName === "yellow") subTextRefs.current[0] = el;
-            else subTextRefs.current[1] = el;
+            const index = layerName === "yellow" ? 0 : 1;
+             if (el) subTextRefs.current[index] = el;
           }}
         >
           Перезвоним за 26 секунд
