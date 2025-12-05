@@ -214,7 +214,7 @@ export default function ContactPage() {
                           <input type="checkbox" id="privacy" name="privacy" defaultChecked required className="mt-1 h-4 w-4 rounded border-border" disabled={submitting} />
                           <div className="grid gap-1.5 leading-none">
                             <Label htmlFor="privacy" className="text-sm font-medium text-muted-foreground">
-                                Согласен с <Link href="#" className="text-accent hover:underline">обработкой персональных данных</Link>
+                                Я согласен с условиями <Link href="/privacy-policy" className="text-accent hover:underline" target="_blank">Политики обработки персональных данных</Link> и даю <Link href="/user-agreement" className="text-accent hover:underline" target="_blank">Согласие на обработку моих персональных данных</Link>
                             </Label>
                           </div>
                       </div>

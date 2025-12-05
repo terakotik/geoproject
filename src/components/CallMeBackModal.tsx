@@ -1,6 +1,7 @@
 'use client';
 import { useContactDialog } from '@/hooks/use-contact-dialog';
 import React, { useState, useEffect } from 'react';
+import Link from 'next/link';
 
 export function CallMeBackModal() {
   const { isOpen, onClose } = useContactDialog();
@@ -8,6 +9,7 @@ export function CallMeBackModal() {
   const [isWhatsappSubmitting, setIsWhatsappSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [phone, setPhone] = useState('');
+  const [isPrivacyChecked, setIsPrivacyChecked] = useState(false);
 
   const handlePhoneInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     let x = e.target.value.replace(/\D/g, '').match(/(\d{0,1})(\d{0,3})(\d{0,3})(\d{0,2})(\d{0,2})/);
@@ -61,7 +63,7 @@ export function CallMeBackModal() {
     setIsWhatsappSubmitting(true);
     const formData = new FormData();
     formData.append('phone', phone);
-    formData.append('message', 'Запрос на связь через WhatsApp');
+    formData.append('message', 'Запрос на связь через WhatsApp с согласием на обработку данных');
     formData.append('source', 'Call Me Back Modal (WhatsApp Request)');
     
     const success = await sendToFormspree(formData);
@@ -82,6 +84,7 @@ export function CallMeBackModal() {
     setTimeout(() => {
         setIsSuccess(false);
         setPhone('');
+        setIsPrivacyChecked(false);
     }, 300);
   }
 
@@ -133,7 +136,7 @@ export function CallMeBackModal() {
           margin-top: 10px;
           box-shadow: 0 10px 30px rgba(255, 235, 59, 0.4);
           cursor: pointer;
-          transition: transform 0.2s;
+          transition: transform 0.2s, opacity 0.2s;
           display: flex;
           align-items: center;
           justify-content: center;
@@ -142,7 +145,7 @@ export function CallMeBackModal() {
         }
         
         .submit-btn:disabled {
-            opacity: 0.7;
+            opacity: 0.5;
             cursor: not-allowed;
         }
 
@@ -182,6 +185,26 @@ export function CallMeBackModal() {
           font-family: monospace;
         }
         
+        .privacy-container {
+          margin-top: 20px;
+          font-size: 12px;
+          color: #999;
+          text-align: left;
+          display: flex;
+          align-items: flex-start;
+          gap: 8px;
+        }
+        .privacy-container a {
+          color: #FFEB3B;
+          text-decoration: underline;
+        }
+        .privacy-container input[type="checkbox"] {
+           width: 16px;
+           height: 16px;
+           margin-top: 2px;
+           flex-shrink: 0;
+        }
+
         @keyframes fadeIn {
             to { opacity: 1; }
         }
@@ -226,14 +249,21 @@ export function CallMeBackModal() {
                   }}
                 />
 
-                <button type="submit" className="submit-btn" disabled={isSubmitting}>
+                <div className="privacy-container">
+                    <input type="checkbox" id="modal_privacy_policy" name="privacy_policy" required checked={isPrivacyChecked} onChange={(e) => setIsPrivacyChecked(e.target.checked)} />
+                    <label htmlFor="modal_privacy_policy">
+                        Я согласен с условиями <Link href="/privacy-policy" target="_blank">Политики обработки персональных данных</Link> и даю <Link href="/user-agreement" target="_blank">Согласие на обработку моих персональных данных</Link>
+                    </label>
+                </div>
+
+                <button type="submit" className="submit-btn" disabled={isSubmitting || !isPrivacyChecked}>
                   {isSubmitting ? 'Отправка...' : '🔥 ПОЗВОНИТЕ МНЕ СРОЧНО!'}
                 </button>
               </form>
               
               <div className="divider">ИЛИ</div>
 
-              <button onClick={handleWhatsappSubmit} className="submit-btn whatsapp-btn" disabled={isWhatsappSubmitting}>
+              <button onClick={handleWhatsappSubmit} className="submit-btn whatsapp-btn" disabled={isWhatsappSubmitting || !isPrivacyChecked}>
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="white"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.894 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.433-9.89-9.89-9.89-5.451 0-9.887 4.434-9.889 9.884-.001 2.225.651 4.315 1.847 6.062l-1.078 3.961 4.049-1.065z"/></svg>
                 {isWhatsappSubmitting ? 'Отправка...' : 'Напишите срочно в WhatsApp'}
               </button>

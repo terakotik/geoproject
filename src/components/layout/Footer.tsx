@@ -99,14 +99,14 @@ export default function Footer() {
               <div className="text-xs text-white/80 text-center" dangerouslySetInnerHTML={{ __html: 'Ответим в&nbsp;течение 15&nbsp;минут' }}></div>
             </Card>
             <div className="space-y-3 text-xs">
-               <a href="#" className="flex items-center gap-2 text-white/80 hover:text-accent transition-opacity">
+               <Link href="/privacy-policy" className="flex items-center gap-2 text-white/80 hover:text-accent transition-opacity">
                  <ExternalLink className="h-3 w-3" />
                  Политика конфиденциальности
-               </a>
-               <a href="#" className="flex items-center gap-2 text-white/80 hover:text-accent transition-opacity">
+               </Link>
+               <Link href="/user-agreement" className="flex items-center gap-2 text-white/80 hover:text-accent transition-opacity">
                  <ExternalLink className="h-3 w-3" />
                  Пользовательское соглашение
-               </a>
+               </Link>
             </div>
           </div>
 
