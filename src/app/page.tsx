@@ -188,14 +188,13 @@ export default function Home() {
       {/* Hero Section */}
        <section className="relative min-h-[80vh] md:min-h-screen flex items-center overflow-hidden">
         <div className="absolute inset-0 z-0">
-          <Image
-            src="https://videos.openai.com/az/vg-assets/task_01kbpvrw4venysz6scgjtf7kq1%2F1764925295_img_0.webp?se=2025-12-08T00%3A00%3A00Z&sp=r&sv=2024-08-04&sr=b&skoid=5e5fc900-07cf-43e7-ab5b-314c0d877bb0&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2025-12-05T01%3A08%3A21Z&ske=2025-12-12T01%3A13%3A21Z&sks=b&skv=2024-08-04&sig=ZLQIZgvAbZOdEHN7YS6tGCs06cyRL/wKLmxrbY3dVIE%3D&ac=oaivgprodscus2"
-            alt="Команда инженеров-геодезистов"
-            fill
-            objectFit="cover"
-            data-ai-hint="team engineers"
-            priority
-            className="scale-80"
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="w-full h-full object-cover"
+            src="https://d1dzlizqgbwk1w.cloudfront.net/videos/2025/12/05/oBoewigD.mp4"
           />
         </div>
         <div className="container mx-auto px-4 relative z-10">
