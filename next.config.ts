@@ -88,6 +88,12 @@ const nextConfig: NextConfig = {
         hostname: 'scontent.fdad1-4.fna.fbcdn.net',
         port: '',
         pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'd1dzlizqgbwk1w.cloudfront.net',
+        port: '',
+        pathname: '/**',
       }
     ],
   },
