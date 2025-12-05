@@ -2,16 +2,12 @@
 
 import React, { useState, useRef, useEffect } from "react";
 import styles from "./CallMeBackButton.module.css";
-import { useContactDialog } from "@/hooks/use-contact-dialog";
 
 
 const WHATSAPP_PHONE = "79522764940";
 const SECONDS = 30;
 
 export default function CallMeBackButton() {
-  const { onOpen } = useContactDialog();
-
-  // Элементы
   const widgetRef = useRef<HTMLDivElement>(null);
   const layerGreenRef = useRef<HTMLDivElement>(null);
   
@@ -118,11 +114,26 @@ export default function CallMeBackButton() {
 
       if(typeof navigator !== "undefined" && navigator.vibrate) navigator.vibrate([200, 100, 200]);
   };
+  
+  const triggerShake = () => {
+    const widget = widgetRef.current;
+    if (!widget) return;
+    widget.style.animation = 'shake 0.5s';
+    setTimeout(() => {
+        widget.style.animation = '';
+    }, 500);
+  }
 
   const handleOkClick = async (e: React.MouseEvent<HTMLButtonElement>) => {
       e.stopPropagation();
       const mainInput = phoneInputsRef.current[0];
-      if (!mainInput || mainInput.value.length < 11 || submitting) return;
+      if (!mainInput || submitting) return;
+
+      const phoneNumber = mainInput.value.replace(/\D/g, '');
+      if (phoneNumber.length < 11) {
+          triggerShake();
+          return;
+      }
 
       setSubmitting(true);
 
@@ -148,8 +159,7 @@ export default function CallMeBackButton() {
 
   const handleWidgetClick = () => {
     if (isFinal) {
-        const msg = "Здравствуйте, у меня вопрос";
-        window.location.href = `https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(msg)}`;
+        window.location.href = `https://api.whatsapp.com/send/?phone=${WHATSAPP_PHONE}&text&type=phone_number&app_absent=0`;
     }
   };
 

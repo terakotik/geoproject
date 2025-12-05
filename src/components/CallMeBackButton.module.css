@@ -152,3 +152,21 @@
     50% { transform: translateX(-50%) scale(1.05); }
     100% { transform: translateX(-50%) scale(1); }
 }
+
+@keyframes shake {
+  10%, 90% {
+    transform: translateX(-51%);
+  }
+  
+  20%, 80% {
+    transform: translateX(-49%);
+  }
+
+  30%, 50%, 70% {
+    transform: translateX(-52%);
+  }
+
+  40%, 60% {
+    transform: translateX(-48%);
+  }
+}
