@@ -4,7 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { CheckCircle, Star, Zap } from "lucide-react"
 import { AnimatedText } from "@/components/AnimatedText";
-import { useContactDialog } from "@/hooks/use-contact-dialog";
+import { useContactDialog } from "@/hooks/use-contact-dialog.tsx";
 
 const packages = [
   {

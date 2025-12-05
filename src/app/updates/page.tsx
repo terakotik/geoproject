@@ -11,7 +11,7 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { AnimatedText } from "@/components/AnimatedText";
-import { useContactDialog } from "@/hooks/use-contact-dialog";
+import { useContactDialog } from "@/hooks/use-contact-dialog.tsx";
 
 export default function UpdatesPage() {
   const { onOpen } = useContactDialog();
@@ -92,7 +92,7 @@ export default function UpdatesPage() {
                     </div>
                     <p className="text-lg mb-6">Получите бесплатную консультацию по&nbsp;вашему вопросу</p>
                     <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                       <Button asChild><Link href="/contact">Задать вопрос</Link></Button>
+                       <Button onClick={onOpen}>Задать вопрос</Button>
                        <Button asChild variant="secondary"><a href="tel:+79522764940">+7 (952) 276-49-40</a></Button>
                     </div>
                 </Card>

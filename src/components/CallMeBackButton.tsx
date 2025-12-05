@@ -2,18 +2,21 @@
 
 import React, { useState, useRef, useEffect } from "react";
 import styles from "./CallMeBackButton.module.css";
+import { useContactDialog } from "@/hooks/use-contact-dialog";
 
 
 const WHATSAPP_PHONE = "79522764940";
 const SECONDS = 30;
 
 export default function CallMeBackButton() {
+  const { onOpen } = useContactDialog();
+
   // Элементы
   const widgetRef = useRef<HTMLDivElement>(null);
   const layerGreenRef = useRef<HTMLDivElement>(null);
   
-  const viewInputsRef = useRef<HTMLDivElement[]>([]);
-  const viewTimersRef = useRef<HTMLDivElement[]>([]);
+  const viewInputsRef = useRef<(HTMLDivElement | null)[]>([]);
+  const viewTimersRef = useRef<(HTMLDivElement | null)[]>([]);
   const phoneInputsRef = useRef<(HTMLInputElement | null)[]>([]);
   const btnsOkRef = useRef<(HTMLButtonElement | null)[]>([]);
   const timerDigitsAllRef = useRef<(HTMLDivElement | null)[]>([]);
@@ -47,8 +50,8 @@ export default function CallMeBackButton() {
 
 
   const startProcess = () => {
-      viewInputsRef.current.forEach(el => el.classList.add(styles.hidden));
-      viewTimersRef.current.forEach(el => el.classList.add(styles.visible));
+      viewInputsRef.current.forEach(el => el && el.classList.add(styles.hidden));
+      viewTimersRef.current.forEach(el => el && el.classList.add(styles.visible));
       if (phoneInputsRef.current[0]) {
         phoneInputsRef.current[0].blur();
       }
@@ -123,10 +126,10 @@ export default function CallMeBackButton() {
   };
 
   const handleWidgetClick = () => {
-      if (isFinal) {
-          const msg = "Здравствуйте, у меня вопрос";
-          window.location.href = `https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(msg)}`;
-      }
+    if (isFinal) {
+        const msg = "Здравствуйте, у меня вопрос";
+        window.location.href = `https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(msg)}`;
+    }
   };
 
   return (
@@ -134,7 +137,7 @@ export default function CallMeBackButton() {
         
         <div className={`${styles.layer} ${styles.layerYellow}`}>
             
-            <div className={`${styles.viewInput} js-view-input`} ref={el => viewInputsRef.current[0] = el!}>
+            <div className={`${styles.viewInput} js-view-input`} ref={el => viewInputsRef.current[0] = el}>
                 <div className={styles.topLabel}>Введите номер - позвоним за 30с</div>
                 <div className={styles.inputRow}>
                     <input type="tel" className={`${styles.phoneField} js-phone-input`} defaultValue="+7 " ref={el => phoneInputsRef.current[0] = el}/>
@@ -144,7 +147,7 @@ export default function CallMeBackButton() {
                 </div>
             </div>
 
-            <div className={`${styles.viewTimer} js-view-timer`} ref={el => viewTimersRef.current[0] = el!}>
+            <div className={`${styles.viewTimer} js-view-timer`} ref={el => viewTimersRef.current[0] = el}>
                 <div className={`${styles.timerDigits} js-timer-digits`} ref={el => timerDigitsAllRef.current[0] = el}>30.00</div>
                 <div className={`${styles.statusText} js-status-text`} ref={el => statusTextAllRef.current[0] = el}>Загрузка...</div>
             </div>
@@ -152,10 +155,11 @@ export default function CallMeBackButton() {
 
         <div className={`${styles.layer} ${styles.layerGreen}`} id="layer-green" ref={layerGreenRef}>
             
-            <div className={`${styles.viewInput} js-view-input`} style={{visibility: 'hidden'}} ref={el => viewInputsRef.current[1] = el!}>
+            <div className={`${styles.viewInput} js-view-input`} style={{visibility: 'hidden'}} ref={el => viewInputsRef.current[1] = el}>
+                 {/* Пустышка */}
             </div>
 
-            <div className={`${styles.viewTimer} js-view-timer`} ref={el => viewTimersRef.current[1] = el!}>
+            <div className={`${styles.viewTimer} js-view-timer`} ref={el => viewTimersRef.current[1] = el}>
                 <div className={`${styles.timerDigits} js-timer-digits`} ref={el => timerDigitsAllRef.current[1] = el}>30.00</div>
                 <div className={`${styles.statusText} js-status-text`} ref={el => statusTextAllRef.current[1] = el}>Загрузка...</div>
             </div>
