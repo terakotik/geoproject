@@ -54,11 +54,10 @@ export default function Header() {
 
   return (
     <header className={cn(
-        "sticky top-0 z-50 transition-all duration-300",
-        isScrolled ? "bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b" : "bg-transparent"
+        "fixed top-0 z-50 w-full transition-all duration-300 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b"
     )}>
       <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between h-16 md:h-20">
+        <div className="flex items-center justify-between h-16">
           <Link href="/" onClick={closeMobileMenu}>
             <Logo />
           </Link>
