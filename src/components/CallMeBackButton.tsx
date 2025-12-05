@@ -2,14 +2,12 @@
 
 import React, { useState, useRef, useEffect } from "react";
 import styles from "./CallMeBackButton.module.css";
-import { useContactDialog } from "@/hooks/use-contact-dialog";
 
 
-const WHATSAPP_PHONE = "79108247848";
+const WHATSAPP_PHONE = "79522764940";
 const SECONDS = 30;
 
 export default function CallMeBackButton() {
-  const { onOpen } = useContactDialog();
   // Элементы
   const widgetRef = useRef<HTMLDivElement>(null);
   const layerGreenRef = useRef<HTMLDivElement>(null);
@@ -114,7 +112,7 @@ export default function CallMeBackButton() {
         if (el) el.innerHTML = "НАПИШИТЕ НАМ СЮДА -><br>МЫ СРАЗУ ОТВЕТИМ!";
       });
 
-      if(navigator.vibrate) navigator.vibrate([200, 100, 200]);
+      if(typeof navigator !== "undefined" && navigator.vibrate) navigator.vibrate([200, 100, 200]);
   };
 
   const handleOkClick = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -126,23 +124,18 @@ export default function CallMeBackButton() {
 
   const handleWidgetClick = () => {
       if (isFinal) {
-          const mainInput = phoneInputsRef.current[0];
           const msg = "Здравствуйте, у меня вопрос";
           window.location.href = `https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(msg)}`;
       }
   };
 
   return (
-    <>
-      <div 
-        className={styles.widgetWrapper} 
-        id="widget"
-        ref={widgetRef}
-        onClick={handleWidgetClick}
-      >
+      <div className={styles.widgetWrapper} id="widget" ref={widgetRef} onClick={handleWidgetClick}>
+        
         <div className={`${styles.layer} ${styles.layerYellow}`}>
+            
             <div className={`${styles.viewInput} js-view-input`} ref={el => viewInputsRef.current[0] = el!}>
-                <div className={styles.topLabel}>Перезвоним или напишем за 30с</div>
+                <div className={styles.topLabel}>Введите номер - позвоним за 30с</div>
                 <div className={styles.inputRow}>
                     <input type="tel" className={`${styles.phoneField} js-phone-input`} defaultValue="+7 " ref={el => phoneInputsRef.current[0] = el}/>
                     <button className={`${styles.btnOk} js-btn-ok`} onClick={handleOkClick} ref={el => btnsOkRef.current[0] = el}>
@@ -153,20 +146,21 @@ export default function CallMeBackButton() {
 
             <div className={`${styles.viewTimer} js-view-timer`} ref={el => viewTimersRef.current[0] = el!}>
                 <div className={`${styles.timerDigits} js-timer-digits`} ref={el => timerDigitsAllRef.current[0] = el}>30.00</div>
-                <div className={`${styles.statusText} js-status-text`} ref={el => statusTextAllRef.current[0] = el}>Запускаю поиск...</div>
+                <div className={`${styles.statusText} js-status-text`} ref={el => statusTextAllRef.current[0] = el}>Загрузка...</div>
             </div>
         </div>
 
         <div className={`${styles.layer} ${styles.layerGreen}`} id="layer-green" ref={layerGreenRef}>
+            
             <div className={`${styles.viewInput} js-view-input`} style={{visibility: 'hidden'}} ref={el => viewInputsRef.current[1] = el!}>
             </div>
 
             <div className={`${styles.viewTimer} js-view-timer`} ref={el => viewTimersRef.current[1] = el!}>
                 <div className={`${styles.timerDigits} js-timer-digits`} ref={el => timerDigitsAllRef.current[1] = el}>30.00</div>
-                <div className={`${styles.statusText} js-status-text`} ref={el => statusTextAllRef.current[1] = el}>Запускаю поиск...</div>
+                <div className={`${styles.statusText} js-status-text`} ref={el => statusTextAllRef.current[1] = el}>Загрузка...</div>
             </div>
         </div>
+
       </div>
-    </>
   );
 }
