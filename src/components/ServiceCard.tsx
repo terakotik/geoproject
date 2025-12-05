@@ -6,7 +6,6 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/com
 import { Button } from '@/components/ui/button';
 import { CheckCircle } from 'lucide-react';
 import { services, getServiceDetails, Service } from '@/lib/services';
-import { useContactDialog } from '@/hooks/use-contact-dialog';
 
 type ServiceCardProps = {
   service: Service;
@@ -15,7 +14,6 @@ type ServiceCardProps = {
 };
 
 const ServiceCard = React.memo(({ service, index, useLink = true }: ServiceCardProps) => {
-  const { onOpen } = useContactDialog();
   const details = getServiceDetails(service.slug);
   if (!details) return null;
 
@@ -46,8 +44,8 @@ const ServiceCard = React.memo(({ service, index, useLink = true }: ServiceCardP
             <div className="font-bold text-accent" dangerouslySetInnerHTML={{ __html: details.price }}></div>
             <div className="text-muted-foreground" dangerouslySetInnerHTML={{ __html: details.timeline }}></div>
           </div>
-           <Button variant="default" size="lg" className="w-full text-lg py-6 bg-accent text-accent-foreground hover:bg-accent/90" asChild={useLink} onClick={!useLink ? onOpen : undefined}>
-            {useLink ? <Link href={`/services/${service.slug}`}>Заказать услугу</Link> : 'Заказать услугу'}
+           <Button variant="default" size="lg" className="w-full text-lg py-6 bg-accent text-accent-foreground hover:bg-accent/90" asChild>
+            <Link href={`/services/${service.slug}`}>Заказать услугу</Link>
           </Button>
         </div>
       </Card>

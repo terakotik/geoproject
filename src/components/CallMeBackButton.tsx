@@ -1,179 +1,155 @@
 "use client";
 
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, useCallback } from "react";
 import styles from "./CallMeBackButton.module.css";
 
-const WHATSAPP_PHONE = "79108247848"; // ВАШ НОМЕР
-const START_SECONDS = 26;
+const WHATSAPP_PHONE = "79108247848";
+const SECONDS = 30;
 
 export function CallMeBackButton() {
-  const [state, setState] = useState("idle"); 
-  const [phoneNumber, setPhoneNumber] = useState("");
+  const [isFinal, setIsFinal] = useState(false);
+  const [phoneNumber, setPhoneNumber] = useState("+7 ");
 
-  const wrapperRef = useRef<HTMLDivElement>(null);
-  const greenLayerRef = useRef<HTMLDivElement>(null);
-  const yellowLayerRef = useRef<HTMLDivElement>(null);
-  const inputRef = useRef<HTMLInputElement>(null);
-  
-  const mainTextRefs = useRef<(HTMLSpanElement | null)[]>([]);
-  const subTextRefs = useRef<(HTMLSpanElement | null)[]>([]);
-  
-  const timerIntervalRef = useRef<NodeJS.Timeout | null>(null);
+  const widgetRef = useRef<HTMLDivElement>(null);
+  const layerGreenRef = useRef<HTMLDivElement>(null);
+  const viewInputsRef = useRef<HTMLDivElement[]>([]);
+  const viewTimersRef = useRef<HTMLDivElement[]>([]);
+  const timerDigitsAllRef = useRef<HTMLDivElement[]>([]);
+  const statusTextAllRef = useRef<HTMLDivElement[]>([]);
+  const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
-  useEffect(() => {
-    if (state === "input" && inputRef.current) {
-      inputRef.current.focus();
-    }
-    return () => {
-      if (timerIntervalRef.current) clearInterval(timerIntervalRef.current);
-    };
-  }, [state]);
+  const updateTexts = useCallback((sec: number, msg: string) => {
+    let s = Math.floor(sec);
+    let ms = Math.floor((sec - s) * 100);
+    let timeStr = `${s}.${ms < 10 ? '0' : ''}${ms}`;
 
-  const handleWrapperClick = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (state === "input") return;
+    timerDigitsAllRef.current.forEach(el => el.innerText = timeStr);
+    statusTextAllRef.current.forEach(el => el.innerHTML = msg);
+  }, []);
 
-    if (state === "idle") {
-      setState("input");
-    } else if (state === "panic") {
-      const msg = `Здравствуйте! Мой номер ${phoneNumber}. Я не дождался звонка на сайте, перезвоните срочно!`;
+  const activateFinal = useCallback(() => {
+    setIsFinal(true);
+    if (widgetRef.current) widgetRef.current.classList.add(styles.whatsappMode);
+    if (layerGreenRef.current) layerGreenRef.current.style.clipPath = `inset(0 0 0 0)`;
+
+    timerDigitsAllRef.current.forEach(el => {
+      if (el) {
+        el.style.fontSize = "20px";
+        el.innerText = "О НЕТ!";
+      }
+    });
+    statusTextAllRef.current.forEach(el => {
+      if(el) el.innerHTML = "ПРЕДЛАГАЮ НАПИСАТЬ<br>СРАЗУ В WHATSAPP ->";
+    });
+
+    if(navigator.vibrate) navigator.vibrate([200, 100, 200]);
+  }, []);
+
+  const startProcess = useCallback(() => {
+    viewInputsRef.current.forEach(el => el.classList.add(styles.hidden));
+    viewTimersRef.current.forEach(el => el.classList.add(styles.visible));
+
+    document.activeElement instanceof HTMLElement && document.activeElement.blur();
+
+    let total = SECONDS * 100;
+    let left = total;
+
+    intervalRef.current = setInterval(() => {
+      left--;
+      let currentSec = left / 100;
+
+      let percentHiddenFromRight = (left / total) * 100;
+      if (layerGreenRef.current) {
+        layerGreenRef.current.style.clipPath = `inset(0 ${percentHiddenFromRight}% 0 0)`;
+      }
+
+      let statusMsg = "";
+      if (currentSec > 23) {
+        statusMsg = "ОТПРАВЛЯЮ СООБЩЕНИЕ<br>ВСЕМ МЕНЕДЖЕРАМ...";
+      } else if (currentSec > 15) {
+        statusMsg = "СТАТУС НОМЕРА:<br>СРОЧНО ПЕРЕЗВОНИТЬ!";
+      } else if (currentSec > 5) {
+        statusMsg = "ТРЕБОВАНИЕ:<br>НАБРАТЬ КАК УВИДЯТ!";
+      } else if (currentSec > 0) {
+        statusMsg = "НЕ ЗВОНЯТ?<br>СЕЙЧАС ДАМ WHATSAPP...";
+      } else {
+        if (intervalRef.current) clearInterval(intervalRef.current);
+        activateFinal();
+        return;
+      }
+      updateTexts(currentSec, statusMsg);
+    }, 10);
+  }, [activateFinal, updateTexts]);
+
+
+  const handleOkClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.stopPropagation();
+    if (phoneNumber.length < 6) return;
+    startProcess();
+  };
+
+  const handleWidgetClick = () => {
+    if (isFinal) {
+      const msg = `Номер: ${phoneNumber}. Ждал 30 сек, не перезвонили! Срочно ответьте.`;
       window.location.href = `https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(msg)}`;
     }
   };
 
-  const handleSubmitNumber = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    e.stopPropagation();
-
-    if (phoneNumber.length < 5) {
-      // Можно добавить визуальную индикацию ошибки, но пока просто return
-      return;
+  const handlePhoneInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    let value = e.target.value;
+    if (!value.startsWith('+7')) {
+      value = '+7 ' + value.replace(/^\+7\s?/, '');
     }
-    startCountdown();
-  };
+    setPhoneNumber(value);
+  }
 
-  const startCountdown = () => {
-    setState("counting");
-
-    if (yellowLayerRef.current) yellowLayerRef.current.classList.add(styles.timerActive);
-    if (greenLayerRef.current) greenLayerRef.current.classList.add(styles.timerActive);
-
-    let totalTime = START_SECONDS * 100;
-    let timeLeft = totalTime;
-
-    updateTexts(`${START_SECONDS}.00 сек`, "Ищем менеджера...");
-
-    timerIntervalRef.current = setInterval(() => {
-      timeLeft--;
-
-      const percentLeft = (timeLeft / totalTime) * 100;
-      if (greenLayerRef.current) {
-        greenLayerRef.current.style.clipPath = `inset(0 0 0 ${percentLeft}%)`;
-      }
-
-      if (timeLeft <= 0) {
-        if (timerIntervalRef.current) clearInterval(timerIntervalRef.current);
-        activatePanicMode();
-        return;
-      }
-
-      const seconds = Math.floor(timeLeft / 100);
-      let ms: string | number = timeLeft % 100;
-      if (ms < 10) ms = `0${ms}`;
-      
-      updateTexts(`${seconds}.${ms} сек`, "Ищем менеджера...");
-    }, 10);
-  };
-
-  const activatePanicMode = () => {
-    setState("panic");
-
-    if (yellowLayerRef.current) yellowLayerRef.current.classList.remove(styles.timerActive);
-    if (greenLayerRef.current) greenLayerRef.current.classList.remove(styles.timerActive);
-
-    if (wrapperRef.current) wrapperRef.current.classList.add(styles.whatsappMode);
-
-    if (greenLayerRef.current) greenLayerRef.current.style.clipPath = "inset(0 0 0 0%)";
-
-    updateTexts("О НЕТ! ВСЕ ЗАНЯТЫ?", "Нажмите для WhatsApp");
-
-    if (typeof navigator !== "undefined" && navigator.vibrate) {
-      navigator.vibrate([200, 100, 200, 100, 500]);
+  useEffect(() => {
+    return () => {
+      if (intervalRef.current) clearInterval(intervalRef.current);
+    }
+  }, []);
+  
+  const addToRef = (el: HTMLDivElement | null, refArray: React.MutableRefObject<HTMLDivElement[]>) => {
+    if (el && !refArray.current.includes(el)) {
+      refArray.current.push(el);
     }
   };
-
-  const updateTexts = (main: string, sub: string) => {
-    mainTextRefs.current.forEach((el) => { if (el) el.innerText = main; });
-    subTextRefs.current.forEach((el) => { if (el) el.innerText = sub; });
-  };
-
-  const handlePhoneInput = (e: React.ChangeEvent<HTMLInputElement>) => {
-    let x = e.target.value.replace(/\D/g, '').match(/(\d{0,1})(\d{0,3})(\d{0,3})(\d{0,2})(\d{0,2})/);
-    if (!x) return;
-    const formattedPhone = !x[2] ? (x[1] ? `+${x[1]}`: '') : `+7 (${x[2]}) ${x[3]}${x[4] ? `-${x[4]}` : ''}${x[5] ? `-${x[5]}` : ''}`;
-    setPhoneNumber(formattedPhone);
-  };
-
-  const renderStandardContent = (layerName: "yellow" | "green") => (
-    <div className={styles.btnContent}>
-      <div className={styles.phoneIcon}>
-        <svg width="24" height="24" viewBox="0 0 24 24">
-          <path d="M20.01 15.38C18.78 15.38 17.59 15.18 16.48 14.82C16.13 14.7 15.74 14.79 15.47 15.06L13.9 17.03C11.07 15.68 8.42 13.13 7.01 10.2L8.96 8.54C9.23 8.26 9.31 7.87 9.2 7.52C8.83 6.41 8.64 5.22 8.64 3.99C8.64 3.45 8.19 3 7.65 3H4.19C3.65 3 3 3.24 3 3.99C3 13.28 10.73 21 20.01 21C20.72 21 21 20.37 21 19.82V16.37C21 15.83 20.55 15.38 20.01 15.38Z" />
-        </svg>
-      </div>
-      <div className={styles.textGroup}>
-        <span
-          className={styles.mainText}
-          ref={(el) => {
-            const index = layerName === 'yellow' ? 0 : 1;
-            mainTextRefs.current[index] = el;
-          }}
-        >
-          ЗАКАЗАТЬ ЗВОНОК
-        </span>
-        <span
-          className={styles.subText}
-          ref={(el) => {
-            const index = layerName === 'yellow' ? 0 : 1;
-            subTextRefs.current[index] = el;
-          }}
-        >
-          Перезвоним за 26 секунд
-        </span>
-      </div>
-    </div>
-  );
-
-  const renderInputContent = () => (
-    <form className={styles.inputForm} onSubmit={handleSubmitNumber}>
-      <input 
-        ref={inputRef}
-        type="tel" 
-        className={styles.phoneInput} 
-        placeholder="напишите ваш номер телефона или воцап"
-        value={phoneNumber}
-        onChange={handlePhoneInput}
-        onClick={(e) => e.stopPropagation()} 
-      />
-      <button type="submit" className={styles.submitBtn}>
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
-          <polyline points="20 6 9 17 4 12"></polyline>
-        </svg>
-      </button>
-    </form>
-  );
 
   return (
-      <div 
-        className={styles.widgetWrapper} 
-        ref={wrapperRef} 
-        onClick={handleWrapperClick}
-      >
-        <div className={`${styles.btnLayer} ${styles.layerYellow}`} ref={yellowLayerRef}>
-          {state === "input" ? renderInputContent() : renderStandardContent("yellow")}
+    <div className={styles.widgetWrapper} id="widget" ref={widgetRef} onClick={handleWidgetClick}>
+      <div className={`${styles.layer} ${styles.layerYellow}`} id="layer-yellow">
+        <div className={styles.viewInput} ref={el => addToRef(el, viewInputsRef)}>
+          <div className={styles.topLabel}>Перезвоним или напишем за 30с</div>
+          <div className={styles.inputRow}>
+            <input type="tel" className={styles.phoneField} value={phoneNumber} onChange={handlePhoneInputChange} />
+            <button className={styles.btnOk} onClick={handleOkClick}>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            </button>
+          </div>
         </div>
-        <div className={`${styles.btnLayer} ${styles.layerGreen}`} ref={greenLayerRef}>
-          {renderStandardContent("green")}
+
+        <div className={styles.viewTimer} ref={el => addToRef(el, viewTimersRef)}>
+          <div className={styles.timerDigits} ref={el => addToRef(el, timerDigitsAllRef)}>30.00</div>
+          <div className={styles.statusText} ref={el => addToRef(el, statusTextAllRef)}>Запускаю поиск...</div>
         </div>
       </div>
+
+      <div className={`${styles.layer} ${styles.layerGreen}`} id="layer-green" ref={layerGreenRef}>
+         <div className={styles.viewInput} style={{ visibility: 'hidden' }} ref={el => addToRef(el, viewInputsRef)}>
+             {/* Dummy content for layout matching */}
+             <div className={styles.topLabel}>Перезвоним или напишем за 30с</div>
+             <div className={styles.inputRow}>
+                 <input type="tel" className={styles.phoneField} value="+7 " readOnly/>
+                 <button className={styles.btnOk}>
+                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                 </button>
+             </div>
+         </div>
+        <div className={styles.viewTimer} ref={el => addToRef(el, viewTimersRef)}>
+          <div className={styles.timerDigits} ref={el => addToRef(el, timerDigitsAllRef)}>30.00</div>
+          <div className={styles.statusText} ref={el => addToRef(el, statusTextAllRef)}>Запускаю поиск...</div>
+        </div>
+      </div>
+    </div>
   );
 }

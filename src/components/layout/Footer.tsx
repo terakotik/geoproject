@@ -6,11 +6,9 @@ import { Facebook, Twitter, Linkedin, Send, MessageSquare, ExternalLink, Clock, 
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
-import { useContactDialog } from '@/hooks/use-contact-dialog';
 import { AnimatedText } from '../AnimatedText';
 
 export default function Footer() {
-  const { onOpen } = useContactDialog();
 
   return (
     <footer className="bg-black text-white relative overflow-hidden">
@@ -93,8 +91,8 @@ export default function Footer() {
             <h4 className="font-heading font-semibold text-lg">Бесплатная консультация</h4>
             <Card className="p-6 bg-white/10 border-white/20">
               <p className="text-sm text-white/80 mb-4" dangerouslySetInnerHTML={{ __html: 'Получите профессиональную консультацию по&nbsp;вашему вопросу' }}></p>
-              <Button className="w-full mb-3" onClick={onOpen}>
-                Заказать звонок
+              <Button className="w-full mb-3" asChild>
+                <Link href="/contact">Заказать звонок</Link>
               </Button>
               <div className="text-xs text-white/80 text-center" dangerouslySetInnerHTML={{ __html: 'Ответим в&nbsp;течение 15&nbsp;минут' }}></div>
             </Card>

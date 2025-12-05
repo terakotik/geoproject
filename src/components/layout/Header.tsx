@@ -27,13 +27,11 @@ import {
 } from "@/components/ui/accordion"
 import { cn } from '@/lib/utils';
 import { usePathname } from 'next/navigation';
-import { useContactDialog } from '@/hooks/use-contact-dialog';
 
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const pathname = usePathname();
-  const { onOpen } = useContactDialog();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -96,8 +94,8 @@ export default function Header() {
           <div className="flex items-center gap-4">
              <div className="hidden lg:flex items-center gap-4">
                 <a href="tel:+79522764940" className="text-lg font-semibold text-foreground hover:text-accent transition-colors">+7 (952) 276-49-40</a>
-                <Button onClick={onOpen} className="hidden sm:inline-flex">
-                  Заказать звонок
+                <Button className="hidden sm:inline-flex" asChild>
+                  <Link href="#contact">Заказать звонок</Link>
                 </Button>
              </div>
             <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>

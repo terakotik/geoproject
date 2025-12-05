@@ -1,3 +1,5 @@
+// This file is no longer needed.
+// The new floating button is self-contained and does not require a global state for a separate modal.
 import { create } from 'zustand';
 
 type ContactDialogStore = {
