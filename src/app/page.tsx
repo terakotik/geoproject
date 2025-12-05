@@ -189,13 +189,13 @@ export default function Home() {
        <section className="relative min-h-[80vh] md:min-h-screen flex items-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <Image
-            src="https://videos.openai.com/az/vg-assets/task_01kbpv1j0qefpa5z1zrzb50rpn%2F1764924503_img_0.webp?se=2025-12-08T00%3A00%3A00Z&sp=r&sv=2024-08-04&sr=b&skoid=5e5fc900-07cf-43e7-ab5b-314c0d877bb0&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2025-12-05T01%3A08%3A21Z&ske=2025-12-12T01%3A13%3A21Z&sks=b&skv=2024-08-04&sig=JYoD3/BwhPl7YF66pv4Qxi49zeskdUDP3clyqDFUY4s%3D&ac=oaivgprodscus2"
+            src="https://videos.openai.com/az/vg-assets/task_01kbpvrw4venysz6scgjtf7kq1%2F1764925295_img_0.webp?se=2025-12-08T00%3A00%3A00Z&sp=r&sv=2024-08-04&sr=b&skoid=5e5fc900-07cf-43e7-ab5b-314c0d877bb0&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2025-12-05T01%3A08%3A21Z&ske=2025-12-12T01%3A13%3A21Z&sks=b&skv=2024-08-04&sig=ZLQIZgvAbZOdEHN7YS6tGCs06cyRL/wKLmxrbY3dVIE%3D&ac=oaivgprodscus2"
             alt="Команда инженеров-геодезистов"
             fill
             objectFit="cover"
             data-ai-hint="team engineers"
             priority
-            className="transform scale-80"
+            className="scale-80"
           />
         </div>
         <div className="container mx-auto px-4 relative z-10">
