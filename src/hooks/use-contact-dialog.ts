@@ -1,5 +1,6 @@
-// This file is no longer needed.
-// The new floating button is self-contained and does not require a global state for a separate modal.
+// This hook is no longer used by the main floating button, 
+// as its logic is now self-contained in CallMeBackButton.tsx.
+// It might still be used by other "Contact Us" buttons on the site, so it is kept.
 import { create } from 'zustand';
 
 type ContactDialogStore = {

@@ -1,4 +1,4 @@
-
+/* --- ГЛАВНЫЙ КОНТЕЙНЕР --- */
 .widgetWrapper {
     position: fixed;
     bottom: 25px;
@@ -6,8 +6,8 @@
     transform: translateX(-50%);
     z-index: 999999;
     width: 90%;
-    max-width: 350px;
-    height: 68px;
+    max-width: 360px; 
+    height: 68px;    
     border-radius: 68px;
     cursor: pointer;
     -webkit-tap-highlight-color: transparent;
@@ -15,6 +15,7 @@
     box-shadow: 0 10px 20px rgba(255, 193, 7, 0.4);
 }
 
+/* ОБЩИЙ СТИЛЬ СЛОЯ */
 .layer {
     position: absolute;
     top: 0; left: 0; right: 0; bottom: 0;
@@ -24,26 +25,31 @@
     justify-content: center;
     box-sizing: border-box;
     overflow: hidden;
-    padding: 0 15px;
+    padding: 0 10px; /* Чуть меньше отступы */
 }
 
+/* СЛОЙ 1: ЖЕЛТЫЙ (ЧЕРНЫЙ ТЕКСТ) */
 .layerYellow {
     background: linear-gradient(180deg, #FFEB3B 0%, #FFC107 100%);
     border: 2px solid #FFD54F;
-    color: #222;
+    color: #111;
     z-index: 1;
 }
 
+/* СЛОЙ 2: ЗЕЛЕНЫЙ (БЕЛЫЙ ТЕКСТ) */
 .layerGreen {
     background: linear-gradient(180deg, #4CAF50 0%, #2E7D32 100%);
     border: 2px solid #2E7D32;
     color: #fff;
     z-index: 2;
-    clip-path: inset(0 100% 0 0); 
+    clip-path: inset(0 100% 0 0); /* Шторка */
     transition: clip-path 0.1s linear;
     pointer-events: none;
 }
 
+/* --- ВНУТРЕННИЙ КОНТЕНТ --- */
+
+/* 1. ВИД ВВОДА */
 .viewInput {
     width: 100%;
     display: flex;
@@ -72,9 +78,9 @@
     border: none;
     border-radius: 8px;
     outline: none;
-    font-size: 18px;
+    font-size: 19px;
     font-weight: 700;
-    color: inherit;
+    color: inherit; 
     width: 180px;
     padding: 4px 8px;
     margin-right: 8px;
@@ -96,6 +102,7 @@
     flex-shrink: 0;
 }
 
+/* 2. ВИД ТАЙМЕРА (Центрированный) */
 .viewTimer {
     display: none;
     flex-direction: column;
@@ -106,7 +113,7 @@
 }
 
 .timerDigits {
-    font-size: 26px;
+    font-size: 28px;
     font-family: 'Courier New', monospace;
     font-weight: 900;
     line-height: 1;
@@ -114,16 +121,22 @@
 }
 
 .statusText {
-    font-size: 11px;
+    font-size: 10px;
     font-weight: 700;
     line-height: 1.1;
     text-transform: uppercase;
-    max-width: 280px;
+    letter-spacing: 0.5px;
+    min-height: 22px; /* Фиксируем высоту, чтобы текст не прыгал */
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
+/* Утилиты */
 .hidden { display: none !important; }
 .visible { display: flex !important; }
 
+/* Паника */
 .whatsappMode {
     animation: panicPulse 0.8s infinite !important;
     box-shadow: 0 10px 25px rgba(76, 175, 80, 0.6) !important;
