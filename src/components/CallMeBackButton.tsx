@@ -24,6 +24,7 @@ export default function CallMeBackButton() {
 
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
   const [isFinal, setIsFinal] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
 
   useEffect(() => {
     const mainInput = phoneInputsRef.current[0];
@@ -118,11 +119,40 @@ export default function CallMeBackButton() {
       if(typeof navigator !== "undefined" && navigator.vibrate) navigator.vibrate([200, 100, 200]);
   };
 
-  const handleOkClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+  const handleOkClick = async (e: React.MouseEvent<HTMLButtonElement>) => {
       e.stopPropagation();
       const mainInput = phoneInputsRef.current[0];
-      if (!mainInput || mainInput.value.length < 6) return;
-      startProcess();
+      if (!mainInput || mainInput.value.length < 11 || submitting) return;
+
+      setSubmitting(true);
+
+      const formData = new FormData();
+      formData.append("phone", mainInput.value);
+      formData.append("source", "CallMeBackButton Widget");
+
+      try {
+        const response = await fetch("https://formspree.io/f/mjknobdj", {
+            method: "POST",
+            body: formData,
+            headers: {
+                'Accept': 'application/json'
+            }
+        });
+        if (response.ok) {
+            startProcess();
+        } else {
+            // Handle error silently or show a message if UI is updated
+            console.error("Formspree submission failed");
+            // Optionally, still start the process to not block the user
+            startProcess();
+        }
+      } catch (error) {
+          console.error("Failed to submit form", error);
+          // Optionally, still start the process
+          startProcess();
+      } finally {
+          setSubmitting(false);
+      }
   };
 
   const handleWidgetClick = () => {
@@ -140,9 +170,15 @@ export default function CallMeBackButton() {
             <div className={`${styles.viewInput} js-view-input`} ref={el => viewInputsRef.current[0] = el}>
                 <div className={styles.topLabel}>Введите номер - позвоним за 30с</div>
                 <div className={styles.inputRow}>
-                    <input type="tel" className={`${styles.phoneField} js-phone-input`} defaultValue="+7 " ref={el => phoneInputsRef.current[0] = el}/>
-                    <button className={`${styles.btnOk} js-btn-ok`} onClick={handleOkClick} ref={el => btnsOkRef.current[0] = el}>
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    <input type="tel" className={`${styles.phoneField} js-phone-input`} defaultValue="+7 " ref={el => phoneInputsRef.current[0] = el} disabled={submitting}/>
+                    <button className={`${styles.btnOk} js-btn-ok`} onClick={handleOkClick} ref={el => btnsOkRef.current[0] = el} disabled={submitting}>
+                        {submitting ? 
+                            <svg className="animate-spin" width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                               <path d="M12 4V2M12 22v-2M4 12H2M22 12h-2M6.34 6.34l-1.42-1.42M19.07 19.07l-1.42-1.42M6.34 17.66l-1.42 1.42M19.07 4.93l-1.42 1.42" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                            </svg>
+                            : 
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                        }
                     </button>
                 </div>
             </div>
