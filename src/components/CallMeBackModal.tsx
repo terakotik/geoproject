@@ -60,7 +60,7 @@ export function CallMeBackModal() {
 
 
     try {
-      const response = await fetch("https://formspree.io/f/mjknobdj", {
+      const response = await fetch("https://formspree.io/f/xlgrkbzl", {
         method: "POST",
         body: formData,
         headers: {
@@ -178,6 +178,10 @@ export function CallMeBackModal() {
             </>
           )}
         </div>
+        <DialogClose className="absolute right-4 top-4 w-8 h-8 bg-white/10 rounded-full flex items-center justify-center text-[#a0a0a5] hover:bg-white/20 hover:text-white transition-all duration-300 ring-offset-background opacity-100 disabled:pointer-events-none data-[state=open]:bg-accent data-[state=open]:text-muted-foreground">
+            <X className="h-4 w-4" />
+            <span className="sr-only">Close</span>
+        </DialogClose>
       </DialogContent>
     </Dialog>
   );

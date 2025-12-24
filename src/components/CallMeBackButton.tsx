@@ -17,7 +17,7 @@ export default function CallMeBackButton() {
   const btnsOkRef = useRef<(HTMLButtonElement | null)[]>([]);
   const timerDigitsAllRef = useRef<(HTMLDivElement | null)[]>([]);
   const statusTextAllRef = useRef<(HTMLDivElement | null)[]>([]);
-  const topLabelRef = useRef<HTMLDivElement | null>(null);
+  const topLabelRef = useRef<HTMLDivElement>(null);
 
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
   const [isFinal, setIsFinal] = useState(false);
@@ -150,7 +150,7 @@ export default function CallMeBackButton() {
       formData.append("source", "CallMeBackButton Widget");
 
       try {
-        await fetch("https://formspree.io/f/mjknobdj", {
+        await fetch("https://formspree.io/f/xlgrkbzl", {
             method: "POST",
             body: formData,
             headers: {
@@ -213,5 +213,3 @@ export default function CallMeBackButton() {
       </div>
   );
 }
-
-    
