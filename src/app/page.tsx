@@ -71,16 +71,16 @@ const priceSections = [
   {
     title: "Кадастровые работы: Земельные участки",
     items: [
-      { name: "Межевание (Уточнение границ) до 30 соток", price: "18 000 ₽", term: "" },
-      { name: "Межевание (Уточнение границ) от 30 до 40 соток", price: "20 000 ₽", term: "" },
-      { name: "Межевание (Уточнение границ) от 40 до 50 соток", price: "22 000 ₽", term: "" },
-      { name: "Схема расположения ЗУ на КПТ (за 1 объект)", price: "12 000 ₽", term: "" },
-      { name: "Вынос границ в натуру (выезд + до 8 точек)", price: "8 000 ₽", term: "" },
-      { name: "Вынос границ в натуру (доп. точка сверх 8)", price: "500 ₽ / шт.", term: "" },
-      { name: "Раздел / Объединение / Перераспределение (камерально)", price: "16 000 ₽", term: "" },
-      { name: "Раздел / Объединение / Перераспределение (с геодезической съемкой)", price: "18 000 ₽", term: "" },
-      { name: "Исправление реестровой ошибки (без выезда)", price: "16 000 ₽", term: "" },
-      { name: "Исправление реестровой ошибки (с геодезической съемкой)", price: "18 000 ₽", term: "" },
+      { name: "Межевание (Уточнение границ) до 30 соток", price: "18 000 ₽", term: "14 дн." },
+      { name: "Межевание (Уточнение границ) от 30 до 40 соток", price: "20 000 ₽", term: "14 дн." },
+      { name: "Межевание (Уточнение границ) от 40 до 50 соток", price: "22 000 ₽", term: "14 дн." },
+      { name: "Схема расположения ЗУ на КПТ (за 1 объект)", price: "12 000 ₽", term: "3-5 дн." },
+      { name: "Вынос границ в натуру (выезд + до 8 точек)", price: "8 000 ₽", term: "1-2 дн." },
+      { name: "Вынос границ в натуру (доп. точка сверх 8)", price: "500 ₽ / шт.", term: "1-2 дн." },
+      { name: "Раздел / Объединение / Перераспределение (камерально)", price: "16 000 ₽", term: "14 дн." },
+      { name: "Раздел / Объединение / Перераспределение (с геодезической съемкой)", price: "18 000 ₽", term: "14 дн." },
+      { name: "Исправление реестровой ошибки (без выезда)", price: "16 000 ₽", term: "14 дн." },
+      { name: "Исправление реестровой ошибки (с геодезической съемкой)", price: "18 000 ₽", term: "14 дн." },
       { name: "Межевание фермерских хозяйств (до 1 Га)", price: "16 000 ₽ / Га", term: "" },
       { name: "Межевание фермерских хозяйств (2–5 Га)", price: "14 000 ₽ / Га", term: "" },
       { name: "Межевание фермерских хозяйств (свыше 10 Га)", price: "10 000 ₽ / Га", term: "" },
@@ -89,18 +89,18 @@ const priceSections = [
   {
     title: "Кадастровые работы: Здания и Сооружения (ОКС)",
     items: [
-        { name: "Технический план дома / здания (до 200 кв.м)", price: "18 000 ₽", term: "" },
-        { name: "Акт обследования (Снятие с учета/Снос)", price: "7 000 ₽", term: "" },
-        { name: "Регистрация машиноместа", price: "18 000 ₽", term: "" },
-        { name: "Технический паспорт", price: "6 500 ₽", term: "" },
+        { name: "Технический план дома / здания (до 200 кв.м)", price: "18 000 ₽", term: "5 дн." },
+        { name: "Акт обследования (Снятие с учета/Снос)", price: "7 000 ₽", term: "1-2 дн." },
+        { name: "Регистрация машиноместа", price: "18 000 ₽", term: "10 дн." },
+        { name: "Технический паспорт", price: "6 500 ₽", term: "3 дн." },
     ],
   },
   {
     title: "Инженерная геодезия (Топография)",
     items: [
-        { name: "Топографическая съемка (для газа/воды/света) до 15 соток", price: "18 000 ₽", term: "" },
-        { name: "Топографическая съемка (для газа/воды/света) 15–25 соток", price: "20 000 ₽", term: "" },
-        { name: "Топографическая съемка (для газа/воды/света) более 25 соток", price: "25 000 ₽", term: "" },
+        { name: "Топографическая съемка (для газа/воды/света) до 15 соток", price: "18 000 ₽", term: "3-5 дн." },
+        { name: "Топографическая съемка (для газа/воды/света) 15–25 соток", price: "20 000 ₽", term: "3-5 дн." },
+        { name: "Топографическая съемка (для газа/воды/света) более 25 соток", price: "25 000 ₽", term: "3-5 дн." },
         { name: "Инженерно-геодезические изыскания (1:500) - Простые условия (поле)", price: "25 000 ₽ / Га", term: "" },
         { name: "Инженерно-геодезические изыскания (1:500) - Средняя сложность", price: "30 000 ₽ / Га", term: "" },
         { name: "Инженерно-геодезические изыскания (1:500) - Город / Коммуникации", price: "40 000 ₽ / Га", term: "" },
@@ -211,7 +211,7 @@ export default function Home() {
         <div className="container mx-auto px-4 relative z-10">
           <div className="grid md:grid-cols-2 gap-8 items-center">
             <div className="text-left">
-              <h1 className="text-4xl sm:text-6xl lg:text-7xl font-heading font-bold leading-tight text-foreground">
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-heading font-bold leading-tight text-foreground">
                  Профессиональные <span className="text-accent">геодезические</span> услуги
               </h1>
               <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mt-6" dangerouslySetInnerHTML={{ __html: 'Полный спектр кадастровых работ, инженерных изысканий и&nbsp;ЗОУИТ в&nbsp;Санкт-Петербурге и&nbsp;ЛО' }}></p>
@@ -232,7 +232,7 @@ export default function Home() {
       </section>
       
       <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 -mt-16 z-20 relative">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8 -mt-16 z-20 relative">
           <a href="https://yandex.com/maps/org/geostroyproyekt/144539023058/reviews/?indoorLevel=1&ll=30.316916%2C59.926206&z=16" target="_blank" rel="noopener noreferrer" className="block h-full">
             <Card className="p-6 bg-card/80 backdrop-blur-sm h-full stat-card flex flex-col justify-center items-center">
                 <CardHeader className="p-0 flex flex-row items-center gap-4">
@@ -258,7 +258,7 @@ export default function Home() {
                   <stat.icon className="h-10 w-10 text-accent" />
               </CardHeader>
               <CardContent className="p-0">
-                <p className="text-4xl font-bold text-foreground">{stat.value}</p>
+                <p className="text-3xl md:text-4xl font-bold text-foreground">{stat.value}</p>
                 <p className="text-sm text-muted-foreground mt-1" dangerouslySetInnerHTML={{ __html: stat.label }}></p>
               </CardContent>
             </Card>
@@ -268,14 +268,14 @@ export default function Home() {
 
 
       {/* SEO Text Section */}
-      <section className="pt-24 pb-16 md:py-24 bg-background">
+      <section className="py-16 md:py-24 bg-background">
         <div className="container mx-auto px-4">
             <div className="grid lg:grid-cols-2 gap-12 items-start">
               <div className="space-y-6">
                  <Card className="p-6 md:p-8 bg-card/50 backdrop-blur-sm border-border/50 relative">
                    <div className="flex flex-col lg:flex-row items-start gap-6">
                         <div className="flex-shrink-0">
-                           <div className="relative w-36 h-36 rounded-full overflow-hidden shadow-lg border-4 border-white">
+                           <div className="relative w-24 h-24 md:w-36 md:h-36 rounded-full overflow-hidden shadow-lg border-4 border-white">
                               <video
                                 autoPlay
                                 loop
@@ -287,15 +287,15 @@ export default function Home() {
                             </div>
                         </div>
                         <div className="flex-grow">
-                          <CardHeader className="p-0 mb-6 flex-grow">
-                              <CardTitle className="text-3xl font-heading font-bold" dangerouslySetInnerHTML={{ __html: 'Геодезическая компания ООО&nbsp;"ГЕОСТРОЙПРОЕКТ"' }}></CardTitle>
+                          <CardHeader className="p-0 mb-4 md:mb-6 flex-grow">
+                              <CardTitle className="text-2xl md:text-3xl font-heading font-bold" dangerouslySetInnerHTML={{ __html: 'Геодезическая компания ООО&nbsp;"ГЕОСТРОЙПРОЕКТ"' }}></CardTitle>
                           </CardHeader>
-                          <CardContent className="p-0 text-muted-foreground space-y-4 text-lg">
+                          <CardContent className="p-0 text-muted-foreground space-y-4 text-base md:text-lg">
                               <p dangerouslySetInnerHTML={{ __html: 'Мы&nbsp;рады приветствовать вас на&nbsp;официальном сайте геодезической компании ООО&nbsp;«ГЕОСТРОЙПРОЕКТ» и&nbsp;готовы предложить бесплатную консультацию по&nbsp;вашему вопросу прямо сейчас!' }}></p>
                           </CardContent>
                         </div>
                     </div>
-                     <CardContent className="p-0 text-muted-foreground space-y-4 text-lg mt-6">
+                     <CardContent className="p-0 text-muted-foreground space-y-4 text-base md:text-lg mt-6">
                         <p dangerouslySetInnerHTML={{ __html: 'У&nbsp;нас работают только опытные кадастровые инженеры, готовые помочь в&nbsp;решении земельных вопросов качественно и&nbsp;в&nbsp;поставленные сроки. Не&nbsp;нужно устанавливать забор и&nbsp;делить землю самостоятельно&nbsp;- это может привести к&nbsp;ненужным разногласиям с&nbsp;соседями, следовательно, к&nbsp;потере денег и&nbsp;времени.' }}></p>
                         <p dangerouslySetInnerHTML={{ __html: 'Наши специалисты постоянно находятся в&nbsp;курсе последних изменений в&nbsp;законодательстве и&nbsp;всегда готовы оказать вам квалифицированную помощь в&nbsp;оформлении перепланировки квартиры, сопровождении сделок с&nbsp;недвижимостью, заказе межевого плана участка и&nbsp;проектировании домов.' }}></p>
                         <p dangerouslySetInnerHTML={{ __html: 'Инженерные изыскания&nbsp;- это неотъемлемая часть проектной деятельности, обеспечивающая всестороннее изучение природных и&nbsp;техногенных условий местности планируемого строительства.' }}></p>
@@ -345,7 +345,7 @@ export default function Home() {
         <div className="container mx-auto px-4 py-16 md:py-24">
           <div className="text-left mb-12 md:mb-16">
             <AnimatedText as="h2" text="Наши услуги" className="text-4xl md:text-5xl font-heading font-bold text-foreground text-left" />
-            <p className="text-xl text-muted-foreground max-w-3xl text-left mt-4" dangerouslySetInnerHTML={{ __html: 'Предоставляем полный спектр геодезических и&nbsp;кадастровых услуг с&nbsp;гарантией качества и&nbsp;соблюдением сроков' }}>
+            <p className="text-lg md:text-xl text-muted-foreground max-w-3xl text-left mt-4" dangerouslySetInnerHTML={{ __html: 'Предоставляем полный спектр геодезических и&nbsp;кадастровых услуг с&nbsp;гарантией качества и&nbsp;соблюдением сроков' }}>
             </p>
           </div>
           
@@ -370,7 +370,7 @@ export default function Home() {
         <div className="container mx-auto px-4">
           <div className="text-left mb-12 md:mb-16">
             <AnimatedText as="h2" text="Прайс-лист" className="text-4xl md:text-5xl font-heading font-bold text-foreground text-left" />
-            <p className="text-xl text-muted-foreground max-w-3xl text-left mt-4" dangerouslySetInnerHTML={{ __html: 'Прозрачные цены без скрытых доплат. Групповые скидки до&nbsp;43%' }}>
+            <p className="text-lg md:text-xl text-muted-foreground max-w-3xl text-left mt-4" dangerouslySetInnerHTML={{ __html: 'Прозрачные цены без скрытых доплат. Групповые скидки до&nbsp;43%' }}>
             </p>
           </div>
 
@@ -413,21 +413,21 @@ export default function Home() {
           
           <div className="space-y-12">
             {priceSections.map((section, index) => (
-              <Card key={index} className="p-6 bg-card/80 backdrop-blur-sm border-2 border-dashed border-border/50 hover:border-accent transition-all duration-300 overflow-hidden">
-                <CardHeader className="p-0 mb-6">
+              <Card key={index} className="p-4 md:p-6 bg-card/80 backdrop-blur-sm border-2 border-dashed border-border/50 hover:border-accent transition-all duration-300 overflow-hidden">
+                <CardHeader className="p-0 mb-6 px-2 md:px-0">
                   <CardTitle className="text-2xl font-heading font-semibold text-foreground flex items-center gap-2">
                     {section.title}
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="p-0">
                   <div className="overflow-x-auto">
-                    <table className="w-full">
+                    <table className="w-full min-w-[600px]">
                       <thead>
                         <tr className="border-b border-border">
                           <th className="text-left p-4 font-heading font-medium text-muted-foreground text-sm">Вид работ</th>
                           <th className="text-right p-4 font-heading font-medium text-muted-foreground text-sm">Стоимость</th>
                           <th className="text-right p-4 font-heading font-medium text-muted-foreground text-sm">Сроки</th>
-                          <th className="w-28"></th>
+                          <th className="w-24 md:w-28"></th>
                         </tr>
                       </thead>
                       <tbody>
@@ -472,17 +472,17 @@ export default function Home() {
         <div className="container mx-auto px-4">
           <div className="text-left mb-12 md:mb-16">
             <AnimatedText as="h2" text="Как мы работаем" className="text-4xl md:text-5xl font-heading font-bold text-foreground text-left" />
-            <p className="text-xl text-muted-foreground max-w-3xl text-left mt-4" dangerouslySetInnerHTML={{ __html: 'Прозрачный процесс работы без лишних этапов и&nbsp;дополнительных затрат' }}>
+            <p className="text-lg md:text-xl text-muted-foreground max-w-3xl text-left mt-4" dangerouslySetInnerHTML={{ __html: 'Прозрачный процесс работы без лишних этапов и&nbsp;дополнительных затрат' }}>
             </p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 md:gap-8">
             {processSteps.map((step, index) => (
               <Card key={index} className="flex flex-col text-center p-6 bg-card/80 backdrop-blur-sm border-2 border-dashed border-border/50 hover:border-accent transition-all duration-300">
-                <div className="w-16 h-16 rounded-full flex items-center justify-center mb-6 mx-auto bg-muted">
-                  <step.icon className="h-7 w-7 text-muted-foreground" />
+                <div className="w-12 h-12 md:w-16 md:h-16 rounded-full flex items-center justify-center mb-4 md:mb-6 mx-auto bg-muted">
+                  <step.icon className="h-6 w-6 md:h-7 md:w-7 text-muted-foreground" />
                 </div>
                 <CardHeader className="p-0 mb-2">
-                  <CardTitle className="text-lg font-heading font-semibold text-foreground">0{index + 1}. {step.title}</CardTitle>
+                  <CardTitle className="text-base md:text-lg font-heading font-semibold text-foreground">0{index + 1}. {step.title}</CardTitle>
                 </CardHeader>
                 <CardContent className="p-0">
                   <p className="text-sm text-muted-foreground" dangerouslySetInnerHTML={{ __html: step.description }}></p>
@@ -539,3 +539,5 @@ export default function Home() {
     </div>
   );
 }
+
+    

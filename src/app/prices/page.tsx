@@ -44,16 +44,16 @@ const priceSections = [
   {
     title: "Кадастровые работы: Земельные участки",
     items: [
-      { name: "Межевание (Уточнение границ) до 30 соток", price: "18 000 ₽", term: "" },
-      { name: "Межевание (Уточнение границ) от 30 до 40 соток", price: "20 000 ₽", term: "" },
-      { name: "Межевание (Уточнение границ) от 40 до 50 соток", price: "22 000 ₽", term: "" },
-      { name: "Схема расположения ЗУ на КПТ (за 1 объект)", price: "12 000 ₽", term: "" },
-      { name: "Вынос границ в натуру (выезд + до 8 точек)", price: "8 000 ₽", term: "" },
-      { name: "Вынос границ в натуру (доп. точка сверх 8)", price: "500 ₽ / шт.", term: "" },
-      { name: "Раздел / Объединение / Перераспределение (камерально)", price: "16 000 ₽", term: "" },
-      { name: "Раздел / Объединение / Перераспределение (с геодезической съемкой)", price: "18 000 ₽", term: "" },
-      { name: "Исправление реестровой ошибки (без выезда)", price: "16 000 ₽", term: "" },
-      { name: "Исправление реестровой ошибки (с геодезической съемкой)", price: "18 000 ₽", term: "" },
+      { name: "Межевание (Уточнение границ) до 30 соток", price: "18 000 ₽", term: "14 дн." },
+      { name: "Межевание (Уточнение границ) от 30 до 40 соток", price: "20 000 ₽", term: "14 дн." },
+      { name: "Межевание (Уточнение границ) от 40 до 50 соток", price: "22 000 ₽", term: "14 дн." },
+      { name: "Схема расположения ЗУ на КПТ (за 1 объект)", price: "12 000 ₽", term: "3-5 дн." },
+      { name: "Вынос границ в натуру (выезд + до 8 точек)", price: "8 000 ₽", term: "1-2 дн." },
+      { name: "Вынос границ в натуру (доп. точка сверх 8)", price: "500 ₽ / шт.", term: "1-2 дн." },
+      { name: "Раздел / Объединение / Перераспределение (камерально)", price: "16 000 ₽", term: "14 дн." },
+      { name: "Раздел / Объединение / Перераспределение (с геодезической съемкой)", price: "18 000 ₽", term: "14 дн." },
+      { name: "Исправление реестровой ошибки (без выезда)", price: "16 000 ₽", term: "14 дн." },
+      { name: "Исправление реестровой ошибки (с геодезической съемкой)", price: "18 000 ₽", term: "14 дн." },
       { name: "Межевание фермерских хозяйств (до 1 Га)", price: "16 000 ₽ / Га", term: "" },
       { name: "Межевание фермерских хозяйств (2–5 Га)", price: "14 000 ₽ / Га", term: "" },
       { name: "Межевание фермерских хозяйств (свыше 10 Га)", price: "10 000 ₽ / Га", term: "" },
@@ -62,18 +62,18 @@ const priceSections = [
   {
     title: "Кадастровые работы: Здания и Сооружения (ОКС)",
     items: [
-        { name: "Технический план дома / здания (до 200 кв.м)", price: "18 000 ₽", term: "" },
-        { name: "Акт обследования (Снятие с учета/Снос)", price: "7 000 ₽", term: "" },
-        { name: "Регистрация машиноместа", price: "18 000 ₽", term: "" },
-        { name: "Технический паспорт", price: "6 500 ₽", term: "" },
+        { name: "Технический план дома / здания (до 200 кв.м)", price: "18 000 ₽", term: "5 дн." },
+        { name: "Акт обследования (Снятие с учета/Снос)", price: "7 000 ₽", term: "1-2 дн." },
+        { name: "Регистрация машиноместа", price: "18 000 ₽", term: "10 дн." },
+        { name: "Технический паспорт", price: "6 500 ₽", term: "3 дн." },
     ],
   },
   {
     title: "Инженерная геодезия (Топография)",
     items: [
-        { name: "Топографическая съемка (для газа/воды/света) до 15 соток", price: "18 000 ₽", term: "" },
-        { name: "Топографическая съемка (для газа/воды/света) 15–25 соток", price: "20 000 ₽", term: "" },
-        { name: "Топографическая съемка (для газа/воды/света) более 25 соток", price: "25 000 ₽", term: "" },
+        { name: "Топографическая съемка (для газа/воды/света) до 15 соток", price: "18 000 ₽", term: "3-5 дн." },
+        { name: "Топографическая съемка (для газа/воды/света) 15–25 соток", price: "20 000 ₽", term: "3-5 дн." },
+        { name: "Топографическая съемка (для газа/воды/света) более 25 соток", price: "25 000 ₽", term: "3-5 дн." },
         { name: "Инженерно-геодезические изыскания (1:500) - Простые условия (поле)", price: "25 000 ₽ / Га", term: "" },
         { name: "Инженерно-геодезические изыскания (1:500) - Средняя сложность", price: "30 000 ₽ / Га", term: "" },
         { name: "Инженерно-геодезические изыскания (1:500) - Город / Коммуникации", price: "40 000 ₽ / Га", term: "" },
@@ -91,7 +91,7 @@ export default function PricesPage() {
       <div className="container mx-auto px-4">
         <div className="text-center mb-12 md:mb-16">
           <AnimatedText as="h1" text="Прайс-лист" className="text-4xl lg:text-5xl font-heading font-bold text-foreground mb-4" />
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+          <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto">
             Прозрачные цены без скрытых доплат. Групповые скидки до&nbsp;43%
           </p>
         </div>
@@ -132,21 +132,21 @@ export default function PricesPage() {
         
         <div className="space-y-12">
           {priceSections.map((section, index) => (
-            <Card key={index} className="p-6 bg-card/80 backdrop-blur-sm border-2 border-dashed border-border/50 hover:border-accent transition-all duration-300 overflow-hidden">
-              <CardHeader className="p-0 mb-6">
+            <Card key={index} className="p-4 md:p-6 bg-card/80 backdrop-blur-sm border-2 border-dashed border-border/50 hover:border-accent transition-all duration-300 overflow-hidden">
+              <CardHeader className="p-0 mb-6 px-2 md:px-0">
                 <CardTitle className="text-2xl font-heading font-semibold text-foreground flex items-center gap-2">
                   {section.title}
                 </CardTitle>
               </CardHeader>
               <CardContent className="p-0">
                 <div className="overflow-x-auto">
-                  <table className="w-full">
+                  <table className="w-full min-w-[600px]">
                     <thead>
                       <tr className="border-b border-border">
                         <th className="text-left p-4 font-heading font-medium text-muted-foreground text-sm">Вид работ</th>
                         <th className="text-right p-4 font-heading font-medium text-muted-foreground text-sm">Стоимость</th>
                         <th className="text-right p-4 font-heading font-medium text-muted-foreground text-sm">Сроки</th>
-                        <th className="w-28"></th>
+                        <th className="w-24 md:w-28"></th>
                       </tr>
                     </thead>
                     <tbody>
@@ -186,3 +186,5 @@ export default function PricesPage() {
     </div>
   )
 }
+
+    
