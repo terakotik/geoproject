@@ -4,7 +4,7 @@
     bottom: 25px;
     left: 50%;
     transform: translateX(-50%);
-    z-index: 999999;
+    z-index: 999; /* Lowered z-index to not interfere with other UI */
     width: 90%;
     max-width: 360px; 
     height: 68px;    
@@ -13,6 +13,7 @@
     -webkit-tap-highlight-color: transparent;
     animation: pulse 2s infinite ease-in-out;
     box-shadow: 0 10px 20px rgba(255, 193, 7, 0.4);
+    will-change: transform; /* Hint for performance */
 }
 
 /* ОБЩИЙ СТИЛЬ СЛОЯ */

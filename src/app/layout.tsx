@@ -7,11 +7,19 @@ import { Toaster } from "@/components/ui/toaster";
 import { GpsJammingToast } from '@/components/GpsJammingToast';
 import CallMeBackButton from '@/components/CallMeBackButton';
 import { ContactDialogProvider } from '@/hooks/use-contact-dialog.tsx';
+import { PT_Sans } from 'next/font/google';
 
 export const metadata: Metadata = {
   title: 'ГЕОСТРОЙПРОЕКТ - Кадастровые работы и геодезические услуги в Санкт-Петербурге',
   description: 'Профессиональные геодезические услуги с 2003 года: межевание, топосъемка, ЗОУИТ, технические планы в СПб и ЛО',
 };
+
+const ptSans = PT_Sans({
+  subsets: ['latin', 'cyrillic'],
+  weight: ['400', '700'],
+  display: 'swap',
+  variable: '--font-pt-sans',
+});
 
 export default function RootLayout({
   children,
@@ -21,11 +29,8 @@ export default function RootLayout({
   return (
     <html lang="ru" suppressHydrationWarning>
       <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link href="https://fonts.googleapis.com/css2?family=PT+Sans:wght@400;700&display=swap" rel="stylesheet" />
       </head>
-      <body className={cn("font-body antialiased")}>
+      <body className={cn("font-body antialiased", ptSans.variable)}>
         <ContactDialogProvider>
           <CallMeBackButton />
           <div vaul-drawer-wrapper="" className="min-h-screen flex flex-col">
