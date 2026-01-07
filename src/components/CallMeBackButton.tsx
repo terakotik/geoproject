@@ -2,222 +2,168 @@
 
 import React, { useState, useRef, useEffect } from "react";
 import styles from "./CallMeBackButton.module.css";
+import { Phone, Send, Check, Loader2 } from "lucide-react";
 
 
-const TELEGRAM_URL = "https://t.me/Danayn11";
-const SECONDS = 30;
+const FORM_ID = "xlgrkbzl";
+const FORM_URL = `https://formspree.io/f/${FORM_ID}`;
 
 export default function CallMeBackButton() {
+  const [isExpanded, setIsExpanded] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [phone, setPhone] = useState("+7 (");
+  
   const widgetRef = useRef<HTMLDivElement>(null);
-  const layerGreenRef = useRef<HTMLDivElement>(null);
-  
-  const viewInputsRef = useRef<(HTMLDivElement | null)[]>([]);
-  const viewTimersRef = useRef<(HTMLDivElement | null)[]>([]);
-  const phoneInputsRef = useRef<(HTMLInputElement | null)[]>([]);
-  const btnsOkRef = useRef<(HTMLButtonElement | null)[]>([]);
-  const timerDigitsAllRef = useRef<(HTMLDivElement | null)[]>([]);
-  const statusTextAllRef = useRef<(HTMLDivElement | null)[]>([]);
-  const topLabelRef = useRef<HTMLDivElement>(null);
-
-  const intervalRef = useRef<NodeJS.Timeout | null>(null);
-  const [isFinal, setIsFinal] = useState(false);
-  const [submitting, setSubmitting] = useState(false);
+  const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
-    const mainInput = phoneInputsRef.current[0];
-    if (mainInput) {
-      const handleInput = () => {
-        if (!mainInput.value.startsWith('+7')) {
-            mainInput.value = '+7 ' + mainInput.value.replace(/^\+7\s?/, '');
-        }
-      };
-      mainInput.addEventListener('input', handleInput);
-
-      return () => mainInput.removeEventListener('input', handleInput);
+    if (isExpanded && inputRef.current) {
+      inputRef.current.focus();
     }
-  }, []);
+  }, [isExpanded]);
 
   useEffect(() => {
-      // Cleanup on unmount
-      return () => {
-          if (intervalRef.current) {
-              clearInterval(intervalRef.current);
-          }
-      };
-  }, []);
+    if (isSuccess) {
+      const timer = setTimeout(() => {
+        setIsSuccess(false);
+        setIsExpanded(false);
+        setPhone("+7 (");
+      }, 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [isSuccess]);
 
+  const handlePhoneInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+    let value = e.target.value.replace(/\D/g, '');
+    let formattedValue = '';
 
-  const startProcess = () => {
-      viewInputsRef.current.forEach(el => el && el.classList.add(styles.hidden));
-      viewTimersRef.current.forEach(el => el && el.classList.add(styles.visible));
-      if (phoneInputsRef.current[0]) {
-        phoneInputsRef.current[0].blur();
-      }
+    if (!value.startsWith('7')) {
+      value = '7' + value.substring(1);
+    }
+    
+    if (value.length > 0) formattedValue = '+7';
+    if (value.length > 1) formattedValue += ' (' + value.substring(1, 4);
+    if (value.length >= 5) formattedValue += ') ' + value.substring(4, 7);
+    if (value.length >= 8) formattedValue += '-' + value.substring(7, 9);
+    if (value.length >= 10) formattedValue += '-' + value.substring(9, 11);
 
-      let total = SECONDS * 100;
-      let left = total;
-
-      intervalRef.current = setInterval(() => {
-          left--;
-          let currentSec = left / 100;
-
-          let percentHidden = (left / total) * 100;
-          if (layerGreenRef.current) {
-            layerGreenRef.current.style.clipPath = `inset(0 ${percentHidden}% 0 0)`;
-          }
-          
-          let statusMsg = "";
-          if (currentSec > 22) {
-              statusMsg = "УВЕДОМЛЯЮ ВСЕХ<br>МЕНЕДЖЕРОВ О ЗВОНКЕ...";
-          } else if (currentSec > 12) {
-              statusMsg = "ПРИСВАИВАЮ НОМЕРУ<br>СТАТУС: «VIP — СРОЧНО»";
-          } else if (currentSec > 0) {
-              statusMsg = "ПОСТАВИЛ ПОМЕТКУ:<br>«ОБЯЗАТЕЛЬНО ПЕРЕЗВОНИТЬ»";
-          } else {
-              if (intervalRef.current) clearInterval(intervalRef.current);
-              activateFinal();
-              return;
-          }
-
-          updateTexts(currentSec, statusMsg);
-
-      }, 10);
-  };
-
-  const updateTexts = (sec: number, msg: string) => {
-      let s = Math.floor(sec);
-      let ms_val = Math.floor((sec - s) * 100);
-      let ms = ms_val < 10 ? '0' + ms_val : ms_val.toString();
-      let timeStr = s + "." + ms;
-
-      timerDigitsAllRef.current.forEach(el => { if (el) el.innerText = timeStr });
-      statusTextAllRef.current.forEach(el => { if (el) el.innerHTML = msg });
-  };
-
-  const activateFinal = () => {
-      setIsFinal(true);
-      if (widgetRef.current) {
-        widgetRef.current.classList.add(styles.telegramMode);
-      }
-      if (layerGreenRef.current) {
-        layerGreenRef.current.style.clipPath = `inset(0 0 0 0)`;
-      }
-      
-      timerDigitsAllRef.current.forEach(el => {
-          if (el) {
-            el.style.fontSize = "22px";
-            el.innerText = "ДАВАЙТЕ УСКОРИМСЯ?";
-          }
-      });
-      statusTextAllRef.current.forEach(el => {
-        if (el) el.innerHTML = "НАПИШИТЕ НАМ СЮДА -><br>МЫ СРАЗУ ОТВЕТИМ!";
-      });
-
-      if(typeof navigator !== "undefined" && navigator.vibrate) navigator.vibrate([200, 100, 200]);
+    setPhone(formattedValue);
+    if(error) setError(null);
   };
   
-  const triggerShake = () => {
-    const widget = widgetRef.current;
-    if (!widget) return;
-    widget.style.animationName = 'shake';
-    widget.style.animationDuration = '0.5s';
-    setTimeout(() => {
-        if (widget) {
-            widget.style.animationName = 'pulse';
-            widget.style.animationDuration = '2s';
-        }
-    }, 500);
+  const handlePhoneKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Backspace' && phone.replace(/\D/g, '').length <= 1) {
+      e.preventDefault();
+    }
+  };
+  
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+
+    if (phone.replace(/\D/g, '').length < 11) {
+      setError("Не хватает цифр в номере");
+      widgetRef.current?.classList.add(styles.shake);
+      setTimeout(() => {
+        widgetRef.current?.classList.remove(styles.shake);
+      }, 500);
+      return;
+    }
+    
+    setIsSubmitting(true);
+    setError(null);
+    
+    const formData = new FormData();
+    formData.append("phone", phone);
+    formData.append("source", "Floating Widget");
+
+    try {
+      const response = await fetch(FORM_URL, {
+        method: "POST",
+        body: formData,
+        headers: { 'Accept': 'application/json' }
+      });
+      
+      if (response.ok) {
+        setIsSuccess(true);
+      } else {
+        setError("Ошибка отправки. Попробуйте позже.");
+      }
+    } catch (err) {
+      setError("Ошибка сети. Проверьте подключение.");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  const handleInitialClick = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (!isExpanded) {
+      setIsExpanded(true);
+    }
+  };
+  
+  const handleWrapperClick = (e: React.MouseEvent) => {
+    if ((e.target as HTMLElement).id === 'widget-wrapper') {
+       if (isExpanded) {
+           setIsExpanded(false);
+           setError(null);
+       }
+    }
   }
 
-  const handleOkClick = async (e: React.MouseEvent<HTMLButtonElement>) => {
-      e.stopPropagation();
-      const mainInput = phoneInputsRef.current[0];
-      if (!mainInput || submitting) return;
-
-      const phoneNumber = mainInput.value.replace(/\D/g, '');
-      if (phoneNumber.length < 11) {
-          triggerShake();
-          if (topLabelRef.current) {
-            const originalText = topLabelRef.current.innerText;
-            topLabelRef.current.innerText = "Не хватает цифр в номере";
-            topLabelRef.current.style.color = "#ef4444";
-            setTimeout(() => {
-                if(topLabelRef.current) {
-                    topLabelRef.current.innerText = originalText;
-                    topLabelRef.current.style.color = "";
-                }
-            }, 3000);
-          }
-          return;
-      }
-
-      setSubmitting(true);
-
-      const formData = new FormData();
-      formData.append("phone", mainInput.value);
-      formData.append("source", "CallMeBackButton Widget");
-
-      try {
-        await fetch("https://formspree.io/f/xlgrkbzl", {
-            method: "POST",
-            body: formData,
-            headers: {
-                'Accept': 'application/json'
-            }
-        });
-      } catch (error) {
-          console.error("Failed to submit form from widget", error);
-      } finally {
-          setSubmitting(false);
-          startProcess();
-      }
-  };
-
-  const handleWidgetClick = () => {
-    if (isFinal) {
-        window.location.href = TELEGRAM_URL;
-    }
-  };
-
   return (
-      <div className={styles.widgetWrapper} id="widget" ref={widgetRef} onClick={handleWidgetClick}>
-        
-        <div className={`${styles.layer} ${styles.layerYellow}`}>
-            
-            <div className={`${styles.viewInput} js-view-input`} ref={el => viewInputsRef.current[0] = el}>
-                <div className={styles.topLabel} ref={topLabelRef}>Введите номер - позвоним за 30с</div>
-                <div className={styles.inputRow}>
-                    <input type="tel" className={`${styles.phoneField} js-phone-input`} defaultValue="+7 " ref={el => phoneInputsRef.current[0] = el} disabled={submitting} onClick={(e) => e.stopPropagation()} />
-                    <button className={`${styles.btnOk} js-btn-ok`} onClick={handleOkClick} ref={el => btnsOkRef.current[0] = el} disabled={submitting}>
-                        {submitting ? 
-                            <svg className="animate-spin" width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                               <path d="M12 4V2M12 22v-2M4 12H2M22 12h-2M6.34 6.34l-1.42-1.42M19.07 19.07l-1.42-1.42M6.34 17.66l-1.42 1.42M19.07 4.93l-1.42 1.42" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                            </svg>
-                            : 
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                        }
-                    </button>
+    <div 
+        id="widget-wrapper"
+        ref={widgetRef} 
+        className={`${styles.widgetWrapper} ${isExpanded ? styles.expanded : ''}`} 
+        onClick={handleInitialClick}
+    >
+        <div className={styles.widgetContent}>
+            {isSuccess ? (
+                <div className={styles.successView}>
+                    <Check className="h-6 w-6 text-green-500" />
+                    <span>Спасибо! Скоро позвоним.</span>
                 </div>
-            </div>
+            ) : (
+                <>
+                    <div className={`${styles.initialView} ${isExpanded ? styles.hidden : ''}`}>
+                        <Phone className="h-6 w-6" />
+                        <span>Заказать звонок</span>
+                    </div>
 
-            <div className={`${styles.viewTimer} js-view-timer`} ref={el => viewTimersRef.current[0] = el}>
-                <div className={`${styles.timerDigits} js-timer-digits`} ref={el => timerDigitsAllRef.current[0] = el}>30.00</div>
-                <div className={`${styles.statusText} js-status-text`} ref={el => statusTextAllRef.current[0] = el}>Загрузка...</div>
-            </div>
+                    <form onSubmit={handleSubmit} className={`${styles.formView} ${isExpanded ? '' : styles.hidden}`}>
+                        <div className={styles.inputGroup}>
+                            <Phone size={20} className={styles.inputIcon} />
+                            <input
+                                ref={inputRef}
+                                type="tel"
+                                value={phone}
+                                onChange={handlePhoneInput}
+                                onKeyDown={handlePhoneKeyDown}
+                                onClick={(e) => e.stopPropagation()}
+                                placeholder="+7 (___) ___-__-__"
+                                className={styles.phoneInput}
+                                disabled={isSubmitting}
+                            />
+                        </div>
+                        <button type="submit" className={styles.submitButton} disabled={isSubmitting} onClick={(e) => e.stopPropagation()}>
+                            {isSubmitting ? (
+                                <Loader2 className="h-6 w-6 animate-spin" />
+                            ) : (
+                                <>
+                                  <Send className="h-5 w-5" />
+                                  <span>Жду звонка!</span>
+                                </>
+                            )}
+                        </button>
+                    </form>
+                </>
+            )}
         </div>
-
-        <div className={`${styles.layer} ${styles.layerGreen}`} id="layer-green" ref={layerGreenRef}>
-            
-            <div className={`${styles.viewInput} js-view-input`} style={{visibility: 'hidden'}} ref={el => viewInputsRef.current[1] = el}>
-                 {/* Пустышка */}
-            </div>
-
-            <div className={`${styles.viewTimer} js-view-timer`} ref={el => viewTimersRef.current[1] = el}>
-                <div className={`${styles.timerDigits} js-timer-digits`} ref={el => timerDigitsAllRef.current[1] = el}>30.00</div>
-                <div className={`${styles.statusText} js-status-text`} ref={el => statusTextAllRef.current[1] = el}>Загрузка...</div>
-            </div>
-        </div>
-
-      </div>
+        {error && isExpanded && <div className={styles.errorMessage}>{error}</div>}
+    </div>
   );
 }

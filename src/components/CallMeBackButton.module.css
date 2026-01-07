@@ -1,172 +1,135 @@
-/* --- ГЛАВНЫЙ КОНТЕЙНЕР --- */
 .widgetWrapper {
-    position: fixed;
-    bottom: 25px;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 999; /* Lowered z-index to not interfere with other UI */
-    width: 90%;
-    max-width: 360px; 
-    height: 68px;    
-    border-radius: 68px;
-    cursor: pointer;
-    -webkit-tap-highlight-color: transparent;
-    animation: pulse 2s infinite ease-in-out;
-    box-shadow: 0 10px 20px rgba(255, 193, 7, 0.4);
-    will-change: transform; /* Hint for performance */
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  background-color: hsl(var(--primary));
+  color: hsl(var(--primary-foreground));
+  box-shadow: 0 4px 20px rgba(0,0,0,0.2);
 }
 
-/* ОБЩИЙ СТИЛЬ СЛОЯ */
-.layer {
-    position: absolute;
-    top: 0; left: 0; right: 0; bottom: 0;
-    border-radius: 68px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-sizing: border-box;
-    overflow: hidden;
-    padding: 0 10px; /* Чуть меньше отступы */
+.widgetWrapper.expanded {
+  width: 320px;
+  border-radius: 16px;
+  background-color: hsl(var(--card));
+  color: hsl(var(--foreground));
+  cursor: default;
 }
 
-/* СЛОЙ 1: ЖЕЛТЫЙ (ЧЕРНЫЙ ТЕКСТ) */
-.layerYellow {
-    background: linear-gradient(180deg, #FFEB3B 0%, #FFC107 100%);
-    border: 2px solid #FFD54F;
-    color: #111;
-    z-index: 1;
+.widgetContent {
+  padding: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-/* СЛОЙ 2: ЗЕЛЕНЫЙ (БЕЛЫЙ ТЕКСТ) */
-.layerGreen {
-    background: linear-gradient(180deg, #4CAF50 0%, #2E7D32 100%);
-    border: 2px solid #2E7D32;
-    color: #fff;
-    z-index: 2;
-    clip-path: inset(0 100% 0 0); /* Шторка */
-    transition: clip-path 0.1s linear;
-    pointer-events: none;
+.initialView, .successView {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+  font-weight: 500;
 }
 
-/* --- ВНУТРЕННИЙ КОНТЕНТ --- */
-
-/* 1. ВИД ВВОДА */
-.viewInput {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+.successView {
+    color: green;
 }
 
-.topLabel {
-    font-size: 10px;
-    text-transform: uppercase;
-    font-weight: 800;
-    margin-bottom: 3px;
-    opacity: 0.8;
-    min-height: 12px;
-    transition: color 0.3s ease;
+.formView {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
-.inputRow {
-    display: flex;
-    align-items: center;
-    width: 100%;
-    justify-content: center;
+.hidden {
+  display: none;
 }
 
-.phoneField {
-    background: rgba(255,255,255,0.25);
-    border: none;
-    border-radius: 8px;
-    outline: none;
-    font-size: 19px;
-    font-weight: 700;
-    color: inherit; 
-    width: 180px;
-    padding: 4px 8px;
-    margin-right: 8px;
-    font-family: 'Courier New', monospace;
-    text-align: center;
+.inputGroup {
+  position: relative;
+  flex-grow: 1;
 }
 
-.btnOk {
-    width: 38px;
-    height: 38px;
-    border-radius: 50%;
-    background: #111;
-    color: #FFEB3B;
-    border: none;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    flex-shrink: 0;
+.inputIcon {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: hsl(var(--muted-foreground));
 }
 
-/* 2. ВИД ТАЙМЕРА (Центрированный) */
-.viewTimer {
-    display: none;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    text-align: center;
+.phoneInput {
+  width: 100%;
+  height: 40px;
+  border-radius: 8px;
+  border: 1px solid hsl(var(--border));
+  background-color: hsl(var(--background));
+  padding-left: 32px;
+  color: hsl(var(--foreground));
+}
+.phoneInput:focus {
+  outline: none;
+  border-color: hsl(var(--ring));
+  box-shadow: 0 0 0 2px hsl(var(--ring) / 0.2);
 }
 
-.timerDigits {
-    font-size: 28px;
-    font-family: 'Courier New', monospace;
-    font-weight: 900;
-    line-height: 1;
-    margin-bottom: 2px;
+
+.submitButton {
+  height: 40px;
+  width: 40px;
+  flex-shrink: 0;
+  border-radius: 8px;
+  background-color: hsl(var(--primary));
+  color: hsl(var(--primary-foreground));
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.2s;
 }
 
-.statusText {
-    font-size: 10px;
-    font-weight: 700;
-    line-height: 1.1;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    min-height: 22px; /* Фиксируем высоту, чтобы текст не прыгал */
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.submitButton:hover {
+  background-color: hsl(var(--primary) / 0.9);
 }
 
-/* Утилиты */
-.hidden { display: none !important; }
-.visible { display: flex !important; }
-
-/* Паника */
-.telegramMode {
-    animation: panicPulse 0.8s infinite !important;
-    box-shadow: 0 10px 25px rgba(0, 136, 204, 0.6) !important;
+.submitButton:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
 }
 
-@keyframes pulse {
-    0% { transform: translateX(-50%) scale(1); }
-    50% { transform: translateX(-50%) scale(1.02); }
-    100% { transform: translateX(-50%) scale(1); }
+.errorMessage {
+  position: absolute;
+  bottom: 100%;
+  left: 0;
+  right: 0;
+  margin-bottom: 8px;
+  background-color: hsl(var(--destructive));
+  color: hsl(var(--destructive-foreground));
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-size: 14px;
+  text-align: center;
+  animation: fadeIn 0.3s;
 }
-@keyframes panicPulse {
-    0% { transform: translateX(-50%) scale(1); }
-    50% { transform: translateX(-50%) scale(1.05); }
-    100% { transform: translateX(-50%) scale(1); }
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.shake {
+  animation: shake 0.5s cubic-bezier(.36,.07,.19,.97) both;
+  transform: translate3d(0, 0, 0);
 }
 
 @keyframes shake {
-  10%, 90% {
-    transform: translate(-51%, 0);
-  }
-  20%, 80% {
-    transform: translate(-49%, 0);
-  }
-  30%, 50%, 70% {
-    transform: translate(-52%, 0);
-  }
-  40%, 60% {
-    transform: translate(-48%, 0);
-  }
+  10%, 90% { transform: translate3d(-1px, 0, 0); }
+  20%, 80% { transform: translate3d(2px, 0, 0); }
+  30%, 50%, 70% { transform: translate3d(-4px, 0, 0); }
+  40%, 60% { transform: translate3d(4px, 0, 0); }
 }
