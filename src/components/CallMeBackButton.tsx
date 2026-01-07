@@ -34,6 +34,15 @@ export default function CallMeBackButton() {
       return () => clearTimeout(timer);
     }
   }, [isSuccess]);
+  
+  useEffect(() => {
+    if (error) {
+      const timer = setTimeout(() => {
+        setError(null);
+      }, 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [error]);
 
   const handlePhoneInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     let value = e.target.value.replace(/\D/g, '');
@@ -105,18 +114,24 @@ export default function CallMeBackButton() {
     }
   };
   
-  const handleWrapperClick = (e: React.MouseEvent) => {
-    if ((e.target as HTMLElement).id === 'widget-wrapper') {
-       if (isExpanded) {
-           setIsExpanded(false);
-           setError(null);
-       }
-    }
-  }
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (widgetRef.current && !widgetRef.current.contains(event.target as Node)) {
+        if (isExpanded) {
+          setIsExpanded(false);
+          setError(null);
+        }
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isExpanded]);
+
 
   return (
     <div 
-        id="widget-wrapper"
         ref={widgetRef} 
         className={`${styles.widgetWrapper} ${isExpanded ? styles.expanded : ''}`} 
         onClick={handleInitialClick}
@@ -153,10 +168,7 @@ export default function CallMeBackButton() {
                             {isSubmitting ? (
                                 <Loader2 className="h-6 w-6 animate-spin" />
                             ) : (
-                                <>
-                                  <Send className="h-5 w-5" />
-                                  <span>Жду звонка!</span>
-                                </>
+                                "Жду звонка!"
                             )}
                         </button>
                     </form>
