@@ -4,9 +4,10 @@ import { useContactDialog } from '@/hooks/use-contact-dialog';
 import { Dialog, DialogContent, DialogClose } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Zap, Phone, MessageSquare, Check, Shield, X, Loader2, AlertCircle, CheckCircle2 } from 'lucide-react';
+import { Zap, Phone, Check, Shield, X, Loader2, AlertCircle, CheckCircle2 } from 'lucide-react';
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
+import { Send } from 'lucide-react';
 
 export function CallMeBackModal() {
   const { isOpen, onClose } = useContactDialog();
@@ -153,12 +154,12 @@ export function CallMeBackModal() {
               
               <Button
                 variant="secondary"
-                className="w-full h-16 bg-[#25d366] hover:bg-[#1ebc57] text-white text-lg font-bold rounded-xl shadow-[0_4px_15px_rgba(37,211,102,0.2)] hover:shadow-[0_6px_20px_rgba(37,211,102,0.3)]"
+                className="w-full h-16 bg-[#0088cc] hover:bg-[#0077b3] text-white text-lg font-bold rounded-xl shadow-[0_4px_15px_rgba(0,136,204,0.2)] hover:shadow-[0_6px_20px_rgba(0,136,204,0.3)]"
                 asChild
               >
-                <a href="https://wa.me/79108247848?text=Здравствуйте, у меня вопрос" target="_blank" rel="noopener noreferrer">
-                  <MessageSquare size={20} />
-                  <span>Открыть WhatsApp</span>
+                <a href="https://t.me/Danayn11" target="_blank" rel="noopener noreferrer">
+                  <Send size={20} />
+                  <span>Открыть Telegram</span>
                 </a>
               </Button>
 

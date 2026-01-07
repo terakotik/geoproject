@@ -120,11 +120,11 @@ export default function ContactPage() {
                      <CardContent className="p-0 space-y-3">
                         <div>
                             <div className="text-xs text-muted-foreground uppercase tracking-wide">Telegram</div>
-                            <a href="https://t.me/zemla_yslygi" target="_blank" rel="noopener noreferrer" className="text-sm font-medium text-foreground hover:text-accent">@zemla_yslygi</a>
+                            <a href="https://t.me/Danayn11" target="_blank" rel="noopener noreferrer" className="text-sm font-medium text-foreground hover:text-accent">@Danayn11</a>
                         </div>
                         <div>
-                            <div className="text-xs text-muted-foreground uppercase tracking-wide">WhatsApp</div>
-                            <a href="https://wa.me/79108247848" target="_blank" rel="noopener noreferrer" className="text-sm font-medium text-foreground hover:text-accent">+7 (910) 824-78-48</a>
+                            <div className="text-xs text-muted-foreground uppercase tracking-wide">Резервный Telegram</div>
+                            <a href="https://t.me/zemla_yslygi" target="_blank" rel="noopener noreferrer" className="text-sm font-medium text-foreground hover:text-accent">@zemla_yslygi</a>
                         </div>
                     </CardContent>
                 </Card>

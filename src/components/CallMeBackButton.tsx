@@ -4,7 +4,7 @@ import React, { useState, useRef, useEffect } from "react";
 import styles from "./CallMeBackButton.module.css";
 
 
-const WHATSAPP_PHONE = "79522764940";
+const TELEGRAM_URL = "https://t.me/Danayn11";
 const SECONDS = 30;
 
 export default function CallMeBackButton() {
@@ -97,7 +97,7 @@ export default function CallMeBackButton() {
   const activateFinal = () => {
       setIsFinal(true);
       if (widgetRef.current) {
-        widgetRef.current.classList.add(styles.whatsappMode);
+        widgetRef.current.classList.add(styles.telegramMode);
       }
       if (layerGreenRef.current) {
         layerGreenRef.current.style.clipPath = `inset(0 0 0 0)`;
@@ -119,9 +119,13 @@ export default function CallMeBackButton() {
   const triggerShake = () => {
     const widget = widgetRef.current;
     if (!widget) return;
-    widget.style.animation = 'shake 0.5s';
+    widget.style.animationName = 'shake';
+    widget.style.animationDuration = '0.5s';
     setTimeout(() => {
-        widget.style.animation = '';
+        if (widget) {
+            widget.style.animationName = 'pulse';
+            widget.style.animationDuration = '2s';
+        }
     }, 500);
   }
 
@@ -136,8 +140,12 @@ export default function CallMeBackButton() {
           if (topLabelRef.current) {
             const originalText = topLabelRef.current.innerText;
             topLabelRef.current.innerText = "Не хватает цифр в номере";
+            topLabelRef.current.style.color = "#ef4444";
             setTimeout(() => {
-                if(topLabelRef.current) topLabelRef.current.innerText = originalText;
+                if(topLabelRef.current) {
+                    topLabelRef.current.innerText = originalText;
+                    topLabelRef.current.style.color = "";
+                }
             }, 3000);
           }
           return;
@@ -167,7 +175,7 @@ export default function CallMeBackButton() {
 
   const handleWidgetClick = () => {
     if (isFinal) {
-        window.location.href = `https://api.whatsapp.com/send/?phone=${WHATSAPP_PHONE}&text&type=phone_number&app_absent=0`;
+        window.location.href = TELEGRAM_URL;
     }
   };
 
