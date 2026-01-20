@@ -13,6 +13,13 @@ import HorizontalScrollCarousel from '@/components/HorizontalScrollCarousel';
 import { HelpCircle } from 'lucide-react';
 import { AnimatedText } from '@/components/AnimatedText';
 import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel"
+import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
@@ -186,6 +193,7 @@ const heroVideos = [
 
 export default function Home() {
   const heroImage = PlaceHolderImages.find(p => p.id === 'hero-background');
+  const certificateImages = PlaceHolderImages.filter(p => p.id.startsWith('certificate-'));
   const [videoSrc, setVideoSrc] = useState(heroVideos[0]);
   const { onOpen } = useContactDialog();
 
@@ -211,7 +219,7 @@ export default function Home() {
         <div className="container mx-auto px-4 relative z-10">
           <div className="grid md:grid-cols-2 gap-8 items-center">
             <div className="text-left">
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-heading font-bold leading-tight text-foreground">
+              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-heading font-bold leading-tight text-foreground">
                  Профессиональные <span className="text-accent">геодезические</span> услуги
               </h1>
               <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mt-6" dangerouslySetInnerHTML={{ __html: 'Полный спектр кадастровых работ, инженерных изысканий и&nbsp;ЗОУИТ в&nbsp;Санкт-Петербурге и&nbsp;ЛО' }}></p>
@@ -268,7 +276,7 @@ export default function Home() {
 
 
       {/* SEO Text Section */}
-      <section className="py-16 md:py-24 bg-background">
+      <section className="py-12 md:py-20 bg-background">
         <div className="container mx-auto px-4">
             <div className="grid lg:grid-cols-2 gap-12 items-start">
               <div className="space-y-6">
@@ -290,12 +298,12 @@ export default function Home() {
                           <CardHeader className="p-0 mb-4 md:mb-6 flex-grow">
                               <CardTitle className="text-2xl md:text-3xl font-heading font-bold" dangerouslySetInnerHTML={{ __html: 'Геодезическая компания ООО&nbsp;"ГЕОСТРОЙПРОЕКТ"' }}></CardTitle>
                           </CardHeader>
-                          <CardContent className="p-0 text-muted-foreground space-y-4 text-base md:text-lg">
+                          <CardContent className="p-0 text-muted-foreground space-y-4 text-base">
                               <p dangerouslySetInnerHTML={{ __html: 'Мы&nbsp;рады приветствовать вас на&nbsp;официальном сайте геодезической компании ООО&nbsp;«ГЕОСТРОЙПРОЕКТ» и&nbsp;готовы предложить бесплатную консультацию по&nbsp;вашему вопросу прямо сейчас!' }}></p>
                           </CardContent>
                         </div>
                     </div>
-                     <CardContent className="p-0 text-muted-foreground space-y-4 text-base md:text-lg mt-6">
+                     <CardContent className="p-0 text-muted-foreground space-y-4 text-base mt-6">
                         <p dangerouslySetInnerHTML={{ __html: 'У&nbsp;нас работают только опытные кадастровые инженеры, готовые помочь в&nbsp;решении земельных вопросов качественно и&nbsp;в&nbsp;поставленные сроки. Не&nbsp;нужно устанавливать забор и&nbsp;делить землю самостоятельно&nbsp;- это может привести к&nbsp;ненужным разногласиям с&nbsp;соседями, следовательно, к&nbsp;потере денег и&nbsp;времени.' }}></p>
                         <p dangerouslySetInnerHTML={{ __html: 'Наши специалисты постоянно находятся в&nbsp;курсе последних изменений в&nbsp;законодательстве и&nbsp;всегда готовы оказать вам квалифицированную помощь в&nbsp;оформлении перепланировки квартиры, сопровождении сделок с&nbsp;недвижимостью, заказе межевого плана участка и&nbsp;проектировании домов.' }}></p>
                         <p dangerouslySetInnerHTML={{ __html: 'Инженерные изыскания&nbsp;- это неотъемлемая часть проектной деятельности, обеспечивающая всестороннее изучение природных и&nbsp;техногенных условий местности планируемого строительства.' }}></p>
@@ -342,10 +350,10 @@ export default function Home() {
 
       {/* Services Section */}
       <section id="services" className="bg-white">
-        <div className="container mx-auto px-4 py-16 md:py-24">
-          <div className="text-left mb-12 md:mb-16">
-            <AnimatedText as="h2" text="Наши услуги" className="text-4xl md:text-5xl font-heading font-bold text-foreground text-left" />
-            <p className="text-lg md:text-xl text-muted-foreground max-w-3xl text-left mt-4" dangerouslySetInnerHTML={{ __html: 'Предоставляем полный спектр геодезических и&nbsp;кадастровых услуг с&nbsp;гарантией качества и&nbsp;соблюдением сроков' }}>
+        <div className="container mx-auto px-4 py-12 md:py-20">
+          <div className="text-left mb-12">
+            <AnimatedText as="h2" text="Наши услуги" className="text-3xl md:text-4xl font-heading font-bold text-foreground text-left" />
+            <p className="text-lg text-muted-foreground max-w-3xl text-left mt-4" dangerouslySetInnerHTML={{ __html: 'Предоставляем полный спектр геодезических и&nbsp;кадастровых услуг с&nbsp;гарантией качества и&nbsp;соблюдением сроков' }}>
             </p>
           </div>
           
@@ -366,16 +374,16 @@ export default function Home() {
       </section>
 
       {/* Prices Section */}
-      <section id="prices" className="py-16 md:py-24 bg-gradient-hero">
+      <section id="prices" className="py-12 md:py-20 bg-gradient-hero">
         <div className="container mx-auto px-4">
-          <div className="text-left mb-12 md:mb-16">
-            <AnimatedText as="h2" text="Прайс-лист" className="text-4xl md:text-5xl font-heading font-bold text-foreground text-left" />
-            <p className="text-lg md:text-xl text-muted-foreground max-w-3xl text-left mt-4" dangerouslySetInnerHTML={{ __html: 'Прозрачные цены без скрытых доплат. Групповые скидки до&nbsp;43%' }}>
+          <div className="text-left mb-12">
+            <AnimatedText as="h2" text="Прайс-лист" className="text-3xl md:text-4xl font-heading font-bold text-foreground text-left" />
+            <p className="text-lg text-muted-foreground max-w-3xl text-left mt-4" dangerouslySetInnerHTML={{ __html: 'Прозрачные цены без скрытых доплат. Групповые скидки до&nbsp;43%' }}>
             </p>
           </div>
 
           <div className="mb-16">
-            <h2 className="text-3xl font-heading font-semibold text-center mb-8 text-foreground">Пакетные предложения</h2>
+            <h2 className="text-2xl font-heading font-semibold text-center mb-8 text-foreground">Пакетные предложения</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch">
               {packages.map((pkg, index) => (
                 <Card key={index} className={`flex flex-col p-6 relative overflow-hidden bg-card/80 backdrop-blur-sm border-2 transition-all duration-300 ${pkg.popular ? 'border-dashed border-border/50 hover:border-accent' : 'border-dashed border-border/50 hover:border-accent'}`}>
@@ -420,7 +428,7 @@ export default function Home() {
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="p-0">
-                  <div className="overflow-x-auto">
+                  <div className="overflow-x-auto -mx-4 px-4">
                     <table className="w-full min-w-[600px]">
                       <thead>
                         <tr className="border-b border-border">
@@ -467,12 +475,54 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Process Section */}
-      <section id="about" className="py-16 md:py-24 bg-background">
+      {/* Licenses and Certificates Section */}
+      <section id="licenses" className="py-12 md:py-20 bg-background">
         <div className="container mx-auto px-4">
-          <div className="text-left mb-12 md:mb-16">
-            <AnimatedText as="h2" text="Как мы работаем" className="text-4xl md:text-5xl font-heading font-bold text-foreground text-left" />
-            <p className="text-lg md:text-xl text-muted-foreground max-w-3xl text-left mt-4" dangerouslySetInnerHTML={{ __html: 'Прозрачный процесс работы без лишних этапов и&nbsp;дополнительных затрат' }}>
+          <div className="text-left mb-12">
+            <AnimatedText as="h2" text="Лицензии и сертификаты" className="text-3xl md:text-4xl font-heading font-bold text-foreground text-left" />
+            <p className="text-lg text-muted-foreground max-w-3xl text-left mt-4">
+              Мы обладаем всеми необходимыми лицензиями и сертификатами для проведения геодезических и кадастровых работ.
+            </p>
+          </div>
+          <Carousel
+            opts={{
+              align: "start",
+              loop: true,
+            }}
+            className="w-full"
+          >
+            <CarouselContent>
+              {certificateImages.map((image, index) => (
+                <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/4">
+                  <div className="p-1">
+                    <Card>
+                      <CardContent className="flex aspect-[400/565] items-center justify-center p-0 rounded-lg overflow-hidden">
+                        <Image
+                          src={image.imageUrl}
+                          alt={image.description}
+                          data-ai-hint={image.imageHint}
+                          width={400}
+                          height={565}
+                          className="w-full h-full object-cover"
+                        />
+                      </CardContent>
+                    </Card>
+                  </div>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <CarouselPrevious className="hidden sm:flex" />
+            <CarouselNext className="hidden sm:flex" />
+          </Carousel>
+        </div>
+      </section>
+
+      {/* Process Section */}
+      <section id="about" className="py-12 md:py-20 bg-background">
+        <div className="container mx-auto px-4">
+          <div className="text-left mb-12">
+            <AnimatedText as="h2" text="Как мы работаем" className="text-3xl md:text-4xl font-heading font-bold text-foreground text-left" />
+            <p className="text-lg text-muted-foreground max-w-3xl text-left mt-4" dangerouslySetInnerHTML={{ __html: 'Прозрачный процесс работы без лишних этапов и&nbsp;дополнительных затрат' }}>
             </p>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 md:gap-8">
@@ -494,7 +544,7 @@ export default function Home() {
       </section>
 
       {/* Reviews Section */}
-      <section className="py-16 md:py-24 bg-background">
+      <section className="py-12 md:py-20 bg-background">
         <div className="container mx-auto px-4">
           <YandexReviews />
         </div>
@@ -502,7 +552,7 @@ export default function Home() {
 
 
       {/* CTA Section */}
-      <section className="py-16 md:py-24 bg-background">
+      <section className="py-12 md:py-20 bg-background">
         <div className="container mx-auto px-4">
           <div className="p-8 md:p-12 bg-card/80 backdrop-blur-sm border-border/50 max-w-4xl mx-auto text-center rounded-lg">
             <Image
@@ -531,7 +581,7 @@ export default function Home() {
       <section className="py-12 md:py-16 bg-gradient-hero">
         <div className="container mx-auto px-4">
           <div className="text-left mb-8">
-            <AnimatedText as="h2" text="Работаем с крупными компаниями" className="text-4xl md:text-5xl font-heading font-bold text-foreground text-left" />
+            <AnimatedText as="h2" text="Работаем с крупными компаниями" className="text-3xl md:text-4xl font-heading font-bold text-foreground text-left" />
           </div>
           <ClientsMarquee />
         </div>

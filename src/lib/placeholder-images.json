@@ -3,44 +3,68 @@
     {
       "id": "hero-background",
       "description": "A wide landscape showing surveying equipment in a field at sunset.",
-      "imageUrl": "https://picsum.photos/seed/hero/1920/1080",
+      "imageUrl": "https://images.unsplash.com/photo-1628158088936-68ccaaa400dc?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxsYW5kc2NhcGUlMjBzdXJ2ZXlpbmd8ZW58MHx8fHwxNzY4ODg3MTIzfDA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "landscape surveying"
     },
     {
       "id": "service-1",
       "description": "A close-up of a surveyor looking through a theodolite.",
-      "imageUrl": "https://picsum.photos/seed/service1/600/400",
+      "imageUrl": "https://images.unsplash.com/photo-1766830110938-0ea8a6d78ecb?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxzdXJ2ZXlvciUyMGVxdWlwbWVudHxlbnwwfHx8fDE3Njg4ODcxMjN8MA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "surveyor equipment"
     },
     {
       "id": "service-2",
       "description": "A drone flying over a construction site.",
-      "imageUrl": "https://picsum.photos/seed/service2/600/400",
+      "imageUrl": "https://images.unsplash.com/photo-1759210720510-59dfa8ff9f85?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxkcm9uZSUyMHN1cnZleXxlbnwwfHx8fDE3Njg4MTY3MjB8MA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "drone survey"
     },
     {
       "id": "service-3",
       "description": "A digital map with property lines highlighted.",
-      "imageUrl": "https://picsum.photos/seed/service3/600/400",
+      "imageUrl": "https://images.unsplash.com/photo-1625239622428-ba0ae330a1f9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxjYWRhc3RyYWwlMjBtYXB8ZW58MHx8fHwxNzY4ODg3MTIzfDA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "cadastral map"
     },
     {
       "id": "contact-map",
       "description": "A map showing a pin for an office location.",
-      "imageUrl": "https://picsum.photos/seed/map/600/400",
+      "imageUrl": "https://images.unsplash.com/photo-1669490893279-4589b3b1cf4e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxvZmZpY2UlMjBtYXB8ZW58MHx8fHwxNzY4ODg3MTIzfDA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "office map"
     },
     {
       "id": "portal-login",
       "description": "An abstract geometric pattern related to mapping or grids.",
-      "imageUrl": "https://picsum.photos/seed/portal/1200/800",
+      "imageUrl": "https://images.unsplash.com/photo-1605106702842-01a887a31122?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxnZW9tZXRyaWMlMjBwYXR0ZXJufGVufDB8fHx8MTc2ODgwMjQwMHww&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "geometric pattern"
     },
     {
       "id": "map-placeholder",
       "description": "A satellite view of a city with data overlays.",
-      "imageUrl": "https://picsum.photos/seed/interactive-map/1600/900",
+      "imageUrl": "https://images.unsplash.com/photo-1722082839841-45473f5a15cf?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxzYXRlbGxpdGUlMjBtYXB8ZW58MHx8fHwxNzY4ODI0MjkzfDA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "satellite map"
+    },
+    {
+      "id": "certificate-1",
+      "description": "A scanned image of an official certificate or license.",
+      "imageUrl": "https://images.unsplash.com/photo-1715173679369-18006e84d6a8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxjZXJ0aWZpY2F0ZSUyMGRvY3VtZW50fGVufDB8fHx8MTc2ODg4NzEyM3ww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "certificate document"
+    },
+    {
+      "id": "certificate-2",
+      "description": "A scanned image of an official certificate or license.",
+      "imageUrl": "https://images.unsplash.com/photo-1761671613933-159512988cb3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxjZXJ0aWZpY2F0ZSUyMGRvY3VtZW50fGVufDB8fHx8MTc2ODg4NzEyM3ww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "certificate document"
+    },
+    {
+      "id": "certificate-3",
+      "description": "A scanned image of an official certificate or license.",
+      "imageUrl": "https://images.unsplash.com/photo-1568137224279-f19f0f825447?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxjZXJ0aWZpY2F0ZSUyMGRvY3VtZW50fGVufDB8fHx8MTc2ODg4NzEyM3ww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "certificate document"
+    },
+    {
+      "id": "certificate-4",
+      "description": "A scanned image of an official certificate or license.",
+      "imageUrl": "https://images.unsplash.com/photo-1559588501-59a118c47e59?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxjZXJ0aWZpY2F0ZSUyMGRvY3VtZW50fGVufDB8fHx8MTc2ODg4NzEyM3ww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "certificate document"
     }
   ]
 }
