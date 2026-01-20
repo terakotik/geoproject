@@ -475,48 +475,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Licenses and Certificates Section */}
-      <section id="licenses" className="py-12 md:py-20 bg-background">
-        <div className="container mx-auto px-4">
-          <div className="text-left mb-12">
-            <AnimatedText as="h2" text="Лицензии и сертификаты" className="text-3xl md:text-4xl font-heading font-bold text-foreground text-left" />
-            <p className="text-lg text-muted-foreground max-w-3xl text-left mt-4">
-              Мы обладаем всеми необходимыми лицензиями и сертификатами для проведения геодезических и кадастровых работ.
-            </p>
-          </div>
-          <Carousel
-            opts={{
-              align: "start",
-              loop: true,
-            }}
-            className="w-full"
-          >
-            <CarouselContent>
-              {certificateImages.map((image, index) => (
-                <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/4">
-                  <div className="p-1">
-                    <Card>
-                      <CardContent className="flex aspect-[400/565] items-center justify-center p-0 rounded-lg overflow-hidden">
-                        <Image
-                          src={image.imageUrl}
-                          alt={image.description}
-                          data-ai-hint={image.imageHint}
-                          width={400}
-                          height={565}
-                          className="w-full h-full object-cover"
-                        />
-                      </CardContent>
-                    </Card>
-                  </div>
-                </CarouselItem>
-              ))}
-            </CarouselContent>
-            <CarouselPrevious className="hidden sm:flex" />
-            <CarouselNext className="hidden sm:flex" />
-          </Carousel>
-        </div>
-      </section>
-
+      
       {/* Process Section */}
       <section id="about" className="py-12 md:py-20 bg-background">
         <div className="container mx-auto px-4">
@@ -540,6 +499,48 @@ export default function Home() {
               </Card>
             ))}
           </div>
+        </div>
+      </section>
+      
+      {/* Licenses and Certificates Section */}
+      <section id="licenses" className="py-12 md:py-20 bg-background">
+        <div className="container mx-auto px-4">
+          <div className="text-left mb-12">
+            <AnimatedText as="h2" text="Лицензии и сертификаты" className="text-3xl md:text-4xl font-heading font-bold text-foreground text-left" />
+            <p className="text-lg text-muted-foreground max-w-3xl text-left mt-4">
+              Мы обладаем всеми необходимыми лицензиями и сертификатами для проведения геодезических и кадастровых работ.
+            </p>
+          </div>
+          <Carousel
+            opts={{
+              align: "start",
+              loop: true,
+            }}
+            className="w-full"
+          >
+            <CarouselContent>
+              {certificateImages.map((image, index) => (
+                <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/4">
+                  <div className="p-1">
+                    <Card>
+                      <CardContent className="flex aspect-[400/565] items-center justify-center p-0 rounded-lg overflow-hidden bg-white">
+                        <Image
+                          src={image.imageUrl}
+                          alt={image.description}
+                          data-ai-hint={image.imageHint}
+                          width={400}
+                          height={565}
+                          className="w-full h-full object-contain"
+                        />
+                      </CardContent>
+                    </Card>
+                  </div>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <CarouselPrevious className="hidden sm:flex" />
+            <CarouselNext className="hidden sm:flex" />
+          </Carousel>
         </div>
       </section>
 
