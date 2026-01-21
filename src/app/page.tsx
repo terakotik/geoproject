@@ -224,7 +224,12 @@ export default function Home() {
               </h1>
               <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mt-6" dangerouslySetInnerHTML={{ __html: 'Полный спектр кадастровых работ, инженерных изысканий и&nbsp;ЗОУИТ в&nbsp;Санкт-Петербурге и&nbsp;ЛО' }}></p>
               
-              <div className="mt-10 flex flex-col sm:flex-row gap-4">
+              <div className="mt-4 inline-flex items-center gap-2 bg-accent/10 text-accent font-semibold py-1 px-3 rounded-full border border-accent/20">
+                <Shield className="h-4 w-4" />
+                <span>Работаем с лицензией</span>
+              </div>
+
+              <div className="mt-6 flex flex-col sm:flex-row gap-4">
                 <Button size="lg" className="text-lg py-7 px-8" onClick={onOpen}>
                   Бесплатная консультация
                 </Button>
@@ -476,32 +481,6 @@ export default function Home() {
       </section>
 
       
-      {/* Process Section */}
-      <section id="about" className="py-12 md:py-20 bg-background">
-        <div className="container mx-auto px-4">
-          <div className="text-left mb-12">
-            <AnimatedText as="h2" text="Как мы работаем" className="text-3xl md:text-4xl font-heading font-bold text-foreground text-left" />
-            <p className="text-lg text-muted-foreground max-w-3xl text-left mt-4" dangerouslySetInnerHTML={{ __html: 'Прозрачный процесс работы без лишних этапов и&nbsp;дополнительных затрат' }}>
-            </p>
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 md:gap-8">
-            {processSteps.map((step, index) => (
-              <Card key={index} className="flex flex-col text-center p-6 bg-card/80 backdrop-blur-sm border-2 border-dashed border-border/50 hover:border-accent transition-all duration-300">
-                <div className="w-12 h-12 md:w-16 md:h-16 rounded-full flex items-center justify-center mb-4 md:mb-6 mx-auto bg-muted">
-                  <step.icon className="h-6 w-6 md:h-7 md:w-7 text-muted-foreground" />
-                </div>
-                <CardHeader className="p-0 mb-2">
-                  <CardTitle className="text-base md:text-lg font-heading font-semibold text-foreground">0{index + 1}. {step.title}</CardTitle>
-                </CardHeader>
-                <CardContent className="p-0">
-                  <p className="text-sm text-muted-foreground" dangerouslySetInnerHTML={{ __html: step.description }}></p>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-      
       {/* Licenses and Certificates Section */}
       <section id="licenses" className="py-12 md:py-20 bg-background">
         <div className="container mx-auto px-4">
@@ -541,6 +520,32 @@ export default function Home() {
             <CarouselPrevious className="hidden sm:flex" />
             <CarouselNext className="hidden sm:flex" />
           </Carousel>
+        </div>
+      </section>
+
+      {/* Process Section */}
+      <section id="about" className="py-12 md:py-20 bg-background">
+        <div className="container mx-auto px-4">
+          <div className="text-left mb-12">
+            <AnimatedText as="h2" text="Как мы работаем" className="text-3xl md:text-4xl font-heading font-bold text-foreground text-left" />
+            <p className="text-lg text-muted-foreground max-w-3xl text-left mt-4" dangerouslySetInnerHTML={{ __html: 'Прозрачный процесс работы без лишних этапов и&nbsp;дополнительных затрат' }}>
+            </p>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 md:gap-8">
+            {processSteps.map((step, index) => (
+              <Card key={index} className="flex flex-col text-center p-6 bg-card/80 backdrop-blur-sm border-2 border-dashed border-border/50 hover:border-accent transition-all duration-300">
+                <div className="w-12 h-12 md:w-16 md:h-16 rounded-full flex items-center justify-center mb-4 md:mb-6 mx-auto bg-muted">
+                  <step.icon className="h-6 w-6 md:h-7 md:w-7 text-muted-foreground" />
+                </div>
+                <CardHeader className="p-0 mb-2">
+                  <CardTitle className="text-base md:text-lg font-heading font-semibold text-foreground">0{index + 1}. {step.title}</CardTitle>
+                </CardHeader>
+                <CardContent className="p-0">
+                  <p className="text-sm text-muted-foreground" dangerouslySetInnerHTML={{ __html: step.description }}></p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -594,3 +599,4 @@ export default function Home() {
     
 
     
+
