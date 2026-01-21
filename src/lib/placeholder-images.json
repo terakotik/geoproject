@@ -71,6 +71,30 @@
       "description": "A scanned image of an official certificate or license.",
       "imageUrl": "https://i.postimg.cc/BQh5wrL2/5.jpg",
       "imageHint": "certificate document"
+    },
+    {
+      "id": "certificate-6",
+      "description": "A scanned image of an official certificate or license.",
+      "imageUrl": "https://i.postimg.cc/15g4s27n/6.jpg",
+      "imageHint": "certificate document"
+    },
+    {
+      "id": "certificate-7",
+      "description": "A scanned image of an official certificate or license.",
+      "imageUrl": "https://i.postimg.cc/J4ytMvYN/7.jpg",
+      "imageHint": "certificate document"
+    },
+    {
+      "id": "certificate-8",
+      "description": "A scanned image of an official certificate or license.",
+      "imageUrl": "https://i.postimg.cc/DyWmnHpd/8.jpg",
+      "imageHint": "certificate document"
+    },
+    {
+      "id": "certificate-9",
+      "description": "A scanned image of an official certificate or license.",
+      "imageUrl": "https://i.postimg.cc/SNXjk31d/9.jpg",
+      "imageHint": "certificate document"
     }
   ]
 }
