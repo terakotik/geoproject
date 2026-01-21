@@ -502,14 +502,14 @@ export default function Home() {
                 <CarouselItem key={index} className="basis-1/2 md:basis-1/3 lg:basis-1/5">
                   <div className="p-1">
                     <Card>
-                      <CardContent className="flex aspect-[400/565] items-center justify-center p-0 rounded-lg overflow-hidden bg-white">
+                      <CardContent className="flex aspect-[400/565] items-center justify-center p-0 rounded-lg overflow-hidden">
                         <Image
                           src={image.imageUrl}
                           alt={image.description}
                           data-ai-hint={image.imageHint}
                           width={400}
                           height={565}
-                          className="w-full h-full object-contain"
+                          className="w-full h-full object-cover"
                         />
                       </CardContent>
                     </Card>
@@ -604,3 +604,4 @@ export default function Home() {
 
 
     
+
