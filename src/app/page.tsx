@@ -224,12 +224,12 @@ export default function Home() {
               </h1>
               <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mt-6" dangerouslySetInnerHTML={{ __html: 'Полный спектр кадастровых работ, инженерных изысканий и&nbsp;ЗОУИТ в&nbsp;Санкт-Петербурге и&nbsp;ЛО' }}></p>
               
-              <div className="mt-4 inline-flex items-center gap-2 bg-green-600 text-white font-semibold py-1 px-3 rounded-full">
-                <Shield className="h-4 w-4" />
-                <span>Работаем с лицензией</span>
+              <div className="mt-6 inline-flex items-center gap-3 rounded-lg border border-green-400/30 bg-gradient-to-br from-green-600 to-green-800 px-4 py-2 text-white shadow-lg shadow-green-700/20 dark:shadow-green-900/30">
+                <Shield className="h-5 w-5" />
+                <span className="font-semibold">Работаем с лицензией</span>
               </div>
 
-              <div className="mt-6 flex flex-col sm:flex-row gap-4">
+              <div className="mt-8 flex flex-col sm:flex-row gap-4">
                 <Button size="lg" className="text-lg py-7 px-8" onClick={onOpen}>
                   Бесплатная консультация
                 </Button>
@@ -601,3 +601,6 @@ export default function Home() {
     
 
 
+
+
+    
