@@ -224,7 +224,7 @@ export default function Home() {
               </h1>
               <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mt-6" dangerouslySetInnerHTML={{ __html: 'Полный спектр кадастровых работ, инженерных изысканий и&nbsp;ЗОУИТ в&nbsp;Санкт-Петербурге и&nbsp;ЛО' }}></p>
               
-              <div className="mt-4 inline-flex items-center gap-2 bg-accent/10 text-accent font-semibold py-1 px-3 rounded-full border border-accent/20">
+              <div className="mt-4 inline-flex items-center gap-2 bg-green-600 text-white font-semibold py-1 px-3 rounded-full">
                 <Shield className="h-4 w-4" />
                 <span>Работаем с лицензией</span>
               </div>
@@ -599,4 +599,5 @@ export default function Home() {
     
 
     
+
 
