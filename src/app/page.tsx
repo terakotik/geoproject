@@ -196,6 +196,7 @@ export default function Home() {
   const certificateImages = PlaceHolderImages.filter(p => p.id.startsWith('certificate-'));
   const [videoSrc, setVideoSrc] = useState(heroVideos[0]);
   const { onOpen } = useContactDialog();
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
   useEffect(() => {
     setVideoSrc(heroVideos[Math.floor(Math.random() * heroVideos.length)]);
@@ -499,10 +500,10 @@ export default function Home() {
           >
             <CarouselContent>
               {certificateImages.map((image, index) => (
-                <CarouselItem key={index} className="basis-1/2 md:basis-1/3 lg:basis-1/5">
-                  <div className="p-1">
+                <CarouselItem key={index} className="basis-1/2 md:basis-1/4 lg:basis-1/6">
+                  <div className="p-1 cursor-pointer" onClick={() => setSelectedImage(image.imageUrl)}>
                     <Card>
-                      <CardContent className="relative flex h-64 items-center justify-center p-2 rounded-lg overflow-hidden bg-white">
+                      <CardContent className="relative flex h-48 items-center justify-center p-2 rounded-lg overflow-hidden bg-white">
                         <Image
                           src={image.imageUrl}
                           alt={image.description}
@@ -591,6 +592,19 @@ export default function Home() {
           <ClientsMarquee />
         </div>
       </section>
+      
+      <Dialog open={!!selectedImage} onOpenChange={(isOpen) => !isOpen && setSelectedImage(null)}>
+        <DialogContent className="max-w-4xl h-[90vh] p-0 bg-transparent border-none shadow-none">
+          {selectedImage && (
+            <Image
+              src={selectedImage}
+              alt="Enlarged certificate"
+              fill
+              className="object-contain"
+            />
+          )}
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }
@@ -603,6 +617,7 @@ export default function Home() {
 
 
     
+
 
 
 
