@@ -499,17 +499,16 @@ export default function Home() {
           >
             <CarouselContent>
               {certificateImages.map((image, index) => (
-                <CarouselItem key={index} className="basis-1/2 md:basis-1/4 lg:basis-1/6">
+                <CarouselItem key={index} className="basis-1/2 md:basis-1/3 lg:basis-1/5">
                   <div className="p-1">
                     <Card>
-                      <CardContent className="flex aspect-[400/565] items-center justify-center p-0 rounded-lg overflow-hidden bg-white">
+                      <CardContent className="relative flex h-64 items-center justify-center p-2 rounded-lg overflow-hidden bg-white">
                         <Image
                           src={image.imageUrl}
                           alt={image.description}
                           data-ai-hint={image.imageHint}
-                          width={400}
-                          height={565}
-                          className="w-full h-full object-contain"
+                          fill
+                          className="object-contain"
                         />
                       </CardContent>
                     </Card>
@@ -604,5 +603,6 @@ export default function Home() {
 
 
     
+
 
 
