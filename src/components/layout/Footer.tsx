@@ -51,7 +51,7 @@ export default function Footer() {
               <Link href="/services/topographic-survey" className="block text-white/80 hover:text-accent transition-opacity">Топографическая съемка</Link>
               <Link href="/services/zouit" className="block text-white/80 hover:text-accent transition-opacity">ЗОУИТ</Link>
               <Link href="/services/facade-survey" className="block text-white/80 hover:text-accent transition-opacity">Фасадная съемка 3D</Link>
-              <Link href="/services/cadastral-valuation" className="block text-white/80 hover:text-accent transition-opacity">Кадастровая оценка</Link>
+              <Link href="/services/cadastral-works" className="block text-white/80 hover:text-accent transition-opacity">Кадастровые работы</Link>
             </div>
           </div>
           

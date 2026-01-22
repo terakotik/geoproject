@@ -197,13 +197,23 @@ export default function Home() {
   const { onOpen: onContactOpen } = useContactDialog();
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
   const [showAuditInfo, setShowAuditInfo] = useState(false);
+  const auditTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   // useEffect(() => {
   //   setVideoSrc(heroVideos[Math.floor(Math.random() * heroVideos.length)]);
   // }, []);
   
   const handleAuditClick = () => {
-    setShowAuditInfo(prev => !prev);
+    setShowAuditInfo(prev => {
+        const newState = !prev;
+        if (newState) {
+            // Clear any existing timeout
+            if (auditTimeoutRef.current) {
+                clearTimeout(auditTimeoutRef.current);
+            }
+        }
+        return newState;
+    });
   };
 
   return (
@@ -536,21 +546,23 @@ export default function Home() {
             <CarouselContent>
               {certificateImages.map((image, index) => (
                 <CarouselItem key={index} className="basis-1/2 sm:basis-1/3 md:basis-1/4 lg:basis-1/6">
-                  <div className="p-1 cursor-pointer" onClick={() => setSelectedImage(image.imageUrl)}>
-                    <Card className="h-40 bg-card group overflow-hidden border-2 border-transparent hover:border-accent transition-all duration-300 shadow-sm hover:shadow-lg">
-                      <CardContent className="relative flex h-full items-center justify-center p-2 rounded-lg">
-                        <Image
-                          src={image.imageUrl}
-                          alt={image.description}
-                          data-ai-hint={image.imageHint}
-                          fill
-                          className="object-contain transition-transform duration-300 group-hover:scale-105"
-                        />
-                        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/50 transition-colors duration-300 flex items-center justify-center">
-                          <Search className="h-8 w-8 text-white opacity-0 group-hover:opacity-100 transition-opacity" />
-                        </div>
-                      </CardContent>
-                    </Card>
+                  <div className="p-1 cursor-pointer group" onClick={() => setSelectedImage(image.imageUrl)}>
+                      <div className="relative pt-6">
+                          <div className="absolute top-0 left-1/2 -translate-x-1/2 z-10 flex items-center justify-center h-12 w-12 rounded-full bg-card border-2 border-dashed border-border/50 group-hover:border-accent transition-all duration-300">
+                              <Shield className="h-6 w-6 text-muted-foreground group-hover:text-accent transition-colors duration-300" />
+                          </div>
+                          <Card className="h-40 bg-card overflow-hidden border-2 border-dashed border-border/50 group-hover:border-accent transition-all duration-300 shadow-sm group-hover:shadow-lg mt-6">
+                              <CardContent className="relative flex h-full items-center justify-center p-2 rounded-lg">
+                                  <Image
+                                  src={image.imageUrl}
+                                  alt={image.description}
+                                  data-ai-hint={image.imageHint}
+                                  fill
+                                  className="object-contain transition-transform duration-300 group-hover:scale-105"
+                                  />
+                              </CardContent>
+                          </Card>
+                      </div>
                   </div>
                 </CarouselItem>
               ))}
