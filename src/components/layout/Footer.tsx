@@ -14,7 +14,7 @@ export default function Footer() {
 
   return (
     <footer className="bg-black text-white relative overflow-hidden">
-      <div className="absolute inset-0 z-0 opacity-20">
+      <div className="absolute inset-0 z-0 opacity-30">
         <video
           autoPlay
           loop
@@ -23,7 +23,7 @@ export default function Footer() {
           className="w-full h-full object-cover"
           src="https://d1dzlizqgbwk1w.cloudfront.net/videos/2025/10/22/oudbOxVP.mp4"
         />
-        <div className="absolute inset-0 bg-black/50"></div>
+        <div className="absolute inset-0 bg-black/40"></div>
       </div>
       <div className="container mx-auto px-4 py-16 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
