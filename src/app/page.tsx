@@ -38,6 +38,7 @@ import { ClientsMarquee } from '@/components/ClientsMarquee';
 import ServiceCard from '@/components/ServiceCard';
 import { YandexReviews } from '@/components/YandexReviews';
 import { useContactDialog } from "@/hooks/use-contact-dialog";
+import { useAuditDialog } from '@/hooks/use-audit-dialog';
 
 
 const packages = [
@@ -195,7 +196,8 @@ export default function Home() {
   const heroImage = PlaceHolderImages.find(p => p.id === 'hero-background');
   const certificateImages = PlaceHolderImages.filter(p => p.id.startsWith('certificate-'));
   const [videoSrc, setVideoSrc] = useState(heroVideos[0]);
-  const { onOpen } = useContactDialog();
+  const { onOpen: onContactOpen } = useContactDialog();
+  const { onOpen: onAuditOpen } = useAuditDialog();
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
   useEffect(() => {
@@ -231,13 +233,11 @@ export default function Home() {
               </div>
 
               <div className="mt-8 flex flex-col sm:flex-row gap-4">
-                <Button size="lg" className="text-lg py-7 px-8" onClick={onOpen}>
-                  Бесплатная консультация
+                <Button size="lg" className="text-lg py-7 px-8" onClick={onAuditOpen}>
+                  Бесплатный Аудит участка 2026 за 5 минут
                 </Button>
-                 <Button size="lg" variant="ghost" asChild>
-                    <Link href="#services" className="text-lg py-7 px-8">
-                      Наши услуги <ArrowRight className="ml-2 h-5 w-5" />
-                    </Link>
+                 <Button size="lg" variant="ghost" onClick={onContactOpen}>
+                    Бесплатная консультация <ArrowRight className="ml-2 h-5 w-5" />
                   </Button>
               </div>
             </div>
@@ -373,7 +373,7 @@ export default function Home() {
                 </div>
                 <h3 className="text-2xl font-heading font-semibold text-foreground mb-2" dangerouslySetInnerHTML={{ __html: 'Не&nbsp;нашли нужную услугу?' }}></h3>
                 <p className="text-muted-foreground mb-6" dangerouslySetInnerHTML={{ __html: 'Мы&nbsp;выполняем любые виды геодезических работ под&nbsp;заказ' }}></p>
-                <Button size="lg" onClick={onOpen}>Получить консультацию</Button>
+                <Button size="lg" onClick={onContactOpen}>Получить консультацию</Button>
             </Card>
           </div>
         </div>
@@ -419,7 +419,7 @@ export default function Home() {
                       ))}
                     </ul>
                   </div>
-                  <Button className="w-full mt-auto" onClick={onOpen}>Выбрать пакет</Button>
+                  <Button className="w-full mt-auto" onClick={onContactOpen}>Выбрать пакет</Button>
                 </Card>
               ))}
             </div>
@@ -455,7 +455,7 @@ export default function Home() {
                             </td>
                             <td className="p-4 text-right text-muted-foreground" dangerouslySetInnerHTML={{ __html: item.term }}></td>
                             <td className="p-4 pl-4 text-right">
-                              <Button variant="outline" size="sm" onClick={onOpen}>Заказать</Button>
+                              <Button variant="outline" size="sm" onClick={onContactOpen}>Заказать</Button>
                             </td>
                           </tr>
                         ))}
@@ -475,7 +475,7 @@ export default function Home() {
                 <h3 className="text-2xl font-heading font-bold">Срочные работы</h3>
               </div>
               <p className="text-lg text-muted-foreground mb-4" dangerouslySetInnerHTML={{ __html: 'Выполним работы в&nbsp;кратчайшие сроки с&nbsp;доплатой 30%' }}></p>
-              <Button variant="default" onClick={onOpen}>Срочный заказ</Button>
+              <Button variant="default" onClick={onContactOpen}>Срочный заказ</Button>
             </Card>
           </div>
         </div>
@@ -503,7 +503,7 @@ export default function Home() {
                 <CarouselItem key={index} className="basis-1/2 md:basis-1/4 lg:basis-1/6">
                   <div className="p-1 cursor-pointer" onClick={() => setSelectedImage(image.imageUrl)}>
                     <Card>
-                      <CardContent className="relative flex h-48 items-center justify-center p-2 rounded-lg overflow-hidden bg-white">
+                      <CardContent className="relative flex h-40 items-center justify-center p-2 rounded-lg overflow-hidden bg-white">
                         <Image
                           src={image.imageUrl}
                           alt={image.description}
@@ -572,7 +572,7 @@ export default function Home() {
             <p className="text-lg text-muted-foreground mb-8" dangerouslySetInnerHTML={{ __html: 'Оставьте заявку на&nbsp;бесплатную консультацию и&nbsp;мы&nbsp;ответим на&nbsp;все ваши вопросы.' }}>
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" variant="default" onClick={onOpen}>
+              <Button size="lg" variant="default" onClick={onContactOpen}>
                 Бесплатная консультация
               </Button>
               <Button asChild size="lg" variant="outline">
@@ -617,6 +617,7 @@ export default function Home() {
 
 
     
+
 
 
 
