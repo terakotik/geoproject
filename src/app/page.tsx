@@ -33,12 +33,11 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog"
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { ClientsMarquee } from '@/components/ClientsMarquee';
 import ServiceCard from '@/components/ServiceCard';
 import { YandexReviews } from '@/components/YandexReviews';
 import { useContactDialog } from "@/hooks/use-contact-dialog";
-import { useToast } from "@/hooks/use-toast";
 
 
 const packages = [
@@ -198,29 +197,27 @@ export default function Home() {
   const [videoSrc, setVideoSrc] = useState(heroVideos[0]);
   const { onOpen: onContactOpen } = useContactDialog();
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
-  const { toast } = useToast();
+  const [showAuditInfo, setShowAuditInfo] = useState(false);
+  const auditTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
     setVideoSrc(heroVideos[Math.floor(Math.random() * heroVideos.length)]);
+    
+    return () => {
+      if (auditTimeoutRef.current) {
+        clearTimeout(auditTimeoutRef.current);
+      }
+    };
   }, []);
   
   const handleAuditClick = () => {
-    toast({
-      title: 'Подготовьте файлы для аудита',
-      description: (
-        <div className="flex flex-col gap-2 mt-2">
-            <p>Пожалуйста, пришлите в чат Telegram:</p>
-            <ul className="list-disc list-inside text-sm">
-                <li>Фотографии вашего участка</li>
-                <li>Выписку из ЕГРН (если есть)</li>
-            </ul>
-        </div>
-      ),
-      duration: 10000,
-    });
-    setTimeout(() => {
+    if (showAuditInfo) return;
+
+    setShowAuditInfo(true);
+    
+    auditTimeoutRef.current = setTimeout(() => {
         window.open('https://t.me/Danayn11', '_blank');
-    }, 500);
+    }, 5000);
   };
 
   return (
@@ -246,19 +243,37 @@ export default function Home() {
               </h1>
               <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mt-6" dangerouslySetInnerHTML={{ __html: 'Полный спектр кадастровых работ, инженерных изысканий и&nbsp;ЗОУИТ в&nbsp;Санкт-Петербурге и&nbsp;ЛО' }}></p>
               
-              <div className="mt-6 inline-flex items-center gap-3 rounded-lg border border-green-400/30 bg-gradient-to-br from-green-600 to-green-800 px-4 py-2 text-white shadow-lg shadow-green-700/20 dark:shadow-green-900/30">
-                <Shield className="h-5 w-5" />
-                <span className="font-semibold">Работаем с лицензией</span>
+              <div className="mt-8 inline-flex items-center gap-3">
+                <Shield className="h-5 w-5 text-green-600" fill="currentColor" />
+                <span className="font-semibold text-foreground">Работаем с лицензией</span>
               </div>
 
-              <div className="mt-8 flex flex-col sm:flex-row gap-4">
-                <Button size="lg" onClick={handleAuditClick} className="shadow-lg shadow-primary/30">
-                  <FileUp className="mr-2 h-5 w-5" />
-                  Бесплатный Аудит участка 2026 за 5 минут
-                </Button>
-                 <Button size="lg" variant="outline" onClick={onContactOpen}>
+              <div className="mt-8">
+                <div className="flex flex-col sm:flex-row gap-4">
+                  <Button size="lg" onClick={handleAuditClick} className="shadow-lg shadow-primary/30">
+                    <FileUp className="mr-2 h-5 w-5" />
+                    Бесплатный Аудит участка 2026 за 5 минут
+                  </Button>
+                  <Button size="lg" variant="outline" onClick={onContactOpen}>
                     Бесплатная консультация <ArrowRight className="ml-2 h-5 w-5" />
                   </Button>
+                </div>
+                
+                <div className={`transition-all duration-500 ease-in-out overflow-hidden ${showAuditInfo ? 'max-h-96 mt-4' : 'max-h-0 mt-0'}`}>
+                    <Card className="p-4 bg-muted border-accent">
+                        <CardHeader className="p-0">
+                            <CardTitle className="text-base font-semibold">Подготовьте файлы для аудита</CardTitle>
+                        </CardHeader>
+                        <CardContent className="p-0 pt-2">
+                            <p className="text-sm text-muted-foreground">Пожалуйста, пришлите в чат Telegram:</p>
+                            <ul className="list-disc list-inside text-sm text-muted-foreground mt-1 space-y-1">
+                                <li>Фотографии вашего участка</li>
+                                <li>Выписку из ЕГРН (если есть)</li>
+                            </ul>
+                            <p className="text-xs text-muted-foreground/80 mt-3">Перенаправление в Telegram через 5 секунд...</p>
+                        </CardContent>
+                    </Card>
+                </div>
               </div>
             </div>
           </div>
@@ -637,6 +652,7 @@ export default function Home() {
 
 
     
+
 
 
 
