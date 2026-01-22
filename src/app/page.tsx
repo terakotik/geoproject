@@ -252,11 +252,11 @@ export default function Home() {
               </div>
 
               <div className="mt-8 flex flex-col sm:flex-row gap-4">
-                <Button size="lg" className="text-lg py-7 px-8" onClick={handleAuditClick}>
+                <Button size="lg" onClick={handleAuditClick} className="shadow-lg shadow-primary/30">
                   <FileUp className="mr-2 h-5 w-5" />
                   Бесплатный Аудит участка 2026 за 5 минут
                 </Button>
-                 <Button size="lg" variant="ghost" onClick={onContactOpen}>
+                 <Button size="lg" variant="outline" onClick={onContactOpen}>
                     Бесплатная консультация <ArrowRight className="ml-2 h-5 w-5" />
                   </Button>
               </div>
@@ -637,6 +637,7 @@ export default function Home() {
 
 
     
+
 
 
 
