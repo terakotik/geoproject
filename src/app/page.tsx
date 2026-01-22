@@ -241,7 +241,7 @@ export default function Home() {
               <h1 className="text-3xl sm:text-4xl lg:text-5xl font-heading font-bold leading-tight text-foreground">
                  Профессиональные <span className="text-accent">геодезические</span> услуги
               </h1>
-              <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mt-6" dangerouslySetInnerHTML={{ __html: 'Полный спектр кадастровых работ, инженерных изысканий и&nbsp;ЗОУИТ в&nbsp;Санкт-Петербурге и&nbsp;ЛО' }}></p>
+              <p className="text-xl md:text-2xl text-muted-foreground max-w-2xl mt-6 leading-relaxed" dangerouslySetInnerHTML={{ __html: 'Полный спектр кадастровых работ,<br />инженерных изысканий и&nbsp;ЗОУИТ<br />в&nbsp;Санкт-Петербурге и&nbsp;ЛО' }}></p>
               
               <div className="mt-8 inline-flex items-center gap-3">
                 <Shield className="h-5 w-5 text-green-600" fill="currentColor" />
@@ -537,8 +537,8 @@ export default function Home() {
               {certificateImages.map((image, index) => (
                 <CarouselItem key={index} className="basis-1/2 md:basis-1/4 lg:basis-1/6">
                   <div className="p-1 cursor-pointer" onClick={() => setSelectedImage(image.imageUrl)}>
-                    <Card>
-                      <CardContent className="relative flex h-40 items-center justify-center p-2 rounded-lg overflow-hidden bg-white">
+                    <Card className="h-40">
+                      <CardContent className="relative flex h-full items-center justify-center p-2 rounded-lg overflow-hidden bg-white">
                         <Image
                           src={image.imageUrl}
                           alt={image.description}
@@ -652,6 +652,7 @@ export default function Home() {
 
 
     
+
 
 
 
