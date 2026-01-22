@@ -4,7 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
-import { CheckCircle, Star, CircleCheckBig, FilePenLine, Users, SquareCheckBig, Download, MessageCircle, Zap, Send, Phone, MessageSquare, ExternalLink, ArrowRight, Shield, MapPin as MapPinIcon, Building, Ruler, FileText as FileTextIcon, TreePine, Factory, Calculator, Clock, ListChecks, Linkedin, Twitter, FolderKanban, Award, User, Briefcase, FileUp } from 'lucide-react';
+import { CheckCircle, Star, CircleCheckBig, FilePenLine, Users, SquareCheckBig, Download, MessageCircle, Zap, Send, Phone, MessageSquare, ExternalLink, ArrowRight, Shield, MapPin as MapPinIcon, Building, Ruler, FileText as FileTextIcon, TreePine, Factory, Calculator, Clock, ListChecks, Linkedin, Twitter, FolderKanban, Award, User, Briefcase, FileUp, Search } from 'lucide-react';
 import { services, getServiceDetails } from '@/lib/services';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 import HorizontalScrollCarousel from '@/components/HorizontalScrollCarousel';
@@ -537,15 +537,18 @@ export default function Home() {
               {certificateImages.map((image, index) => (
                 <CarouselItem key={index} className="basis-1/2 sm:basis-1/3 md:basis-1/4 lg:basis-1/6">
                   <div className="p-1 cursor-pointer" onClick={() => setSelectedImage(image.imageUrl)}>
-                    <Card className="h-40 bg-white">
-                      <CardContent className="relative flex h-full items-center justify-center p-2 rounded-lg overflow-hidden">
+                    <Card className="h-40 bg-card group overflow-hidden border-2 border-transparent hover:border-accent transition-all duration-300 shadow-sm hover:shadow-lg">
+                      <CardContent className="relative flex h-full items-center justify-center p-2 rounded-lg">
                         <Image
                           src={image.imageUrl}
                           alt={image.description}
                           data-ai-hint={image.imageHint}
                           fill
-                          className="object-contain"
+                          className="object-contain transition-transform duration-300 group-hover:scale-105"
                         />
+                        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/50 transition-colors duration-300 flex items-center justify-center">
+                          <Search className="h-8 w-8 text-white opacity-0 group-hover:opacity-100 transition-opacity" />
+                        </div>
                       </CardContent>
                     </Card>
                   </div>
