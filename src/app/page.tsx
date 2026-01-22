@@ -183,23 +183,24 @@ const processSteps = [
     }
   ];
 
+/*
 const heroVideos = [
     'https://d1dzlizqgbwk1w.cloudfront.net/videos/2025/12/05/ByjmlPeR.mp4',
     'https://d1dzlizqgbwk1w.cloudfront.net/videos/2025/12/05/xGmJGWAG.mp4',
 ];
-
+*/
 
 export default function Home() {
   const heroImage = PlaceHolderImages.find(p => p.id === 'hero-background');
   const certificateImages = PlaceHolderImages.filter(p => p.id.startsWith('certificate-'));
-  const [videoSrc, setVideoSrc] = useState(heroVideos[0]);
+  // const [videoSrc, setVideoSrc] = useState(heroVideos[0]);
   const { onOpen: onContactOpen } = useContactDialog();
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
   const [showAuditInfo, setShowAuditInfo] = useState(false);
 
-  useEffect(() => {
-    setVideoSrc(heroVideos[Math.floor(Math.random() * heroVideos.length)]);
-  }, []);
+  // useEffect(() => {
+  //   setVideoSrc(heroVideos[Math.floor(Math.random() * heroVideos.length)]);
+  // }, []);
   
   const handleAuditClick = () => {
     setShowAuditInfo(prev => !prev);
@@ -210,7 +211,7 @@ export default function Home() {
       {/* Hero Section */}
        <section className="relative min-h-[80vh] md:min-h-screen flex items-center overflow-hidden">
         <div className="absolute inset-0 z-0">
-          <video
+          {/* <video
             key={videoSrc}
             autoPlay
             loop
@@ -218,6 +219,13 @@ export default function Home() {
             playsInline
             className="w-full h-full object-cover"
             src={videoSrc}
+          /> */}
+           <Image
+            src="https://i.postimg.cc/nhc70zVW/unnamed.jpg"
+            alt="Фоновое изображение"
+            fill
+            className="object-cover"
+            priority
           />
         </div>
         <div className="container mx-auto px-4 relative z-10">
@@ -226,7 +234,7 @@ export default function Home() {
               <h1 className="text-3xl sm:text-4xl lg:text-5xl font-heading font-bold leading-tight text-foreground">
                  Профессиональные <span className="text-accent">геодезические</span> услуги
               </h1>
-              <p className="text-xl md:text-2xl text-muted-foreground max-w-2xl mt-6 leading-relaxed" dangerouslySetInnerHTML={{ __html: 'Полный спектр кадастровых работ,<br />инженерных изысканий и&nbsp;ЗОУИТ<br />в&nbsp;Санкт-Петербурге и&nbsp;ЛО' }}></p>
+              <p className="mt-6 text-xl md:text-2xl !leading-tight max-w-2xl text-muted-foreground" dangerouslySetInnerHTML={{ __html: 'Полный спектр кадастровых работ,<br/>инженерных изысканий и&nbsp;ЗОУИТ<br/>в&nbsp;Санкт-Петербурге и&nbsp;ЛО' }} />
               
               <div className="mt-8 inline-flex items-center gap-3">
                 <Shield className="h-5 w-5 text-green-600 fill-green-600" />
@@ -634,24 +642,3 @@ export default function Home() {
     </div>
   );
 }
-
-    
-
-    
-
-
-
-
-    
-
-
-
-
-
-
-
-
-
-
-
-
