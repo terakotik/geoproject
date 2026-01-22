@@ -6,7 +6,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
-import { CheckCircle, Star, CircleCheckBig, FilePenLine, Users, SquareCheckBig, Download, MessageCircle, Zap, Send, Phone, MessageSquare, ExternalLink, ArrowRight, Shield, MapPin as MapPinIcon, Building, Ruler, FileText as FileTextIcon, TreePine, Factory, Calculator, Clock, ListChecks, Linkedin, Twitter, FolderKanban, Award, User, Briefcase } from 'lucide-react';
+import { CheckCircle, Star, CircleCheckBig, FilePenLine, Users, SquareCheckBig, Download, MessageCircle, Zap, Send, Phone, MessageSquare, ExternalLink, ArrowRight, Shield, MapPin as MapPinIcon, Building, Ruler, FileText as FileTextIcon, TreePine, Factory, Calculator, Clock, ListChecks, Linkedin, Twitter, FolderKanban, Award, User, Briefcase, FileUp } from 'lucide-react';
 import { services, getServiceDetails } from '@/lib/services';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 import HorizontalScrollCarousel from '@/components/HorizontalScrollCarousel';
@@ -38,7 +38,7 @@ import { ClientsMarquee } from '@/components/ClientsMarquee';
 import ServiceCard from '@/components/ServiceCard';
 import { YandexReviews } from '@/components/YandexReviews';
 import { useContactDialog } from "@/hooks/use-contact-dialog";
-import { useAuditDialog } from '@/hooks/use-audit-dialog';
+import { useToast } from "@/hooks/use-toast";
 
 
 const packages = [
@@ -197,12 +197,31 @@ export default function Home() {
   const certificateImages = PlaceHolderImages.filter(p => p.id.startsWith('certificate-'));
   const [videoSrc, setVideoSrc] = useState(heroVideos[0]);
   const { onOpen: onContactOpen } = useContactDialog();
-  const { onOpen: onAuditOpen } = useAuditDialog();
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
+  const { toast } = useToast();
 
   useEffect(() => {
     setVideoSrc(heroVideos[Math.floor(Math.random() * heroVideos.length)]);
   }, []);
+  
+  const handleAuditClick = () => {
+    toast({
+      title: 'Подготовьте файлы для аудита',
+      description: (
+        <div className="flex flex-col gap-2 mt-2">
+            <p>Пожалуйста, пришлите в чат Telegram:</p>
+            <ul className="list-disc list-inside text-sm">
+                <li>Фотографии вашего участка</li>
+                <li>Выписку из ЕГРН (если есть)</li>
+            </ul>
+        </div>
+      ),
+      duration: 10000,
+    });
+    setTimeout(() => {
+        window.open('https://t.me/Danayn11', '_blank');
+    }, 500);
+  };
 
   return (
     <div className="min-h-screen bg-background">
@@ -233,7 +252,8 @@ export default function Home() {
               </div>
 
               <div className="mt-8 flex flex-col sm:flex-row gap-4">
-                <Button size="lg" className="text-lg py-7 px-8" onClick={onAuditOpen}>
+                <Button size="lg" className="text-lg py-7 px-8" onClick={handleAuditClick}>
+                  <FileUp className="mr-2 h-5 w-5" />
                   Бесплатный Аудит участка 2026 за 5 минут
                 </Button>
                  <Button size="lg" variant="ghost" onClick={onContactOpen}>
@@ -617,6 +637,7 @@ export default function Home() {
 
 
     
+
 
 
 

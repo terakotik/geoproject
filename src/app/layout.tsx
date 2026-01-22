@@ -7,7 +7,6 @@ import { Toaster } from "@/components/ui/toaster";
 import { GpsJammingToast } from '@/components/GpsJammingToast';
 import CallMeBackButton from '@/components/CallMeBackButton';
 import { ContactDialogProvider } from '@/hooks/use-contact-dialog.tsx';
-import { AuditDialogProvider } from '@/hooks/use-audit-dialog';
 import { PT_Sans } from 'next/font/google';
 
 export const metadata: Metadata = {
@@ -32,7 +31,6 @@ export default function RootLayout({
       <head>
       </head>
       <body className={cn("font-body antialiased", ptSans.variable)}>
-        <AuditDialogProvider>
           <ContactDialogProvider>
             <CallMeBackButton />
             <div vaul-drawer-wrapper="" className="min-h-screen flex flex-col">
@@ -45,7 +43,6 @@ export default function RootLayout({
             <Toaster />
             <GpsJammingToast />
           </ContactDialogProvider>
-        </AuditDialogProvider>
       </body>
     </html>
   );
