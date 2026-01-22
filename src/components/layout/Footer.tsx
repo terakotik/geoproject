@@ -14,7 +14,7 @@ export default function Footer() {
 
   return (
     <footer className="bg-black text-white relative overflow-hidden">
-      <div className="absolute inset-0 z-0 opacity-30">
+      <div className="absolute inset-0 z-0 opacity-10">
         <video
           autoPlay
           loop
@@ -115,7 +115,7 @@ export default function Footer() {
           <div className="flex flex-col lg:flex-row justify-between items-center gap-4">
             <div className="text-sm text-white/80" dangerouslySetInnerHTML={{ __html: '© 2025 ООО&nbsp;"ГЕОСТРОЙПРОЕКТ". Все права защищены.' }}>
             </div>
-            <a href="https://www.1target.ru/" target="_blank" rel="noopener noreferrer" className="text-sm text-white/80">
+            <a href="https://www.odigital.ru/" target="_blank" rel="noopener noreferrer" className="text-sm text-white/80">
                 <AnimatedText as="span" text="Разработчик" className="text-sm"/>
             </a>
             <div className="text-xs text-white/80 text-center lg:text-right" dangerouslySetInnerHTML={{ __html: 'Лицензированные кадастровые инженеры | Работаем с&nbsp;2003 года<br/>Геодезические услуги в&nbsp;Санкт-Петербурге и&nbsp;Ленинградской области' }}>
