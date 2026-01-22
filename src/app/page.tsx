@@ -1,5 +1,3 @@
-
-
 'use client';
 
 import Image from 'next/image';
@@ -247,7 +245,7 @@ export default function Home() {
                 </div>
                 
                 <div className={`transition-all duration-500 ease-in-out overflow-hidden ${showAuditInfo ? 'max-h-64 mt-4' : 'max-h-0 mt-0'}`}>
-                    <Card className="p-4 bg-card/80 border-2 border-accent backdrop-blur-sm">
+                    <Card className="p-4 bg-card/80 border-2 border-accent/50 backdrop-blur-sm max-w-sm">
                         <CardHeader className="p-0">
                             <CardTitle className="text-base font-semibold">Инструкция для аудита</CardTitle>
                         </CardHeader>
@@ -261,7 +259,7 @@ export default function Home() {
                              <Button asChild className="w-full mt-2">
                               <a href="https://t.me/Danayn11" target="_blank" rel="noopener noreferrer">
                                 <Send className="mr-2 h-4 w-4" />
-                                Перейти в Telegram
+                                Отправить
                               </a>
                             </Button>
                         </CardContent>
@@ -645,6 +643,7 @@ export default function Home() {
 
 
     
+
 
 
 
