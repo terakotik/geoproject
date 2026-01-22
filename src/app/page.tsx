@@ -248,9 +248,9 @@ export default function Home() {
                 <span className="font-semibold text-foreground">Работаем с лицензией</span>
               </div>
 
-              <div className="mt-8">
+              <div className="mt-8 max-w-lg">
                 <div className="flex flex-col sm:flex-row gap-4">
-                  <Button size="lg" onClick={handleAuditClick} className="shadow-lg shadow-primary/30">
+                  <Button size="lg" onClick={handleAuditClick} className="shadow-lg shadow-primary/30 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-primary/40">
                     <FileUp className="mr-2 h-5 w-5" />
                     Бесплатный Аудит участка 2026 за 5 минут
                   </Button>
@@ -259,8 +259,8 @@ export default function Home() {
                   </Button>
                 </div>
                 
-                <div className={`transition-all duration-500 ease-in-out overflow-hidden ${showAuditInfo ? 'max-h-96 mt-4' : 'max-h-0 mt-0'}`}>
-                    <Card className="p-4 bg-muted border-accent">
+                <div className={`transition-all duration-500 ease-in-out overflow-hidden ${showAuditInfo ? 'max-h-64 mt-4' : 'max-h-0 mt-0'}`}>
+                    <Card className="p-4 bg-card/80 border border-accent/70 backdrop-blur-sm">
                         <CardHeader className="p-0">
                             <CardTitle className="text-base font-semibold">Подготовьте файлы для аудита</CardTitle>
                         </CardHeader>
@@ -535,7 +535,7 @@ export default function Home() {
           >
             <CarouselContent>
               {certificateImages.map((image, index) => (
-                <CarouselItem key={index} className="basis-1/2 md:basis-1/4 lg:basis-1/6">
+                <CarouselItem key={index} className="basis-1/2 sm:basis-1/3 md:basis-1/4 lg:basis-1/6">
                   <div className="p-1 cursor-pointer" onClick={() => setSelectedImage(image.imageUrl)}>
                     <Card className="h-40">
                       <CardContent className="relative flex h-full items-center justify-center p-2 rounded-lg overflow-hidden bg-white">
@@ -652,6 +652,7 @@ export default function Home() {
 
 
     
+
 
 
 
