@@ -198,26 +198,13 @@ export default function Home() {
   const { onOpen: onContactOpen } = useContactDialog();
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
   const [showAuditInfo, setShowAuditInfo] = useState(false);
-  const auditTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
     setVideoSrc(heroVideos[Math.floor(Math.random() * heroVideos.length)]);
-    
-    return () => {
-      if (auditTimeoutRef.current) {
-        clearTimeout(auditTimeoutRef.current);
-      }
-    };
   }, []);
   
   const handleAuditClick = () => {
-    if (showAuditInfo) return;
-
-    setShowAuditInfo(true);
-    
-    auditTimeoutRef.current = setTimeout(() => {
-        window.open('https://t.me/Danayn11', '_blank');
-    }, 5000);
+    setShowAuditInfo(prev => !prev);
   };
 
   return (
@@ -244,15 +231,15 @@ export default function Home() {
               <p className="text-xl md:text-2xl text-muted-foreground max-w-2xl mt-6 leading-relaxed" dangerouslySetInnerHTML={{ __html: 'Полный спектр кадастровых работ,<br />инженерных изысканий и&nbsp;ЗОУИТ<br />в&nbsp;Санкт-Петербурге и&nbsp;ЛО' }}></p>
               
               <div className="mt-8 inline-flex items-center gap-3">
-                <Shield className="h-5 w-5 text-green-600" fill="currentColor" />
+                <Shield className="h-5 w-5 text-green-600 fill-green-600" />
                 <span className="font-semibold text-foreground">Работаем с лицензией</span>
               </div>
 
-              <div className="mt-8 max-w-lg">
+              <div className="mt-8 max-w-md">
                 <div className="flex flex-col sm:flex-row gap-4">
                   <Button size="lg" onClick={handleAuditClick} className="shadow-lg shadow-primary/30 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-primary/40">
                     <FileUp className="mr-2 h-5 w-5" />
-                    Бесплатный Аудит участка 2026 за 5 минут
+                    Бесплатный Аудит участка 2026
                   </Button>
                   <Button size="lg" variant="outline" onClick={onContactOpen}>
                     Бесплатная консультация <ArrowRight className="ml-2 h-5 w-5" />
@@ -260,17 +247,23 @@ export default function Home() {
                 </div>
                 
                 <div className={`transition-all duration-500 ease-in-out overflow-hidden ${showAuditInfo ? 'max-h-64 mt-4' : 'max-h-0 mt-0'}`}>
-                    <Card className="p-4 bg-card/80 border border-accent/70 backdrop-blur-sm">
+                    <Card className="p-4 bg-card/80 border-2 border-accent backdrop-blur-sm">
                         <CardHeader className="p-0">
-                            <CardTitle className="text-base font-semibold">Подготовьте файлы для аудита</CardTitle>
+                            <CardTitle className="text-base font-semibold">Инструкция для аудита</CardTitle>
                         </CardHeader>
-                        <CardContent className="p-0 pt-2">
-                            <p className="text-sm text-muted-foreground">Пожалуйста, пришлите в чат Telegram:</p>
-                            <ul className="list-disc list-inside text-sm text-muted-foreground mt-1 space-y-1">
+                        <CardContent className="p-0 pt-2 space-y-3">
+                            <p className="text-sm text-muted-foreground">Для бесплатного аудита, пожалуйста, пришлите в наш Telegram:</p>
+                            <ul className="list-disc list-inside text-sm text-muted-foreground space-y-1">
                                 <li>Фотографии вашего участка</li>
                                 <li>Выписку из ЕГРН (если есть)</li>
+                                <li>Кадастровый номер</li>
                             </ul>
-                            <p className="text-xs text-muted-foreground/80 mt-3">Перенаправление в Telegram через 5 секунд...</p>
+                             <Button asChild className="w-full mt-2">
+                              <a href="https://t.me/Danayn11" target="_blank" rel="noopener noreferrer">
+                                <Send className="mr-2 h-4 w-4" />
+                                Перейти в Telegram
+                              </a>
+                            </Button>
                         </CardContent>
                     </Card>
                 </div>
@@ -652,6 +645,7 @@ export default function Home() {
 
 
     
+
 
 
 
