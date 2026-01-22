@@ -282,7 +282,7 @@ export default function Home() {
       </section>
       
       <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8 -mt-16 z-20 relative">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8 -mt-16 z-20 relative">
           <a href="https://yandex.com/maps/org/geostroyproyekt/144539023058/reviews/?indoorLevel=1&ll=30.316916%2C59.926206&z=16" target="_blank" rel="noopener noreferrer" className="block h-full">
             <Card className="p-6 bg-card/80 backdrop-blur-sm h-full stat-card flex flex-col justify-center items-center">
                 <CardHeader className="p-0 flex flex-row items-center gap-4">
