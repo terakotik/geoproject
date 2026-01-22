@@ -254,7 +254,7 @@ export default function Home() {
                 </div>
                 
                 <div className={`transition-all duration-500 ease-in-out overflow-hidden ${showAuditInfo ? 'max-h-64 mt-4' : 'max-h-0 mt-0'}`}>
-                    <Card className="p-4 bg-card/80 border-2 border-accent/50 backdrop-blur-sm max-w-sm">
+                    <Card className="p-4 bg-card/80 backdrop-blur-sm border-2 border-accent/50 max-w-sm">
                         <CardHeader className="p-0">
                             <CardTitle className="text-base font-semibold">Инструкция для аудита</CardTitle>
                         </CardHeader>
@@ -537,8 +537,8 @@ export default function Home() {
               {certificateImages.map((image, index) => (
                 <CarouselItem key={index} className="basis-1/2 sm:basis-1/3 md:basis-1/4 lg:basis-1/6">
                   <div className="p-1 cursor-pointer" onClick={() => setSelectedImage(image.imageUrl)}>
-                    <Card className="h-40">
-                      <CardContent className="relative flex h-full items-center justify-center p-2 rounded-lg overflow-hidden bg-white">
+                    <Card className="h-40 bg-white">
+                      <CardContent className="relative flex h-full items-center justify-center p-2 rounded-lg overflow-hidden">
                         <Image
                           src={image.imageUrl}
                           alt={image.description}
@@ -596,13 +596,6 @@ export default function Home() {
       <section className="py-12 md:py-20 bg-background">
         <div className="container mx-auto px-4">
           <div className="p-8 md:p-12 bg-card/80 backdrop-blur-sm border-border/50 max-w-4xl mx-auto text-center rounded-lg">
-            <Image
-              src="https://s1.hostingkartinok.com/uploads/images/2025/09/c884d8a66894d2a0daf1ce54d11355d2.png"
-              alt="Призыв к действию"
-              width={800}
-              height={200}
-              className="mx-auto mb-8"
-            />
             <h3 className="text-3xl md:text-4xl font-heading font-bold text-foreground mb-4">Готовы начать работу?</h3>
             <p className="text-lg text-muted-foreground mb-8" dangerouslySetInnerHTML={{ __html: 'Оставьте заявку на&nbsp;бесплатную консультацию и&nbsp;мы&nbsp;ответим на&nbsp;все ваши вопросы.' }}>
             </p>
