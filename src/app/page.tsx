@@ -204,16 +204,7 @@ export default function Home() {
   // }, []);
   
   const handleAuditClick = () => {
-    setShowAuditInfo(prev => {
-        const newState = !prev;
-        if (newState) {
-            // Clear any existing timeout
-            if (auditTimeoutRef.current) {
-                clearTimeout(auditTimeoutRef.current);
-            }
-        }
-        return newState;
-    });
+    setShowAuditInfo(prev => !prev);
   };
 
   return (
@@ -545,24 +536,20 @@ export default function Home() {
           >
             <CarouselContent>
               {certificateImages.map((image, index) => (
-                <CarouselItem key={index} className="basis-1/2 sm:basis-1/3 md:basis-1/4 lg:basis-1/6">
+                <CarouselItem key={index} className="basis-1/2 sm:basis-1/3 md:basis-1/4 lg:basis-1/5">
                   <div className="p-1 cursor-pointer group" onClick={() => setSelectedImage(image.imageUrl)}>
-                      <div className="relative pt-6">
-                          <div className="absolute top-0 left-1/2 -translate-x-1/2 z-10 flex items-center justify-center h-12 w-12 rounded-full bg-card border-2 border-dashed border-border/50 group-hover:border-accent transition-all duration-300">
-                              <Shield className="h-6 w-6 text-muted-foreground group-hover:text-accent transition-colors duration-300" />
-                          </div>
-                          <Card className="h-40 bg-card overflow-hidden border-2 border-dashed border-border/50 group-hover:border-accent transition-all duration-300 shadow-sm group-hover:shadow-lg mt-6">
-                              <CardContent className="relative flex h-full items-center justify-center p-2 rounded-lg">
-                                  <Image
-                                  src={image.imageUrl}
-                                  alt={image.description}
-                                  data-ai-hint={image.imageHint}
-                                  fill
-                                  className="object-contain transition-transform duration-300 group-hover:scale-105"
-                                  />
-                              </CardContent>
-                          </Card>
-                      </div>
+                      <Card className="h-40 bg-card overflow-hidden border-2 border-dashed border-border/50 group-hover:border-accent transition-all duration-300 shadow-sm group-hover:shadow-lg relative">
+                          <Shield className="absolute top-2 right-2 h-5 w-5 text-muted-foreground/50 group-hover:text-accent transition-colors duration-300 z-10" />
+                          <CardContent className="relative flex h-full items-center justify-center p-4 rounded-lg">
+                              <Image
+                              src={image.imageUrl}
+                              alt={image.description}
+                              data-ai-hint={image.imageHint}
+                              fill
+                              className="object-contain transition-transform duration-300 group-hover:scale-105"
+                              />
+                          </CardContent>
+                      </Card>
                   </div>
                 </CarouselItem>
               ))}
