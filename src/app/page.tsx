@@ -227,6 +227,7 @@ export default function Home() {
             className="object-cover"
             priority
           />
+          <div className="absolute inset-y-0 left-0 w-full md:w-3/4 bg-gradient-to-r from-background via-background/80 to-transparent"></div>
         </div>
         <div className="container mx-auto px-4 relative z-10">
           <div className="grid md:grid-cols-2 gap-8 items-center">
@@ -260,9 +261,9 @@ export default function Home() {
                         <CardContent className="p-0 pt-2 space-y-3">
                             <p className="text-sm text-muted-foreground">Для бесплатного аудита, пожалуйста, пришлите в наш Telegram:</p>
                             <ul className="list-disc list-inside text-sm text-muted-foreground space-y-1">
+                                <li>Кадастровый номер</li>
                                 <li>Фотографии вашего участка</li>
                                 <li>Выписку из ЕГРН (если есть)</li>
-                                <li>Кадастровый номер</li>
                             </ul>
                              <Button asChild className="w-full mt-2">
                               <a href="https://t.me/Danayn11" target="_blank" rel="noopener noreferrer">
