@@ -282,34 +282,34 @@ export default function Home() {
       </section>
       
       <div className="container mx-auto px-4">
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8 -mt-16 z-20 relative">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 -mt-16 z-20 relative">
           <a href="https://yandex.com/maps/org/geostroyproyekt/144539023058/reviews/?indoorLevel=1&ll=30.316916%2C59.926206&z=16" target="_blank" rel="noopener noreferrer" className="block h-full">
-            <Card className="p-6 bg-card/80 backdrop-blur-sm h-full stat-card flex flex-col justify-center items-center">
-                <CardHeader className="p-0 flex flex-row items-center gap-4">
-                    <div className="w-12 h-12 flex items-center justify-center rounded-full bg-red-500 text-white text-2xl font-bold">Я</div>
+            <Card className="p-4 md:p-6 bg-card/80 backdrop-blur-sm h-full stat-card flex flex-col justify-center items-center">
+                <CardHeader className="p-0 flex flex-col sm:flex-row items-center gap-2 md:gap-4 text-center sm:text-left">
+                    <div className="w-10 h-10 md:w-12 md:h-12 flex items-center justify-center rounded-full bg-red-500 text-white text-xl md:text-2xl font-bold flex-shrink-0">Я</div>
                     <div>
-                        <CardTitle className="text-xl">Яндекс Отзывы</CardTitle>
-                        <div className="flex items-center gap-1">
-                            <span className="text-lg font-bold text-accent">5.0</span>
+                        <CardTitle className="text-base md:text-xl">Яндекс Отзывы</CardTitle>
+                        <div className="flex items-center gap-1 justify-center sm:justify-start">
+                            <span className="text-base md:text-lg font-bold text-accent">5.0</span>
                             <div className="flex">
                                 {[...Array(5)].map((_, i) => <Star key={i} className="h-4 w-4 text-yellow-400 fill-yellow-400" />)}
                             </div>
                         </div>
                     </div>
                 </CardHeader>
-                <CardContent className="p-0 mt-4 text-center">
-                    <p className="text-sm text-muted-foreground">Более 100 реальных отзывов от наших клиентов.</p>
+                <CardContent className="p-0 mt-3 text-center">
+                    <p className="text-xs sm:text-sm text-muted-foreground">Более 100 реальных отзывов.</p>
                 </CardContent>
             </Card>
           </a>
           {heroStats.map((stat, index) => (
-            <Card key={index} className="bg-card/80 backdrop-blur-sm p-6 text-center stat-card">
-              <CardHeader className="p-0 items-center mb-4">
-                  <stat.icon className="h-10 w-10 text-accent" />
+            <Card key={index} className="bg-card/80 backdrop-blur-sm p-4 md:p-6 text-center stat-card">
+              <CardHeader className="p-0 items-center mb-2 md:mb-4">
+                  <stat.icon className="h-8 w-8 md:h-10 md:h-10 text-accent" />
               </CardHeader>
               <CardContent className="p-0">
-                <p className="text-3xl md:text-4xl font-bold text-foreground">{stat.value}</p>
-                <p className="text-sm text-muted-foreground mt-1" dangerouslySetInnerHTML={{ __html: stat.label }}></p>
+                <p className="text-2xl md:text-4xl font-bold text-foreground">{stat.value}</p>
+                <p className="text-xs sm:text-sm text-muted-foreground mt-1" dangerouslySetInnerHTML={{ __html: stat.label }}></p>
               </CardContent>
             </Card>
           ))}
@@ -325,14 +325,12 @@ export default function Home() {
                  <Card className="p-6 md:p-8 bg-card/50 backdrop-blur-sm border-border/50 relative">
                    <div className="flex flex-col lg:flex-row items-start gap-6">
                         <div className="flex-shrink-0">
-                           <div className="relative w-24 h-24 md:w-36 md:h-36 rounded-full overflow-hidden shadow-lg border-4 border-white">
-                              <video
-                                autoPlay
-                                loop
-                                muted
-                                playsInline
-                                className="w-full h-full object-cover"
-                                src="https://d1dzlizqgbwk1w.cloudfront.net/videos/2025/10/22/oudbOxVP.mp4"
+                           <div className="relative w-24 h-24 rounded-full overflow-hidden shadow-lg border-4 border-white mx-auto">
+                              <Image
+                                src="https://i.postimg.cc/Bn5R3mxt/imageo.jpg"
+                                alt="Руководитель компании"
+                                fill
+                                className="object-cover"
                               />
                             </div>
                         </div>
