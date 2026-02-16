@@ -1,5 +1,5 @@
 
-import { type LucideIcon, File, DraftingCompass, Scale, FileText, Mountain, Calculator, Map, Building, ScanSearch, LandPlot, Star, CircleCheckBig, FilePenLine, Users, SquareCheckBig, Download, MessageCircle, Zap, Send, Phone, MessageSquare, ExternalLink, ArrowRight, Shield, MapPin as MapPinIcon, Ruler, FileText as FileTextIcon, TreePine, Factory, ListChecks } from "lucide-react";
+import { type LucideIcon, File, DraftingCompass, Scale, FileText, Mountain, Calculator, Map, Building, ScanSearch, LandPlot, Star, CircleCheckBig, FilePenLine, Users, SquareCheckBig, Download, MessageCircle, Zap, Send, Phone, MessageSquare, ExternalLink, ArrowRight, Shield, MapPin as MapPinIcon, Ruler, FileText as FileTextIcon, TreePine, Factory, ListChecks, Gavel } from "lucide-react";
 
 export type Service = {
   title: string;
@@ -32,6 +32,12 @@ export const services: Service[] = [
     description: "Определение зон с&nbsp;особыми условиями использования территорий",
     icon: FileTextIcon,
     slug: "zouit",
+  },
+  {
+    title: "Сервитут",
+    description: "Установление права ограниченного пользования чужим земельным участком",
+    icon: Scale,
+    slug: "servitut",
   },
   {
     title: "Фасадная съемка и 3D",
@@ -97,6 +103,12 @@ const serviceDetails: Record<string, ServiceDetails> = {
         price: "от&nbsp;15&nbsp;000&nbsp;₽",
         timeline: "от&nbsp;10&nbsp;дней",
         includes: ["Анализ факторов", "Расчет зон", "Картографический материал", "Согласования"]
+    },
+    "servitut": {
+        longDescription: "Сервитут — это право ограниченного пользования чужим земельным участком. Предоставляя сервитут, собственник участка может брать плату с того, кто пользуется землей, устанавливать штрафы за его нарушение.\n\nВиды сервитутов:\n• Частный сервитут — сервитут на проход или проезд установленного лица.\n• Публичный сервитут — сервитут на неопределенное количество лиц. Его чаще устанавливает государство для доступа к водоему или прокладки инженерных сетей.\n\nПо времени наложения:\n• Временный сервитут — устанавливается на определенный срок. Например, для строительных работ.\n• Постоянный — устанавливается на неустановленный срок.",
+        price: "от 30 000 ₽",
+        timeline: "от 2 мес.",
+        includes: ["Соглашение и межевой план"]
     },
      "facade-survey": {
         longDescription: "Высокоточная фасадная съемка и&nbsp;создание трехмерных моделей зданий и&nbsp;сооружений для целей проектирования, реконструкции, реставрации и&nbsp;контроля за&nbsp;состоянием объектов.",

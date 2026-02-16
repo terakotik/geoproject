@@ -1,14 +1,14 @@
+
 'use client';
 
 import Image from 'next/image';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
-import { CheckCircle, Star, CircleCheckBig, FilePenLine, Users, SquareCheckBig, Download, MessageCircle, Zap, Send, Phone, MessageSquare, ExternalLink, ArrowRight, Shield, MapPin as MapPinIcon, Building, Ruler, FileText as FileTextIcon, TreePine, Factory, Calculator, Clock, ListChecks, FolderKanban, Award, FileUp, Search } from 'lucide-react';
+import { CheckCircle, Star, CircleCheckBig, FilePenLine, Users, SquareCheckBig, Download, MessageCircle, Zap, Send, Phone, MessageSquare, ExternalLink, ArrowRight, Shield, MapPin as MapPinIcon, Building, Ruler, FileText as FileTextIcon, TreePine, Factory, Calculator, Clock, ListChecks, FolderKanban, Award, FileUp, Search, HelpCircle } from 'lucide-react';
 import { services, getServiceDetails } from '@/lib/services';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 import HorizontalScrollCarousel from '@/components/HorizontalScrollCarousel';
-import { HelpCircle } from 'lucide-react';
 import { AnimatedText } from '@/components/AnimatedText';
 import {
   Carousel,
@@ -79,6 +79,7 @@ const priceSections = [
       { name: "Межевание (Уточнение границ) до 30 соток", price: "18 000 ₽", term: "14 дн." },
       { name: "Межевание (Уточнение границ) от 30 до 40 соток", price: "20 000 ₽", term: "14 дн." },
       { name: "Межевание (Уточнение границ) от 40 до 50 соток", price: "22 000 ₽", term: "14 дн." },
+      { name: "Сервитут (Соглашение + Межевой план)", price: "от 30 000 ₽", term: "от 2 мес." },
       { name: "Схема расположения ЗУ на КПТ (за 1 объект)", price: "12 000 ₽", term: "3-5 дн." },
       { name: "Вынос границ в натуру (выезд + до 8 точек)", price: "8 000 ₽", term: "1-2 дн." },
       { name: "Вынос границ в натуру (доп. точка сверх 8)", price: "500 ₽ / шт.", term: "1-2 дн." },
