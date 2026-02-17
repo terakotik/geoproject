@@ -27,7 +27,7 @@ import {
 } from "@/components/ui/accordion"
 import { cn } from '@/lib/utils';
 import { usePathname } from 'next/navigation';
-import { useContactDialog } from '@/hooks/use-contact-dialog.tsx';
+import { useContactDialog } from '@/hooks/use-contact-dialog';
 
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -42,6 +42,11 @@ export default function Header() {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  // Автоматически закрываем мобильное меню при переходе на новую страницу
+  useEffect(() => {
+    setIsMobileMenuOpen(false);
+  }, [pathname]);
 
   const navLinks = [
     { href: '/#about', label: 'О нас' },
