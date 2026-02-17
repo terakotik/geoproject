@@ -1,5 +1,5 @@
 
-import { type LucideIcon, File, DraftingCompass, Scale, FileText, Mountain, Calculator, Map, Building, ScanSearch, LandPlot, Star, CircleCheckBig, FilePenLine, Users, SquareCheckBig, Download, MessageCircle, Zap, Send, Phone, MessageSquare, ExternalLink, ArrowRight, Shield, MapPin as MapPinIcon, Ruler, FileText as FileTextIcon, TreePine, Factory, ListChecks, Gavel } from "lucide-react";
+import { type LucideIcon, File, DraftingCompass, Scale, FileText, Mountain, Calculator, Map, Building, ScanSearch, LandPlot, Star, CircleCheckBig, FilePenLine, Users, SquareCheckBig, Download, MessageCircle, Zap, Send, Phone, MessageSquare, ExternalLink, ArrowRight, Shield, MapPin as MapPinIcon, Ruler, FileText as FileTextIcon, TreePine, Factory, ListChecks, Gavel, ParkingCircle } from "lucide-react";
 
 export type Service = {
   title: string;
@@ -68,6 +68,12 @@ export const services: Service[] = [
     description: "Изготовление и оформление технических паспортов на объекты недвижимости",
     icon: File,
     slug: "technical-passports",
+  },
+  {
+    title: "Регистрация машиномест",
+    description: "Оформление прав на&nbsp;машиноместа в&nbsp;подземных паркингах",
+    icon: ParkingCircle,
+    slug: "parking-space-registration",
   }
 ];
 
@@ -139,6 +145,12 @@ const serviceDetails: Record<string, ServiceDetails> = {
         price: "от&nbsp;6&nbsp;500&nbsp;₽",
         timeline: "от&nbsp;3&nbsp;дней",
         includes: ["Выезд техника", "Проведение замеров", "Оформление паспорта", "Регистрация в БТИ (при необходимости)"]
+    },
+    "parking-space-registration": {
+        longDescription: "Профессиональная помощь в&nbsp;регистрации машиноместа как самостоятельного объекта недвижимости. Подготовка технического плана и&nbsp;сопровождение до&nbsp;получения выписки из&nbsp;ЕГРН.",
+        price: "от&nbsp;18&nbsp;000&nbsp;₽",
+        timeline: "от&nbsp;10&nbsp;дней",
+        includes: ["Замеры машиноместа", "Технический план", "Подача в&nbsp;Росреестр", "Получение выписки"]
     }
 }
 
